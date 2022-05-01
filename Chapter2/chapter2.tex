@@ -11,32 +11,103 @@
     \graphicspath{{Chapter2/Figs/Vector/}{Chapter2/Figs/}}
 \fi
 
-\section{Hidden Markov Model}
-
-A Hidden Markov Model 
-
 
 
 \section{ Expectation–maximization algorithm}
 
-Also abriviated as EM algorithm is an iterative approach in computing maximum likelihood estimates. It is used in situations where incomplete data are present therefore the part of a complete data set is hidden and we may not be able to apply straightforwards analytical procedure for computing maximum likelihood estimates. This is of great importance and efficiency for hidden markov models where we have a sample space of observed variables, let us denote it as $X$ and a hidden sample space $Z$. We assume that there is a mapping from $X$ into $Z$, where $\forall x \in X$ is a realization from sample space $X$ and the mapping from $X$ into $Z$ in many-one. We also assume that given our model the realizations $z \in Z$ are not observable directly but only as a projection from $X$ into $Z$. 
+Also abriviated as EM algorithm is an iterative approach in computing maximum likelihood estimates. It is used in situations where incomplete data are present therefore the part of a complete data set is hidden and we may not be able to apply straightforwards analytical procedure for computing maximum likelihood estimates. In other words we want to find the best estimate of the parameters for which the observed sequence is the most likely. This is of great importance and efficiency for Hidden Markov models where we have a sample space of observed variables, let us denote it as $X$ and a hidden sample space $Z$. We assume that there is a mapping from $X$ into $Z$, where $\forall x \in X$ is a realisation from sample space $X$ and the mapping from $X$ into $Z$ in many-one, as seen in Figure 1. We also assume that given our model the realizations $z \in Z$ are not observable directly but only as a projection from $X$ into $Z$. 
 
+Let us also denote $\theta \in \Theta$ which is a vector of parameters of the given distribution, specifically containing the initial distribution $\lambda$, transition matrix $A$ and emission matrix $B$, thus containing the whole HMM model parameters itself. The aim of EM algorithm is essentially to find the best estimate of $\theta$ that maximises the likelihood function $L(\theta) = P(X|\theta)$, this is known as Maximum likelihood (ML) estimate of $\theta$. 
 
-The EM algorithm involves two main stages:
-
-1) Expectation step (E-step) - 
-
-2) Maximization step (M-step) - 
-
-
-When is comes to the definition of the EM algorithm we start by making several assumptions that will be removed subsequently to introduce more general properties and definitions. 
-Suppose we are given the probability density function of exponential family form as follows:
-
+To visualise and apply the non-iterative approach, let us consider now the daily log returns of BTC/USDT trading pair in past 5 years. If we plot the histogram we may see that the log-returns may asymptotically follow normal distribution. Since the probability density function in such a case is unimodal and has only one global maximum, the logarithmic transformation converts multiplicative structure into additive with the preservation of global maximum to be optimised by taking the partial derivative w.r.t. each parameter. First of all, we formulate the likelihood function of two-parametric normal distribution.
+ 
 \begin{equation}
-f(z|\theta) = b(z) exp(\theta t(z)^T)/a(\theta)
+L(\mu,\sigma^2|x_1,...,x_N) = P(\mu,\sigma^2|x_1,...,x_N) = \prod_{i=1}^{N} \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\frac{1}{2} \frac{(x_i-\mu)^2}{\sigma^2}}
 \end{equation}
 
-where $\theta \in \Theta$ is a vector of parameters, $t(z)$ denotes vector of complete-data sufficient statistics
+\begin{equation}
+l(\mu,\sigma^2|x_1,...,x_N) = \ln L(\mu,\sigma^2|x_1,...,x_N) 
+\end{equation}
+
+where $x_1,...,x_N$ is a vector of log-returns of length N and $\mu$ and $\sigma$ are parameters to be optimised. 
+
+\begin{equation}
+l(\mu,\sigma^2|x_1,...,x_N) = -\frac{N}{2} \ln(2 \pi) - \frac{N}{2} \ln(\sigma^2) - \frac{1}{2 \sigma^2} \sum_{i=1}^{N} (x_i - \mu)^2
+\end{equation}
+
+If we now take the partial derivative w.r.t. the parameter $\mu$ and $\sigma^2$ and set it to zero we obtain the ML estimate of the parameter as follows:
+
+
+\begin{gather} 
+\frac{\partial}{\partial \mu} \ln L(\mu,\sigma^2|x_1,...,x_N)  = \frac{1}{\sigma^2} (\sum_{i=1}^{N} x_i - N\mu) \\
+0 = \frac{1}{\sigma^2} (\sum_{i=1}^{N} x_i - N\mu) \\
+\mu_{MLE} = \frac{\sum_{i=1}^{N} x_i}{N}
+\end{gather}
+
+\begin{gather} 
+\frac{\partial}{\partial \sigma^2} \ln L(\mu,\sigma^2|x_1,...,x_N) = -\frac{N}{\sigma}+ \frac{1}{\sigma^3} \sum_{i=1}^{N} (x_i - \mu)^2 \\
+0 = -\frac{N}{\sigma}+ \frac{1}{\sigma^3} \sum_{i=1}^{N} (x_i - \mu)^2 \\
+\sigma^2 = \frac{\sum_{i=1}^{N} (x_i - \mu)^2}{N}
+\end{gather}
+
+
+Given the daily returns of BTC/USDT since 2017, ML estimate of the mean denoted by $\mu$ is 0.003 and $\sigma^2$ is 0.042. Moreover we may compare the ML fit with non-parametric estimate obtained by kernel density estimate that uses a sum of gaussian kernel functions for each sampled data point to estimate the smooth density given only data and prior bandwidth parameter $h$ set to 0.2. 
+
+Kernel density estimate is calculated as follows:
+
+\begin{gather} 
+\rho_K(y) = \sum_{i=1}^{N} K(y - x_i;h)  \\
+K(x;h) \propto e^{(-\frac{x^2}{2h^2})}
+\end{gather}
+
+where $K(x;h)$ denotes the Gaussian kernel function with bandwidth parameter $h$ and $\rho_K(y)$ is a kernel density estimate at point $y$.
+
+\begin{figure}[h]
+
+\begin{center}
+	\includegraphics[width=0.9\textwidth]{MACD.png}
+\end{center}
+
+\caption{\textit{ Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot containing two lines for MACD and Signal line and a bar chart as their difference}}
+
+\end{figure}
+
+Although the assumption of complete data simplifies the analytical procedure of calculating the ML estimate in closed form, it may only be used by taken in consideration observable data. The task of EM algorithm can be used to iteratively compute the most likely parameter given the data, i.e. the parameter that most likely produced such a sequence of data points, but since the closed form solution is available at this point, it would be redundant to use iterative procedure. Nevertheless, the iterative EM algorithm given the fully observed complete data behaves in following way:
+
+In order to estimate the single or vector of parameters $\theta$ we use log-likelihood function:
+
+\begin{equation}
+L(\theta) = \ln P(X|\theta) 
+\end{equation}
+
+Since the natural logarithm is strictly increasing function the value of $\theta$ that maximises the log-likelihood as well as likelihood function. Afterwards, in a simplistic sense, the EM algorithm iterates over possible values of $\theta$ to find the estimate that satisfies below inequality until convergence:
+
+\begin{equation}
+L(\theta) \geq L(\theta_i)
+\end{equation}
+
+where the current estimate for $\theta$ in $i^{th}$ iteration is denoted by $\theta_i$. 
+
+The certain part $Z$ of the complete data is hidden in the case of HMM and the total probability of the complete data may be estimated marginalising out values of $z$ given our model parameter $\theta$ under the assumption that the values of $z$ are allowed to be only discrete. 
+
+\begin{equation}
+P(X|\theta) = \sum_z P(X|z,\theta) P(z|\theta)
+\end{equation}
+
+The iterative procedure stated previously in the chapter may be used to find the optimal parameter $\theta$ that maximises the distance between the log-likelihood functions in the algorithm. 
+
+\begin{equation}
+L(\theta) - L(\theta_i) = \ln (\sum_z P(X|z,\theta) P(z|\theta) ) - \ln P(X|\theta_i)
+\end{equation}
+
+The EM algorithm therefore involves two main steps:
+
+\begin{itemize}
+\item[1)] Expectation step (E-step) - 
+\item[2)] Maximization step (M-step) - 
+\end{itemize}
+
+
 
 \subsection{Baum-Welsch algorithm}
 
@@ -156,11 +227,34 @@ One way to interpret the indicator is to trade with respect to the time when the
 
 \section{Relative Strength Index}
 
+Given the recent price changes Relative Strength Index measures the its magnitude in order to indicate the overbought or oversold market. In technical analysis such indicator is represented by an oscillator ranging from values 0 to 100. Empirically 
+it was determined that values above 70 and below 30 signal overbought and oversold asset respectively. Therefore we may also use RSI to produce buy and sell signals from former logic, which means that when the RSI crosses 30 from below, buy signal is generated as well as sell signal in case it crosses 70 from above. We also could measure the strength and continuation of the trend for cases in which the RSI crosses value of 50. Such interpretation results from the RSI formula where the value of 50 means that the average gain equals the average loss in the last period.
 
+The formula below explains the procedure within which the values of RSI are calculated. It is obvious that the RSI rises as the number of positive closing prices increases, i.e. the relative change in prices is positive, and falls if otherwise. The standard time interval for  the calculation is 14 preceding periods with respect to $t$, hereby denoted as $T$.
 
+\begin{equation}
+RSI_t = 100- \frac{100}{1+r_t} 
+\end{equation}
+ 
+ where r is a ratio of average gains and losses as follows:
+ 
+\begin{equation}
+ r_t = \abs{\frac{\sum_{i=1}^{T}(\frac{P_{t-i+1}}{P_{t-i}}-1)\mathbbm{1}_{[P_{t-i+1} - P_{t-i} > 0]}}{\sum_{i=1}^{T}(\frac{P_{t-i+1}}{P_{t-i}}-1) \mathbbm{1}_{[P_{t-i+1} - P_{t-i} < 0]}}}
+\end{equation}
 
+given that $P_t$ denotes the value of an asset at time $t$.
 
+As stated before there are several drawbacks of using the RSI as a trading indicators only by itself, it happens that the price usually rises and stays overbought for a substantial period of time in times of significant and strong bullish trend. RSI as an oscillator is used as a auxiliary trading tool below the price chart:
 
+\begin{figure}[h]
+
+\begin{center}
+	\includegraphics[width=0.9\textwidth]{RSI.png}
+\end{center}
+
+\caption{\textit{ Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with a subplot containing  RSI}}
+
+\end{figure}
 
 \section{Aroon Indicator}
 
