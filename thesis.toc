@@ -9,14 +9,14 @@
 \contentsline {section}{\numberline {1.4}Hidden Markov Model}{4}{section.1.4}%
 \contentsline {chapter}{\numberline {2}Parameter Estimation for Hidden Markov Models}{5}{chapter.2}%
 \contentsline {section}{\numberline {2.1} Expectation–maximization algorithm}{5}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Baum-Welsch algorithm}{8}{subsection.2.1.1}%
-\contentsline {section}{\numberline {2.2}Observable states}{8}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Moving Average Convergence Divergence}{9}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Stochastic Oscillator}{10}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Chaikin Oscillator}{13}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Relative Strength Index}{14}{section.2.6}%
-\contentsline {section}{\numberline {2.7}Aroon Indicator}{15}{section.2.7}%
-\contentsline {section}{\numberline {2.8}Trading using trading}{17}{section.2.8}%
+\contentsline {subsection}{\numberline {2.1.1}Baum-Welsch algorithm}{10}{subsection.2.1.1}%
+\contentsline {section}{\numberline {2.2}Observable states}{10}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Moving Average Convergence Divergence}{11}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Stochastic Oscillator}{12}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Chaikin Oscillator}{14}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Relative Strength Index}{15}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Aroon Indicator}{16}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Trading using trading}{18}{section.2.8}%
 \contentsline {chapter}{\numberline {3}My third chapter}{19}{chapter.3}%
 \contentsline {section}{\numberline {3.1}First section of the third chapter}{19}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}First subsection in the first section}{19}{subsection.3.1.1}%
