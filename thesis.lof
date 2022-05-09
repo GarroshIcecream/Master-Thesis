@@ -1,11 +1,13 @@
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces \textit {Simplified structure of the hidden Markov process with observable states $X_1,X_2,X_3$ and hidden states $S_1,S_2,S_3$}\relax }}{4}{figure.caption.7}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot containing two lines for MACD and Signal line and a bar chart as their difference}\relax }}{7}{figure.caption.7}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot containing two lines for MACD and Signal line and a bar chart as their difference}\relax }}{12}{figure.caption.8}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot with line indicating Stochastic Oscillator}\relax }}{13}{figure.caption.9}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot indicating Chaikin Oscillator}\relax }}{15}{figure.caption.10}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with a subplot containing RSI}\relax }}{16}{figure.caption.11}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplots containing two lines for Aroon Up/Down Indicator and Aroon Oscillator}\relax }}{17}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot containing two lines for MACD and Signal line and a bar chart as their difference}\relax }}{9}{figure.caption.8}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces \textit {E-step as a problem of minimisation of KL divergence represented as a gap between two likelihood functions}\relax }}{12}{figure.caption.9}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot containing two lines for MACD and Signal line and a bar chart as their difference}\relax }}{15}{figure.caption.10}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot with line indicating Stochastic Oscillator}\relax }}{17}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot indicating Chaikin Oscillator}\relax }}{18}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with a subplot containing RSI}\relax }}{20}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplots containing two lines for Aroon Up/Down Indicator and Aroon Oscillator}\relax }}{21}{figure.caption.14}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

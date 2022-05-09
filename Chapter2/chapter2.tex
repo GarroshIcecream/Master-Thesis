@@ -11,8 +11,6 @@
     \graphicspath{{Chapter2/Figs/Vector/}{Chapter2/Figs/}}
 \fi
 
-
-
 \section{ Expectation–maximization algorithm}
 
 Also abriviated as EM algorithm is an iterative approach in computing maximum likelihood estimates. It is used in situations where incomplete data are present therefore the part of a complete data set is hidden and we may not be able to apply straightforwards analytical procedure for computing maximum likelihood estimates. In other words we want to find the best estimate of the parameters for which the observed sequence is the most likely. This is of great importance and efficiency for Hidden Markov models where we have a sample space of observed variables, let us denote it as $X$ and a hidden sample space $Z$. We assume that there is a mapping from $X$ into $Z$, where $\forall x \in X$ is a realisation from sample space $X$ and the mapping from $X$ into $Z$ in many-one, as seen in Figure 1. We also assume that given our model the realizations $z \in Z$ are not observable directly but only as a projection from $X$ into $Z$. 
@@ -103,41 +101,74 @@ L(\theta) - L(\theta_i) = \ln (\sum_z P(X|z,\theta) P(z|\theta) ) - \ln P(X|\the
 Alternatively, the goal of such an algorithm is to maximise the the loglikelihood of the complete data by estimating the optimal paramater or vector of paramaters denoted by $\theta$. Hence the marginal probability of $X$ given vector of hidden variables $Z$:
 
 \begin{equation}
-\ln p(X|\theta) = \sum_{i=1}^{N} \ln \sum_{j=1}^{M} p(x_i, z_j|\theta)
+\ln p(X|\theta) = \sum_{i=1}^{N} \ln \sum_{j=1}^{\infty} p(x_i, z_j|\theta)
 \end{equation}
 
 Since the procedure aims to maximise the marginal log-likelihood of complete data, no closed form solution is available at this point. It is however possible to introduce several assumptions that will eventually suffice in providing solution to the maximisation problem. Let us start by constructing the lower bound for the objective function as in Equation 2.17 that is easy to optimise with respect to parameters represented as $L(\theta, q)$ where $\forall q \in Q$ denotes the functions(e.g. distributions) that lower bounds the objective function and which generally belongs to the family of possible functions $Q$. In order to find the function $q$, we start by multiplying the objective function by $\frac{q(z)}{q(z)}$. Such expression will allow for a construction of artificial weights and with the use of Jensen's inequality:
 
 \begin{gather}
-\sum_{i=1}^{N} \ln \sum_{j=1}^{M} \frac{q(z)}{q(z)} p(x_i, z_j|\theta) \geq \sum_{i=1}^{N} \sum_{j=1}^{M} q(z) \ln \frac{p(x_i, z_j|\theta)}{q(z)} = L(\theta,q) \\
-\ln p(X|\theta) \geq L(\theta,q), for \forall q in Q
+\sum_{i=1}^{N} \ln \sum_{j=1}^{\infty} \frac{q(z_i = j)}{q(z_i = j)} p(x_i, z_i = j|\theta) \geq \sum_{i=1}^{N} \sum_{j=1}^{\infty} q(z_i = j) \ln \frac{p(x_i, z_i = j|\theta)}{q(z_i = j)} = L(\theta,q) \\
+\ln p(X|\theta) \geq L(\theta,q), for \forall q in Q \\
 \end{gather}
 
-Now that we have established the Jensen's inequality within the constructed lower bound $L(\theta,q)$, the optimization problem transforms into finding the function $q$ for a fixed parameter $\theta_k$, given the k+1-th iteration, that maximizes $L(\theta, q)$:
+Now that we have established the Jensen's inequality within the constructed lower bound $L(\theta,q)$, the optimization problem transforms into finding the function $q$ for a fixed parameter $\theta_k$, given the $k+1_{-th}$ iteration, that maximizes $L(\theta, q)$:
 
 \begin{equation}
-q^{k+1} = arg max q L(\theta, q)
+q^{k+1} = \underset{q}{\arg\max} L(\theta, q)
 \end{equation}
 
-In other words, we want to minimise the gap between the log-likelihood function $\ln p(X|\theta)$ and $L(\theta, q)$ with respect to function $q$. Let us now elaborate more on the gap. The final expression that we shall arrive at gives a simplifying interpretation. The KL divergence as introduced above measures the dissimilarities between two distributions and the measure may be interpreted as a distance, it also is asymmetric and always non-negative. The measure is commonly used in image or signal processing where we somehow want to calculate the expected excess surprise from using $q$ as a distribution for our model given that the true or actual distribution is $p$. In context of the EM algorithm, the
+In other words, we want to minimise the gap between the log-likelihood function $\ln p(X|\theta)$ and $L(\theta, q)$ with respect to function $q$. Let us now elaborate more on the gap. The final expression that we shall arrive at gives a simplifying interpretation. The KL divergence as introduced above measures the dissimilarities between two distributions and the measure may be interpreted as a geometrical statistical distance, it also is asymmetric and non-negative. The measure is commonly used in image or signal processing where we somehow want to calculate the expected excess surprise from using $q$ as a distribution for our model given that the true or actual distribution is $p$. In context of the EM algorithm, the
 
 \begin{equation}
 D_{KL} (p || q) = \sum_{X} p(x) \ln \frac{p(x)}{q(x)}
 \end{equation}
 
-KL divergence is substantially a difference of cross-entropy $H(p,q)$ and entropy of $H(p)$ which will be minimised as well as the gap. Therefore, we ought to arrive at this result using following logic:
+KL divergence is substantially a difference of cross-entropy $H(p,q)$ and entropy of $H(p)$ which will be minimised as well as the gap. Therefore, the analytical solution helps us to arrive at KL divergence:
 
+\begin{align*}
+GAP = & \ln p(X|\theta) - L(\theta, q) \\
+&= \sum_{i=1}^{N} \ln p(x_i|\theta) - \sum_{i=1}^{N} \sum_{j=1}^{\infty} q(z_i = j) \ln \frac{p(x_i, z_i = j|\theta)}{q(z_i = j)} \\
+%&= \sum_{i=1}^{N} \sum_{j=1}^{\infty} q(z_i = j) \ln p(x_i|\theta) - \ln \frac{p(x_i, z_i = j|\theta)}{q(z_i = j)} \\
+%&= \sum_{i=1}^{N} \sum_{j=1}^{\infty} q(z_i = j) \ln \frac{p(x_i|\theta) q(z_i = j)}{p(z_i = j|x_i, \theta)p(x_i|\theta)}\\
+%&= \sum_{i=1}^{N} \sum_{j=1}^{\infty} q(z_i = j) \ln \frac{q(z_i = j)}{p(z_i = j|x_i, \theta)} \\
+\end{align*}
 
+In Equation 2.23 and 2.24 we multiply $\ln p(X|\theta)$ by $\sum_{j=1}^{\infty} q(z_i =j)$ which equals to 1 and afterwards we merge logarithms and make use of the properties of Bayes Theorem. 
+The last expression is just sum of KL divergences of function $g(z_i = j)$ and the posterior distribution of the latent variable $z$ given the data and current parameter $\theta$. 
 
+\begin{equation}
+\ln p(X|\theta) - L(\theta, q) = \sum_{i=1}^{N} D_{KL} (q(z_i) || p(z_i|x_i,\theta)) \\
+\end{equation}
 
+Recalling Equation 2.18, the optimisation goal lies in finding the probability distribution $q$ that maximises $L(\theta, q)$ given the current estimate of the parameter $\theta$, traditionally called as $E-step$. To extend and present a solution in finding the function $q$, following interpretation within the knowledge of Equation 2.26 is emphasised:
 
+\begin{equation}
+q^{k+1} = \underset{q}{\arg\max} L(\theta_k, q) = \underset{q}{\arg\max} (\ln p(X|\theta)  - \sum_{i=1}^{N} D_{KL} (q(z_i) || p(z_i|x_i,\theta)))
+\end{equation}
 
+To visualise E-step, let us consider arbitrary log-likelihood function of observed data $\ln p(X|\theta)$ and $L(\theta_k,q)$ for a fixed parameter of $\theta_k$. Notice also the resulting selection of $L(\theta_k,q^{k+1})$ as a solution to E-step. Consider also the new parameter estimate of $\theta_k+1$ which is a part of the next step called $M-step$.
+
+\begin{figure}[h]
+
+\begin{center}
+	\includegraphics[width=0.9\textwidth]{Loglike.png}
+\end{center}
+
+\caption{\textit{E-step as a problem of minimisation of KL divergence represented as a gap between two likelihood functions}}
+
+\end{figure}
+
+Until now we have considered the optimal manner in which we compute the conditional expectation $E_{Z|X,\theta_n} [\ln P(X,z|\theta)]$ by finding the appropriate function $q$. Next step is, as is typical for coordinate descent, selection of parameter $\theta_{k+1}$ by fixing the function $q^{k+1}$ from E-step. The goal of M-step is to:
+
+\begin{equation}
+\theta^{k+1} = \underset{\theta}{\arg\max} L(\theta, q^{k+1})
+\end{equation}
 
 Thus, the EM algorithm involves two main steps:
 
 \begin{itemize}
-\item[1)] Expectation step (E-step) - computing the conditional expectation $E_{Z|X,\theta_n} [\ln P(X,z|\theta)]$ based on the current parameter of $\theta_n$ as introduced in Equation 12
-\item[2)] Maximization step (M-step) - estimating the parameter $\theta$ that maximases the conditional expactation
+\item[1)] Expectation step (E-step) - choose a function q, i.e. probability distribution, that maximises $L(\theta, q)$, which may be also viewed as computing the conditional expectation $E_{Z|X,\theta_n} [\ln P(X,z|\theta)]$ based on the current parameter of $\theta$.
+\item[2)] Maximization step (M-step) - estimating the parameter $\theta_{k+1}$ that maximises the conditional expectation $E_{Z|X,\theta_n} [\ln P(X,z|\theta)]$.
 \end{itemize}
 
 Both of these steps are repeated until convergence. 
