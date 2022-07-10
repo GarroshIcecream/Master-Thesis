@@ -9,12 +9,15 @@
 \@writefile{toc}{\contentsline {section}{\numberline {1.3}Continous-time Markov Chains}{4}{section.1.3}\protected@file@percent }
 \newlabel{section1.3}{{1.3}{4}{Continous-time Markov Chains}{section.1.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.4}Hidden Markov Model}{4}{section.1.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces \textit  {Simplified structure of the hidden Markov process with observable states $X_1,X_2,X_3$ and hidden states $S_1,S_2,S_3$}\relax }}{4}{figure.caption.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.4.1}Forward-backward algorithm}{6}{subsection.1.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.4.2}Viterbi algorithm}{6}{subsection.1.4.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces An HMM with 4 hidden states which emits 2 discrete observable states denoted by $x_1$ or $x_2$. $a_{ij}$ is the probability to transition from state $z_i$ to state $z_j$. $b_j(x_k)$ is the probability to emit symbol $x_k$ in state $z_j$.\relax }}{4}{figure.caption.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4.1}Forward and Backward algorithm}{6}{subsection.1.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Forward algorithm}{7}{section*.8}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Trellis of the observation sequence $x_1$,...,$x_5$ for the above HMM. As an example, the transition between state $z_1$ at time t=2 and state $z_4$ at time t=3 has probability $\alpha _2(z_1)p_{14}\theta _{z_4}(x_3)$, where $\alpha _t(i)$ is the probability to be instate $i$ at time t.\relax }}{8}{figure.caption.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Backward algorithm}{8}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4.2}Viterbi algorithm}{9}{subsection.1.4.2}\protected@file@percent }
 \@setckpt{Chapter1/chapter1}{
-\setcounter{page}{7}
-\setcounter{equation}{6}
+\setcounter{page}{10}
+\setcounter{equation}{14}
 \setcounter{enumi}{0}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
@@ -28,7 +31,7 @@
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{1}
+\setcounter{figure}{2}
 \setcounter{table}{0}
 \setcounter{@pps}{0}
 \setcounter{@ppsavesec}{0}
