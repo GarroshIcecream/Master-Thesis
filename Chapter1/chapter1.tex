@@ -433,13 +433,222 @@ P(X|\lambda) = \sum_{j=1}^N \theta_j(x_{1})\pi_{i} \beta_{1}(i) = \sum_{j=1}^N \
 
 \end{itemize}
 
-Getting everything together we may prove that the forward and backward algorithms coincide in solving the posterior joint distributions over hidden states. 
+Getting everything together we may prove that the forward and backward algorithms coincide in solving the posterior joint and marginal distributions of all hidden states. Consider the case of posterior joint distribution:
 
+\begin{align}
+P(X|\lambda) &= \sum_{i=1}^N P(X,z_t=i|\lambda) \\ \nonumber
+&= \sum_{i=1}^N P(x_1,x_2,...,x_{t},x_{t+1},...,x_{T}|z_t=i,\lambda) P(z_t = i|\lambda) \\ \nonumber
+&= \sum_{i=1}^N P(x_1,x_2,...,x_{t}|z_t=i,\lambda) P(x_{t+1},...,x_{T}|z_t=i,\lambda) P(z_t = i|\lambda) \\ \nonumber
+&= \sum_{i=1}^N P(x_1,x_2,...,x_{t},z_t=i|\lambda) P(x_{t+1},...,x_{T}|z_t=i,\lambda) \\ \nonumber
+&= \sum_{i=1}^N \alpha_{t}(i) \beta_t(i) 
+\end{align}
 
+See that above we take a use of conditional independence of observations given the hidden state and therefore we may transform the problem using already known variables for forward and backward passes over the hidden states. Thus, the posterior marginal distribution is:
 
+\begin{equation}
+P(X, z_t=i|\lambda) = \alpha_t(i) \beta_t(i)
+\end{equation}
 
 \subsection{Viterbi algorithm}
 
+Once we solve the evaluation problem, thus finding the optimal procedure in computing the posterior marginal distributions of all hidden states and $P(X|\lambda)$, we may visualise the result in a trellis as shown in Figure 1.2. The second problem, decoding problem, aims to find the sequence of hidden states $Z^*$ that most likely produced observation sequence $X$. Finding the most likely sequence $Z^*$ maximazes $P(Z|X,\lambda)$. As in the encoding problem, the complexity of the optimisation problem explodes if we decide to compute all possible sequences of hidden states to $N^T$ calculations. The solution as in the forward and backward algorithm simplifies when we calculate the hidden state with highest probability individually rather than entire sequence up to time $t$. The idea is that once we find the most likely hidden state given observation and the model at each time step we may discard the rest of the possible hidden states since they obviously could not have most likely produced the observation. The complexity of the optimal sequence of hidden states decreases significantly to $NT$ thus transforming the exponential complexity into linear. As in forward and backward algorithm we define variable $\gamma_t(i)$ as:
+
+\begin{equation}
+\gamma_t(i) = P(z_t=i|X,\lambda) = \frac{P(X,z_t=i|\lambda)}{P(X|\lambda)} =\frac{\alpha_t(i) \beta_t(i)}{\sum_{i=1}^N \alpha_t(i) \beta_t(i)} \propto \alpha_t(i) \beta_t(i)
+\end{equation}
+
+Where the expressions in the third equality are obtained as a solution to a before mentioned equations. Also, the $P(X|\lambda)$ serves only as a normalising constant and is irrelevant for the optimisation given the respective time step. Moreover, the conditional probability $\gamma_t(i)$ forms a conditional probability mass function since it is non-negative for all possible values of hidden states and observations and the sum over all possible hidden states at each time step is:
+
+\begin{equation}
+\sum_{i=1}^N  \gamma_t(i) = 1
+\end{equation}
+
+This would be one of the possible ways to estimate the most likely hidden states individually and then combine them sequentially to obtain the whole sequence of hidden states as:
+
+\begin{equation}
+z_t^* = \underset{i \in I}{\arg\max} \{\gamma_t(i)\}
+\end{equation}
+
+Method as described by the Eq 1.17 and 1.19 is also called maximum a posteriori probability estimate (hereinafter "MAP estimate") which equals to the mode of the posterior distribution. If the posterior distribution is discrete, the mode is simply the value of a random variable with the highest probability. For continuous distributions the mode is a value of a random variable for which the likelihood/log-likelihood function attains its local maximum/maxima. Assuming now $Z$ denotes the continuous random variable of hidden states and observation sequence $X$ up to time t is present, the MAP estimate of the hidden state $\hat{Z}_{MAP}$ at a given point in time is:
+
+\begin{align}
+\hat{z}_{t,MAP} &= \underset{z_t}{\arg\max} \: f(Z_t|X) \\ \nonumber
+&= \underset{z_t}{\arg\max} \: \frac{f(X|Z_t)g(Z_t)}{\int_{I} f(X|Z_t)g(Z_t) \,dZ} \\ \nonumber
+&= \underset{z_t}{\arg\max} \: f(X|Z_t)g(Z_t)\\ \nonumber
+\end{align}
+
+Where $g$ indicates probability density function of $Z_t$, so called prior distribution, and $I$ is its domain. The second equality follows from the Bayes' Theorem. The result clearly holds for the discrete case:
+
+\begin{align}
+\hat{z}_{t,MAP} &= \underset{z_t}{\arg\max} \: P(Z_t=i|X) \\ \nonumber
+&= \underset{z_t}{\arg\max} \: \frac{P(X|Z_t=i)P(Z_t=i)}{\sum_{i=1}^N P(X|Z_t=i)P(Z_t=i)} \\ \nonumber
+&= \underset{z_t}{\arg\max} \:P(X|Z_t=i)P(Z_t=i)\\ \nonumber
+&= z_t^*\\ \nonumber
+\end{align}
+
+However, the solution as such might not produce the most likely sequence of states given the sequence of observations. This is due to the fact that the individual estimates do not incorporate the transition probability between most likely states at time t-1 and t. Hence, it might be possible that some states are highly unlikely to transition into other that were evaluated as most likely. Fortunately, the mentioned shortcomings of such approach are easily solved by Viterbi algorithm.
+
+In order to find the most likely sequence of hidden states $Z^*={z_1^*,z_2^*,...,z_T^*}$ given the observation sequence $X={x_1,x_2,...,x_T}$ it is necessary to maximise with respect to the whole sequence rather than individually to avoid less likely transitions as introduced. The algorithm therefore defines a variable as follows:
+
+\begin{equation}
+\delta_t(i) = \underset{Z_{t-1}}{\max}\:P(z_1,z_2,...,z_t=i,x_1,x_2,...,x_{t-1},x_{t}|\lambda)
+\end{equation}
+
+That is the most likely state sequence given the observation sequence up to time $t$. Moreover, for the purpose of the algorithm we also define variable $\psi_t(i)$ that stores the node of the incoming arc that leads to the most probable state path.
+
+\begin{equation}
+\psi_t(j) = \underset{i \in I}{\arg\max} \: \delta_{t-1}(i)p_{ij}
+\end{equation}
+
+\vspace{0.3cm}
+
+\noindent
+Then we can easily provide the steps to obtain the most likely state sequence:
+
+\begin{itemize}
+\item[1.] Initialize the algorithm given the initial distribution of hidden states $\pi$:
+
+\begin{align}
+\delta_1(i) &= \pi_i b_i(o_1)  \\
+\psi_1(i)& = 0
+\end{align}
+
+where we compute the initial values of above variables for each hidden state $i \in I$.
+
+\item[2.] Recursive step:
+
+\begin{align}
+\delta_1(i) &= \underset{i \in I}{\arg\max} \: \delta_{t-1}(i)p_{ij} b_j(o_t)  \\
+\psi_t(j)& = \underset{i \in I}{\arg\max} \: \delta_{t-1}(i)p_{ij}
+\end{align}
+
+At each iterative step we update the time so that $t=t+1$. The second step continues as long as the $t<T$ if that does not hold the third step terminates the algorithm and we backtrack the most likely state sequence. Although, recursive step is very similar to the induction step in the forward algorithm there exist a main difference between the two that lies in the fact that Viterbi algorithm uses maximization instead of summation over previous states. 
+
+\item[3.] Termination step for the last observation 
+
+\begin{align}
+P^* &= \underset{i \in I}{\max} \: \delta_{T}(i) \\
+q_T^* & = \underset{i \in I}{\arg\max} \: \delta_{T}(i)
+\end{align}
+
+\item[4.] Backtrack the optimal state sequence:
+
+\begin{equation}
+z_t^* = \psi_{t+1}(z_{t+1}^*)
+\end{equation}
+
+For $t = T-1,T-2,...,1$.
+
+\end{itemize}
+
+The resulting most likely state path can be visually viewed as in the form of a path within the trellis introduced in Fig. 1.2:
+
+\begin{figure}[htbp]
+\begin{center}
+\begin{tikzpicture}[]
+% 1st column
+\node               at (0,6) {$t=1$};
+\node[state] (s1_1) at (0,5) {$z_1$};
+\node[mainstate] (s2_1) at (0,4) {$z_2$};
+\node[state] (s3_1) at (0,3) {$...$};
+\node[state] (s4_1) at (0,2) {$z_N$};
+\node at (0,1) {$x_1$};
+% 2nd column
+\node               at (2,6) {$t=2$};
+\node[mainstate] (s1_2) at (2,5) {$z_1$}
+    edge[lightedge] (s1_1)
+    edge[lightedge] (s2_1)
+    edge[lightedge] (s3_1)
+    edge[lightedge] (s4_1);
+\node[state] (s2_2) at (2,4) {$z_2$}
+    edge[lightedge] (s1_1)
+    edge[lightedge] (s2_1)
+    edge[lightedge] (s3_1)
+    edge[lightedge] (s4_1);
+\node[state] (s3_2) at (2,3) {$...$}
+    edge[lightedge] (s1_1)
+    edge[mainedge] (s2_1)
+    edge[lightedge] (s3_1)
+    edge[lightedge] (s4_1);
+\node[state] (s4_2) at (2,2) {$z_N$}
+    edge[lightedge] (s1_1)
+    edge[lightedge] (s2_1)
+    edge[lightedge] (s3_1)
+    edge[lightedge] (s4_1);
+\node at (2,1) {$x_2$};
+% 3rd column
+\node               at (4,6) {$t=3$};
+\node[mainstate] (s1_3) at (4,5) {$z_1$}
+    edge[lightedge]  (s1_2)
+    edge[lightedge] (s2_2)
+    edge[mainedge] (s3_2)
+    edge[lightedge] (s4_2);
+\node[state] (s2_3) at (4,4) {$z_2$}
+    edge[lightedge] (s1_2)
+    edge[lightedge] (s2_2)
+    edge[lightedge] (s3_2)
+    edge[lightedge] (s4_2);
+\node[state] (s3_3) at (4,3) {$...$}
+    edge[lightedge] (s1_2)
+    edge[lightedge] (s2_2)
+    edge[lightedge] (s3_2)
+    edge[lightedge] (s4_2);
+\node[state] (s4_3) at (4,2) {$z_N$}
+    edge[lightedge] (s1_2)
+    edge[lightedge] (s2_2)
+    edge[lightedge] (s3_2)
+    edge[lightedge] (s4_2);
+\node at (4,1) {$x_3$};
+% 4th column
+\node               at (6,6) {$t=4$};
+\node[mainstate] (s1_4) at (6,5) {$z_1$}
+    edge[mainedge]  (s1_3)
+    edge[lightedge] (s2_3)
+    edge[lightedge] (s3_3)
+    edge[lightedge] (s4_3);
+\node[state] (s2_4) at (6,4) {$z_2$}
+    edge[lightedge] (s1_3)
+    edge[lightedge] (s2_3)
+    edge[lightedge] (s3_3)
+    edge[lightedge] (s4_3);
+\node[state] (s3_4) at (6,3) {$...$}
+    edge[lightedge] (s1_3)
+    edge[lightedge] (s2_3)
+    edge[lightedge] (s3_3)
+    edge[lightedge] (s4_3);
+\node[state] (s4_4) at (6,2) {$z_N$}
+    edge[lightedge] (s1_3)
+    edge[lightedge] (s2_3)
+    edge[lightedge] (s3_3)
+    edge[lightedge] (s4_3);
+\node at (6,1) {$x_4$};
+% 5th column
+\node               at (8,6) {$t=5$};
+\node[mainstate] (s1_5) at (8,5) {$z_1$}
+    edge[lightedge]  (s1_4)
+    edge[lightedge] (s2_4)
+    edge[lightedge] (s3_4)
+    edge[lightedge] (s4_4);
+\node[state] (s2_5) at (8,4) {$z_2$}
+    edge[mainedge] (s1_4)
+    edge[lightedge] (s2_4)
+    edge[lightedge] (s3_4)
+    edge[lightedge] (s4_4);
+\node[state] (s3_5) at (8,3) {$...$}
+    edge[lightedge] (s1_4)
+    edge[lightedge] (s2_4)
+    edge[lightedge] (s3_4)
+    edge[lightedge] (s4_4);
+\node[state] (s4_5) at (8,2) {$z_N$}
+    edge[lightedge] (s1_4)
+    edge[lightedge] (s2_4)
+    edge[lightedge] (s3_4)
+    edge[lightedge] (s4_4);
+\node at (8,1) {$x_5$};
+\end{tikzpicture}
+\end{center}
+\caption{Trellis of the observation sequence $x_1$,...,$x_5$ for the HMM. Bold lines illustrate the most likely sequence found by the Viterbi algorithm.}
+\end{figure}
 
 
 
