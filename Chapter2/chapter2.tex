@@ -179,7 +179,56 @@ Both of these steps are repeated until convergence.
 
 \subsection{Baum-Welsch algorithm}
 
-In previous section we defined Expectation-Maximization algorithm used to compute Maximum Likelihood estimates given the incomplete data, i.e. supposing that part of the data is hidden. Two main steps are called E-step and M-step which were discussed generally but we need to establish direct connection to the estimation of the Hidden Markov model parameters. We will show that former step is easily computed given variables $\alpha$, $\beta$ and $\gamma$ established in last chapter, where we defined Viterbi and Forward-Backward algorithm. These computations result in estimating the conditional probability distribution of hidden states given our observations sequence and model parameters $P(z_t=i|X,\theta^k)$. 
+In previous section we defined Expectation-Maximization algorithm used to compute Maximum Likelihood estimates given the incomplete data, i.e. supposing that part of the data is hidden. Two main steps are called E-step and M-step which were discussed generally but we need to establish direct connection to the estimation of the Hidden Markov model parameters. We will show that former step is easily computed given variables $\alpha$, $\beta$ and $\gamma$ established in last chapter, where we defined Viterbi and Forward-Backward algorithm. These computations result in estimating the conditional probability distribution of hidden states given our observations sequence and model parameters $P(z_t=i|X,\theta^k)$. The E-step in EM algorithm is just a derivation of conditional probability of particular hidden state given the data and the model parameters. In order to compute such quantity we will slightly modify the $\gamma$ definition to express it using Bayes Theorem for each observation at time t. Meaning that now we are :
+
+\begin{equation}
+\gamma_t(i) = P(z_t=i|X,\lambda) = \frac{P(X|z_t=i, \lambda)P(z_t = i| \lambda)}{\sum_{j=1}^k P(X|z_t=j, \lambda)P(z_t = j|\lambda)} 
+\end{equation}
+
+where the numerator includes the conditional distribution of our data given particular hidden state $i$ and the latter term, also known as prior distribution, is our estimate of the probability distribution of hidden states. In upcoming chapter about Gaussian Mixture Models we will shown that this first term is a gaussian distribution given hidden state $i$ and the common choice for prior will be Multinomial distribution with $k$ parameters where we will stress the importance of its conjugate prior the Dirichlet distribution. Although, in case our model assumptions we use already defined variables $\alpha_t(i)$ and $\beta_t(i)$.Visually we can interpret $\gamma_t(i)$ using a similar form of a trellis as in section about Viterbi algorithm.
+
+\begin{figure}[htbp]
+\begin{center}
+\begin{tikzpicture}[]
+% 1st column
+\node at (0,7) {$t-1$};
+\node at (4,7) {$t$};
+\node at (8,7) {$t+1$};
+
+\node[state] (s1_1) at (0,6) {$z_1$};
+\node[state] (s2_1) at (0,5) {$z_2$};
+\node[state] (s3_1) at (0,4) {$z_3$};
+\node[state] (s4_1) at (0,3) {$...$};
+\node[state] (s5_1) at (0,2) {$z_N$};
+% 2nd column
+\node[mainstate] (s1_3) at (4,4) {$z_i$}
+    edge[mainedge] (s1_1)
+    edge[mainedge] (s2_1)
+    edge[mainedge] (s3_1)
+    edge[mainedge] (s4_1)
+    edge[mainedge] (s5_1);
+% 3rd column 
+\node[state] (s1_5) at (8,6) {$z_1$}
+    edge[mainedge]  (s1_3);
+\node[state] (s2_5) at (8,5) {$z_2$}
+    edge[mainedge] (s1_3);
+\node[state] (s3_5) at (8,4) {$z_3$}
+    edge[mainedge] (s1_3);
+\node[state] (s4_5) at (8,3) {$...$}
+    edge[mainedge] (s1_3);
+\node[state] (s5_5) at (8,2) {$z_N$}
+    edge[mainedge] (s1_3);
+
+\end{tikzpicture}
+\end{center}
+\caption{Trellis interpreting the conditional probability of hidden state $i$ at time $t$ using Forward-Backward algorithm.}
+\end{figure}
+
+To summarise, the E-step of the EM algorithm in case of HMM lies in estimation of $\gamma_t(i)$ which is simply a probability of being at state $i$ given our observation sequence and model parameters. Certainly, the iterative method of EM algorithm also needs an initial guess about the model parameters, meaning the initial distribution, transition and emission matrix. Since the hidden states and time are both assumed discrete we may express transition matrix using a stochastic (Markov) matrix introduced in Chapter 1. 
+
+\[Include the initial paramaters\]
+
+Note that the initial estimate of the parameters will never guarantee that we attain a global maximum, therefore the optimal solution would be to initialize the parameters multiple times and compare the maxima of likelihood functions. Once we have a formal estimate of the initial parameters, the EM algorithm performs E-step as defined above and subsequently M-step. The M-step
 
 In Chapter 1 we denoted the transition matrix as $\{p_{i,j \in I}\}$, i.e. probability of transitioning to state $j$ given that we are at state $i$. The initial distribution of hidden states $\pi$ and emission matrix $b_j$ is used as well. First of all we need to specify the equation for complete data log-likelihood function for the Hidden Markov Model, which we can intuitively represent as joint probability distribution of observed and hidden data given our model parameters $\log p(X,z|\theta)$.
 

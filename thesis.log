@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.10.23)  28 DEC 2022 21:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.10.23)  29 DEC 2022 16:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1294,15 +1294,15 @@ Package pdftex.def Info: Figs//VSE_logo_EN_circle_black.pdf  used on input line
 
  [13
 
-] [14
-
-] (./thesis.lot)
+] [14] (./thesis.lot)
 \tf@lot=\write9
 \openout9 = `thesis.lot'.
 
 
 No file thesis.nls.
-[15] [16
+[15
+
+] [16
 
 ]
 \openout2 = `Chapter1/chapter1.aux'.
@@ -1341,60 +1341,70 @@ Package textcomp Info: Symbol \textrightarrow not provided by
 ]
 Chapter 2.
 [15] [16]
-<MACD.png, id=353, 803.0pt x 501.875pt>
+<MACD.png, id=355, 803.0pt x 501.875pt>
 File: MACD.png Graphic file (type png)
 <use MACD.png>
 Package pdftex.def Info: MACD.png  used on input line 68.
 (pdftex.def)             Requested size: 393.71233pt x 246.07405pt.
  [17 <./MACD.png>] [18] [19] [20]
-<Loglike.png, id=390, 584.1825pt x 370.38374pt>
+<Loglike.png, id=392, 584.1825pt x 370.38374pt>
 File: Loglike.png Graphic file (type png)
 <use Loglike.png>
 Package pdftex.def Info: Loglike.png  used on input line 158.
 (pdftex.def)             Requested size: 393.71233pt x 249.63087pt.
  [21 <./Loglike.png>] [22] [23]
+[24]
 File: MACD.png Graphic file (type png)
 <use MACD.png>
-Package pdftex.def Info: MACD.png  used on input line 229.
+Package pdftex.def Info: MACD.png  used on input line 274.
 (pdftex.def)             Requested size: 393.71233pt x 246.07405pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[24]
-<Stochastic.png, id=412, 803.0pt x 501.875pt>
+[25]
+<Stochastic.png, id=420, 803.0pt x 501.875pt>
 File: Stochastic.png Graphic file (type png)
 <use Stochastic.png>
-Package pdftex.def Info: Stochastic.png  used on input line 253.
-(pdftex.def)             Requested size: 393.71233pt x 246.07405pt.
- [25] [26 <./Stochastic.png>]
-<Chaikin.png, id=424, 803.0pt x 501.875pt>
-File: Chaikin.png Graphic file (type png)
-<use Chaikin.png>
-Package pdftex.def Info: Chaikin.png  used on input line 298.
+Package pdftex.def Info: Stochastic.png  used on input line 298.
 (pdftex.def)             Requested size: 393.71233pt x 246.07405pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[27]
-LaTeX Font Info:    Trying to load font information for U+bbm on input line 320
+[26] [27 <./Stochastic.png>]
+<Chaikin.png, id=434, 803.0pt x 501.875pt>
+File: Chaikin.png Graphic file (type png)
+<use Chaikin.png>
+Package pdftex.def Info: Chaikin.png  used on input line 343.
+(pdftex.def)             Requested size: 393.71233pt x 246.07405pt.
+ [28 <./Chaikin.png>]
+LaTeX Font Info:    Trying to load font information for U+bbm on input line 365
 .
- (/usr/local/texlive/2022/texmf-dist/tex/latex/bbm-macros/ubbm.fd
+
+(/usr/local/texlive/2022/texmf-dist/tex/latex/bbm-macros/ubbm.fd
 File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
-) [28 <./Chaikin.png>]
-<RSI.png, id=439, 803.0pt x 501.875pt>
+)
+<RSI.png, id=441, 803.0pt x 501.875pt>
 File: RSI.png Graphic file (type png)
 <use RSI.png>
-Package pdftex.def Info: RSI.png  used on input line 330.
+Package pdftex.def Info: RSI.png  used on input line 375.
 (pdftex.def)             Requested size: 393.71233pt x 246.07405pt.
- [29 <./RSI.png>]
-<Aroon.png, id=447, 803.0pt x 501.875pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[29]
+<Aroon.png, id=449, 803.0pt x 501.875pt>
 File: Aroon.png Graphic file (type png)
 <use Aroon.png>
-Package pdftex.def Info: Aroon.png  used on input line 359.
+Package pdftex.def Info: Aroon.png  used on input line 404.
 (pdftex.def)             Requested size: 393.71233pt x 246.07405pt.
- [30 <./Aroon.png>]) [31]
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[30 <./RSI.png>]) [31 <./Aroon.png>]
 \openout2 = `Chapter3/chapter3.aux'.
 
  (./Chapter3/chapter3.tex [32
@@ -1455,13 +1465,13 @@ Appendix B.
 (./Chapter3/chapter3.aux) (./Appendix1/appendix1.aux)
 (./Appendix2/appendix2.aux))
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 5954EB0DD6C8B6E30E1600F079AF848D;4944.
+(rerunfilecheck)             Checksum: 2711EEFC83D136E0BE627799E14F6A4D;4944.
  ) 
 Here is how much of TeX's memory you used:
- 34185 strings out of 475071
- 692890 string characters out of 5778909
- 1075149 words of memory out of 5000000
- 54404 multiletter control sequences out of 15000+600000
+ 34202 strings out of 475071
+ 693149 string characters out of 5778909
+ 1076149 words of memory out of 5000000
+ 54419 multiletter control sequences out of 15000+600000
  541554 words of font info for 293 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  125i,15n,120p,1660b,1192s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1481,10 +1491,10 @@ xmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2022/texmf-dist/fo
 nts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/
 urw/times/utmr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on thesis.pdf (58 pages, 814476 bytes).
+Output written on thesis.pdf (58 pages, 818940 bytes).
 PDF statistics:
- 663 PDF objects out of 1000 (max. 8388607)
- 557 compressed objects within 6 object streams
- 210 named destinations out of 1000 (max. 500000)
+ 667 PDF objects out of 1000 (max. 8388607)
+ 561 compressed objects within 6 object streams
+ 212 named destinations out of 1000 (max. 500000)
  74496 words of extra memory for PDF output out of 89155 (max. 10000000)
 

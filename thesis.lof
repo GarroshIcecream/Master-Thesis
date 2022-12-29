@@ -5,11 +5,12 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot containing two lines for MACD and Signal line and a bar chart as their difference}\relax }}{17}{figure.caption.12}%
 \contentsline {figure}{\numberline {2.2}{\ignorespaces \textit {E-step as a problem of minimisation of KL divergence represented as a gap between two likelihood functions}\relax }}{21}{figure.caption.13}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot containing two lines for MACD and Signal line and a bar chart as their difference}\relax }}{25}{figure.caption.14}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot with line indicating Stochastic Oscillator}\relax }}{26}{figure.caption.15}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot indicating Chaikin Oscillator}\relax }}{28}{figure.caption.16}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with a subplot containing RSI}\relax }}{29}{figure.caption.17}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplots containing two lines for Aroon Up/Down Indicator and Aroon Oscillator}\relax }}{30}{figure.caption.18}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Trellis interpreting the conditional probability of hidden state $i$ at time $t$ using Forward-Backward algorithm.\relax }}{23}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot containing two lines for MACD and Signal line and a bar chart as their difference}\relax }}{26}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot with line indicating Stochastic Oscillator}\relax }}{27}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot indicating Chaikin Oscillator}\relax }}{28}{figure.caption.17}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with a subplot containing RSI}\relax }}{30}{figure.caption.18}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplots containing two lines for Aroon Up/Down Indicator and Aroon Oscillator}\relax }}{31}{figure.caption.19}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
