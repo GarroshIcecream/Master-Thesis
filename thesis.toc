@@ -14,13 +14,13 @@
 \contentsline {chapter}{\numberline {2}Parameter Estimation for Hidden Markov Models}{15}{chapter.2}%
 \contentsline {section}{\numberline {2.1} Expectation–Maximization algorithm}{15}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}Baum-Welsch algorithm}{22}{subsection.2.1.1}%
-\contentsline {section}{\numberline {2.2}Observable states}{23}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Moving Average Convergence Divergence}{24}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Stochastic Oscillator}{25}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Chaikin Oscillator}{27}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Relative Strength Index}{29}{section.2.6}%
-\contentsline {section}{\numberline {2.7}Aroon Indicator}{29}{section.2.7}%
-\contentsline {section}{\numberline {2.8}Kalman Filters}{31}{section.2.8}%
+\contentsline {section}{\numberline {2.2}Observable states}{24}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Moving Average Convergence Divergence}{25}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Stochastic Oscillator}{26}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Chaikin Oscillator}{28}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Relative Strength Index}{30}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Aroon Indicator}{30}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Kalman Filters}{32}{section.2.8}%
 \contentsline {chapter}{\numberline {3}Gaussian Mixture Models}{33}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Mixture Distributions}{33}{section.3.1}%
 \contentsline {chapter}{References}{35}{chapter*.20}%

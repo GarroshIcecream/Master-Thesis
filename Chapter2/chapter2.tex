@@ -179,10 +179,10 @@ Both of these steps are repeated until convergence.
 
 \subsection{Baum-Welsch algorithm}
 
-In previous section we defined Expectation-Maximization algorithm used to compute Maximum Likelihood estimates given the incomplete data, i.e. supposing that part of the data is hidden. Two main steps are called E-step and M-step which were discussed generally but we need to establish direct connection to the estimation of the Hidden Markov model parameters. We will show that former step is easily computed given variables $\alpha$, $\beta$ and $\gamma$ established in last chapter, where we defined Viterbi and Forward-Backward algorithm. These computations result in estimating the conditional probability distribution of hidden states given our observations sequence and model parameters $P(z_t=i|X,\theta^k)$. The E-step in EM algorithm is just a derivation of conditional probability of particular hidden state given the data and the model parameters. In order to compute such quantity we will slightly modify the $\gamma$ definition to express it using Bayes Theorem for each observation at time t. Meaning that now we are :
+In previous section we defined Expectation-Maximization algorithm used to compute Maximum Likelihood estimates given the incomplete data, i.e. supposing that part of the data is hidden. Two main steps are called E-step and M-step which were discussed generally but we need to establish direct connection to the estimation of the Hidden Markov model parameters. We will show that former step is easily computed given variables $\alpha$, $\beta$ and $\gamma$ established in last chapter, where we defined Viterbi and Forward-Backward algorithm. These computations result in estimating the conditional probability distribution of hidden states given our observations sequence and model parameters $\mathbb{P}(z_t=i|X,\theta^k)$. The E-step in EM algorithm is just a derivation of conditional probability of particular hidden state given the data and the model parameters. In order to compute such quantity we will slightly modify the $\gamma$ definition to express it using Bayes Theorem for each observation at time t. Meaning that now we are :
 
 \begin{equation}
-\gamma_t(i) = P(z_t=i|X,\lambda) = \frac{P(X|z_t=i, \lambda)P(z_t = i| \lambda)}{\sum_{j=1}^k P(X|z_t=j, \lambda)P(z_t = j|\lambda)} 
+\gamma_t(i) = \mathbb{P}(Z_t=i|X,\theta) = \frac{\mathbb{P}(X|Z_t=i, \theta) \mathbb{P}(Z_t = i|\theta)}{\sum_{j=1}^k \mathbb{P}(X|Z_t=j,\theta)\mathbb{P}(Z_t = j|\theta)} 
 \end{equation}
 
 where the numerator includes the conditional distribution of our data given particular hidden state $i$ and the latter term, also known as prior distribution, is our estimate of the probability distribution of hidden states. In upcoming chapter about Gaussian Mixture Models we will shown that this first term is a gaussian distribution given hidden state $i$ and the common choice for prior will be Multinomial distribution with $k$ parameters where we will stress the importance of its conjugate prior the Dirichlet distribution. Although, in case our model assumptions we use already defined variables $\alpha_t(i)$ and $\beta_t(i)$.Visually we can interpret $\gamma_t(i)$ using a similar form of a trellis as in section about Viterbi algorithm.
@@ -224,17 +224,33 @@ where the numerator includes the conditional distribution of our data given part
 \caption{Trellis interpreting the conditional probability of hidden state $i$ at time $t$ using Forward-Backward algorithm.}
 \end{figure}
 
-To summarise, the E-step of the EM algorithm in case of HMM lies in estimation of $\gamma_t(i)$ which is simply a probability of being at state $i$ given our observation sequence and model parameters. Certainly, the iterative method of EM algorithm also needs an initial guess about the model parameters, meaning the initial distribution, transition and emission matrix. Since the hidden states and time are both assumed discrete we may express transition matrix using a stochastic (Markov) matrix introduced in Chapter 1. 
+In Chapter 1 we denoted the transition matrix $N{\times}N$ as $A=\{a_{i,j}\}=\mathbb{P}(Z_{t}=j|Z_{t-1}=i)$, i.e. probability of transitioning to state $j$ given that we were at state $i$ at previous time ste  p. The initial distribution of hidden states $\pi_i = \mathbb{P}(Z_1=i)$, also called probability vector of length $N$, and emission matrix $N{\times}K$ defined as $B=b_i(x_t) = \mathbb{P}(X_t=x_t|Z_t=i)$, where K denotes state space, i.e. all possible outcomes, of random variables $X_t, \forall t \in T$(stochastic process???). First of all we need to specify the equation for complete data log-likelihood function for the Hidden Markov Model, which we can intuitively represent as joint probability distribution of observed and hidden data given our model parameters, i.e. $\log p(X,Z|\theta)$. Also note that here $\theta$ is considered as a vector of parameters containing initial distribution of states, transition and emission matrices, $\theta = \{\pi, A,B\}$, and is time invariant therefore:
+
+\begin{equation}
+L(\theta|x_1,...,x_T) = \pi A \prod_{t=1}^{T} b_{x_t}
+\end{equation}
+
+Time only effects the likelihood function through the emission matrix where we have to condition by the realisation of the observed process $\{X\}_{t=1}^T$, therefore $\pi A$ is a row vector and the product of column vectors. Unfortunately, the triplet of parameters does not form commuting matrices so we represent them via the sums of its elements after the logarithmic transformation below.
+
+\begin{equation}
+l(\theta|x_1,...,x_T) = \sum_{i=1}^{N}  \log \pi_i + \sum_{i,j=1}^{N} \log a_{i,j}+ \sum_{t=1}^{T} \sum_{i=1}^{N} \log b_{i,x_t}
+\end{equation}
+
+Next step according to EM algorithm is to take the expectation of the log-likelihood function above with respect to $\mathbb{P}(Z_t=i|X,\theta)$. Afterwards we may use standard tool of partially diferrentiating such function with respect to model parameters.
+
+\begin{equation}
+\mathbb{E}_{Z|X,\theta} [l(\theta|x_1,...,x_T)] = \sum_{i=1}^{N} \gamma_1(i) \log \pi_i + \sum_{t=1}^{T} \sum_{i,j=1}^{N} \gamma_t (i,j) \log a_{i,j}+ \sum_{t=1}^{T} \sum_{i=1}^{N} \gamma_t (i) \log b_{i,x_t}
+\end{equation}
+
+To summarise, the E-step of the EM algorithm in case of HMM lies in estimation of $\gamma_t(i)$ which is simply a probability of being at state $i$ given our observation sequence and model parameters. Certainly, the iterative method of EM algorithm also needs an initial guess about the model parameters, meaning the initial distribution, transition and emission matrix. Since the hidden states are assumed discrete we may express transition matrix using a stochastic (Markov) matrix introduced in Chapter 1. 
 
 \[Include the initial paramaters\]
 
-Note that the initial estimate of the parameters will never guarantee that we attain a global maximum, therefore the optimal solution would be to initialize the parameters multiple times and compare the maxima of likelihood functions. Once we have a formal estimate of the initial parameters, the EM algorithm performs E-step as defined above and subsequently M-step. The M-step
+Note that the initial estimate of the parameters will never guarantee that we attain a global maximum of the likelihood function, therefore the optimal solution would be to initialise parameters multiple times and compare the maxima of the likelihood function. 
 
-In Chapter 1 we denoted the transition matrix as $\{p_{i,j \in I}\}$, i.e. probability of transitioning to state $j$ given that we are at state $i$. The initial distribution of hidden states $\pi$ and emission matrix $b_j$ is used as well. First of all we need to specify the equation for complete data log-likelihood function for the Hidden Markov Model, which we can intuitively represent as joint probability distribution of observed and hidden data given our model parameters $\log p(X,z|\theta)$.
+Once we have a formal estimate of the initial parameters, the EM algorithm performs E-step as defined above and subsequently M-step. The M-step
 
-\begin{equation}
-l(\theta|x) = \log \pi (z_i) + \sum_{t=1}^{n-1}\log p_{ij} + \sum_{t=1}^{n-1} \log b(z_t,x_t) 
-\end{equation}
+
 
 
  
