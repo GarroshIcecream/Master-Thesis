@@ -927,84 +927,58 @@ wish to left align your text}
 % ******************************** Title Page **********************************
 \renewcommand{\maketitle}{
 
-% To compute the free vertical space in Title page
-\computeTitlePageSpacing
-
 \thispagestyle{empty}
 
 \begin{singlespace}
 \begin{center}
+\definecolor{color_29791}{rgb}{0,0,0}
+\definecolor{color_156895}{rgb}{0.501961,0.501961,0.501961}
+\definecolor{color_275101}{rgb}{1,0,1}
+\definecolor{color_204026}{rgb}{0.709804,0.031373,0.180392}
+\definecolor{color_97849}{rgb}{0.266667,0.329412,0.415686}
 
-% University Crest Long if college crest is defined
-\ifPHD@collegeshield%
-	{\usebox{\PHD@crest}}
-	\vspace{.15\PHD@titlepagespacing}
-\fi
+\begin{tikzpicture}[overlay]\path(0pt,0pt);\end{tikzpicture}
+\begin{picture}(-5,0)(2.5,0)
+\put(-240.45,10.5569){\fontsize{24}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791}VYSOKÁ ŠKOLA EKONOMICKÁ V PRAZE}
+\put(-110.8,-20.42){\fontsize{20}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}Fakulta financí a účetnictví}
+\put(-120.4,-42.683){\fontsize{16}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}katedra bankovnictví a pojišťovnictví}
+\put(-115.9,-300.809){\fontsize{26}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791}DIPLOMOVÁ PRÁCE}
+\end{picture}
 
-% Title
-{\usebox{\PHD@Title}} % subtitle is defined
+\begin{picture}(-5,0)(2.5,0)
+\put(-190.45,-600.89){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}2023}
+\put(105.45,-600.89){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}Bc. Adam Pešek}
+\end{picture}
 
+\newpage
 
-% Crest
+\thispagestyle{empty}
 
-\ifPHD@collegeshield%
-	\vspace{.15\PHD@titlepagespacing}
-	{\usebox{\PHD@collegecrest}}
-	\vspace{.1\PHD@titlepagespacing}
-\else
-	\vspace{.25\PHD@titlepagespacing}
-	{\usebox{\PHD@crest}}
-	\vspace{.15\PHD@titlepagespacing}
-\fi
+\begin{picture}(-5,0)(2.5,0)
+\put(-225.45,10.5569){\fontsize{24}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791}VYSOKÁ ŠKOLA EKONOMICKÁ V PRAZE}
+\put(-100.8,-20.422){\fontsize{20}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}Fakulta financí a účetnictví}
+\put(-110.4,-42.683){\fontsize{16}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}katedra bankovnictví a pojišťovnictví}
+\put(-95.4,-62.683){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}studijní program: Finanční inženýrství}
+\end{picture}
 
+\begin{picture}(-5,0)(2.5,0)
+\put(-84.449,-235.209){\fontsize{20}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791}Hidden Markov Models}
+\put(-99.449,-263.209){\fontsize{20}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791}for Cryptocurrency Trading}
+\end{picture}
 
-
-% Author
-{\usebox{\PHD@author}}
-\vspace*{1em}
-
-% Supervisor
-\ifPHD@supervisor%
-{\usebox{\PHD@supervisor}}
-\vspace*{0.5em}
-\fi
-
-% Advisor
-\ifPHD@advisor%
-{\usebox{\PHD@advisor}}
-\vspace*{0.5em}
-\fi
-
-% Department and University
-{\usebox{\PHD@dept}}
-\vspace{.2\PHD@titlepagespacing}
-
-% Submission Text
-{\usebox{\PHD@submission}}
-
-% College and degree date
-\vfill
-{\usebox{\PHD@collegedate}}
+\begin{picture}(-5,0)(2.5,0)
+\put(-160,-540){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}Autor práce:}
+\put(65,-540){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} Bc. Adam Pešek}
+\put(-160,-570){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}Vedoucí práce:}
+\put(65,-570){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}Ing. Milan Fičura PhD.}
+\put(-160,-600){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}Rok obhajoby:}
+\put(65,-600){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}2023}
+\end{picture}
     
 \end{center}
 
 \end{singlespace}
 }
-
-% ********************************* Dedication *********************************
-% The dedication environment makes sure the dedication gets its
-% own page, centered
-
-\newenvironment{dedication}
-{
-\cleardoublepage
-\setsinglecolumn
-\vspace*{0.2\textheight}
-\thispagestyle{empty}
-\centering
-}
-
-
 
 % ******************************* Declaration **********************************
 % The declaration environment puts a large, bold, centered
@@ -1013,13 +987,7 @@ wish to left align your text}
 \newenvironment{declaration}{
 \cleardoublepage
 \setsinglecolumn
-\chapter*{\centering \Large \@declarationtitle}
 \thispagestyle{empty}
-}{
-\flushright
-\@author{}\\
-\@degreedate{}
-\vfill
 }
 
 

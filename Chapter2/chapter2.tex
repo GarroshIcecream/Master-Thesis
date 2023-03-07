@@ -239,23 +239,40 @@ l(\theta|x_1,...,x_T) = \sum_{i=1}^{N}  \log \pi_i + \sum_{i,j=1}^{N} \log a_{i,
 Next step according to EM algorithm is to take the expectation of the log-likelihood function above with respect to $\mathbb{P}(Z_t=i|X,\theta)$. Afterwards we may use standard tool of partially diferrentiating such function with respect to model parameters.
 
 \begin{equation}
-\mathbb{E}_{Z|X,\theta} [l(\theta|x_1,...,x_T)] = \sum_{i=1}^{N} \gamma_1(i) \log \pi_i + \sum_{t=1}^{T} \sum_{i,j=1}^{N} \gamma_t (i,j) \log a_{i,j}+ \sum_{t=1}^{T} \sum_{i=1}^{N} \gamma_t (i) \log b_{i,x_t}
+\mathbb{E}_{Z|X,\theta} [l(\theta|x_1,...,x_T)] = \sum_{i=1}^{N} \gamma_1(i) \log \pi_i + \sum_{t=2}^{T} \sum_{i,j=1}^{N} \gamma_t (i,j) \log a_{i,j}+ \sum_{t=1}^{T} \sum_{i=1}^{N} \gamma_t (i) \log b_{i,x_t}
 \end{equation}
 
-To summarise, the E-step of the EM algorithm in case of HMM lies in estimation of $\gamma_t(i)$ which is simply a probability of being at state $i$ given our observation sequence and model parameters. Certainly, the iterative method of EM algorithm also needs an initial guess about the model parameters, meaning the initial distribution, transition and emission matrix. Since the hidden states are assumed discrete we may express transition matrix using a stochastic (Markov) matrix introduced in Chapter 1. 
+To summarise, the E-step of the EM algorithm in case of HMM lies in estimation of $\gamma_t(i)$ which is simply a probability of being at state $i$ given our observation sequence and model parameters. Certainly, the iterative method of EM algorithm also needs an initial guess about the model parameters, meaning the initial distribution, transition and emission matrix. Since the hidden states are assumed discrete we may express transition matrix using a stochastic (Markov) matrix introduced in Chapter 1.
 
-\[Include the initial paramaters\]
+Note that the initial estimate of the parameters will never guarantee that a global maximum of the likelihood function is attained, therefore on of the optimal solutions to this problem is to initialise parameters multiple times and compare the maxima of the loglikelihood function. 
 
-Note that the initial estimate of the parameters will never guarantee that we attain a global maximum of the likelihood function, therefore the optimal solution would be to initialise parameters multiple times and compare the maxima of the likelihood function. 
+Once we have a formal estimate of the initial parameters, the EM algorithm performs E-step as defined above and subsequently M-step. Them maximization step is determined by the arguement that maximizes the expectation of loglikelihood function given by Eq. 2.33 and also parameter contrainsts:
 
-Once we have a formal estimate of the initial parameters, the EM algorithm performs E-step as defined above and subsequently M-step. The M-step
+\begin{align}
+\displaystyle \sum_i^N \pi_i =& 1 \\
+\displaystyle \sum_i^N a_{i,j} =& \mathbbm{1} \quad  \forall j \in I \\
+\displaystyle \sum_i^N b_{i,x_t} =& \mathbbm{1} \quad \forall x_t \in \mathcal{X}
+\end{align} 
+
+where $\mathbbm{1}$ is  a unit vector of length N. Given parameter constraints we maximize expected loglikelihood function using Lagrange multipliers where the objective function is defined as:
+
+\begin{align}
+\mathcal{L}(\theta,\lambda_k|x_1,...,x_T) =& E_{Z|X,\theta_n} [\log p(X,z|\theta)] - \lambda_1(\displaystyle \sum_i^N \pi_i - 1) \\
+& - \lambda_2(\displaystyle \sum_i^N a_{i,j} -  \mathbbm{1})  - \lambda_3 (\displaystyle\sum_i^N b_{i,x_t} - \mathbbm{1})
+\end{align}
+
+ where $k=\{1,2,3\}$.  Taking partial derivatives with respect to each parameter on our model and setting that partial derivative equal to zero we arrive at parameter estimates which is also a final solution to our maximiyation step as follows:
 
 
+\begin{align}
+\hat{\pi_i} = &  \gamma_1 (i) \\
+\hat{a}_{i,j} = &  \frac{\displaystyle \sum_{t=2}^{T} \gamma_t (i,j)}{\displaystyle \sum_{t=2}^{T} \gamma_t (i)} \\
+\hat{b}_{i,x_t} =&\frac{\displaystyle \sum_{t=1}^{T} \gamma_t (i) \mathbbm{1}_{[X_t = x_t ]}}{\displaystyle \sum_{t=1}^{T} \gamma_t (i)} 
+\end{align}
 
 
- 
-
-
+We repeat these steps until the desired convergence is achieved. To summarise the Expectation Maximization algorithm, the goal in such instance is to estimate model parameters by Eq. 2.29 
+given a convergence criterion of $|l(\theta^{k}|X,q^{k}) - l(\theta^{k-1}|X,q^{k-1})| \leq \epsilon $ after which we claim that the parameter estimates of k-th iteration are such that the we have maximized the value of our loglikelihood function given the obervable data.
 
 
 
@@ -427,12 +444,6 @@ Although, Figure 2.4 graphically illustrates the Aroon Up and Down lines well, i
 \caption{\textit{ Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplots containing two lines for Aroon Up/Down Indicator and Aroon Oscillator}}
 
 \end{figure}
-
-
-\newpage
-
-
-\section{Kalman Filters}
 
 
 --
