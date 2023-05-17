@@ -2,21 +2,128 @@
 %*******************************************************************************
 %****************************** Third Chapter **********************************
 %*******************************************************************************
-\chapter{Gaussian Mixture Models}
+\chapter{Mixture Models}
 
 % **************************** Define Graphics Path **************************
-\ifpdf
+\if
+pdf
     \graphicspath{{Chapter3/Figs/Raster/}{Chapter3/Figs/PDF/}{Chapter3/Figs/}}
 \else
     \graphicspath{{Chapter3/Figs/Vector/}{Chapter3/Figs/}}
 \fi
 
+
+As shown in the last chapter the joint probability distribution of the complete 
+data is not strictly concave thus we can not guarantee the convergence to the global optimum. 
+Approach we might take is to randomly initialize the parameters multiple times to see 
+if the maxima of the log likelihood function increases. 
+Fig 2.2 appropriately displays possible shape of the joint probability distribution of the complete data. 
+There are visible multiple local optima of the log-likelihood function caused by the hidden states. 
+Such probability distributions are often called mixture distributions. 
+
+They were implicitly introduced in the last chapter while estimating the parameters of the Hidden Markov Model. 
+Although, most of the time we consider unimodal distributions for our data since it may be justifiable empirically 
+or considering the mixture distributions could unnecessarily complicate the computation 
+for an indistinguishable improvement, the statistical inferences about the subpopulations 
+within the population require such tools in cases where the subpopulations significantly differ.
+However, in these models we pose no requirement of the knowledge about the number of subpopulations 
+within the population or their actual distribution. They are interpreted the same way as for the HMM 
+as hidden variables.
+
 \section{Mixture Distributions}
 
-As shown in the last chapter the joint probability distribution of the complete data is not strictly concave thus we can not guarantee to converge to the global optima. One thing that we can do is to initialise the parameters multiple times randomly to see if the maxima of the likelihood function increases. Fig 2.2 appropriately displays the shape of the joint probability distribution of the complete data. There are visible multiple local optima of the log-likelihood function caused by the hidden states. Such probability distributions are often called mixture distributions. 
+Let $Y_j$ denote a p-dimensional random vector with probability density function $f(y_j)$ on $\mathbb{R}^p$  
+selected from random sample $Y_1,\ldots,Y_n$. A realization of such a random vector is denoted by $y_j$.
 
-They were implicitly introduced in the last chapter while estimating the parameters of the Hidden Markov Model. Although, most of the time we consider unimodal distributions for our data since it may be justifiable empirically or considering the mixture distributions would unnecessarily complicate the computation for an indistinguishable improvement, the statistical inferences about the subpopulations within the population require such tools in cases where the subpopulations significantly differ. However, in these models we pose no requirement of the knowledge about the number of subpopulations within the population or their actual distribution. They are interpreted the same way as for the HMM as hidden variables.
+Mixture distribution or density is defined as a convex combination of $g$ component distributions or densities respectively 
+as follows:
 
+\begin{equation}
+f(y_j) = \sum_{i=1}^{g} \pi_i f_i(y_j)
+\end{equation}
 
+where $f_i(y_j)$ are component densities of the mixture and $\pi_i$ are mixing proportions or mixture weights with following properties:
 
+\begin{equation}
+    0 \leq \pi_i \leq 1 \quad \forall i \in \{1,2,\ldots,g\}
+\end{equation}
 
+and
+
+\begin{equation}
+    \sum_{i=1}^{g} \pi_i = 1
+\end{equation}
+
+Therefore, the density (3.1) of $f(y_j)$ is referred to as a g-component finite mixture density, conversely $F(y_j)$ 
+as a g-component finite mixture distribution. 
+
+Formula (3.1) assumes that the number of components $g$ is fixed. In many applications this is not the case, and we have to infer 
+the number of components from the data. Furthermore, mixing proportions $\pi_i$ are also unknown and have to be estimated along with 
+the respective parameters of the component densities $f_i(y_j)$.
+
+Analogously to previous definition we can define a finite mixture of random variables $Y_j$ as follows:
+
+\begin{equation}
+    f(y_j,z) =  g(z) f(y_j|z)
+\end{equation}
+
+where $Z$ is defined as a random variable with multinomial distribution with a vector of parameters $\pi = \{\pi_1,\ldots,\pi_g\}$ and $g(z)$ as its probability density function.
+Summing over all possible values of $Z$ we obtain the marginal density of random vector $Y_j$:
+
+\begin{equation}
+    f(y_j) = \sum_{i=1}^{g} P(Z=i) f(y_j|Z=i)
+\end{equation}
+    
+where $P(Z=i) = \pi_i$ and $f(y_j|Z=i) = f_i(y_j)$ are the mixing proportions and component densities respectively Therefore
+seeing the equivalence of Equation (3.1) and (3.4).
+
+\section{Gaussian Mixture Models}
+The Gaussian mixture model (GMM) is a probabilistic model that assumes all the data points are generated 
+from a mixture of a finite number of Gaussian distributions. The component distributions are often chosen to be members of the same parametric family,
+such as Gaussian distributions with respective mean and covariance parameter. Assuming that the number of components is $K$
+the probability density function of the Gaussian mixture model can be expressed as follows:
+
+\begin{equation}
+    f(x|\mu,\Sigma) = \sum_{k=1}^{K} \pi_k \mathcal{N}(x|\mu_k, \Sigma_k)
+\end{equation}
+
+where $\mu_k$ and $\Sigma_k$ are the mean and covariance matrix (symmetric and positive semi-definite) of the $k$-th Gaussian component. 
+
+Thus, the vector of parameters is $\Theta = \{\pi_k,\mu_k,\Sigma_k|1\leq k \leq K \}$. Probability density function of each component of GMM depends on the dimensionality of the data.
+Let the dimensionality of the data be $d>1$ then the random vector $Y=(y_1,\ldots,y_d)$ has the probability density function of the $k$-th component 
+defined as following multivariate Gaussian distribution:
+
+\begin{equation}
+    f_k(y) = \frac{1}{(2\pi)^{d/2}|\Sigma_k|^{1/2}} \exp\left(-\frac{1}{2}(y_j-\mu_k)^T\Sigma_k^{-1}(y_j-\mu_k)\right)
+\end{equation}
+
+where $|\Sigma_k|$ denotes the determinant of the covariance matrix $\Sigma_k$.
+
+\subsection{Parameter estimation}
+
+Given the data $\textbf{Y} = \{\textbf{Y}_1,\ldots,\textbf{Y}_N\}$, where each element is an independently and identically distributed 
+p-dimensional random vector, s.t. $Y_n \in \mathbb{R}^p$ and:
+
+\begin{equation}
+    \textbf{Y}_n \sim \mathcal{N}_p(\mu, \Sigma) \quad \forall n \in \{1,\ldots,N\} 
+\end{equation}
+
+The goal is to estimate $\Theta$ of the mixture model, 
+i.e. for each mixture component $k$ we need to estimate its mean $\mu_k$, covariance matrix $\Sigma_k$ and mixing proportion $\pi_k$. 
+
+Note that now we will assume that each element of random vector $\textbf{Y}_n$ is generated by one of the mixture components, and we know which one. 
+This is called the complete data since we have information about the hidden variable $Z$ which indicates the component from which the data point was generated.
+Therefore, the complete data likelihood function is defined as follows: 
+
+\begin{equation}
+    L_c(\Theta|\textbf{Y},\textbf{Z}) = \prod_{n=1}^{N} \sum_{k=1}^{K} \left(\pi_k \mathcal{N}(\textbf{Y}_n|\mu_k,\Sigma_k)\right)^{z_{nk}}
+\end{equation}
+
+and the log-likelihood function is:
+
+\begin{equation}
+    \ell_c(\Theta|\textbf{Y},\textbf{Z}) = \sum_{n=1}^{N} \log \sum_{k=1}^{K} \left(\pi_k \mathcal{N}(\textbf{Y}_n|\mu_k,\Sigma_k)\right)
+\end{equation}
+
+where $z_{nk}$ is the indicator variable which indicates whether the $n$-th data point was generated by the $k$-th component.
+TODO:znk
