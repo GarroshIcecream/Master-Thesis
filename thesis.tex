@@ -1,6 +1,6 @@
 % ******************************* PhD Thesis Template **************************
 % Please have a look at the README.md file for info on how to use the template
-
+\RequirePackage[utf8]{inputenc}
 \documentclass[a4paper,12pt,times,numbered,print,index,biblatex]{PhDThesisPSnPDF}
 \usepackage{bbm}
 \usepackage{commath}
@@ -36,7 +36,7 @@
 \listoftables
 
 % ******************************** Main Matter *********************************
-\mainmatter
+\mainmatter%
 
 \include{Chapter1/chapter1}
 \include{Chapter2/chapter2}
@@ -45,11 +45,7 @@
 
 % ********************************** Bibliography ******************************
 \begin{spacing}{0.9}
-\cleardoublepage
-% If you would like to use BibLaTeX for your references, pass `custombib' as
-% an option in the document class. The location of 'reference.bib' should be
-% specified in the preamble.tex file in the custombib section.
-% Comment out the lines related to natbib above and uncomment the following line.
+\cleardoublepage%
 \nocite{*}
 \printbibliography[title={References}]
 
@@ -64,5 +60,5 @@
 
 \end{appendices}
 % *************************************** Index ********************************
-\printthesisindex % If index is present
+\printthesisindex%
 \end{document}

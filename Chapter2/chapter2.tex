@@ -13,41 +13,41 @@
 
 \section{ Expectation–Maximization algorithm}
 
-Also abbreviated as EM algorithm is an iterative approach for computing the maximum likelihood estimates. It is used in situations where incomplete data are present therefore a part of a complete data set is hidden and we may not be able to apply straightforward analytical procedures for computing maximum likelihood estimates as in a case of complete data. 
+Also abbreviated as EM algorithm is an iterative approach for computing the maximum likelihood estimates. It is used in situations where incomplete data are present therefore a part of a complete data set is hidden, and we may not be able to apply straightforward analytical procedures for computing maximum likelihood estimates as in a case of complete data. 
 
-In other words we want to find the best estimate of the parameters for which the observed sequence is the most likely. This is of great importance and efficiency for Hidden Markov models where we have a sample space of observed variables, let us denote it as $X$ and a hidden discrete sample space $Z$. We assume that there is a mapping from $X$ into $Z$, where $\forall x \in X$ is a realisation from sample space $X$ and the mapping from $X$ into $Z$ in many-one, as seen in Figure 1. We also assume that given our model the realisations $z \in Z$ are not observable directly but only as a projection from $X$ into $Z$. 
+In other words we want to find the best estimate of the parameters for which the observed sequence is the most likely. This is of great importance and efficiency for Hidden Markov models where we have a sample space of observed variables, let us denote it as $X$ and a hidden discrete sample space $Z$. We assume that there is a mapping from $X$ into $Z$, where $\forall x \in X$ is a realization from sample space $X$ and the mapping from $X$ into $Z$ in many-one, as seen in Figure 1. We also assume that given our model the realizations $z \in Z$ are not observable directly but only as a projection from $X$ into $Z$. 
 
-Let us also denote $\theta \in \Theta$ which is a vector of parameters of the given distribution belonging to sampling distribution $\Theta$. The aim of EM algorithm is essentially to find the best estimate of $\theta$ that maximises the likelihood function $L(\theta) = p(X|\theta)$,this is known as Maximum likelihood (ML) estimate of $\theta$. 
+Let us also denote $\theta \in \Theta$ which is a vector of parameters of the given distribution belonging to sampling distribution $\Theta$. The aim of EM algorithm is essentially to find the best estimate of $\theta$ that maximizes the likelihood function $L(\theta) = p(X|\theta)$,this is known as Maximum likelihood (ML) estimate of $\theta$. 
 
-To visualise and apply the non-iterative approach, let us consider now the daily log returns of BTC/USDT trading pair in past 5 years. If we plot the histogram we may see that the log-returns may asymptotically follow normal distribution. Since the probability density function in such a case is unimodal and has only one global maximum, the logarithmic transformation converts multiplicative structure into additive with the preservation of global maximum to be optimised by taking the partial derivative w.r.t. each parameter. First of all, we formulate the likelihood function of two-parametric normal distribution.
+To visualize and apply the non-iterative approach, let us consider now the daily log returns of BTC/USDT trading pair in past 5 years. If we plot the histogram we may see that the log-returns may asymptotically follow normal distribution. Since the probability density function in such a case is unimodal and has only one global maximum, the logarithmic transformation converts multiplicative structure into additive with the preservation of global maximum to be optimized by taking the partial derivative w.r.t.\ each parameter. First, we formulate the likelihood function of two-parametric normal distribution.
  
 \begin{equation}
-L(\mu,\sigma^2|x_1,...,x_N) = P(\mu,\sigma^2|x_1,...,x_N) = \prod_{i=1}^{N} \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\frac{1}{2} \frac{(x_i-\mu)^2}{\sigma^2}}
+L(\mu,\sigma^2|x_1,\ldots,x_N) = P(\mu,\sigma^2|x_1,\ldots,x_N) = \prod_{i=1}^{N} \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\frac{1}{2} \frac{{(x_i-\mu)}^2}{\sigma^2}}
 \end{equation}
 
 \begin{equation}
-l(\mu,\sigma^2|x_1,...,x_N) = \ln L(\mu,\sigma^2|x_1,...,x_N) 
+l(\mu,\sigma^2|x_1,\ldots,x_N) = \ln L(\mu,\sigma^2|x_1,\ldots,x_N) 
 \end{equation}
 
-where $x_1,...,x_N$ is a vector of log-returns of length N and $\mu$ and $\sigma^2$ are parameters to be estimated. 
+where $x_1,\ldots,x_N$ is a vector of log-returns of length N and $\mu$ and $\sigma^2$ are parameters to be estimated. 
 
 \begin{equation}
-l(\mu,\sigma^2|x_1,...,x_N) = -\frac{N}{2} \ln(2 \pi) - \frac{N}{2} \ln(\sigma^2) - \frac{1}{2 \sigma^2} \sum_{i=1}^{N} (x_i - \mu)^2
+l(\mu,\sigma^2|x_1,\ldots,x_N) = -\frac{N}{2} \ln(2 \pi) - \frac{N}{2} \ln(\sigma^2) - \frac{1}{2 \sigma^2} \sum_{i=1}^{N} {(x_i - \mu)}^2
 \end{equation}
 
-If we now take the partial derivative w.r.t. the parameter $\mu$ and $\sigma^2$ and set it to zero we obtain the ML estimate of the parameter as follows:
+If we now take the partial derivative w.r.t.\ the parameter $\mu$ and $\sigma^2$ and set it to zero we obtain the ML estimate of the parameter as follows:
 
 
 \begin{gather} 
-\frac{\partial}{\partial \mu} l(\mu,\sigma^2|x_1,...,x_N)  = \frac{1}{\sigma^2} (\sum_{i=1}^{N} x_i - N\mu) \\
+\frac{\partial}{\partial \mu} l(\mu,\sigma^2|x_1,\ldots,x_N)  = \frac{1}{\sigma^2} (\sum_{i=1}^{N} x_i - N\mu) \\
 0 = \frac{1}{\sigma^2} (\sum_{i=1}^{N} x_i - N\mu) \\
 \mu_{MLE} = \frac{\sum_{i=1}^{N} x_i}{N}
 \end{gather}
 
 \begin{gather} 
-\frac{\partial}{\partial \sigma^2} l(\mu,\sigma^2|x_1,...,x_N) = -\frac{N}{\sigma}+ \frac{1}{\sigma^3} \sum_{i=1}^{N} (x_i - \mu)^2 \\
-0 = -\frac{N}{\sigma}+ \frac{1}{\sigma^3} \sum_{i=1}^{N} (x_i - \mu)^2 \\
-\sigma^2 = \frac{\sum_{i=1}^{N} (x_i - \mu)^2}{N}
+\frac{\partial}{\partial \sigma^2} l(\mu,\sigma^2|x_1,\ldots,x_N) = -\frac{N}{\sigma}+ \frac{1}{\sigma^3} \sum_{i=1}^{N} {(x_i - \mu)}^2 \\
+0 = -\frac{N}{\sigma}+ \frac{1}{\sigma^3} \sum_{i=1}^{N} {(x_i - \mu)}^2 \\
+\sigma^2 = \frac{\sum_{i=1}^{N} {(x_i - \mu)}^2}{N}
 \end{gather}
 
 
@@ -64,14 +64,14 @@ where $K(x;h)$ denotes the Gaussian kernel function with bandwidth parameter $h$
 
 \begin{figure}[ht]
 \begin{center}
-	\includegraphics[width=0.9\textwidth]{MACD.png}
+	\includegraphics[width=0.9\textwidth]{Figs/MACD.png}
 \end{center}
 
 \caption{\textit{ Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot containing two lines for MACD and Signal line and a bar chart as their difference}}
 
 \end{figure}
 
-Although the assumption of complete data simplifies the analytical procedure of calculating the ML estimate in closed form, it may only be used by taken in consideration observable data. The task of EM algorithm can be used to iteratively compute the most likely parameter given the data, i.e. the parameter that most likely produced such data, but since the closed form solution is available at this point, it would be redundant to use iterative procedure since both would provide the same result. Nevertheless, the iterative EM algorithm given the fully observed complete data behaves in following way:
+Although the assumption of complete data simplifies the analytical procedure of calculating the ML estimate in closed form, it may only be used by taken in consideration observable data. The task of EM algorithm can be used to iteratively compute the most likely parameter given the data, i.e.\ the parameter that most likely produced such data, but since the closed form solution is available at this point, it would be redundant to use iterative procedure since both would provide the same result. Nevertheless, the iterative EM algorithm given the fully observed complete data behaves in following way:
 
 In order to estimate the single or vector of parameters $\theta$ we use log-likelihood function:
 
@@ -79,7 +79,7 @@ In order to estimate the single or vector of parameters $\theta$ we use log-like
 l(\theta|X) = \ln p(X|\theta) 
 \end{equation}
 
-Since the natural logarithm is strictly monotonic increasing function the value of $\theta$ maximises the log-likelihood as well as the likelihood function. Afterwards, in a simplistic sense, the EM algorithm iterates over possible values of $\theta$ to find the best estimate, i.e. until convergence criterion is satisfied:
+Since the natural logarithm is strictly monotonic increasing function the value of $\theta$ maximizes the log-likelihood as well as the likelihood function. Afterwards, in a simplistic sense, the EM algorithm iterates over possible values of $\theta$ to find the best estimate, i.e.\ until convergence criterion is satisfied:
 
 \begin{equation}
 |l(\theta^i|X) - l(\theta^{i-1}|X)| \leq \epsilon 
@@ -93,20 +93,20 @@ However, certain part of the complete data is hidden in the case of HMM, we spea
 l(\theta|X)  = \ln p(X|\theta) = \ln \sum_z p(X,z|,\theta)
 \end{equation}
 
-Alternatively, the goal of such an algorithm is to maximise the the loglikelihood of the complete data by estimating the optimal paramater or vector of paramaters denoted by $\theta$. Hence the marginal probability of $X$ given vector of hidden variables $Z$:
+Alternatively, the goal of such an algorithm is to maximize the log likelihood of the complete data by estimating the optimal parameter or vector of parameters denoted by $\theta$. Hence, the marginal probability of $X$ given vector of hidden variables $Z$:
 
 \begin{equation}
 \ln p(X|\theta) = \ln \sum_{j=1}^{M} p(x, z = j|\theta)
 \end{equation}
 
-Since traditional ML procedure aims to maximise the marginal log-likelihood of complete data, part of which we do not observe, it would be unnecessarily hard to maximise. It is however possible to introduce several assumptions that will eventually suffice in providing direct solution to the maximisation problem.  Let us start by constructing the lower bound for the objective function as in Equation 2.15 that is easy to optimise with respect to parameters represented. In order to find the function $q$, we start by multiplying the marginal likelihood by $\frac{q(z)}{q(z)}$. Such expression will allow for a construction of artificial weights and with the use of Jensen's inequality:
+Since traditional ML procedure aims to maximize the marginal log-likelihood of complete data, part of which we do not observe, it would be unnecessarily hard to maximise. It is however possible to introduce several assumptions that will eventually suffice in providing direct solution to the maximisation problem.  Let us start by constructing the lower bound for the objective function as in Equation 2.15 that is easy to optimise with respect to parameters represented. In order to find the function $q$, we start by multiplying the marginal likelihood by $\frac{q(z)}{q(z)}$. Such expression will allow for a construction of artificial weights and with the use of Jensen's inequality:
 
 \begin{gather}
 \ln \sum_{j=1}^{M} q(z = j) \frac{p(x, z = j|\theta)}{q(z = j)}  \geq \sum_{j=1}^{M} q(z = j) \ln \frac{p(x, z = j|\theta)}{q(z = j)} = L(\theta,q) \\
 \ln p(X|\theta) \geq L(\theta,q), for \forall q \in Q
 \end{gather}
 
-We have established the Jensen's inequality within the usage of concavity of logarithmic function. The constructed lower bound $l(\theta,q)$ is factorable into the expected value of the loglikelihood of complete data and entropy of probability function $q(x)$. Moreover, the maximisation of such likelihood function is completely determined by the former term since the latter is independent of $\theta$.
+We have established the Jensen's inequality within the usage of concavity of logarithmic function. The constructed lower bound $l(\theta,q)$ is factorable into the expected value of the log likelihood of complete data and entropy of probability function $q(x)$. Moreover, the maximisation of such likelihood function is completely determined by the former term since the latter is independent of $\theta$.
 
 \begin{equation}
 l(\theta,q) = \sum_{j=1}^{M} q(z = j) \ln p(x, z = j|\theta) + \sum_{j=1}^{M} q(z = j) \ln \frac{1}{q(z = j)}
@@ -118,7 +118,7 @@ The optimization problem transforms into finding the function $q$ for a fixed $\
 q^{k} = \underset{q}{\arg\max} l(\theta, q)
 \end{equation}
 
-In other words, we want to minimise the gap between the complete data log-likelihood function $l(\theta|X)$ and incomplete data $l(\theta, q)$ with respect to function $q$. Let us now elaborate more on the gap. The final expression that we shall arrive at gives a simplifying interpretation known as Kullback-Leibler divergence (hereafter KL divergence) measures the dissimilarities between two distributions and the measure may be interpreted as a geometrical statistical distance, it also is asymmetric and non-negative. Such measure is commonly used in image or signal processing in calculation of the expected excess surprise from using $q$ as a probability distribution for our model given that the true or actual probability distribution is $p$. Substantially the measure is a difference of cross-entropy denoted by $H(p,q)$ and entropy by $H(p)$ which is always non-negative as a result of Gibb's inequality and is zero if and only if the two probability measure $p$ and $q$ are equal.
+In other words, we want to minimize the gap between the complete data log-likelihood function $l(\theta|X)$ and incomplete data $l(\theta, q)$ with respect to function $q$. Let us now elaborate more on the gap. The final expression that we shall arrive at gives a simplifying interpretation known as Kullback-Leibler divergence (hereafter KL divergence) measures the dissimilarities between two distributions and the measure may be interpreted as a geometrical statistical distance, it also is asymmetric and non-negative. Such measure is commonly used in image or signal processing in calculation of the expected excess surprise from using $q$ as a probability distribution for our model given that the true or actual probability distribution is $p$. Substantially the measure is a difference of cross-entropy denoted by $H(p,q)$ and entropy by $H(p)$ which is always non-negative as a result of Gibb's inequality and is zero if and only if the two probability measure $p$ and $q$ are equal.
 
 \begin{align}
 D_{KL} (p || q) &= \sum_{X} p(x) \ln \frac{p(x)}{q(x)} \\
@@ -135,7 +135,7 @@ l(\theta,q) &= \sum_{j=1}^{M} q(z = j) \ln \frac{p(x, z = j|\theta)}{q(z = j)} \
 & = -D_{KL}(q(z)||p(z|x,\theta)) + \ln p(x|\theta)
 \end{align}
 
-Now we see that the statistical distance between the two likelihood functions is determined solely by the KL divergence. In order to find the minimal distance, ideally distance of zero "length", we simply set the function $q(x)$ equal the the $p(z|X,\theta)$. This might be the posterior distribution Adame ???
+Now we see that the statistical distance between the two likelihood functions is determined solely by the KL divergence. In order to find the minimal distance, ideally distance of zero length, we simply set the function $q(x)$ equal to the $p(z|X,\theta)$. This might be the posterior distribution Adame???
 
 \begin{equation}
 \ln p(x|\theta) = l(\theta,q) + \sum_{j=1}^{M} D_{KL}(q(z=j)||p(z=j|x,\theta)) 
@@ -143,25 +143,25 @@ Now we see that the statistical distance between the two likelihood functions is
    
 The last expression is just sum of KL divergences of function $g(z_i = j)$ and the posterior distribution of the latent variable $z$ given the data and current parameter $\theta$. 
 
-Recalling Equation 2.18, the optimisation goal lies in finding the probability distribution $q$ that maximises $L(\theta, q)$ given the current estimate of the parameter $\theta$, traditionally called as $E-step$. To extend and present a solution in finding the function $q$, following interpretation within the knowledge of Equation 2.26 is emphasised. We see that the maximum of the lower bound, i.e. of the log likelihood function, with respect to function $q(z)$ is identical to minimising the KL divergence introduced above because the first term in objective function to minimise is independent of $q(z)$: 
+Recalling Equation 2.18, the optimisation goal lies in finding the probability distribution $q$ that maximises $L(\theta, q)$ given the current estimate of the parameter $\theta$, traditionally called as $E-step$. To extend and present a solution in finding the function $q$, following interpretation within the knowledge of Equation 2.26 is emphasized. We see that the maximum of the lower bound, i.e.\ of the log likelihood function, with respect to function $q(z)$ is identical to minimising the KL divergence introduced above because the first term in objective function to minimise is independent of $q(z)$: 
 
 \begin{equation}
 q^{k+1} = \underset{q}{\arg\max} L(\theta_k, q) = \underset{q}{\arg\max} (\ln p(X|\theta)  - \sum_{i=1}^{N} D_{KL} (q(z_i) || p(z_i|x_i,\theta)))
 \end{equation}
 
-To visualise E-step, let us consider arbitrary log-likelihood function of complete data $\ln p(X|\theta)$ and $l(\theta^k,q^{k+1})$ for a fixed parameter of $\theta^k$. Notice the visual representation of resulting selection of $q^{k+1}$ as a solution to E-step. Consider also the new parameter estimate of $\theta^{k+1}$ which is a part of the next step called Maximisation step, also abbreviated as M-step.
+To visualize E-step, let us consider arbitrary log-likelihood function of complete data $\ln p(X|\theta)$ and $l(\theta^k,q^{k+1})$ for a fixed parameter of $\theta^k$. Notice the visual representation of resulting selection of $q^{k+1}$ as a solution to E-step. Consider also the new parameter estimate of $\theta^{k+1}$ which is a part of the next step called Maximisation step, also abbreviated as M-step.
 
 \begin{figure}[ht]
 
 \begin{center}
-	\includegraphics[width=0.9\textwidth]{Loglike.png}
+	\includegraphics[width=0.9\textwidth]{Figs/Loglike.png}
 \end{center}
 
-\caption{\textit{E-step as a problem of minimisation of KL divergence represented as a gap between two likelihood functions}}
+\caption{\textit{E-step as a problem of minimization of KL divergence represented as a gap between two likelihood functions}}
 
 \end{figure}
 
-Until now we have considered the optimal manner in which we compute the conditional expectation $E_{Z|X,\theta_n} [\ln P(X,z|\theta)]$ by finding the appropriate function $q$. Next step is, as is typical for coordinate descent, selection of parameter $\theta_{k+1}$ by fixing the function $q^{k+1}$ from E-step. The goal of M-step is to:
+Until now, we have considered the optimal manner in which we compute the conditional expectation $E_{Z|X,\theta_n} [\ln P(X,z|\theta)]$ by finding the appropriate function $q$. Next step is, as is typical for coordinate descent, selection of parameter $\theta_{k+1}$ by fixing the function $q^{k+1}$ from E-step. The goal of M-step is to:
 
 \begin{equation}
 \theta^{k+1} = \underset{\theta}{\arg\max} L(\theta, q^{k+1})
@@ -170,21 +170,21 @@ Until now we have considered the optimal manner in which we compute the conditio
 Thus, the EM algorithm involves two main steps:
 
 \begin{itemize}
-\item[1)] Expectation step (E-step) - choose a function q, i.e. probability distribution, that maximises $L(\theta, q)$, which may be also viewed as computing the conditional expectation $E_{Z|X,\theta_n} [\log p(X,z|\theta)]$ based on the current parameter of $\theta$.
-\item[2)] Maximization step (M-step) - estimating the parameter $\theta_{k+1}$ that maximises the conditional expectation $E_{Z|X,\theta_n} [\log p(X,z|\theta)]$.
+\item[1)] Expectation step (E-step) - choose a function q, i.e.\ probability distribution, that maximizes $L(\theta, q)$, which may be also viewed as computing the conditional expectation $E_{Z|X,\theta_n} [\log p(X,z|\theta)]$ based on the current parameter of $\theta$.
+\item[2)] Maximization step (M-step) - estimating the parameter $\theta_{k+1}$ that maximizes the conditional expectation $E_{Z|X,\theta_n} [\log p(X,z|\theta)]$.
 \end{itemize}
 
 Both of these steps are repeated until convergence. 
 
 \subsection{Baum-Welsch algorithm}
 
-In previous section we defined Expectation-Maximization algorithm used to compute Maximum Likelihood estimates given the incomplete data, i.e. supposing that part of the data is hidden. Two main steps are called E-step and M-step which were discussed generally but we need to establish direct connection to the estimation of the Hidden Markov model parameters. We will show that former step is easily computed given variables $\alpha$, $\beta$ and $\gamma$ established in last chapter, where we defined Viterbi and Forward-Backward algorithm. These computations result in estimating the conditional probability distribution of hidden states given our observations sequence and model parameters $\mathbb{P}(z_t=i|X,\theta^k)$. The E-step in EM algorithm is just a derivation of conditional probability of particular hidden state given the data and the model parameters. In order to compute such quantity we will slightly modify the $\gamma$ definition to express it using Bayes Theorem for each observation at time t. Meaning that now we are :
+In previous section we defined Expectation-Maximization algorithm used to compute Maximum Likelihood estimates given the incomplete data, i.e.\ supposing that part of the data is hidden. Two main steps are called E-step and M-step which were discussed generally, but we need to establish direct connection to the estimation of the Hidden Markov model parameters. We will show that former step is easily computed given variables $\alpha$, $\beta$ and $\gamma$ established in last chapter, where we defined Viterbi and Forward-Backward algorithm. These computations result in estimating the conditional probability distribution of hidden states given our observations sequence and model parameters $\mathbb{P}(z_t=i|X,\theta^k)$. The E-step in EM algorithm is just a derivation of conditional probability of particular hidden state given the data and the model parameters. In order to compute such quantity we will slightly modify the $\gamma$ definition to express it using Bayes Theorem for each observation at time t. Meaning that now we are:
 
 \begin{equation}
 \gamma_t(i) = \mathbb{P}(Z_t=i|X,\theta) = \frac{\mathbb{P}(X|Z_t=i, \theta) \mathbb{P}(Z_t = i|\theta)}{\sum_{j=1}^k \mathbb{P}(X|Z_t=j,\theta)\mathbb{P}(Z_t = j|\theta)} 
 \end{equation}
 
-where the numerator includes the conditional distribution of our data given particular hidden state $i$ and the latter term, also known as prior distribution, is our estimate of the probability distribution of hidden states. In upcoming chapter about Gaussian Mixture Models we will shown that this first term is a gaussian distribution given hidden state $i$ and the common choice for prior will be Multinomial distribution with $k$ parameters where we will stress the importance of its conjugate prior the Dirichlet distribution. Although, in case our model assumptions we use already defined variables $\alpha_t(i)$ and $\beta_t(i)$.Visually we can interpret $\gamma_t(i)$ using a similar form of a trellis as in section about Viterbi algorithm.
+where the numerator includes the conditional distribution of our data given particular hidden state $i$ and the latter term, also known as prior distribution, is our estimate of the probability distribution of hidden states. In upcoming chapter about Gaussian Mixture Models we will show that this first term is a Gaussian distribution given hidden state $i$ and the common choice for prior will be Multinomial distribution with $k$ parameters where we will stress the importance of its conjugate prior the Dirichlet distribution. Although, in case our model assumptions we use already defined variables $\alpha_t(i)$ and $\beta_t(i)$. Visually, we can interpret $\gamma_t(i)$ using a similar form of a trellis as in section about Viterbi algorithm.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -197,7 +197,7 @@ where the numerator includes the conditional distribution of our data given part
 \node[state] (s1_1) at (0,6) {$z_1$};
 \node[state] (s2_1) at (0,5) {$z_2$};
 \node[state] (s3_1) at (0,4) {$z_3$};
-\node[state] (s4_1) at (0,3) {$...$};
+\node[state] (s4_1) at (0,3) {$\ldots$};
 \node[state] (s5_1) at (0,2) {$z_N$};
 % 2nd column
 \node[mainstate] (s1_3) at (4,4) {$z_i$}
@@ -213,7 +213,7 @@ where the numerator includes the conditional distribution of our data given part
     edge[mainedge] (s1_3);
 \node[state] (s3_5) at (8,4) {$z_3$}
     edge[mainedge] (s1_3);
-\node[state] (s4_5) at (8,3) {$...$}
+\node[state] (s4_5) at (8,3) {$\ldots$}
     edge[mainedge] (s1_3);
 \node[state] (s5_5) at (8,2) {$z_N$}
     edge[mainedge] (s1_3);
@@ -223,29 +223,29 @@ where the numerator includes the conditional distribution of our data given part
 \caption{Trellis interpreting the conditional probability of hidden state $i$ at time $t$ using Forward-Backward algorithm.}
 \end{figure}
 
-In Chapter 1 we denoted the transition matrix $N{\times}N$ as $A=\{a_{i,j}\}=\mathbb{P}(Z_{t}=j|Z_{t-1}=i)$, i.e. probability of transitioning to state $j$ given that we were at state $i$ at previous time ste  p. The initial distribution of hidden states $\pi_i = \mathbb{P}(Z_1=i)$, also called probability vector of length $N$, and emission matrix $N{\times}K$ defined as $B=b_i(x_t) = \mathbb{P}(X_t=x_t|Z_t=i)$, where K denotes state space, i.e. all possible outcomes, of random variables $X_t, \forall t \in T$(stochastic process???). First of all we need to specify the equation for complete data log-likelihood function for the Hidden Markov Model, which we can intuitively represent as joint probability distribution of observed and hidden data given our model parameters, i.e. $\log p(X,Z|\theta)$. Also note that here $\theta$ is considered as a vector of parameters containing initial distribution of states, transition and emission matrices, $\theta = \{\pi, A,B\}$, and is time invariant therefore:
+In Chapter 1 we denoted the transition matrix $N{\times}N$ as $A=\{a_{i,j}\}=\mathbb{P}(Z_{t}=j|Z_{t-1}=i)$, i.e.\ probability of transitioning to state $j$ given that we were at state $i$ at previous time step. The initial distribution of hidden states $\pi_i = \mathbb{P}(Z_1=i)$, also called probability vector of length $N$, and emission matrix $N{\times}K$ defined as $B=b_i(x_t) = \mathbb{P}(X_t=x_t|Z_t=i)$, where K denotes state space, i.e.\ all possible outcomes, of random variables $X_t, \forall t \in T$ (stochastic process???). First, we need to specify the equation for complete data log-likelihood function for the Hidden Markov Model, which we can intuitively represent as joint probability distribution of observed and hidden data given our model parameters, i.e. $\log p(X,Z|\theta)$. Also note that here $\theta$ is considered as a vector of parameters containing initial distribution of states, transition and emission matrices, $\theta = \{\pi, A,B\}$, and is time invariant therefore:
 
 \begin{equation}
-L(\theta|x_1,...,x_T) = \pi A \prod_{t=1}^{T} b_{x_t}
+L(\theta|x_1,\ldots,x_T) = \pi A \prod_{t=1}^{T} b_{x_t}
 \end{equation}
 
-Time only effects the likelihood function through the emission matrix where we have to condition by the realisation of the observed process $\{X\}_{t=1}^T$, therefore $\pi A$ is a row vector and the product of column vectors. Unfortunately, the triplet of parameters does not form commuting matrices so we represent them via the sums of its elements after the logarithmic transformation below.
+Time only effects the likelihood function through the emission matrix where we have to condition by the realisation of the observed process $\{X\}_{t=1}^T$, therefore $\pi A$ is a row vector and the product of column vectors. Unfortunately, the triplet of parameters does not form commuting matrices, so we represent them via the sums of its elements after the logarithmic transformation below.
 
 \begin{equation}
-l(\theta|x_1,...,x_T) = \sum_{i=1}^{N}  \log \pi_i + \sum_{i,j=1}^{N} \log a_{i,j}+ \sum_{t=1}^{T} \sum_{i=1}^{N} \log b_{i,x_t}
+l(\theta|x_1,\ldots,x_T) = \sum_{i=1}^{N}  \log \pi_i + \sum_{i,j=1}^{N} \log a_{i,j}+ \sum_{t=1}^{T} \sum_{i=1}^{N} \log b_{i,x_t}
 \end{equation}
 
-Next step according to EM algorithm is to take the expectation of the log-likelihood function above with respect to $\mathbb{P}(Z_t=i|X,\theta)$. Afterwards we may use standard tool of partially diferrentiating such function with respect to model parameters.
+Next step according to EM algorithm is to take the expectation of the log-likelihood function above with respect to $\mathbb{P}(Z_t=i|X,\theta)$. Afterwards we may use standard tool of partially differentiating such function with respect to model parameters.
 
 \begin{equation}
-\mathbb{E}_{Z|X,\theta} [l(\theta|x_1,...,x_T)] = \sum_{i=1}^{N} \gamma_1(i) \log \pi_i + \sum_{t=2}^{T} \sum_{i,j=1}^{N} \gamma_t (i,j) \log a_{i,j}+ \sum_{t=1}^{T} \sum_{i=1}^{N} \gamma_t (i) \log b_{i,x_t}
+\mathbb{E}_{Z|X,\theta} [l(\theta|x_1,\ldots,x_T)] = \sum_{i=1}^{N} \gamma_1(i) \log \pi_i + \sum_{t=2}^{T} \sum_{i,j=1}^{N} \gamma_t (i,j) \log a_{i,j}+ \sum_{t=1}^{T} \sum_{i=1}^{N} \gamma_t (i) \log b_{i,x_t}
 \end{equation}
 
-To summarise, the E-step of the EM algorithm in case of HMM lies in estimation of $\gamma_t(i)$ which is simply a probability of being at state $i$ given our observation sequence and model parameters. Certainly, the iterative method of EM algorithm also needs an initial guess about the model parameters, meaning the initial distribution, transition and emission matrix. Since the hidden states are assumed discrete we may express transition matrix using a stochastic (Markov) matrix introduced in Chapter 1.
+To summarize, the E-step of the EM algorithm in case of HMM lies in estimation of $\gamma_t(i)$ which is simply a probability of being at state $i$ given our observation sequence and model parameters. Certainly, the iterative method of EM algorithm also needs an initial guess about the model parameters, meaning the initial distribution, transition and emission matrix. Since the hidden states are assumed discrete we may express transition matrix using a stochastic (Markov) matrix introduced in Chapter 1.
 
-Note that the initial estimate of the parameters will never guarantee that a global maximum of the likelihood function is attained, therefore on of the optimal solutions to this problem is to initialise parameters multiple times and compare the maxima of the loglikelihood function. 
+Note that the initial estimate of the parameters will never guarantee that a global maximum of the likelihood function is attained, therefore on of the optimal solutions to this problem is to initialize parameters multiple times and compare the maxima of the log likelihood function. 
 
-Once we have a formal estimate of the initial parameters, the EM algorithm performs E-step as defined above and subsequently M-step. Them maximization step is determined by the arguement that maximizes the expectation of loglikelihood function given by Eq. 2.33 and also parameter contrainsts:
+Once we have a formal estimate of the initial parameters, the EM algorithm performs E-step as defined above and subsequently M-step. Then maximization step is determined by the argument that maximizes the expectation of log likelihood function given by Equation 2.33 and also parameter constraints:
 
 \begin{align}
 \displaystyle \sum_i^N \pi_i =& 1 \\
@@ -253,14 +253,14 @@ Once we have a formal estimate of the initial parameters, the EM algorithm perfo
 \displaystyle \sum_i^N b_{i,x_t} =& \mathbbm{1} \quad \forall x_t \in \mathcal{X}
 \end{align} 
 
-where $\mathbbm{1}$ is  a unit vector of length N. Given parameter constraints we maximize expected loglikelihood function using Lagrange multipliers where the objective function is defined as:
+where $\mathbbm{1}$ is  a unit vector of length N. Given parameter constraints we maximize expected log likelihood function using Lagrange multipliers where the objective function is defined as:
 
 \begin{align}
-\mathcal{L}(\theta,\lambda_k|x_1,...,x_T) =& E_{Z|X,\theta_n} [\log p(X,z|\theta)] - \lambda_1(\displaystyle \sum_i^N \pi_i - 1) \\
+\mathcal{L}(\theta,\lambda_k|x_1,\ldots,x_T) =& E_{Z|X,\theta_n} [\log p(X,z|\theta)] - \lambda_1(\displaystyle \sum_i^N \pi_i - 1) \\
 & - \lambda_2(\displaystyle \sum_i^N a_{i,j} -  \mathbbm{1})  - \lambda_3 (\displaystyle\sum_i^N b_{i,x_t} - \mathbbm{1})
 \end{align}
 
- where $k=\{1,2,3\}$.  Taking partial derivatives with respect to each parameter on our model and setting that partial derivative equal to zero we arrive at parameter estimates which is also a final solution to our maximiyation step as follows:
+ where $k=\{1,2,3\}$.  Taking partial derivatives with respect to each parameter on our model and setting that partial derivative equal to zero we arrive at parameter estimates which is also a final solution to our maximization step as follows:
 
 
 \begin{align}
@@ -270,10 +270,8 @@ where $\mathbbm{1}$ is  a unit vector of length N. Given parameter constraints w
 \end{align}
 
 
-We repeat these steps until the desired convergence is achieved. To summarise the Expectation Maximization algorithm, the goal in such instance is to estimate model parameters by Eq. 2.29 
-given a convergence criterion of $|l(\theta^{k}|X,q^{k}) - l(\theta^{k-1}|X,q^{k-1})| \leq \epsilon $ after which we claim that the parameter estimates of k-th iteration are such that the we have maximized the value of our loglikelihood function given the obervable data.
-
-
+We repeat these steps until the desired convergence is achieved. To summarize the Expectation Maximization algorithm, the goal in such instance is to estimate model parameters by Equation 2.29 
+given a convergence criterion of $|l(\theta^{k}|X,q^{k}) - l(\theta^{k-1}|X,q^{k-1})| \leq \epsilon $ after which we claim that the parameter estimates of k-th iteration are such that we have maximized the value of our log likelihood function given the observable data.
 
 \section{Observable states}
 
@@ -281,7 +279,7 @@ given a convergence criterion of $|l(\theta^{k}|X,q^{k}) - l(\theta^{k-1}|X,q^{k
 	
 Assuming that the price increase in   the idea predefined Hidden Markov Model will assume
 	
-	However it is much more efficient to assume continuity in our predefined observable states. It is nowadays empirically proved , as in (citace) that using technical indicators as a predictors for the future spot price yields more accurate machine learning models. As will be demonstrated each of the technical indicators can be classified into several families of indicators, such as momentum, volume, volatility and cycle indicators. For our purposes we will consider mainly momentum indicators that are calculated using Open, High, Low, Close prices (hereinafter "OHLC") and Volume indicators. There is a huge variety of technical indicators to choose from therefore the selection was made according the most used and well known indicators or their transformed versions. 
+	However it is much more efficient to assume continuity in our predefined observable states. It is nowadays empirically proved, as in (citace) that using technical indicators as predictors for the future spot price yields more accurate machine learning models. As will be demonstrated each of the technical indicators can be classified into several families of indicators, such as momentum, volume, volatility and cycle indicators. For our purposes we will consider mainly momentum indicators that are calculated using Open, High, Low, Close prices (hereinafter "OHLC") and Volume indicators. There is a huge variety of technical indicators to choose from therefore the selection was made according the most used and well known indicators or their transformed versions. 
 
 In our case we will consider following observable states that will be defined and elaborated on in the upcoming sections:
 
@@ -298,7 +296,7 @@ In our case we will consider following observable states that will be defined an
 
 Also knows as MACD is a trend-following momentum indicator that represents the differences between two exponential moving averages (hereinafter "EMA"). The most common and traditional moving averages are 26-period EMA and 12-period EMA. 
 
-The indicator is often used with so called ""signal line" that is constructed as a 9-period EMA and is used as a trigger for a buy and sell signal. In practical application a trader decides to buy a stock if the signal line crosses MACD line from above and sell if it crosses from below, assuming simplistic trading strategy using only MACD. EMA also called exponentially weighted moving average is a type of moving average that differs from weighted moving average WMA by the distribution of weights to past observations. While WMA considers the linearly decreasing distribution of weights, the EMA assumes exponential decrease in weights. Furthermore it is necessary to elaborate over the values of weights because it might not always be unambiguous. WMA distributes weights chronologically and linearly, e.g. 10-period WMA gives weight 1 to the earliest observation and 10 to the most recent observation, the case within EMA is often not that simple. The weights given to each observation are computed as $(1 - \lambda)^i$ where $i \in \mathbb{N}_0$ and is bounded from above by the assumed period of interest, e.g. 3, 10, 26-period denoted as T for the sake of . As $i$ increases identically with the time lag the value of weights decreases. The important role that ought to be questioned is the parameter $\lambda$ that is defined as $\frac{k}{T+1}$ where k represents the so called "smoothing" parameter. Traders and analysts use value 2 for the smoothing parameter but the number may be defined on the interval $(0,T)$. Higher values of k mean bigger weights given to most recent observations. 
+The indicator is often used with so-called ""signal line" that is constructed as a 9-period EMA and is used as a trigger for a buy and sell signal. In practical application a trader decides to buy a stock if the signal line crosses MACD line from above and sell if it crosses from below, assuming simplistic trading strategy using only MACD. EMA also called exponentially weighted moving average is a type of moving average that differs from weighted moving average WMA by the distribution of weights to past observations. While WMA considers the linearly decreasing distribution of weights, the EMA assumes exponential decrease in weights. Furthermore it is necessary to elaborate over the values of weights because it might not always be unambiguous. WMA distributes weights chronologically and linearly, e.g. 10-period WMA gives weight 1 to the earliest observation and 10 to the most recent observation, the case within EMA is often not that simple. The weights given to each observation are computed as $(1 - \lambda)^i$ where $i \in \mathbb{N}_0$ and is bounded from above by the assumed period of interest, e.g. 3, 10, 26-period denoted as T for the sake of . As $i$ increases identically with the time lag the value of weights decreases. The important role that ought to be questioned is the parameter $\lambda$ that is defined as $\frac{k}{T+1}$ where k represents the so called "smoothing" parameter. Traders and analysts use value 2 for the smoothing parameter but the number may be defined on the interval $(0,T)$. Higher values of k mean bigger weights given to most recent observations. 
 
 The Figure 2.1 illustrates MACD line, signal line as well as "MACD histogram" which is displayed as a bar chart indicating the difference of the former ones. Traders use such a distance to identify whether the bullish or bearish momentum is high, i.e. bigger the distances of these two lines higher the price momentum.
 
@@ -307,7 +305,7 @@ MACD has its unfortunate limitations that mainly arise from the non-trending mom
 \begin{figure}[ht]
 
 \begin{center}
-	\includegraphics[width=0.9\textwidth]{MACD.png}
+	\includegraphics[width=0.9\textwidth]{Figs/MACD.png}
 \end{center}
 
 \caption{\textit{ Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot containing two lines for MACD and Signal line and a bar chart as their difference}}
@@ -331,7 +329,7 @@ Considering values above 80, the indicator signals overbought market and oversol
 \begin{figure}[ht]
 
 \begin{center}
-	\includegraphics[width=0.9\textwidth]{Stochastic.png}
+	\includegraphics[width=0.9\textwidth]{Figs/Stochastic.png}
 \end{center}
 
 \caption{\textit{ Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot with line indicating Stochastic Oscillator}}
@@ -348,7 +346,7 @@ Chaikin Oscillator is a momentum based indicator of the Accumulation/Distributio
 
 The calculation of the Chaikin Oscillator may be broken down into several steps:
 \begin{itemize}
-\item[(i)] First of all we ought to calculate the Money Flow Multiplier for each time step denoted by "N".
+\item[(i)] First, we ought to calculate the Money Flow Multiplier for each time step denoted by "N".
 
 \begin{equation}
 N_{t} = \frac{(Close_{t} - Low_{t}) - (High_{t} - Close_{t})}{High_{t} - Low_{t}}
@@ -363,10 +361,10 @@ ADL_t = M_{t-1} + M_t
 \item[(iii)] Given the constructed A/D line, we compute the Chaikin Oscillator values as a difference of 3-day and 10-day exponential moving averages.
 
 \begin{equation}
-CO_t = \frac{\sum_{i=0}^{3} (1-\alpha)^i*Close_{t-i}}{\sum_{i=0}^{3} (1-\alpha)^i} - \frac{\sum_{i=0}^{10} (1-\beta)^i*Close_{t-i}}{\sum_{i=0}^{10} (1-\beta)^i}
+CO_t = \frac{\sum_{i=0}^{3} {(1-\alpha)}^i*Close_{t-i}}{\sum_{i=0}^{3} {(1-\alpha)}^i} - \frac{\sum_{i=0}^{10} {(1-\beta)}^i*Close_{t-i}}{\sum_{i=0}^{10} {(1-\beta)}^i}
 \end{equation}
 
-where we assume that the weights denoted as $\alpha$ and $\beta$ are computed as $2/(days + 1)$. Numerator as a smoothing factor is often declared as 2. However the indicator may be set to absolutely different number between 0 and 1 according to the needs and assumptions made by the trader/analyst, therefore setting the parameter close to 1 is putting more weight to the most recent price.
+where we assume that the weights denoted as $\alpha$ and $\beta$ are computed as $2/(days + 1)$. Numerator as a smoothing factor is often declared as 2. However, the indicator may be set to absolutely different number between 0 and 1 according to the needs and assumptions made by the trader/analyst, therefore setting the parameter close to 1 is putting more weight to the most recent price.
 
 One way to interpret the indicator is to trade with respect to the time when the Chaikin Oscillator crosses zero from below and above which signals buy and sell signals respectively.
 
@@ -376,7 +374,7 @@ One way to interpret the indicator is to trade with respect to the time when the
 \begin{figure}[ht]
 
 \begin{center}
-	\includegraphics[width=0.9\textwidth]{Chaikin.png}
+	\includegraphics[width=0.9\textwidth]{Figs/Chaikin.png}
 \end{center}
 
 \caption{\textit{ Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot indicating Chaikin Oscillator}}
@@ -386,8 +384,8 @@ One way to interpret the indicator is to trade with respect to the time when the
 
 \section{Relative Strength Index}
 
-Given the recent price changes Relative Strength Index measures the its magnitude in order to indicate the overbought or oversold market. In technical analysis such indicator is represented by an oscillator ranging from values 0 to 100. Empirically 
-it was determined that values above 70 and below 30 signal overbought and oversold asset respectively. Therefore we may also use RSI to produce buy and sell signals from former logic, which means that when the RSI crosses 30 from below, buy signal is generated as well as sell signal in case it crosses 70 from above. We also could measure the strength and continuation of the trend for cases in which the RSI crosses value of 50. Such interpretation results from the RSI formula where the value of 50 means that the average gain equals the average loss in the last period.
+Given the recent price changes Relative Strength Index measures its magnitude in order to indicate the overbought or oversold market. In technical analysis such indicator is represented by an oscillator ranging from values 0 to 100. Empirically 
+it was determined that values above 70 and below 30 signal overbought and oversold asset respectively. Therefore, we may also use RSI to produce buy and sell signals from former logic, which means that when the RSI crosses 30 from below, buy signal is generated as well as sell signal in case it crosses 70 from above. We also could measure the strength and continuation of the trend for cases in which the RSI crosses value of 50. Such interpretation results from the RSI formula where the value of 50 means that the average gain equals the average loss in the last period.
 
 The formula below explains the procedure within which the values of RSI are calculated. It is obvious that the RSI rises as the number of positive closing prices increases, i.e. the relative change in prices is positive, and falls if otherwise. The standard time interval for  the calculation is 14 preceding periods with respect to $t$, hereby denoted as $T$.
 
@@ -403,12 +401,12 @@ RSI_t = 100- \frac{100}{1+r_t}
 
 given that $P_t$ denotes the value of an asset at time $t$.
 
-As stated before there are several drawbacks of using the RSI as a trading indicators only by itself, it happens that the price usually rises and stays overbought for a substantial period of time in times of significant and strong bullish trend. RSI as an oscillator is used as a auxiliary trading tool below the price chart:
+As stated before there are several drawbacks of using the RSI as a trading indicators only by itself, it happens that the price usually rises and stays overbought for a substantial period of time in times of significant and strong bullish trend. RSI as an oscillator is used as an auxiliary trading tool below the price chart:
 
 \begin{figure}[ht]
 
 \begin{center}
-	\includegraphics[width=0.9\textwidth]{RSI.png}
+	\includegraphics[width=0.9\textwidth]{Figs/RSI.png}
 \end{center}
 
 \caption{\textit{ Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with a subplot containing  RSI}}
@@ -417,7 +415,7 @@ As stated before there are several drawbacks of using the RSI as a trading indic
 
 \section{Aroon Indicator}
 
-Aroon indicator is used for trend reversal identification and a measure of its strength. Indicator is composed out of two lines aroon up and aroon down that measure the time between new highs or lows respectively. Alternatively, they measure the strength of a bullish or bearish trend. Obviously the main idea of the indicator is based upon the fact that bullish trends are naturely formed by subsequently creating new highs while bearish trends form new lows. Aroon Up and Aroon Down are computed as follows:
+Aroon indicator is used for trend reversal identification and a measure of its strength. Indicator is composed out of two lines aroon up and aroon down that measure the time between new highs or lows respectively. Alternatively, they measure the strength of a bullish or bearish trend. Obviously the main idea of the indicator is based upon the fact that bullish trends are naturelly formed by subsequently creating new highs while bearish trends form new lows. Aroon Up and Aroon Down are computed as follows:
 
 \begin{equation}
 Aroon Up = \frac{25 - h}{25} * 100
@@ -429,24 +427,13 @@ Aroon Down = \frac{25 - l}{25} * 100
 
 Where $h$ represents the number of periods from the last 25-period High and $l$ the number of periods from last 25-period Low. 
 
-The interpretation of the indicator is very intuitive since the situation in which the Aroon Up line is above Aroon Down line signals bullish trend and when these two lines cross the signal of the trend reversal is generated. That also implies that for higher values of Aroon Up the bigger the strength and for lower values the uptrend is weaker and vice versa. In practice the crossover of these two lines is what generates the buy or sell signals, i.e. if Aroon Up crosses Aroon Down line from below a buy signal is generated and vice versa. 
+The interpretation of the indicator is very intuitive since the situation in which the Aroon Up line is above Aroon Down line signals bullish trend and when these two lines cross the signal of the trend reversal is generated. That also implies that for higher values of Aroon Up the bigger the strength and for lower values the uptrend is weaker and vice versa. In practice the crossover of these two lines is what generates the buy or sell signals, i.e.\ if Aroon Up crosses Aroon Down line from below a buy signal is generated and vice versa. 
 
 Although, Figure 2.4 graphically illustrates the Aroon Up and Down lines well, it is simpler to transform these two lines into one oscillator that would produce buy or sell signal in the case of zero crossover from above and from below. That is achieved by subtracting Aroon Up and Aroon Down line creating Aroon Oscillator.
 
-
 \begin{figure}[ht]
-
 \begin{center}
-	\includegraphics[width=0.9\textwidth]{Aroon.png}
+	\includegraphics[width=0.9\textwidth]{Figs/Aroon.png}
 \end{center}
-
-\caption{\textit{ Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplots containing two lines for Aroon Up/Down Indicator and Aroon Oscillator}}
-
+\caption{\textit{Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplots containing two lines for Aroon Up/Down Indicator and Aroon Oscillator}}
 \end{figure}
-
-
---
-
-
-
-

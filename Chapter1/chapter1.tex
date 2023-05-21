@@ -2,8 +2,6 @@
 %*******************************************************************************
 %*********************************** First Chapter *****************************
 %*******************************************************************************
-
-
 \chapter{Markov Processes}  %Title of the First Chapter
 
 \ifpdf
@@ -18,10 +16,7 @@
 \tikzstyle{mainstate}=[state,thick]
 \tikzstyle{mainedge}=[<-,thick]
 
-
 Put here the overall definition for sigma algebra and notation and introduction plus motivation
-
-
 
 %********************************** %First Section  **************************************
 \section{Discrete-time Markov Chains} %Section - 1.2
@@ -169,7 +164,7 @@ P(X_{t_0} = x_0,\ldots,X_{t_n} = x_n|A,p) &= P(X_0 = x_0) \prod_{k=1}^4 P(X_k=x_
 
 Where the probability of observing state A is determined by our distribution $\lambda$ evaluated at respective state A since we have no prior knowledge about what exactly happened before $t_0$. 
 
-On the other hand, we might consider a situation in which we have observed such a sequence of events and we need to determine the next state given the sequence. As in the last example, we have our transition matrix P, distribution $\lambda$ and a sequence of events observed until now $\{A,B,C,C,A\}$ for $t_{k-4},\ldots,t_{k}$. Let us also assume that $t_{k+1}$ is a time of next event for which we are trying to determine its probability.
+On the other hand, we might consider a situation in which we have observed such a sequence of events, and we need to determine the next state given the sequence. As in the last example, we have our transition matrix P, distribution $\lambda$ and a sequence of events observed until now $\{A,B,C,C,A\}$ for $t_{k-4},\ldots,t_{k}$. Let us also assume that $t_{k+1}$ is a time of next event for which we are trying to determine its probability.
 
 \begin{align}
 P(X_{t_{k+1}}|X_{t_{k}},\ldots,X_{t_{k-4}}) &= P(X_{t_{k+1}}|X_{t_{k}})
@@ -216,7 +211,7 @@ Let us make one more distinction regarding a Markov chain states. State is said 
 The greatest common divisor of these numbers is the period. If the period is larger than 1, the state is called periodic and 
 on the contrary, if there is no such integer and the state can be revisited at any time, then the state is called aperiodic. 
 If all states in a Markov chain are aperiodic, the Markov chain itself is said to be aperiodic as well. Aperiodicity is a desirable property for a Markov chain because it ensures that the chain does not get trapped in oscillating sequences of states. 
-To clarify, aperiodicity does not mean that each state must be reachable from every other state in just one step. It's a more subtle concept, meaning that the greatest common divisor of the lengths of all cycles in the chain must be 1, so that any state can be reached from any other state in a variable number of steps.
+To clarify, a periodicity does not mean that each state must be reachable from every other state in just one step. It's a more subtle concept, meaning that the greatest common divisor of the lengths of all cycles in the chain must be 1, so that any state can be reached from any other state in a variable number of steps.
 Previous properties of states lead us to define ergodic state for which it holds that it needs to be positive recurrent and aperiodic. Such trait is desirable since it implies that the state will be visited infinitely often and the expected time between visits is finite.
 That also implies that if all states of a Markov chain are ergodic, then the chain itself is ergodic and irreducible, i.e. all states communicate with each other.
 
@@ -262,7 +257,7 @@ For now consider a dataset of BTC-USDT daily close prices from public cryptocurr
 Firstly, we ought to make several assumptions about the data in order to satisfy properties of Markov Chains, namely define finite state space, transition period and memoryless process. 
 
 \begin{itemize}
-\item [1)] \textbf{Transition period}: We will define a transition period as a day, i.e. the transition probabilities will be calculated for each day.
+\item [1)] \textbf{Transition period}: We will define a transition period as a day, i.e.\ the transition probabilities will be calculated for each day.
 \item [2)] \textbf{State space}: We will define a state space as a set of 3 states \{upward, side, downward\} which will be determined by the percentage change of the close price of the current day with respect to the previous day as follows:
     \begin{itemize}
     \item [a)] \textbf{Upward}: If the percentage change of the close price of the current day with respect to the previous day is greater than 0.5\%.
@@ -276,7 +271,7 @@ Given these assumptions we first examine BTC-USDT close price time series data i
 
 \begin{figure}[htbp]
     \begin{center}
-        \includegraphics[width=1.0\textwidth]{BTC-USD.png}
+        \includegraphics[width=1.0\textwidth]{Figs/BTC-USD.png}
         \caption{BTC-USD daily close prices from 23rd August 2020 to 15th May 2023 obtained from Binance. \cite{tradingview}}
         \label{fig:BTC-USD}
     \end{center}
@@ -284,7 +279,7 @@ Given these assumptions we first examine BTC-USDT close price time series data i
 
 \begin{figure}[htbp]
     \begin{center}
-        \includegraphics[width=1.0\textwidth]{BTC-USD_hist.png}
+        \includegraphics[width=1.0\textwidth]{Figs/BTC-USD_hist.png}
         \caption{Distribution of the log returns with respect to predefined market states. \cite{tradingview}}
         \label{fig:BTC-USD-distribution}
     \end{center}
@@ -332,7 +327,7 @@ are effected by external factors such as news, social media, etc. Therefore, the
 %********************************** % Third Section  *************************************
 \section{Continous-time Markov Chains} 
 
-In the previous section we have considered a discrete-time Markov Chains, i.e. the state space and transition period was discrete. Such period means that 
+In the previous section we have considered a discrete-time Markov Chains, i.e.\ the state space and transition period was discrete. Such period means that 
 the chain can stay in a state for integer number of time steps before transitioning to another state. 
 For continous-time Markov Chains we will assume that the transition period is continuous, more specifically, the period is exponentially distributed with parameter $\lambda$.
 
@@ -344,10 +339,10 @@ P(X_t=j|X_s=i, X_{t_n}=i_n,\ldots,X_{t_1}=i_1) = P(X_t=j|X_s=i)
 \end{equation}
 
 where $0 \leq t_1 < \ldots < t_n < s < t $ and so it is trivially seen that such expression is equivalent to the discrete-time Markov Chain property 
-given by \ref{DTMC} with the only difference of continuous transition period.
+given by~\ref{DTMC} with the only difference of continuous transition period.
 
 Since the state space remains the same as in discrete-time Markov Chains, we refer to the same transition matrix $A$ and initial distribution $\textbf{p}$.
-In upcoming subsection, continuous-time Markov Chain is assumed to be homogeneous, i.e. the transition probabilities are independent of time:
+In upcoming subsection, continuous-time Markov Chain is assumed to be homogeneous, i.e.\ the transition probabilities are independent of time:
 
 \begin{equation}
 p_{i,j}(s,s+t) = p_{i,j}(t), \quad i,j \in I
@@ -368,10 +363,10 @@ certain properties of the stochastic process.
 For example, important property for such Markov Chain given Doob convergence theorem for $s \geq 0$ and $h>0$ is:
 
 \begin{equation}
-P(X_t = i, s \leq t \leq s+h|X_s=i) = \exp(-q_ih)
+P(X_t = i, s \leq t \leq s+h|X_s=i) = \exp(-{q_i}h)
 \end{equation}
 
-which means that the probability of staying in state $i$ for time $h$ is equal to $e^{-q_ih}$. 
+which means that the probability of staying in state $i$ for time $h$ is equal to $e^{-{q_i}h}$. 
 Non-negative real number $q_{i,j}$ is called {\it transition rate} from state $i$ to state $j$ and absolute transition 
 rate $q_i = \sum_{j \neq i} q_{i,j}$ respectively. Trivially, in cases where the transition rate $q_i=0$, the $p_{i,i} = 1$, i.e. the state $i$ is absorbing, 
 once the chain enters such state it remains in such state for infinite amount of time. On the contrary, if $0 < q_i < \infty$ then the state $i$ is non-absorbing and stable, therefore
@@ -414,9 +409,9 @@ Such intensities resemble the probability functions of Poisson process,
  and indeed homogeneous continous-time Markov Chain is a special case of Poisson process with intensity $\lambda \geq 0$ if following conditions are satisfied:
 
 \begin{itemize}
-\item [1)] Stochastic process is viewed as a jump process, i.e. current state $i$ either stays in state $i$ or jumps to another state $j=i+1$. Therefore, given an interval $[t,t+h]$ the probability of jumping to another state is $\lambda h + o(h)$ and the probability of staying in state $i$ is $1-\lambda h + o(h)$.
-\item [2)] Intensity $\lambda$ is constant, i.e. the probability of jumping to another state is independent of time, i.e. depends only on the length of the interval. We refer to such process as homogeneous Poisson process.
-\item [3)] Number of jumps in disjoint intervals are independent, i.e. the probability of jumping to another state in disjoint intervals $[t_1,t_1+h]$ and $[t_2,t_2+h]$ is equal to the probability of jumping to another state in interval $[t_1,t_1+h] \cup [t_2,t_2+h]$.
+\item [1)] Stochastic process is viewed as a jump process, i.e.\ current state $i$ either stays in state $i$ or jumps to another state $j=i+1$. Therefore, given an interval $[t,t+h]$ the probability of jumping to another state is $\lambda h + o(h)$ and the probability of staying in state $i$ is $1-\lambda h + o(h)$.
+\item [2)] Intensity $\lambda$ is constant, i.e.\ the probability of jumping to another state is independent of time, i.e. depends only on the length of the interval. We refer to such process as homogeneous Poisson process.
+\item [3)] Number of jumps in disjoint intervals are independent, i.e.\ the probability of jumping to another state in disjoint intervals $[t_1,t_1+h]$ and $[t_2,t_2+h]$ is equal to the probability of jumping to another state in interval $[t_1,t_1+h] \cup [t_2,t_2+h]$.
 \item [4)] The probability of more than one jump in a sufficiently small interval is negligible, i.e. the probability of jumping to another state in interval $[t,t+h]$ is $o(h)$.
 \item [5)] Process starts in state $i=0$ at time $t=0$.
 \end{itemize}
@@ -914,43 +909,10 @@ The resulting most likely state path can be visually viewed as in the form of a 
 \node at (8,1) {$x_5$};
 \end{tikzpicture}
 \end{center}
-\caption{Trellis of the observation sequence $x_1$,\ldots,$x_5$ for the HMM.\@ Bold lines illustrate the most likely sequence found by the Viterbi algorithm.}
+\caption{Trellis of the observation sequence $x_1$, \ldots,$x_5$ for the HMM.\@ Bold lines illustrate the most likely sequence found by the Viterbi algorithm.}
 \end{figure}
 
 
 \newpage
 
-
 \section{Kalman Filters}
-
-
-
-
-\nomenclature[z-DEM]{DEM}{Discrete Element Method}
-\nomenclature[z-FEM]{FEM}{Finite Element Method}
-\nomenclature[z-PFEM]{PFEM}{Particle Finite Element Method}
-\nomenclature[z-FVM]{FVM}{Finite Volume Method}
-\nomenclature[z-BEM]{BEM}{Boundary Element Method}
-\nomenclature[z-MPM]{MPM}{Material Point Method}
-\nomenclature[z-LBM]{LBM}{Lattice Boltzmann Method}
-\nomenclature[z-MRT]{MRT}{Multi-Relaxation Time}
-\nomenclature[z-RVE]{RVE}{Representative Elemental Volume}
-\nomenclature[z-GPU]{GPU}{Graphics Processing Unit}
-\nomenclature[z-SH]{SH}{Savage Hutter}
-\nomenclature[z-CFD]{CFD}{Computational Fluid Dynamics}
-\nomenclature[z-LES]{LES}{Large Eddy Simulation}
-\nomenclature[z-FLOP]{FLOP}{Floating Point Operations}
-\nomenclature[z-ALU]{ALU}{Arithmetic Logic Unit}
-\nomenclature[z-FPU]{FPU}{Floating Point Unit}
-\nomenclature[z-SM]{SM}{Streaming Multiprocessors}
-\nomenclature[z-PCI]{PCI}{Peripheral Component Interconnect}
-\nomenclature[z-CK]{CK}{Carman - Kozeny}
-\nomenclature[z-CD]{CD}{Contact Dynamics}
-\nomenclature[z-DNS]{DNS}{Direct Numerical Simulation}
-\nomenclature[z-EFG]{EFG}{Element-Free Galerkin}
-\nomenclature[z-PIC]{PIC}{Particle-in-cell}
-\nomenclature[z-USF]{USF}{Update Stress First}
-\nomenclature[z-USL]{USL}{Update Stress Last}
-\nomenclature[s-crit]{crit}{Critical state}
-\nomenclature[z-DKT]{DKT}{Draft Kiss Tumble}
-\nomenclature[z-PPC]{PPC}{Particles per cell}

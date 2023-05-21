@@ -10,8 +10,8 @@
 \contentsline {subsection}{\numberline {1.2.1}Cryptocurrency market movements II.}{12}{subsection.1.2.1}%
 \contentsline {section}{\numberline {1.3}Hidden Markov Model}{12}{section.1.3}%
 \contentsline {subsection}{\numberline {1.3.1}Forward and Backward algorithm}{14}{subsection.1.3.1}%
-\contentsline {subsubsection}{Forward algorithm}{15}{section*.9}%
-\contentsline {subsubsection}{Backward algorithm}{17}{section*.11}%
+\contentsline {subsubsection}{\numberline {1.3.1.1}Forward algorithm}{15}{subsubsection.1.3.1.1}%
+\contentsline {subsubsection}{\numberline {1.3.1.2}Backward algorithm}{17}{subsubsection.1.3.1.2}%
 \contentsline {subsection}{\numberline {1.3.2}Viterbi algorithm}{18}{subsection.1.3.2}%
 \contentsline {section}{\numberline {1.4}Kalman Filters}{22}{section.1.4}%
 \contentsline {chapter}{\numberline {2}Parameter Estimation for Hidden Markov Models}{23}{chapter.2}%
@@ -29,8 +29,8 @@
 \contentsline {subsection}{\numberline {3.2.1}Motivating EM algorithm}{45}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}EM algorithm for GMM}{46}{subsection.3.2.2}%
 \contentsline {subsection}{\numberline {3.2.3}Markov Chain Monte Carlo}{47}{subsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.2.4}Metroplis-Hastings Algorithm}{47}{subsection.3.2.4}%
-\contentsline {subsection}{\numberline {3.2.5}Gibbs Sampling}{47}{subsection.3.2.5}%
-\contentsline {section}{\numberline {3.3}Model Selection}{47}{section.3.3}%
+\contentsline {subsubsection}{\numberline {3.2.3.1}Metropolis-Hastings Algorithm}{47}{subsubsection.3.2.3.1}%
+\contentsline {subsubsection}{\numberline {3.2.3.2}Gibbs Sampling}{47}{subsubsection.3.2.3.2}%
+\contentsline {subsection}{\numberline {3.2.4}Kalman Filter}{47}{subsection.3.2.4}%
 \contentsline {chapter}{Appendix \numberline {A}Maximum likelihood results}{51}{appendix.a.A}%
 \contentsline {chapter}{Appendix \numberline {B}Python code}{53}{appendix.a.B}%
