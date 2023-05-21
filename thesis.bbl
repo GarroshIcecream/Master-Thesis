@@ -1,3 +1,115 @@
-\begin{thebibliography}{}
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
 
-\end{thebibliography}
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{tradingview}{misc}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labeltitlesource}{title}
+      \field{note}{Accessed: 2023-05-20}
+      \field{title}{TradingView}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT
+      \endverb
+      \verb{url}
+      \verb https://www.tradingview.com/chart/?symbol=BINANCE%3ABTCUSDT
+      \endverb
+    \endentry
+    \entry{prime-number-theorem}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=d7ca88c13a8f7ce1c23e920010a31f83}{%
+           family={Vallée\bibnamedelima Poussin},
+           familyi={V\bibinitperiod\bibinitdelim P\bibinitperiod},
+           given={Charles\bibnamedelimb Louis\bibnamedelimb Xavier\bibnamedelima Joseph},
+           giveni={C\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim X\bibinitperiod\bibinitdelim J\bibinitperiod},
+           prefix={de\bibnamedelima la},
+           prefixi={d\bibinitperiod\bibinitdelim l\bibinitperiod}}}%
+      }
+      \strng{namehash}{d7ca88c13a8f7ce1c23e920010a31f83}
+      \strng{fullhash}{d7ca88c13a8f7ce1c23e920010a31f83}
+      \strng{bibnamehash}{d7ca88c13a8f7ce1c23e920010a31f83}
+      \strng{authorbibnamehash}{d7ca88c13a8f7ce1c23e920010a31f83}
+      \strng{authornamehash}{d7ca88c13a8f7ce1c23e920010a31f83}
+      \strng{authorfullhash}{d7ca88c13a8f7ce1c23e920010a31f83}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{note}{A strong form of the prime number theorem, 19th century}
+      \true{nocite}
+    \endentry
+    \entry{Hen93}{book}{}
+      \name{author}{1}{}{%
+        {{hash=50374f86d34cc54b8a5788ccbcce4cfe}{%
+           family={Henderson},
+           familyi={H\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {London}%
+      }
+      \list{publisher}{1}{%
+        {McGraw-Hill}%
+      }
+      \strng{namehash}{50374f86d34cc54b8a5788ccbcce4cfe}
+      \strng{fullhash}{50374f86d34cc54b8a5788ccbcce4cfe}
+      \strng{bibnamehash}{50374f86d34cc54b8a5788ccbcce4cfe}
+      \strng{authorbibnamehash}{50374f86d34cc54b8a5788ccbcce4cfe}
+      \strng{authornamehash}{50374f86d34cc54b8a5788ccbcce4cfe}
+      \strng{authorfullhash}{50374f86d34cc54b8a5788ccbcce4cfe}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Object-oriented specification and design with {C}$++$}
+      \field{year}{1993}
+      \true{nocite}
+    \endentry
+    \entry{Rea85}{article}{}
+      \name{author}{1}{}{%
+        {{hash=419419917c798f89963f25bb64872a3a}{%
+           family={Read},
+           familyi={R\bibinitperiod},
+           given={C.\bibnamedelimi J.},
+           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{419419917c798f89963f25bb64872a3a}
+      \strng{fullhash}{419419917c798f89963f25bb64872a3a}
+      \strng{bibnamehash}{419419917c798f89963f25bb64872a3a}
+      \strng{authorbibnamehash}{419419917c798f89963f25bb64872a3a}
+      \strng{authornamehash}{419419917c798f89963f25bb64872a3a}
+      \strng{authorfullhash}{419419917c798f89963f25bb64872a3a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Bull. London Math. Soc.}
+      \field{title}{A solution to the invariant subspace problem on the space $l_1$}
+      \field{volume}{17}
+      \field{year}{1985}
+      \true{nocite}
+      \field{pages}{305\bibrangedash 317}
+      \range{pages}{13}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

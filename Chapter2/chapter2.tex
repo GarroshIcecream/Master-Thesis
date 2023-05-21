@@ -62,8 +62,7 @@ K(x;h) \propto e^{(-\frac{x^2}{2h^2})}
 
 where $K(x;h)$ denotes the Gaussian kernel function with bandwidth parameter $h$ and $\rho_K(y)$ is a kernel density estimate at point $y$.
 
-\begin{figure}[h]
-
+\begin{figure}[ht]
 \begin{center}
 	\includegraphics[width=0.9\textwidth]{MACD.png}
 \end{center}
@@ -152,7 +151,7 @@ q^{k+1} = \underset{q}{\arg\max} L(\theta_k, q) = \underset{q}{\arg\max} (\ln p(
 
 To visualise E-step, let us consider arbitrary log-likelihood function of complete data $\ln p(X|\theta)$ and $l(\theta^k,q^{k+1})$ for a fixed parameter of $\theta^k$. Notice the visual representation of resulting selection of $q^{k+1}$ as a solution to E-step. Consider also the new parameter estimate of $\theta^{k+1}$ which is a part of the next step called Maximisation step, also abbreviated as M-step.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 
 \begin{center}
 	\includegraphics[width=0.9\textwidth]{Loglike.png}
@@ -305,7 +304,7 @@ The Figure 2.1 illustrates MACD line, signal line as well as "MACD histogram" wh
 
 MACD has its unfortunate limitations that mainly arise from the non-trending moments. When the price enters sideways movement the MACD histogram signals decreases distances between MACD and signal line, the trend reversal is possible but the price moves sideways which eventually results in false positive signal. Moreover when the price moves sideways for longer periods MACD may signal too many false trend reversals. The most common practice for traders is to combine MACD signals with other indicators such as Relative Strength index (RSI) that measures overbought or oversold market. The RSI uses average price gains and losses usually over 14 periods and yields values between 0 and 100, indicating overbought market for values 70 (80) to 100 and 30 (20) to 0 for oversold market. The idea is that when the distances between MACD line and signal line increase and RSI signals overbought market the trader might consider this as a strong trend reversal signal. The idea is that signals from MACD strategy often produce false signals when price suddenly moves sideways and RSI helps to indicate the false positive signal. 
 
-\begin{figure}[h]
+\begin{figure}[ht]
 
 \begin{center}
 	\includegraphics[width=0.9\textwidth]{MACD.png}
@@ -329,7 +328,7 @@ where $C_{t-1}$ denotes the most recent closing price of a security, $H_{14}$ an
 
 Considering values above 80, the indicator signals overbought market and oversold market when the value drops below 20. Although it remains to hold true that the indicator often produces false indications that may be caused by periods of time where the price remains overbought/oversold for some time and trading with respect to such oscillator may result in losses. It is rather recommended to observe the values of stochastic oscillator and use it for trend reversal indication. 
 
-\begin{figure}[h]
+\begin{figure}[ht]
 
 \begin{center}
 	\includegraphics[width=0.9\textwidth]{Stochastic.png}
@@ -374,7 +373,7 @@ One way to interpret the indicator is to trade with respect to the time when the
 \end{itemize}
 
 
-\begin{figure}[h]
+\begin{figure}[ht]
 
 \begin{center}
 	\includegraphics[width=0.9\textwidth]{Chaikin.png}
@@ -406,7 +405,7 @@ given that $P_t$ denotes the value of an asset at time $t$.
 
 As stated before there are several drawbacks of using the RSI as a trading indicators only by itself, it happens that the price usually rises and stays overbought for a substantial period of time in times of significant and strong bullish trend. RSI as an oscillator is used as a auxiliary trading tool below the price chart:
 
-\begin{figure}[h]
+\begin{figure}[ht]
 
 \begin{center}
 	\includegraphics[width=0.9\textwidth]{RSI.png}
@@ -435,7 +434,7 @@ The interpretation of the indicator is very intuitive since the situation in whi
 Although, Figure 2.4 graphically illustrates the Aroon Up and Down lines well, it is simpler to transform these two lines into one oscillator that would produce buy or sell signal in the case of zero crossover from above and from below. That is achieved by subtracting Aroon Up and Aroon Down line creating Aroon Oscillator.
 
 
-\begin{figure}[h]
+\begin{figure}[ht]
 
 \begin{center}
 	\includegraphics[width=0.9\textwidth]{Aroon.png}

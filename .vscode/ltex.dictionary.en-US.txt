@@ -1,0 +1,10 @@
+memoryless
+Viterbi
+Continous-time
+Binance
+aperiodicity
+ergodic
+Aperiodicity
+Memoryless
+continous-time
+kurtosis
