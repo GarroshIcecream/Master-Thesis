@@ -213,14 +213,14 @@ The algorithm is defined as follows:
     \end{enumerate}
 \end{enumerate}
 
-The last step (d) is often called {\it Metropolis rejection} and the acceptance probability $\alpha(\theta^{(t-1)},\theta^*)$ in step (b) is defined as follows:
+The last step (d) is often called \textit{Metropolis rejection} and the acceptance probability $\alpha(\theta^{(t-1)},\theta^*)$ in step (b) is defined as follows:
 
 \begin{equation} \label{eq:hastings_ratio}
     \alpha(\theta^{(t-1)},\theta^*) = \min \left(1,\frac{p(\theta^*)q(\theta^{(t-1)}|\theta^*)}{p(\theta^{(t-1)})q(\theta^*|\theta^{(t-1)})}\right)
 \end{equation}
 
 where $p(\theta)$ is the target distribution and $q(\theta^*|\theta^{(t-1)})$ is the proposal distribution from which we can easily sample.
-The second term in the minimum function of Equation \ref{eq:hastings_ratio} is called Hastings ratio. Metropolis rejection ensures here that 
+The second term in the minimum function of Equation~\ref{eq:hastings_ratio} is called Hastings ratio. Metropolis rejection ensures here that 
 the probability of accepting a candidate state $\theta^*$ is equal to $\alpha(\theta^{(t-1)},\theta^*)$ and rejecting it with probability $1 - \alpha(\theta^{(t-1)},\theta^*)$.
 Proposal distributions are usually chosen to be symmetric, i.e. $q(\theta^*|\theta^{(t-1)}) = q(\theta^{(t-1)}|\theta^*)$, 
 so that the computation of Hastings ratio is simplified (to Metropolis ratio) and the acceptance probability is therefore following:
@@ -232,21 +232,21 @@ so that the computation of Hastings ratio is simplified (to Metropolis ratio) an
 Given the Gaussian mixture model, we can use the Metropolis-Hastings algorithm to sample from the posterior distribution of the parameters $\pi_k$, $\mu_k$ and $\Sigma_k$. 
 The target distribution is the posterior distribution of the parameters, i.e. $p(\pi_k,\mu_k,\Sigma_k|\textbf{Y})$.
 This distribution is proportional to the product of the prior distribution and the likelihood function, i.e. $p(\pi_k,\mu_k,\Sigma_k|\textbf{Y}) \propto p(\pi_k,\mu_k,\Sigma_k)p(\textbf{Y}|\pi_k,\mu_k,\Sigma_k)$ as follows from the Bayes' theorem.
-The prior distribution is the conjugate prior of the multivariate Gaussian distribution, i.e. the Normal-Wishart distribution when we want to infer both the mean and the covariance matrix of the Gaussian distribution.
+The prior distribution is the conjugate prior of the multivariate Gaussian distribution, i.e.\ the Normal-Wishart distribution when we want to infer both the mean and the covariance matrix of the Gaussian distribution.
 The Normal-Wishart distribution is defined as follows:
 
 \begin{equation}
-    \mathcal{NW}(\mu,\Sigma|\mu_0,\kappa_0,\nu_0,\Lambda_0) = \mathcal{N}(\mu|\mu_0,(\kappa_0\Sigma)^{-1})\mathcal{W}(\Sigma|\nu_0,\Lambda_0)
+    \mathcal{NW}(\mu,\Sigma|\mu_0,\kappa_0,\nu_0,\Lambda_0) = \mathcal{N}(\mu|\mu_0,{(\kappa_0\Sigma)}^{-1})\mathcal{W}(\Sigma|\nu_0,\Lambda_0)
 \end{equation}
 
 where $\mu_0$ is the prior mean, $\kappa_0$ is the prior precision, $\nu_0$ is the prior degrees of freedom and $\Lambda_0$ is the prior scale matrix.
-The likelihood function is the product of the component Gaussian distributions given by Equation \ref{eq:likelihood-gaussian}. Together with the prior distribution, the posterior distribution is given by the following:
+The likelihood function is the product of the component Gaussian distributions given by Equation~\ref{eq:likelihood-gaussian}. Together with the prior distribution, the posterior distribution is given by the following:
 
 \begin{equation}
-    p(\pi_k,\mu_k,\Sigma_k|\textbf{Y}) \propto \prod_{i=1}^{N} \prod_{k=1}^{K} \left[ \pi_k \mathcal{N}(\textbf{Y}_i|\mu_k,\Sigma_k) \right]^{\mathbb{E}[z_{ik}|\textbf{Y}_i,\theta^{(t)}]} \mathcal{NW}(\mu_k,\Sigma_k|\mu_0,\kappa_0,\nu_0,\Lambda_0)
+    p(\pi_k,\mu_k,\Sigma_k|\textbf{Y}) \propto \prod_{i=1}^{N} \prod_{k=1}^{K} {\left[ \pi_k \mathcal{N}(\textbf{Y}_i|\mu_k,\Sigma_k) \right]}^{\mathbb{E}[z_{ik}|\textbf{Y}_i,\theta^{(t)}]} \mathcal{NW}(\mu_k,\Sigma_k|\mu_0,\kappa_0,\nu_0,\Lambda_0)
 \end{equation}
 
-where $\mathbb{E}[z_{ik}|\textbf{Y}_i,\theta^{(t)}]$ is the posterior probability of the $i$-th observation belonging to the $k$-th component Gaussian distribution given the current estimate of the parameters $\theta^{(t)}$ as per Equation \ref{eq:posterior_prob}.
+where $\mathbb{E}[z_{ik}|\textbf{Y}_i,\theta^{(t)}]$ is the posterior probability of the $i$-th observation belonging to the $k$-th component Gaussian distribution given the current estimate of the parameters $\theta^{(t)}$ as per Equation~\ref{eq:posterior_prob}.
 The proposal distribution is often defined as a multivariate Gaussian distribution with mean $\theta^{(t-1)}$ and covariance matrix $\Sigma$ which effects the convergence of the algorithm since it determines the size of the step taken in the parameter space. 
 If $\Sigma$ is too small the algorithm might not explore the parameter space sufficiently and the Markov chain might get stuck in a local optimum. On the other hand, if $\Sigma$ is too large then the Markov chain might not converge at all. 
 The choice of the proposal distribution is not unique, and it is usually determined empirically given some knowledge about the target distribution. 

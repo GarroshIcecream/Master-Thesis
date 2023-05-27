@@ -6,3 +6,4 @@ aroon
 MACD
 continous-time
 ergodic
+Normal-Wishart

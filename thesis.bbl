@@ -109,6 +109,48 @@
       \field{pages}{305\bibrangedash 317}
       \range{pages}{13}
     \endentry
+    \entry{MCMC_mixture}{article}{}
+      \name{author}{1}{}{%
+        {{hash=3391f20ec45e2bd4ab6404f55934bbc8}{%
+           family={Fruhwirth-Schnatter},
+           familyi={F\bibinithyphendelim S\bibinitperiod},
+           given={Sylvia},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {[American Statistical Association, Taylor & Francis, Ltd.]}%
+      }
+      \strng{namehash}{3391f20ec45e2bd4ab6404f55934bbc8}
+      \strng{fullhash}{3391f20ec45e2bd4ab6404f55934bbc8}
+      \strng{bibnamehash}{3391f20ec45e2bd4ab6404f55934bbc8}
+      \strng{authorbibnamehash}{3391f20ec45e2bd4ab6404f55934bbc8}
+      \strng{authornamehash}{3391f20ec45e2bd4ab6404f55934bbc8}
+      \strng{authorfullhash}{3391f20ec45e2bd4ab6404f55934bbc8}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Bayesian estimation of a very general model class, where the distribution of the observations depends on a latent process taking values in a discrete state space, is discussed in this article. This model class covers finite mixture modeling, Markov switching autoregressive modeling, and dynamic linear models with switching. The consequences the unidentifiability of this type of model has on Markov chain Monte Carlo (MCMC) estimation are explicitly dealt with. Joint Bayesian estimation of all latent variables, model parameters, and parameters that determine the probability law of the latent process is carried out by a new MCMC method called permutation sampling. The permutation sampler first samples from the unconstrained posterior-which often can be done in a convenient multimove manner-and then applies a permutation of the current labeling of the states of the latent process. In a first run, the random permutation sampler used selected the permutation randomly. The MCMC output of the random permutation sampler is explored to find suitable identifiability constraints. In a second run, the permutation sampler was used to sample from the constrained posterior by imposing identifiablity constraints. This time a suitable permutation is applied if the identifiability constraint is violated. For illustration, two detailed case studies are presented, namely finite mixture modeling of fetal lamb data and Markov switching autoregressive modeling of the U.S. quarterly real gross national product data.}
+      \field{issn}{01621459}
+      \field{journaltitle}{Journal of the American Statistical Association}
+      \field{number}{453}
+      \field{title}{Markov Chain Monte Carlo Estimation of Classical and Dynamic Switching and Mixture Models}
+      \field{urlday}{27}
+      \field{urlmonth}{5}
+      \field{urlyear}{2023}
+      \field{volume}{96}
+      \field{year}{2001}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{194\bibrangedash 209}
+      \range{pages}{16}
+      \verb{urlraw}
+      \verb http://www.jstor.org/stable/2670359
+      \endverb
+      \verb{url}
+      \verb http://www.jstor.org/stable/2670359
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput
