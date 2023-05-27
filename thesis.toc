@@ -30,7 +30,14 @@
 \contentsline {subsection}{\numberline {3.2.2}EM algorithm for GMM}{46}{subsection.3.2.2}%
 \contentsline {subsection}{\numberline {3.2.3}Markov Chain Monte Carlo}{47}{subsection.3.2.3}%
 \contentsline {subsubsection}{\numberline {3.2.3.1}Metropolis-Hastings Algorithm}{47}{subsubsection.3.2.3.1}%
-\contentsline {subsubsection}{\numberline {3.2.3.2}Gibbs Sampling}{47}{subsubsection.3.2.3.2}%
-\contentsline {subsection}{\numberline {3.2.4}Kalman Filter}{47}{subsection.3.2.4}%
-\contentsline {chapter}{Appendix \numberline {A}Maximum likelihood results}{51}{appendix.a.A}%
-\contentsline {chapter}{Appendix \numberline {B}Python code}{53}{appendix.a.B}%
+\contentsline {subsubsection}{\numberline {3.2.3.2}Gibbs Sampling}{49}{subsubsection.3.2.3.2}%
+\contentsline {chapter}{\numberline {4}Proposed versions of Hidden Markov Models}{51}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Gaussian HMM}{51}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Poisson HMM}{51}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Context-sensitive HMM}{51}{subsection.4.1.2}%
+\contentsline {chapter}{\numberline {5}Trading strategies based on Hidden Markov Models}{53}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Market regimes and trading strategies}{53}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Market states}{53}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Trading strategies}{53}{subsection.5.1.2}%
+\contentsline {chapter}{Appendix \numberline {A}Maximum likelihood results}{57}{appendix.a.A}%
+\contentsline {chapter}{Appendix \numberline {B}Python code}{59}{appendix.a.B}%

@@ -110,7 +110,7 @@ Note that now we will assume that each element of random vector $\textbf{Y}_n$ i
 This is called the complete data since we have information about the hidden variable $Z$ which indicates the component from which the data point was generated.
 Therefore, the complete data likelihood function is defined as follows: 
 
-\begin{equation}
+\begin{equation} \label{eq:likelihood-gaussian}
     L_c(\theta|\textbf{Y},\textbf{Z}) = \prod_{i=1}^{N} \sum_{k=1}^{K} \pi_k \mathcal{N}(\textbf{Y}_i|\mu_k,\Sigma_k)
 \end{equation}
 
@@ -159,7 +159,7 @@ hence inserting Equation (3.11) into (3.13) we obtain:
 where $\theta^{(t)}$ denotes the parameter vector at the $t$-th iteration of the algorithm and $\mathbb{E}[z_{ik}|\textbf{Y}_i,\theta^{(t)}]$ is the expected value of the hidden variable $z_{ik}$ given the data $\textbf{Y}_i$ and the parameter vector $\theta^{(t)}$.
 The expected value of the hidden variable $z_{ik}$ is defined as follows:
 
-\begin{equation}
+\begin{equation} \label{eq:posterior_prob}
     \mathbb{E}[z_{ik}|\textbf{Y}_i,\theta^{(t)}] = P(z_{ik} = 1|Y_i,\theta^{(t)}) = \frac{\pi_k^{(t)} \mathcal{N}(\textbf{Y}_i|\mu_k^{(t)},\Sigma_k^{(t)})}{\sum_{j=1}^{K} \pi_j^{(t)} \mathcal{N}(\textbf{Y}_i|\mu_j^{(t)},\Sigma_j^{(t)})}
 \end{equation}
 
@@ -198,7 +198,64 @@ also provides a measure of uncertainty of the estimated parameters.
 
 \subsubsection{Metropolis-Hastings Algorithm}
 
-\subsubsection{Gibbs Sampling}
+The Metropolis-Hastings algorithm is a Markov Chain Monte Carlo method for sampling from a probability distribution. 
+The algorithm is based on the idea of constructing a Markov chain that has a stationary distribution equal to the target distribution.
+The algorithm is defined as follows:
 
-\subsection{Kalman Filter}
+\begin{enumerate}
+    \item Initialize the Markov chain with an arbitrary state $\theta^{(0)}$.
+    \item For $t = 1,2,\dots$:
+    \begin{enumerate}
+        \item Sample a candidate state $\theta^*$ from a proposal distribution $q(\theta^*|\theta^{(t-1)})$.
+        \item Compute the acceptance probability $\alpha(\theta^{(t-1)},\theta^*)$.
+        \item Sample a random number $u$ from the uniform distribution $U(0,1)$.
+        \item If $u < \alpha(\theta^{(t-1)},\theta^*)$ then set $\theta^{(t)} = \theta^*$, otherwise set $\theta^{(t)} = \theta^{(t-1)}$.
+    \end{enumerate}
+\end{enumerate}
+
+The last step (d) is often called {\it Metropolis rejection} and the acceptance probability $\alpha(\theta^{(t-1)},\theta^*)$ in step (b) is defined as follows:
+
+\begin{equation} \label{eq:hastings_ratio}
+    \alpha(\theta^{(t-1)},\theta^*) = \min \left(1,\frac{p(\theta^*)q(\theta^{(t-1)}|\theta^*)}{p(\theta^{(t-1)})q(\theta^*|\theta^{(t-1)})}\right)
+\end{equation}
+
+where $p(\theta)$ is the target distribution and $q(\theta^*|\theta^{(t-1)})$ is the proposal distribution from which we can easily sample.
+The second term in the minimum function of Equation \ref{eq:hastings_ratio} is called Hastings ratio. Metropolis rejection ensures here that 
+the probability of accepting a candidate state $\theta^*$ is equal to $\alpha(\theta^{(t-1)},\theta^*)$ and rejecting it with probability $1 - \alpha(\theta^{(t-1)},\theta^*)$.
+Proposal distributions are usually chosen to be symmetric, i.e. $q(\theta^*|\theta^{(t-1)}) = q(\theta^{(t-1)}|\theta^*)$, 
+so that the computation of Hastings ratio is simplified (to Metropolis ratio) and the acceptance probability is therefore following:
+
+\begin{equation}
+    \alpha(\theta^{(t-1)},\theta^*) = \min \left(1,\frac{p(\theta^*)}{p(\theta^{(t-1)})}\right)
+\end{equation}
+
+Given the Gaussian mixture model, we can use the Metropolis-Hastings algorithm to sample from the posterior distribution of the parameters $\pi_k$, $\mu_k$ and $\Sigma_k$. 
+The target distribution is the posterior distribution of the parameters, i.e. $p(\pi_k,\mu_k,\Sigma_k|\textbf{Y})$.
+This distribution is proportional to the product of the prior distribution and the likelihood function, i.e. $p(\pi_k,\mu_k,\Sigma_k|\textbf{Y}) \propto p(\pi_k,\mu_k,\Sigma_k)p(\textbf{Y}|\pi_k,\mu_k,\Sigma_k)$ as follows from the Bayes' theorem.
+The prior distribution is the conjugate prior of the multivariate Gaussian distribution, i.e. the Normal-Wishart distribution when we want to infer both the mean and the covariance matrix of the Gaussian distribution.
+The Normal-Wishart distribution is defined as follows:
+
+\begin{equation}
+    \mathcal{NW}(\mu,\Sigma|\mu_0,\kappa_0,\nu_0,\Lambda_0) = \mathcal{N}(\mu|\mu_0,(\kappa_0\Sigma)^{-1})\mathcal{W}(\Sigma|\nu_0,\Lambda_0)
+\end{equation}
+
+where $\mu_0$ is the prior mean, $\kappa_0$ is the prior precision, $\nu_0$ is the prior degrees of freedom and $\Lambda_0$ is the prior scale matrix.
+The likelihood function is the product of the component Gaussian distributions given by Equation \ref{eq:likelihood-gaussian}. Together with the prior distribution, the posterior distribution is given by the following:
+
+\begin{equation}
+    p(\pi_k,\mu_k,\Sigma_k|\textbf{Y}) \propto \prod_{i=1}^{N} \prod_{k=1}^{K} \left[ \pi_k \mathcal{N}(\textbf{Y}_i|\mu_k,\Sigma_k) \right]^{\mathbb{E}[z_{ik}|\textbf{Y}_i,\theta^{(t)}]} \mathcal{NW}(\mu_k,\Sigma_k|\mu_0,\kappa_0,\nu_0,\Lambda_0)
+\end{equation}
+
+where $\mathbb{E}[z_{ik}|\textbf{Y}_i,\theta^{(t)}]$ is the posterior probability of the $i$-th observation belonging to the $k$-th component Gaussian distribution given the current estimate of the parameters $\theta^{(t)}$ as per Equation \ref{eq:posterior_prob}.
+The proposal distribution is often defined as a multivariate Gaussian distribution with mean $\theta^{(t-1)}$ and covariance matrix $\Sigma$ which effects the convergence of the algorithm since it determines the size of the step taken in the parameter space. 
+If $\Sigma$ is too small the algorithm might not explore the parameter space sufficiently and the Markov chain might get stuck in a local optimum. On the other hand, if $\Sigma$ is too large then the Markov chain might not converge at all. 
+The choice of the proposal distribution is not unique, and it is usually determined empirically given some knowledge about the target distribution. 
+Initialization of the Markov chain in the first step of the algorithm is also crucial since if the initial state is far from the region of high probability of the target distribution then the Markov chain might not converge at all.
+Lastly, notice that the samples from proposal conditional distribution are correlated since the next state of the Markov chain depends on the previous state which is a consequence of the Markov property and differs from the independent sampling of the parameters.
+
+In summary, the Metropolis-Hastings algorithm is very flexible and simple to implement, and it is often used as a baseline for more sophisticated MCMC methods. 
+There are several variants of the Metropolis-Hastings algorithm, e.g. Metropolis-within-Gibbs sampling, which is a special case of the Metropolis-Hastings algorithm where the proposal distribution is chosen to be the conditional distribution of the parameters given the current state of the Markov chain.
+
+
+\subsubsection{Gibbs Sampling}
 
