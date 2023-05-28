@@ -1,17 +1,17 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'thesis.blg'
-[99] biber-MSWIN64:340> INFO - === 
-[129] Biber.pm:419> INFO - Reading 'thesis.bcf'
-[219] Biber.pm:976> INFO - Using all citekeys in bib section 0
-[231] Biber.pm:4419> INFO - Processing section 0
-[241] Biber.pm:4610> INFO - Looking for bibtex file 'References/references.bib' for section 0
-[281] bibtex.pm:1713> INFO - LaTeX decoding ...
-[288] bibtex.pm:1519> INFO - Found BibTeX data source 'References/references.bib'
-[324] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[324] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[324] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
-[325] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
-[331] bbl.pm:660> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
-[333] bbl.pm:763> INFO - Output to thesis.bbl
-[333] Biber.pm:131> WARN - BibTeX subsystem: C:\Users\adpes\AppData\Local\Temp\biber_tmp_oIeK\33e59b5ca9ec342068223d604c3f8d55_23960.utf8, line 12, warning: 1 characters of junk seen at toplevel
-[333] Biber.pm:133> INFO - WARNINGS: 1
+[90] biber-MSWIN64:340> INFO - === 
+[120] Biber.pm:419> INFO - Reading 'thesis.bcf'
+[213] Biber.pm:976> INFO - Using all citekeys in bib section 0
+[234] Biber.pm:4419> INFO - Processing section 0
+[247] Biber.pm:4610> INFO - Looking for bibtex file 'References/references.bib' for section 0
+[283] bibtex.pm:1713> INFO - LaTeX decoding ...
+[295] bibtex.pm:1519> INFO - Found BibTeX data source 'References/references.bib'
+[359] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[359] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[359] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[359] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[368] bbl.pm:660> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
+[371] bbl.pm:763> INFO - Output to thesis.bbl
+[371] Biber.pm:131> WARN - BibTeX subsystem: C:\Users\adpes\AppData\Local\Temp\biber_tmp_ysEd\33e59b5ca9ec342068223d604c3f8d55_14948.utf8, line 12, warning: 1 characters of junk seen at toplevel
+[371] Biber.pm:133> INFO - WARNINGS: 1

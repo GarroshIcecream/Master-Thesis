@@ -16,12 +16,18 @@
 \tikzstyle{mainstate}=[state,thick]
 \tikzstyle{mainedge}=[<-,thick]
 
-Put here the overall definition for sigma algebra and notation and introduction plus motivation
+At its core, a Markov chain is a stochastic model describing a sequence of possible events where the probability of each event depends solely on the state attained in the previous event. This is termed as the 'Markov Property', which encapsulates the memorylessness of the process — the future is independent of the past given the present.
+
+Markov chains provide a robust framework for modeling the probabilistic nature of cryptocurrency markets. The rapid fluctuation of cryptocurrency prices, driven by a myriad of factors such as market sentiment, technological advancements, regulatory news, and macroeconomic trends, can be represented effectively using Markov chains.
+
+In this chapter, we start by laying down the fundamental theoretical foundations of Markov chains. This includes an explanation of key concepts such as state spaces, transition probabilities, and the difference between discrete and continuous time Markov chains. Understanding these basic building blocks is pivotal in leveraging Markov chains for cryptocurrency market analysis.
+
+Next, we focus on specific properties of Markov chains like irreducibility, periodicity, and stationarity, which play critical roles in determining the long-term behavior of the chain
 
 %********************************** %First Section  **************************************
 \section{Discrete-time Markov Chains} %Section - 1.2
 
-Let $\Omega \neq \emptyset$ and $A \subseteq 2^{\Omega}$ be a $\sigma$-algebra on $\Omega$, and $P$ a measure on A with $P(\Omega) = 1$, i.e. $P$ is a {\it probability measure}. Then the triplet $(\Omega, A, P)$ is called a {\it probability space}. Where $\Omega$ denotes a sure event, and it holds that $\forall \omega \in \Omega$ is called an elementary event. Furthermore, $\forall A \in A$ is a random event  so that $P(A)$ is a probability of such a random event. 
+Let $\Omega \neq \emptyset$ and $\mathcal{F} \subseteq 2^{\Omega}$ be a $\sigma$-algebra on $\Omega$, and $P$ a measure on A with $P(\Omega) = 1$, i.e. $P$ is a {\it probability measure}. Then the triplet $(\Omega, A, P)$ is called a {\it probability space}. Where $\Omega$ denotes a sure event, and it holds that $\forall \omega \in \Omega$ is called an elementary event. Furthermore, $\forall A \in A$ is a random event  so that $P(A)$ is a probability of such a random event. 
 
 Let $I$ be a countable set and $\Theta$ a $\sigma$-algebra on $I$. Each $i \in I$ is called a \textit{state} and $(I,\Theta)$ a \textit{state-space}. We say that $\lambda = (\lambda_i : i \in I) $ is a measure on I if $0 \leq \lambda_i \leq \infty$. If in addition the {\it total mass} $\sum_{i \in I} \lambda_i = 1$ then $\lambda$ is a {\it distribution} (or probability measure). 
 
@@ -80,9 +86,9 @@ and
 p_i \geq 0 \quad i \in I; \quad \sum_{i \in I} ^{}p_i = 1
 \end{equation}
 
-which is also called {\it initial distribution} of Markov Chain. 
+which is also called \textit{initial distribution} of Markov Chain. 
 
-Once we have transition matrix $A$ and initial distribution $\textbf{p}$ that satisfy constraints given by Equation (1.5) and (1.7) respectively,
+According to~\cite{Praskova2012}, once we have transition matrix $A$ and initial distribution $\textbf{p}$ that satisfy constraints given by Equation (1.5) and (1.7) respectively,
 then $\{X_t,t \in \mathbb{N}_0\}$ is a discrete-time homogeneous Markov Chain with transition matrix $A$ and initial distribution $\textbf{p}$ 
 if and only if all finite dimensional distributions of $\{X_t,t \in \mathbb{N}_0\}$ are consistent with the following equation:
 
@@ -90,7 +96,7 @@ if and only if all finite dimensional distributions of $\{X_t,t \in \mathbb{N}_0
 P(X_{0}=i_0,X_{1}=i_1,\ldots,X_{k}=i_k) = p_{i_0} p_{i_0,i_1} \ldots p_{i_{k-1},i_k}
 \end{equation}
 
-where $i_0,i_1,\ldots,i_k \in I$ and $k \in \mathbb{N}_0$. If we abstract from the initial distribution $p$, such equation is also called {\it Chapman-Kolmogorov equation}.
+where $i_0,i_1,\ldots,i_k \in I$ and $k \in \mathbb{N}_0$. If we abstract from the initial distribution $p$, such equation is called \textit{Chapman-Kolmogorov equation} as in~\cite{Yin2004}.
 Above stated equation also holds for non-homogeneous Markov Chains with the only difference that the transition probabilities $p_{i,j}$ are time dependent:
 
 \begin{equation}
@@ -103,8 +109,7 @@ another substantial property of homogeneous Markov Chains is that their nth orde
 P(X_{m+n} = j|X_{m} = i) = p_{i,j}^{(n)}, \quad i,j \in I
 \end{equation}
 
-where generally $p_{i,j}^{(m+n)} = \sum_{k \in I} p_{i,k}^{(m)} p_{k,j}^{(n)}$ is referred to as {\it Chapman-Kolmogorov equality} and holds for $m,n \in \mathbb{N}_0$ and $P(X_m=i) \geq 0$.
-
+where generally $p_{i,j}^{(m+n)} = \sum_{k \in I} p_{i,k}^{(m)} p_{k,j}^{(n)}$ is referred to as \textit{Chapman-Kolmogorov equality} and holds for $m,n \in \mathbb{N}_0$ and $P(X_m=i) \geq 0$.
 
 To simply illustrate the idea behind discrete-time homogeneous Markov Chains let us assume a situation where the future market movements transition between a countable number of states $I =$ \{upward, side, downward\} 
 and there is a transition matrix A and initial distribution $p$:

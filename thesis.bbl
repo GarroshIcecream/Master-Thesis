@@ -18,10 +18,193 @@
 
 
 \refsection{0}
-  \datalist[entry]{none/global//global/global}
+  \datalist[entry]{nty/global//global/global}
+    \entry{Ching2006}{book}{}
+      \name{author}{2}{}{%
+        {{hash=896a700bf26eb8f876a3346ae0674ec4}{%
+           family={Ching},
+           familyi={C\bibinitperiod},
+           given={Wai-Ki},
+           giveni={W\bibinithyphendelim K\bibinitperiod}}}%
+        {{hash=4a2222ab6569b8b6272c036f34204c1d}{%
+           family={Ng},
+           familyi={N\bibinitperiod},
+           given={Michael\bibnamedelima K},
+           giveni={M\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{9b2093c9a340c22663f8d71c186e68a1}
+      \strng{fullhash}{9b2093c9a340c22663f8d71c186e68a1}
+      \strng{bibnamehash}{9b2093c9a340c22663f8d71c186e68a1}
+      \strng{authorbibnamehash}{9b2093c9a340c22663f8d71c186e68a1}
+      \strng{authornamehash}{9b2093c9a340c22663f8d71c186e68a1}
+      \strng{authorfullhash}{9b2093c9a340c22663f8d71c186e68a1}
+      \field{labelalpha}{CN06}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2006}
+      \field{month}{12}
+      \field{series}{International Series in Operations Research \& Management Science}
+      \field{title}{Markov chains}
+      \field{year}{2006}
+      \true{nocite}
+    \endentry
+    \entry{MCMC_mixture}{article}{}
+      \name{author}{1}{}{%
+        {{hash=3391f20ec45e2bd4ab6404f55934bbc8}{%
+           family={Fruhwirth-Schnatter},
+           familyi={F\bibinithyphendelim S\bibinitperiod},
+           given={Sylvia},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {[American Statistical Association, Taylor & Francis, Ltd.]}%
+      }
+      \strng{namehash}{3391f20ec45e2bd4ab6404f55934bbc8}
+      \strng{fullhash}{3391f20ec45e2bd4ab6404f55934bbc8}
+      \strng{bibnamehash}{3391f20ec45e2bd4ab6404f55934bbc8}
+      \strng{authorbibnamehash}{3391f20ec45e2bd4ab6404f55934bbc8}
+      \strng{authornamehash}{3391f20ec45e2bd4ab6404f55934bbc8}
+      \strng{authorfullhash}{3391f20ec45e2bd4ab6404f55934bbc8}
+      \field{labelalpha}{Fru01}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Bayesian estimation of a very general model class, where the distribution of the observations depends on a latent process taking values in a discrete state space, is discussed in this article. This model class covers finite mixture modeling, Markov switching autoregressive modeling, and dynamic linear models with switching. The consequences the unidentifiability of this type of model has on Markov chain Monte Carlo (MCMC) estimation are explicitly dealt with. Joint Bayesian estimation of all latent variables, model parameters, and parameters that determine the probability law of the latent process is carried out by a new MCMC method called permutation sampling. The permutation sampler first samples from the unconstrained posterior-which often can be done in a convenient multimove manner-and then applies a permutation of the current labeling of the states of the latent process. In a first run, the random permutation sampler used selected the permutation randomly. The MCMC output of the random permutation sampler is explored to find suitable identifiability constraints. In a second run, the permutation sampler was used to sample from the constrained posterior by imposing identifiablity constraints. This time a suitable permutation is applied if the identifiability constraint is violated. For illustration, two detailed case studies are presented, namely finite mixture modeling of fetal lamb data and Markov switching autoregressive modeling of the U.S. quarterly real gross national product data.}
+      \field{issn}{01621459}
+      \field{journaltitle}{Journal of the American Statistical Association}
+      \field{number}{453}
+      \field{title}{Markov Chain Monte Carlo Estimation of Classical and Dynamic Switching and Mixture Models}
+      \field{urlday}{27}
+      \field{urlmonth}{5}
+      \field{urlyear}{2023}
+      \field{volume}{96}
+      \field{year}{2001}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{194\bibrangedash 209}
+      \range{pages}{16}
+      \verb{urlraw}
+      \verb http://www.jstor.org/stable/2670359
+      \endverb
+      \verb{url}
+      \verb http://www.jstor.org/stable/2670359
+      \endverb
+    \endentry
+    \entry{Hen93}{book}{}
+      \name{author}{1}{}{%
+        {{hash=50374f86d34cc54b8a5788ccbcce4cfe}{%
+           family={Henderson},
+           familyi={H\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {London}%
+      }
+      \list{publisher}{1}{%
+        {McGraw-Hill}%
+      }
+      \strng{namehash}{50374f86d34cc54b8a5788ccbcce4cfe}
+      \strng{fullhash}{50374f86d34cc54b8a5788ccbcce4cfe}
+      \strng{bibnamehash}{50374f86d34cc54b8a5788ccbcce4cfe}
+      \strng{authorbibnamehash}{50374f86d34cc54b8a5788ccbcce4cfe}
+      \strng{authornamehash}{50374f86d34cc54b8a5788ccbcce4cfe}
+      \strng{authorfullhash}{50374f86d34cc54b8a5788ccbcce4cfe}
+      \field{labelalpha}{Hen93}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Object-oriented specification and design with {C}$++$}
+      \field{year}{1993}
+      \true{nocite}
+    \endentry
+    \entry{Praskova2012}{book}{}
+      \name{author}{2}{}{%
+        {{hash=c3bd5e9f67e004926d55fc76b01e4389}{%
+           family={Prášková},
+           familyi={P\bibinitperiod},
+           given={Zuzana},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=376b7aff8d17902ae8fcf68d0e3a8d30}{%
+           family={Lachout},
+           familyi={L\bibinitperiod},
+           given={Petr},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Prague}%
+      }
+      \list{publisher}{1}{%
+        {MatfyzPress}%
+      }
+      \strng{namehash}{741b7e1ad8ba34798cb2d86b536d0f6f}
+      \strng{fullhash}{741b7e1ad8ba34798cb2d86b536d0f6f}
+      \strng{bibnamehash}{741b7e1ad8ba34798cb2d86b536d0f6f}
+      \strng{authorbibnamehash}{741b7e1ad8ba34798cb2d86b536d0f6f}
+      \strng{authornamehash}{741b7e1ad8ba34798cb2d86b536d0f6f}
+      \strng{authorfullhash}{741b7e1ad8ba34798cb2d86b536d0f6f}
+      \field{labelalpha}{PL12}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-80-7378-210-8}
+      \field{title}{Základy náhodných procesů I.}
+      \field{year}{2012}
+    \endentry
+    \entry{Rea85}{article}{}
+      \name{author}{1}{}{%
+        {{hash=419419917c798f89963f25bb64872a3a}{%
+           family={Read},
+           familyi={R\bibinitperiod},
+           given={C.\bibnamedelimi J.},
+           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{419419917c798f89963f25bb64872a3a}
+      \strng{fullhash}{419419917c798f89963f25bb64872a3a}
+      \strng{bibnamehash}{419419917c798f89963f25bb64872a3a}
+      \strng{authorbibnamehash}{419419917c798f89963f25bb64872a3a}
+      \strng{authornamehash}{419419917c798f89963f25bb64872a3a}
+      \strng{authorfullhash}{419419917c798f89963f25bb64872a3a}
+      \field{labelalpha}{Rea85}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Bull. London Math. Soc.}
+      \field{title}{A solution to the invariant subspace problem on the space $l_1$}
+      \field{volume}{17}
+      \field{year}{1985}
+      \true{nocite}
+      \field{pages}{305\bibrangedash 317}
+      \range{pages}{13}
+    \endentry
     \entry{tradingview}{misc}{}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelalpha}{23}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labeltitlesource}{title}
       \field{note}{Accessed: 2023-05-20}
       \field{title}{TradingView}
@@ -49,107 +232,48 @@
       \strng{authorbibnamehash}{d7ca88c13a8f7ce1c23e920010a31f83}
       \strng{authornamehash}{d7ca88c13a8f7ce1c23e920010a31f83}
       \strng{authorfullhash}{d7ca88c13a8f7ce1c23e920010a31f83}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelalpha}{Val}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labeldatesource}{nodate}
       \field{labelnamesource}{author}
       \field{note}{A strong form of the prime number theorem, 19th century}
       \true{nocite}
     \endentry
-    \entry{Hen93}{book}{}
-      \name{author}{1}{}{%
-        {{hash=50374f86d34cc54b8a5788ccbcce4cfe}{%
-           family={Henderson},
-           familyi={H\bibinitperiod},
-           given={Peter},
-           giveni={P\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {London}%
-      }
-      \list{publisher}{1}{%
-        {McGraw-Hill}%
-      }
-      \strng{namehash}{50374f86d34cc54b8a5788ccbcce4cfe}
-      \strng{fullhash}{50374f86d34cc54b8a5788ccbcce4cfe}
-      \strng{bibnamehash}{50374f86d34cc54b8a5788ccbcce4cfe}
-      \strng{authorbibnamehash}{50374f86d34cc54b8a5788ccbcce4cfe}
-      \strng{authornamehash}{50374f86d34cc54b8a5788ccbcce4cfe}
-      \strng{authorfullhash}{50374f86d34cc54b8a5788ccbcce4cfe}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Object-oriented specification and design with {C}$++$}
-      \field{year}{1993}
-      \true{nocite}
-    \endentry
-    \entry{Rea85}{article}{}
-      \name{author}{1}{}{%
-        {{hash=419419917c798f89963f25bb64872a3a}{%
-           family={Read},
-           familyi={R\bibinitperiod},
-           given={C.\bibnamedelimi J.},
-           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
-      }
-      \strng{namehash}{419419917c798f89963f25bb64872a3a}
-      \strng{fullhash}{419419917c798f89963f25bb64872a3a}
-      \strng{bibnamehash}{419419917c798f89963f25bb64872a3a}
-      \strng{authorbibnamehash}{419419917c798f89963f25bb64872a3a}
-      \strng{authornamehash}{419419917c798f89963f25bb64872a3a}
-      \strng{authorfullhash}{419419917c798f89963f25bb64872a3a}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Bull. London Math. Soc.}
-      \field{title}{A solution to the invariant subspace problem on the space $l_1$}
-      \field{volume}{17}
-      \field{year}{1985}
-      \true{nocite}
-      \field{pages}{305\bibrangedash 317}
-      \range{pages}{13}
-    \endentry
-    \entry{MCMC_mixture}{article}{}
-      \name{author}{1}{}{%
-        {{hash=3391f20ec45e2bd4ab6404f55934bbc8}{%
-           family={Fruhwirth-Schnatter},
-           familyi={F\bibinithyphendelim S\bibinitperiod},
-           given={Sylvia},
-           giveni={S\bibinitperiod}}}%
+    \entry{Yin2004}{book}{}
+      \name{author}{2}{}{%
+        {{hash=ae6674a6724a4bc157bd4e4d95373826}{%
+           family={Yin},
+           familyi={Y\bibinitperiod},
+           given={G.\bibnamedelimi George},
+           giveni={G\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=2075ed5f00e45e9ee3f0dcecd09bc398}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Qing},
+           giveni={Q\bibinitperiod}}}%
       }
       \list{publisher}{1}{%
-        {[American Statistical Association, Taylor & Francis, Ltd.]}%
+        {Springer}%
       }
-      \strng{namehash}{3391f20ec45e2bd4ab6404f55934bbc8}
-      \strng{fullhash}{3391f20ec45e2bd4ab6404f55934bbc8}
-      \strng{bibnamehash}{3391f20ec45e2bd4ab6404f55934bbc8}
-      \strng{authorbibnamehash}{3391f20ec45e2bd4ab6404f55934bbc8}
-      \strng{authornamehash}{3391f20ec45e2bd4ab6404f55934bbc8}
-      \strng{authorfullhash}{3391f20ec45e2bd4ab6404f55934bbc8}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \strng{namehash}{77e760d7e82371d1979d0b64fa966e3e}
+      \strng{fullhash}{77e760d7e82371d1979d0b64fa966e3e}
+      \strng{bibnamehash}{77e760d7e82371d1979d0b64fa966e3e}
+      \strng{authorbibnamehash}{77e760d7e82371d1979d0b64fa966e3e}
+      \strng{authornamehash}{77e760d7e82371d1979d0b64fa966e3e}
+      \strng{authorfullhash}{77e760d7e82371d1979d0b64fa966e3e}
+      \field{labelalpha}{YZ04}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{Bayesian estimation of a very general model class, where the distribution of the observations depends on a latent process taking values in a discrete state space, is discussed in this article. This model class covers finite mixture modeling, Markov switching autoregressive modeling, and dynamic linear models with switching. The consequences the unidentifiability of this type of model has on Markov chain Monte Carlo (MCMC) estimation are explicitly dealt with. Joint Bayesian estimation of all latent variables, model parameters, and parameters that determine the probability law of the latent process is carried out by a new MCMC method called permutation sampling. The permutation sampler first samples from the unconstrained posterior-which often can be done in a convenient multimove manner-and then applies a permutation of the current labeling of the states of the latent process. In a first run, the random permutation sampler used selected the permutation randomly. The MCMC output of the random permutation sampler is explored to find suitable identifiability constraints. In a second run, the permutation sampler was used to sample from the constrained posterior by imposing identifiablity constraints. This time a suitable permutation is applied if the identifiability constraint is violated. For illustration, two detailed case studies are presented, namely finite mixture modeling of fetal lamb data and Markov switching autoregressive modeling of the U.S. quarterly real gross national product data.}
-      \field{issn}{01621459}
-      \field{journaltitle}{Journal of the American Statistical Association}
-      \field{number}{453}
-      \field{title}{Markov Chain Monte Carlo Estimation of Classical and Dynamic Switching and Mixture Models}
-      \field{urlday}{27}
-      \field{urlmonth}{5}
-      \field{urlyear}{2023}
-      \field{volume}{96}
-      \field{year}{2001}
-      \field{urldateera}{ce}
-      \true{nocite}
-      \field{pages}{194\bibrangedash 209}
-      \range{pages}{16}
-      \verb{urlraw}
-      \verb http://www.jstor.org/stable/2670359
-      \endverb
-      \verb{url}
-      \verb http://www.jstor.org/stable/2670359
-      \endverb
+      \field{edition}{1}
+      \field{isbn}{0-387-21948-X}
+      \field{series}{Stochastic Modelling and Applied Probability}
+      \field{title}{Discrete-Time Markov Chains: Two-Time-Scale Methods and Applications}
+      \field{year}{2004}
     \endentry
   \enddatalist
 \endrefsection

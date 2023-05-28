@@ -7,3 +7,4 @@ MACD
 continous-time
 ergodic
 Normal-Wishart
+Chapman-Kolmogorov
