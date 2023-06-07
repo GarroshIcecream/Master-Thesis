@@ -5,39 +5,37 @@
 \contentsline {section}{\numberline {1.1}Discrete-time Markov Chains}{1}{section.1.1}%
 \contentsline {subsection}{\numberline {1.1.1}Classification of states}{5}{subsection.1.1.1}%
 \contentsline {subsection}{\numberline {1.1.2}Stationary distribution}{7}{subsection.1.1.2}%
-\contentsline {subsection}{\numberline {1.1.3}Cryptocurrency market movements I.}{7}{subsection.1.1.3}%
-\contentsline {section}{\numberline {1.2}Continous-time Markov Chains}{10}{section.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Cryptocurrency market movements I.}{8}{subsection.1.1.3}%
+\contentsline {section}{\numberline {1.2}Continous-time Markov Chains}{11}{section.1.2}%
 \contentsline {subsection}{\numberline {1.2.1}Cryptocurrency market movements II.}{13}{subsection.1.2.1}%
-\contentsline {section}{\numberline {1.3}Hidden Markov Model}{13}{section.1.3}%
-\contentsline {subsection}{\numberline {1.3.1}Forward and Backward algorithm}{15}{subsection.1.3.1}%
-\contentsline {subsubsection}{\numberline {1.3.1.1}Forward algorithm}{16}{subsubsection.1.3.1.1}%
-\contentsline {subsubsection}{\numberline {1.3.1.2}Backward algorithm}{18}{subsubsection.1.3.1.2}%
-\contentsline {subsection}{\numberline {1.3.2}Viterbi algorithm}{19}{subsection.1.3.2}%
-\contentsline {section}{\numberline {1.4}Kalman Filters}{23}{section.1.4}%
-\contentsline {chapter}{\numberline {2}Parameter Estimation for Hidden Markov Models}{25}{chapter.2}%
-\contentsline {section}{\numberline {2.1} Expectation–Maximization algorithm}{25}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Baum-Welsch algorithm}{32}{subsection.2.1.1}%
-\contentsline {section}{\numberline {2.2}Observable states}{35}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Moving Average Convergence Divergence}{36}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Stochastic Oscillator}{37}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Chaikin Oscillator}{39}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Relative Strength Index}{41}{section.2.6}%
-\contentsline {section}{\numberline {2.7}Aroon Indicator}{41}{section.2.7}%
-\contentsline {chapter}{\numberline {3}Mixture Models}{45}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Mixture Distributions}{45}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Gaussian Mixture Models}{46}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Motivating EM algorithm}{47}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}EM algorithm for GMM}{48}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Markov Chain Monte Carlo}{49}{subsection.3.2.3}%
-\contentsline {subsubsection}{\numberline {3.2.3.1}Metropolis-Hastings Algorithm}{49}{subsubsection.3.2.3.1}%
-\contentsline {subsubsection}{\numberline {3.2.3.2}Gibbs Sampling}{51}{subsubsection.3.2.3.2}%
-\contentsline {chapter}{\numberline {4}Proposed versions of Hidden Markov Models}{53}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Gaussian HMM}{53}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Poisson HMM}{53}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Context-sensitive HMM}{53}{subsection.4.1.2}%
-\contentsline {chapter}{\numberline {5}Trading strategies based on Hidden Markov Models}{55}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Market regimes and trading strategies}{55}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Market states}{55}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Trading strategies}{55}{subsection.5.1.2}%
-\contentsline {chapter}{Appendix \numberline {A}Maximum likelihood results}{59}{appendix.a.A}%
-\contentsline {chapter}{Appendix \numberline {B}Python code}{61}{appendix.a.B}%
+\contentsline {chapter}{\numberline {2}Hidden Markov Models}{15}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Discrete Hidden Markov Model}{15}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Gaussian HMM}{20}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Mixture Distributions}{21}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Gaussian Mixture Models}{22}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Motivating EM algorithm}{22}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}EM algorithm for GMM}{23}{subsection.2.2.4}%
+\contentsline {section}{\numberline {2.3}Poisson HMM}{24}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Context-sensitive HMM}{24}{section.2.4}%
+\contentsline {chapter}{\numberline {3}Parameter Estimation for Hidden Markov Models}{25}{chapter.3}%
+\contentsline {section}{\numberline {3.1} Expectation–Maximization algorithm}{25}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Forward and Backward algorithm}{30}{subsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.1.1}Forward algorithm}{31}{subsubsection.3.1.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.1.2}Backward algorithm}{32}{subsubsection.3.1.1.2}%
+\contentsline {subsection}{\numberline {3.1.2}Baum-Welsch algorithm}{34}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Markov Chain Monte Carlo}{38}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Metropolis-Hastings Algorithm}{38}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Gibbs Sampling}{40}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Decoding using Viterbi algorithm}{40}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Trading strategies based on Hidden Markov Models}{43}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Selected Market Emissions}{43}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Moving Average Convergence Divergence}{44}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Stochastic Oscillator}{46}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Chaikin Oscillator}{47}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Relative Strength Index}{49}{subsection.4.1.4}%
+\contentsline {subsection}{\numberline {4.1.5}Aroon Indicator}{49}{subsection.4.1.5}%
+\contentsline {section}{\numberline {4.2}Market regimes and trading strategies}{51}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Market states}{51}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Trading strategies}{51}{subsection.4.2.2}%
+\contentsline {chapter}{Appendix \numberline {A}Maximum likelihood results}{55}{appendix.a.A}%
+\contentsline {chapter}{Appendix \numberline {B}Python code}{57}{appendix.a.B}%

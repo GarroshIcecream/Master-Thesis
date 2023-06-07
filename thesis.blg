@@ -1,17 +1,19 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'thesis.blg'
-[90] biber-MSWIN64:340> INFO - === 
-[120] Biber.pm:419> INFO - Reading 'thesis.bcf'
-[213] Biber.pm:976> INFO - Using all citekeys in bib section 0
-[234] Biber.pm:4419> INFO - Processing section 0
-[247] Biber.pm:4610> INFO - Looking for bibtex file 'References/references.bib' for section 0
-[283] bibtex.pm:1713> INFO - LaTeX decoding ...
-[295] bibtex.pm:1519> INFO - Found BibTeX data source 'References/references.bib'
-[359] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[359] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[359] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[359] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
-[368] bbl.pm:660> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
-[371] bbl.pm:763> INFO - Output to thesis.bbl
-[371] Biber.pm:131> WARN - BibTeX subsystem: C:\Users\adpes\AppData\Local\Temp\biber_tmp_ysEd\33e59b5ca9ec342068223d604c3f8d55_14948.utf8, line 12, warning: 1 characters of junk seen at toplevel
-[371] Biber.pm:133> INFO - WARNINGS: 1
+[62] biber-darwin:340> INFO - === Wed Jun  7, 2023, 11:50:38
+[77] Biber.pm:419> INFO - Reading 'thesis.bcf'
+[153] Biber.pm:976> INFO - Using all citekeys in bib section 0
+[165] Biber.pm:4419> INFO - Processing section 0
+[174] Biber.pm:4610> INFO - Looking for bibtex file 'References/references.bib' for section 0
+[176] bibtex.pm:1713> INFO - LaTeX decoding ...
+[202] bibtex.pm:1519> INFO - Found BibTeX data source 'References/references.bib'
+[352] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[352] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[352] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[352] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[379] bbl.pm:660> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
+[389] bbl.pm:763> INFO - Output to thesis.bbl
+[389] Biber.pm:131> WARN - ISBN '9780470114742,9780471226185,0471226181' in entry 'Agresti2007' is invalid - run biber with '--validate_datamodel' for details.
+[390] Biber.pm:131> WARN - ISBN '9780898716658,0898716659' in entry 'book:515081' is invalid - run biber with '--validate_datamodel' for details.
+[390] Biber.pm:131> WARN - ISBN '9780387310732,0387310738' in entry 'Bishop2006' is invalid - run biber with '--validate_datamodel' for details.
+[390] Biber.pm:133> INFO - WARNINGS: 3

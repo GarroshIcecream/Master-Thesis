@@ -8,3 +8,17 @@ continous-time
 ergodic
 Normal-Wishart
 Chapman-Kolmogorov
+nonnegative
+Continous-time
+kurtosis
+Chapmam-Kolmogorov
+memoryless
+inputenc
+cepstral
+Binance
+Technometrics
+COMPSCI
+k-th
+iid
+MLE
+Kullback-Leibler

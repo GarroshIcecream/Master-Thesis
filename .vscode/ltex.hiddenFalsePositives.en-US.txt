@@ -1,0 +1,2 @@
+{"rule":"INTERJECTIONS_PUNCTUATION","sentence":"^\\QHMM with finite state and emission space as described above is also called discrete Hidden Markov Model.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qwhere \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is a vector of length \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q with only one element equal to 1 and the rest equal to 0.\\E$"}
