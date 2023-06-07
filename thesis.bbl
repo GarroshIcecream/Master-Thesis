@@ -146,6 +146,43 @@
       \field{year}{2006}
       \true{nocite}
     \endentry
+    \entry{Jurafsky2008}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=f7f34f62428f61ed8f41983ceda39279}{%
+           family={Daniel\bibnamedelima Jurafsky},
+           familyi={D\bibinitperiod\bibinitdelim J\bibinitperiod},
+           given={James\bibnamedelimb H.\bibnamedelimi Martin},
+           giveni={J\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Stanford University}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall}%
+      }
+      \strng{namehash}{f7f34f62428f61ed8f41983ceda39279}
+      \strng{fullhash}{f7f34f62428f61ed8f41983ceda39279}
+      \strng{bibnamehash}{f7f34f62428f61ed8f41983ceda39279}
+      \strng{authorbibnamehash}{f7f34f62428f61ed8f41983ceda39279}
+      \strng{authornamehash}{f7f34f62428f61ed8f41983ceda39279}
+      \strng{authorfullhash}{f7f34f62428f61ed8f41983ceda39279}
+      \field{labelalpha}{Dan23}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{01}
+      \field{title}{Speech and Language Processing}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://web.stanford.edu/~jurafsky/slp3/A.pdf
+      \endverb
+      \verb{url}
+      \verb https://web.stanford.edu/~jurafsky/slp3/A.pdf
+      \endverb
+    \endentry
     \entry{Dempster1977}{article}{}
       \name{author}{3}{}{%
         {{hash=09d592a5388131e31704c9c4464439c9}{%

@@ -7,15 +7,15 @@
 \contentsline {figure}{\numberline {2.2}{\ignorespaces An HMM with 3 hidden states and 2 emission symbols denoted by $E_1$ and $E_2$.\relax }}{19}{figure.caption.10}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces \textit {E-step as a problem of minimization of KL divergence represented as a gap between two likelihood functions}\relax }}{30}{figure.caption.13}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Trellis of the emission sequence $\{y_0$, \ldots ,$y_4\}$ for T=4. Each node represents a state $S_i$ and each arc represents a transition from one state to another. The number of possible paths is $N^T$. \relax }}{31}{figure.caption.14}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Trellis of the emission sequence $\{y_0$, \ldots ,$y_4\}$ for T=4. Each node represents a state $S_i$ and each arc represents a transition from one state to another. The number of possible paths is $N^T$. \relax }}{32}{figure.caption.14}%
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Figure (a) interprets recursive computation of alpha variable and (b) beta variable.\relax }}{34}{figure.caption.15}%
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Trellis describing (a) $\gamma _t(i)$ variable as a product of $\alpha _t(i)$ and $\beta _t(i)$ variables and (b) $\xi _t(i,j)$ variable as a product of $\alpha _t(i)$, $a_{ij}$, $b_j(y_{t+1})$ and $\beta _{t+1}(j)$ variables.\relax }}{35}{figure.caption.16}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Trellis of the observation sequence $x_1, \ldots ,x_5$ for the HMM.\spacefactor \@m {} Bold lines illustrate the most likely sequence found by the Viterbi algorithm.\relax }}{42}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Trellis of the observation sequence $x_1, \ldots ,x_5$ for the HMM.\spacefactor \@m {} Bold lines illustrate the most likely sequence found by the Viterbi algorithm.\relax }}{43}{figure.caption.19}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot containing two lines for MACD and Signal line and a bar chart as their difference}\relax }}{45}{figure.caption.20}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot with line indicating Stochastic Oscillator}\relax }}{47}{figure.caption.21}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot indicating Chaikin Oscillator}\relax }}{48}{figure.caption.22}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with a subplot containing RSI}\relax }}{50}{figure.caption.23}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces \textit {Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplots containing two lines for Aroon Up/Down Indicator and Aroon Oscillator}\relax }}{51}{figure.caption.24}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot containing two lines for MACD and Signal line and a bar chart as their difference}\relax }}{47}{figure.caption.20}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot with line indicating Stochastic Oscillator}\relax }}{49}{figure.caption.21}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplot indicating Chaikin Oscillator}\relax }}{50}{figure.caption.22}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces \textit { Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with a subplot containing RSI}\relax }}{52}{figure.caption.23}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces \textit {Candlestick graph of daily spot price of BTC/USD from March 2021 to March 2022 with subplots containing two lines for Aroon Up/Down Indicator and Aroon Oscillator}\relax }}{53}{figure.caption.24}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

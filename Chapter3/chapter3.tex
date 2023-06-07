@@ -20,7 +20,8 @@ case of complete data. EM algorithm introduce further below is mainly based on t
 
 In other words, we want to find the best estimate of the parameters for which the observed sequence of emissions is the most likely. 
 This is of great importance and efficiency in Hidden Markov models where we have a space of emissions and states, where  emissions 
-are observed and states are hidden. We also know that the state space is in our case finite, and therefore we can enumerate all possible states.
+are observed and states are hidden. We also know that the state space is, in our case, finite, and therefore we can enumerate all possible states 
+since the emissions are independent but not identically distributed, s.t. the distribution of emissions depends on the hidden state.
 
 Let us also denote $\theta \in \Theta$ which is a vector of parameters belonging to parameter space $\Theta$. 
 The aim of EM algorithm is essentially to find the "best" estimate of $\theta$ that maximizes the likelihood function $L(\theta|\textbf{Y})$, 
@@ -28,7 +29,16 @@ this is well known as Maximum likelihood estimate (MLE) that leads to $\hat{\the
 
 \subsection*{Complete data}
 
-To apply the non-iterative approach for complete data, let us consider daily log-returns of BTC/USDT trading pair in past 5 years. 
+If we assume that the data are complete, i.e. we have a complete set of observations $\textbf{Y} = \{y_1,\ldots,y_T\}$, and we discard the hidden states, 
+then MLE results in the following optimization problem: 
+
+\begin{equation}
+    \hat{\theta}_{MLE} = \underset{\theta \in \Theta}{\arg\max} L(\theta|\textbf{Y}) = \underset{\theta \in \Theta}{\arg\max} \prod_{t=1}^{T} f(y_t|\theta)
+\end{equation}
+
+where $f(y_t|\theta)$ is a probability density function of a random variable $Y_t$ given a parameter $\theta$.
+
+To apply the approach for complete data, let us consider daily log-returns of BTC/USDT trading pair in past 5 years. 
 Plotting the histogram we conclude that the log-returns may asymptotically follow normal distribution. 
 Since the probability density function in such case is unimodal and has only one global maximum, 
 the logarithmic transformation of likelihood function conveniently converts multiplication to addition with the 
@@ -66,18 +76,19 @@ parameters as follows:
 \end{gather}
 
 Inserting observed data $\textbf{Y}$ into Equation \ref{eq:MLEmu} and \ref{eq:MLEsigma}, ML estimate of $\mu$ is 0.003 and $\sigma^2$ 
-0.042 respectively. Histogram with curve TODO.
+0.042 respectively. Histogram with fitted curve TODO.
 
 \subsection*{Incomplete data}
 
 Although the assumption of complete data simplifies the analytical procedure of calculating the ML estimate in closed form, 
-it is not easily applicable in case of incomplete data, i.e. when some information is latent which is particularly true for Hidden Markov Models. 
+it is not applicable for incomplete data, i.e. when certain information is latent. This is particularly applicable for Hidden Markov Models. 
 The alternative for the likelihood function of the complete data is therefore to use a joint probability of observed and hidden part of the data to 
-obtain a marginal probability by summing over all possible hidden states $i \in I$. 
+obtain a marginal probability by summing over all possible hidden states $i \in I$, as per \cite{Jurafsky2008}.
 
-\begin{equation} \label{eq:loglike}
-\ell(\theta|\textbf{Y}) = \sum_{t=1}^{T} \ln \mathbb{P}(Y_t= y_t|\theta) = \sum_{t=1}^{T} \ln \sum\limits_{i=1}^N \mathbb{P}(Y_t= y_t,X_t=i|\theta)
-\end{equation}
+\begin{align} \label{eq:loglike}
+\ell(\theta|\textbf{Y}) = \sum_{t=1}^{T} \ln \mathbb{P}(Y_t= y_t|\theta) & = \sum_{t=1}^{T} \ln \sum\limits_{i=1}^N \mathbb{P}(Y_t= y_t,X_t=i|\theta) \\
+ & = \sum_{t=1}^{T} \ln \sum\limits_{i=1}^N \mathbb{P}(Y_t= y_t|X_t=i,\theta) \mathbb{P}(X_t=i|\theta) \nonumber \\
+\end{align}
 
 Since the natural logarithm is strictly monotonic increasing function the value of $\theta$ maximizes the log-likelihood as well as the 
 likelihood function. Simply, the EM algorithm iterates over possible values of $\theta$ to find the best estimate in terms of log-likelihood difference, 
@@ -87,7 +98,7 @@ i.e.\ until convergence criterion is satisfied:
 \frac{|\ell(\theta^{(k)}|\textbf{Y}) - \ell(\theta^{(k-1)}|\textbf{Y})|}{|\ell(\theta^{(k)}|\textbf{Y})|} \leq \epsilon 
 \end{equation}
 
-where the current estimate of $\theta$ for k-th iteration is denoted with $(k)$ superscript 
+where the current estimate of $\theta$ for k-th iteration is denoted with superscript $(k)$ 
 and the convergence threshold $\epsilon$. 
 
 Since the log-likelihood function in Equation \ref{eq:loglike} is not analytically tractable and involves logarithm of a sum,
@@ -204,17 +215,11 @@ we need to express the likelihood function under the model constraints as follow
 \end{align}
 
 where $N$ denotes a number of hidden states. As in the previous chapter, we need to rather work with log-likelihood function which is more analytically convenient 
-and allows us to avoid numerical underflow:
-
-\begin{equation} \label{eq:loglikeFB} 
-    l(\theta| \textbf{Y}) = \sum\limits_{t=0}^T \ln \sum\limits_{i=1}^N  \mathbb{P}(Y_t = y_t , X_t = i|\theta)
-\end{equation}
-
-As we can see, the summation is nested, and therefore we cannot simply swap the order of summation and logarithm. Therefore, we need to find a way to compute the log-likelihood function 
+and allows us to avoid numerical underflow, as in \ref{eq:loglike}, where summation is nested inside the logarithm, and therefore we cannot simply swap the order of summation and logarithm. Therefore, we need to find a way to compute the log-likelihood function 
 in a more efficient way. Our goal is to estimate the posterior distribution of the hidden states given the observed sequence of emissions $p(\textbf{X}|\textbf{Y},\theta)$
 that helps us to compute the expectation of the complete data log-likelihood function.
 
-The summation in Equation \ref{eq:loglikeFB} refers to all possible permutations of the sequence of hidden states \textbf{X} 
+The summation in Equation \ref{eq:loglike} refers to all possible permutations of the sequence of hidden states \textbf{X} 
 which implies that we would have $N^T$ possible sequences as seen in Figure \ref{fig:trellis}. Furthermore, in order to calculate $\mathcal{L}( \theta| \textbf{Y})$ we have $2TN^T$ 
 operations which is also exponential in T and not feasible for real application. As opposed to brute-force 
 computation described above, we take a use of \textbf{Forward} and \textbf{Backward} pass to address \textbf{E-step} of the EM algorithm.
