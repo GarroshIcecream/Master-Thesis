@@ -2411,10 +2411,27 @@
     <bcf:citekey order="48" intorder="1">Capp2005</bcf:citekey>
     <bcf:citekey order="49" intorder="1">Oliver2013</bcf:citekey>
     <bcf:citekey order="50" intorder="1">Ching2005</bcf:citekey>
-    <bcf:citekey order="51" intorder="1">Bishop2006</bcf:citekey>
-    <bcf:citekey order="52" intorder="1">Dempster1977</bcf:citekey>
+    <bcf:citekey order="51" intorder="1">Dempster1977</bcf:citekey>
+    <bcf:citekey order="52" intorder="1">McLachlan2008</bcf:citekey>
     <bcf:citekey order="53" intorder="1">Jurafsky2008</bcf:citekey>
-    <bcf:citekey order="54" intorder="1" nocite="1">*</bcf:citekey>
+    <bcf:citekey order="54" intorder="1">Devavrat2014</bcf:citekey>
+    <bcf:citekey order="55" intorder="1">McLachlan2008</bcf:citekey>
+    <bcf:citekey order="56" intorder="1">Bishop2006</bcf:citekey>
+    <bcf:citekey order="57" intorder="1">Gu2008</bcf:citekey>
+    <bcf:citekey order="58" intorder="1">Csiszar1975</bcf:citekey>
+    <bcf:citekey order="59" intorder="1">Bishop2006</bcf:citekey>
+    <bcf:citekey order="60" intorder="1">Balesdent2016</bcf:citekey>
+    <bcf:citekey order="61" intorder="1">Dempster1977</bcf:citekey>
+    <bcf:citekey order="62" intorder="1">Gu2008</bcf:citekey>
+    <bcf:citekey order="63" intorder="1">Bishop2006</bcf:citekey>
+    <bcf:citekey order="64" intorder="1">Rabiner1989</bcf:citekey>
+    <bcf:citekey order="65" intorder="1">Bishop2006</bcf:citekey>
+    <bcf:citekey order="66" intorder="1">Rabiner1989</bcf:citekey>
+    <bcf:citekey order="67" intorder="1">Rabiner1989</bcf:citekey>
+    <bcf:citekey order="68" intorder="1">Oliver2013</bcf:citekey>
+    <bcf:citekey order="69" intorder="1">Rabiner1989</bcf:citekey>
+    <bcf:citekey order="70" intorder="1">Bishop2006</bcf:citekey>
+    <bcf:citekey order="71" intorder="1" nocite="1">*</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

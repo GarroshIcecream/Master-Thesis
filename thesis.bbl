@@ -49,6 +49,78 @@
       \field{title}{An Introduction to Categorical Data Analysis (Wiley Series in Probability and Statistics)}
       \field{year}{2007}
     \endentry
+    \entry{Balesdent2016}{incollection}{}
+      \name{author}{4}{}{%
+        {{hash=68eb80b36c6a2fc63c5cf4d579ef60c2}{%
+           family={Balesdent},
+           familyi={B\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=fb50bedfbf1bb9da61e777b0548f982e}{%
+           family={Morio},
+           familyi={M\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=093f1c5e3a47f1ae3c827e4bc723b9a1}{%
+           family={Vergé},
+           familyi={V\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+        {{hash=e64b3922f5f3c3c64915666377181ccf}{%
+           family={Pastel},
+           familyi={P\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=9717a732e48bd3c3549215229d05d326}{%
+           family={Morio},
+           familyi={M\bibinitperiod},
+           given={Jérôme},
+           giveni={J\bibinitperiod}}}%
+        {{hash=32dc14f99f5cccfad183434e87098296}{%
+           family={Balesdent},
+           familyi={B\bibinitperiod},
+           given={Mathieu},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Woodhead Publishing}%
+      }
+      \strng{namehash}{f5fe4af0bb39427ac51371bb56816e71}
+      \strng{fullhash}{4614f7f790a296158d0bbe520169d5fa}
+      \strng{bibnamehash}{f5fe4af0bb39427ac51371bb56816e71}
+      \strng{authorbibnamehash}{f5fe4af0bb39427ac51371bb56816e71}
+      \strng{authornamehash}{f5fe4af0bb39427ac51371bb56816e71}
+      \strng{authorfullhash}{4614f7f790a296158d0bbe520169d5fa}
+      \strng{editorbibnamehash}{cebaf803b084b163687858109b1909bd}
+      \strng{editornamehash}{cebaf803b084b163687858109b1909bd}
+      \strng{editorfullhash}{cebaf803b084b163687858109b1909bd}
+      \field{labelalpha}{Bal+16}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Simulation techniques consist in sampling the input and characterizing the uncertainty of the corresponding output. This is notably the case of the crude Monte Carlo method that is well suited to characterize events whose associated probabilities are not too low with respect to the simulation budget. However, for very seldom observed events, this approach does not lead to accurate results. In this chapter, we review different simulation techniques such as importance sampling or adaptive splitting that estimate rare event probabilities with a low variance and a reduced number of samples. These methods seek to generate more samples of X so that ϕ(X) > T.}
+      \field{booktitle}{Estimation of Rare Event Probabilities in Complex Aerospace and Other Systems}
+      \field{isbn}{978-0-08-100091-5}
+      \field{title}{5 - Simulation techniques}
+      \field{year}{2016}
+      \field{pages}{45\bibrangedash 75}
+      \range{pages}{31}
+      \verb{doi}
+      \verb https://doi.org/10.1016/B978-0-08-100091-5.00005-8
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/B9780081000915000058
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/B9780081000915000058
+      \endverb
+      \keyw{Crude Monte Carlo,Quasi-Monte Carlo,Conditional Monte Carlo,Importance sampling,Cross entropy,NAIS,Adaptive splitting,Antithetic and control variates.}
+    \endentry
     \entry{Bishop2006}{book}{}
       \name{author}{1}{}{%
         {{hash=9dfd0135a5e80aa6d81cea2c10fb7f73}{%
@@ -145,6 +217,48 @@
       \field{title}{Markov chains}
       \field{year}{2006}
       \true{nocite}
+    \endentry
+    \entry{Csiszar1975}{article}{}
+      \name{author}{1}{}{%
+        {{hash=3a184c950dc94a0f23a46f5021b6ff03}{%
+           family={Csiszar},
+           familyi={C\bibinitperiod},
+           given={I.},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Institute of Mathematical Statistics}%
+      }
+      \strng{namehash}{3a184c950dc94a0f23a46f5021b6ff03}
+      \strng{fullhash}{3a184c950dc94a0f23a46f5021b6ff03}
+      \strng{bibnamehash}{3a184c950dc94a0f23a46f5021b6ff03}
+      \strng{authorbibnamehash}{3a184c950dc94a0f23a46f5021b6ff03}
+      \strng{authornamehash}{3a184c950dc94a0f23a46f5021b6ff03}
+      \strng{authorfullhash}{3a184c950dc94a0f23a46f5021b6ff03}
+      \field{labelalpha}{Csi75}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Annals of Probability}
+      \field{number}{1}
+      \field{title}{{$I$-Divergence Geometry of Probability Distributions and Minimization Problems}}
+      \field{volume}{3}
+      \field{year}{1975}
+      \field{pages}{146\bibrangedash 158}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1214/aop/1176996454
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1214/aop/1176996454
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1214/aop/1176996454
+      \endverb
+      \keyw{15-A48,49-F22,60-00-E05,62-B10,Contingency tables,distributions with given marginals,Geometry of probability distributions,iterative proportional fitting procedure,minimum discrimination information}
     \endentry
     \entry{Jurafsky2008}{misc}{}
       \name{author}{1}{}{%
@@ -386,6 +500,69 @@
       \field{isbn}{9780387744360}
       \field{title}{Analysis of Computer and Communication Networks}
       \field{year}{2008}
+    \endentry
+    \entry{McLachlan2008}{book}{}
+      \name{author}{1}{}{%
+        {{hash=098b4ed4e75e0d58e06b052b821b0fc3}{%
+           family={Geoffrey\bibnamedelimb J.\bibnamedelimi McLachlan},
+           familyi={G\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={Thriyambakam\bibnamedelima Krishnan},
+           giveni={T\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley-Interscience}%
+      }
+      \strng{namehash}{098b4ed4e75e0d58e06b052b821b0fc3}
+      \strng{fullhash}{098b4ed4e75e0d58e06b052b821b0fc3}
+      \strng{bibnamehash}{098b4ed4e75e0d58e06b052b821b0fc3}
+      \strng{authorbibnamehash}{098b4ed4e75e0d58e06b052b821b0fc3}
+      \strng{authornamehash}{098b4ed4e75e0d58e06b052b821b0fc3}
+      \strng{authorfullhash}{098b4ed4e75e0d58e06b052b821b0fc3}
+      \field{labelalpha}{Geo08}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2}
+      \field{isbn}{9780470191606,9780471201700,0471201707}
+      \field{series}{Wiley Series in Probability and Statistics}
+      \field{title}{The EM Algorithm and Extensions}
+      \field{year}{2008}
+    \endentry
+    \entry{Gu2008}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=c7443fa41689d1f02b52e1c884234c88}{%
+           family={Gu},
+           familyi={G\bibinitperiod},
+           given={Leon},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Carnegie-Mellon University}%
+      }
+      \strng{namehash}{c7443fa41689d1f02b52e1c884234c88}
+      \strng{fullhash}{c7443fa41689d1f02b52e1c884234c88}
+      \strng{bibnamehash}{c7443fa41689d1f02b52e1c884234c88}
+      \strng{authorbibnamehash}{c7443fa41689d1f02b52e1c884234c88}
+      \strng{authornamehash}{c7443fa41689d1f02b52e1c884234c88}
+      \strng{authorfullhash}{c7443fa41689d1f02b52e1c884234c88}
+      \field{labelalpha}{Gu08}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Lecture 17: Hidden Markov Models}
+      \field{year}{2008}
+      \verb{urlraw}
+      \verb https://www.cs.cmu.edu/~epxing/Class/10701-08s/recitation/em-hmm.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.cs.cmu.edu/~epxing/Class/10701-08s/recitation/em-hmm.pdf
+      \endverb
     \endentry
     \entry{Haggstrom2002}{book}{}
       \name{author}{1}{}{%
@@ -831,6 +1008,39 @@
       \field{month}{5}
       \field{title}{Introduction to probability models}
       \field{year}{2014}
+    \endentry
+    \entry{Devavrat2014}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=1cb9ea02a92735af31cb3fae48147a38}{%
+           family={Shah},
+           familyi={S\bibinitperiod},
+           given={Devavrat},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Massachusetts Institute of Technology}%
+      }
+      \strng{namehash}{1cb9ea02a92735af31cb3fae48147a38}
+      \strng{fullhash}{1cb9ea02a92735af31cb3fae48147a38}
+      \strng{bibnamehash}{1cb9ea02a92735af31cb3fae48147a38}
+      \strng{authorbibnamehash}{1cb9ea02a92735af31cb3fae48147a38}
+      \strng{authornamehash}{1cb9ea02a92735af31cb3fae48147a38}
+      \strng{authorfullhash}{1cb9ea02a92735af31cb3fae48147a38}
+      \field{labelalpha}{Sha14}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Parameter Estimation from Partial Observations}
+      \field{year}{2014}
+      \verb{urlraw}
+      \verb https://ocw.mit.edu/courses/6-438-algorithms-for-inference-fall-2014/7b1e302a77ea08f830f9adb9920ade43_MIT6_438F14_Lec22.pdf
+      \endverb
+      \verb{url}
+      \verb https://ocw.mit.edu/courses/6-438-algorithms-for-inference-fall-2014/7b1e302a77ea08f830f9adb9920ade43_MIT6_438F14_Lec22.pdf
+      \endverb
     \endentry
     \entry{Tolver2016}{misc}{}
       \name{author}{1}{}{%
