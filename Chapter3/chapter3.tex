@@ -12,11 +12,11 @@
 \fi
 
 \section{ Expectation–Maximization algorithm}
-
+ 
 Also abbreviated as \textbf{EM algorithm} is an iterative approach for maximum likelihood estimates of model parameters. 
 It is used in situations where incomplete data are present therefore a part of a complete data set is hidden, 
 and we may not be able to apply straightforward analytical procedures for computing maximum likelihood estimates as in a 
-case of complete data. EM algorithm introduce further below is mainly based on the work of \cite{Dempster1977} and \cite{McLachlan2008}.
+case of complete data. EM algorithm introduce further below is mainly based on the work of \citep{Dempster1977} and \citep{McLachlan2008}.
 
 In other words, we want to find the best estimate of the parameters for which the observed sequence of emissions is the most likely. 
 This is of great importance and efficiency in Hidden Markov models where we have a space of emissions and states, where  emissions 
@@ -83,7 +83,7 @@ Inserting observed data $\textbf{Y}$ into Equation \ref{eq:MLEmu} and \ref{eq:ML
 Although the assumption of complete data simplifies the analytical procedure of calculating the ML estimate in closed form, 
 it is not applicable for incomplete data, i.e. when certain information is latent. This is particularly applicable for Hidden Markov Models. 
 The alternative for the likelihood function of the complete data is therefore to use a joint probability of observed and hidden part of the data to 
-obtain a marginal probability by summing over all possible hidden states $i \in I$, as per \cite{Jurafsky2008} and \cite{Devavrat2014}:
+obtain a marginal probability by summing over all possible hidden states $i \in I$, as per \citep{Jurafsky2008} and \citep{Devavrat2014}:
 
 \begin{align} \label{eq:loglike}
 \ell(\theta|\textbf{Y}) = \sum_{t=1}^{T} \ln \mathbb{P}(Y_t= y_t|\theta) & = \sum_{t=1}^{T} \ln \sum\limits_{i=1}^N \mathbb{P}(Y_t= y_t,X_t=i|\theta) \\
@@ -92,7 +92,7 @@ obtain a marginal probability by summing over all possible hidden states $i \in 
 
 Since the natural logarithm is strictly monotonic increasing function the value of $\theta$ maximizes the log-likelihood as well as the 
 likelihood function. Simply, the EM algorithm iterates over possible values of $\theta$ to find the best estimate in terms of log-likelihood difference, 
-i.e.\ until convergence criterion, in \cite{McLachlan2008}, is satisfied:
+i.e.\ until convergence criterion, in \citep{McLachlan2008}, is satisfied:
 
 \begin{equation} \label{eq:conv}
 |\ell(\theta^{(k)}|\textbf{Y}) - \ell(\theta^{(k-1)}|\textbf{Y})| \leq \epsilon 
@@ -101,7 +101,7 @@ i.e.\ until convergence criterion, in \cite{McLachlan2008}, is satisfied:
 where the current estimate of $\theta$ for k-th iteration is denoted with superscript $(k)$ 
 and the convergence threshold $\epsilon$. 
 
-Since the log-likelihood function in Equation \ref{eq:loglike} is not analytically tractable, according to \cite{Bishop2006}, and involves logarithm of a sum,
+Since the log-likelihood function in Equation \ref{eq:loglike} is not analytically tractable, according to \citep{Bishop2006}, and involves logarithm of a sum,
 we need to find an alternative approach to estimate the parameters.
 It is, however, possible to introduce several assumptions that will eventually suffice in providing 
 direct iterative solution to the optimization problem. Let us first construct a lower bound for the 
@@ -109,7 +109,7 @@ marginal likelihood in Equation \ref{eq:loglike}.
 
 We introduce density function $q(x)$ called "averaging distribution" and start by multiplying 
 the joint likelihood by $\frac{q(x)}{q(x)}$. Such expression will allow for a construction of 
-artificial weights and with the use of Jensen's inequality, as suggested by \cite{Gu2008}:
+artificial weights and with the use of Jensen's inequality, as suggested by \citep{Gu2008}:
 
 \begin{align}
     \sum_{t=1}^{T} \ln \sum_{i=1}^{N} q(X_t = i) \frac{p(Y_t=y_t, X_t = i|\theta)}{q(X_t = i)} \geq& \sum_{t=1}^{T} \sum_{i=1}^{N} q(X_t = i) \ln \frac{p(Y_T =y_t, X_t = i|\theta)}{q(X_t = i)} \\
@@ -135,9 +135,9 @@ optimization problem. Therefore, decoupling the log-likelihood function into two
 
 where $D_{KL}$ is the \textit{Kullback-Leibler divergence} between the distribution $q(x)$ and the posterior distribution $p(\textbf{X}|\textbf{Y},\theta)$.
 The Kullback-Leibler divergence is a measure of dissimilarity between two probability distributions, and we may interpret it as a geometrical statistical distance.
-It is also asymmetric and non-negative, and it is zero if and only if the two probability measures are equal which is a result of \textit{Gibb's inequality}. \cite{Csiszar1975}
+It is also asymmetric and non-negative, and it is zero if and only if the two probability measures are equal which is a result of \textit{Gibb's inequality}. \citep{Csiszar1975}
 These properties are of great importance in the EM algorithm because in order to minimize the distance between the two distributions as described above,
-\cite{Bishop2006} states to set the distribution $q(x)$ equal to the posterior distribution $p(\textbf{X}|\textbf{Y},\theta)$.
+\citep{Bishop2006} states to set the distribution $q(x)$ equal to the posterior distribution $p(\textbf{X}|\textbf{Y},\theta)$.
 
 This, first step of the algorithm abbreviated as \textbf{E-step} results in estimating the function $q$ for a $\theta^{k}$, given the k-th iteration of EM algorithm, 
 that maximizes the lower bound $L(\theta,q|\textbf{Y})$. s.t. the "distance" from the lower bound to log-likelihood function $\ell(\theta|\textbf{Y})$ is minimized:
@@ -149,13 +149,13 @@ that maximizes the lower bound $L(\theta,q|\textbf{Y})$. s.t. the "distance" fro
 In other words, we want to minimize distance between the complete data log-likelihood function $L(\theta,q|\textbf{Y})$ and incomplete data $\ell(\theta|\textbf{Y})$ 
 with respect to function $q(x)$. Kullback-Leibler divergence (hereafter KL divergence) measure is commonly used in image or signal processing 
 in calculation of the expected excess surprise from using $q$ as a probability distribution for our model given that the true or actual 
-probability distribution is $p$.\cite{Balesdent2016} Substantially, the measure is a difference of cross-entropy denoted by $H(p,q)$ and entropy by $H(p)$ which 
+probability distribution is $p$.\citep{Balesdent2016} Substantially, the measure is a difference of cross-entropy denoted by $H(p,q)$ and entropy by $H(p)$ which 
 is also always non-negative as a result of Gibb's inequality.
 
 \begin{align}
-D_{KL} (p || q) &= \sum_{X} p(x) \ln \frac{p(x)}{q(x)} \\
-& = \sum_{x} p(x) \ln \frac{1}{q(x)} - \sum_{x} p(x) \ln \frac{1}{p(x)} \\
-& = H(p,q) - H(p)
+    D_{KL} (p || q) & = \sum_{X} p(x) \ln \frac{p(x)}{q(x)} \\
+                    & = \sum_{x} p(x) \ln \frac{1}{q(x)} - \sum_{x} p(x) \ln \frac{1}{p(x)} \\
+                    & = H(p,q) - H(p)
 \end{align}
 
 More rigorously, we have only defined the lower bound for the complete data log-likelihood function using arbitrary probability function $q(x)$, 
@@ -163,17 +163,17 @@ but the deeper examination of the lower bound with the use of KL divergence dire
 distribution $p(\textbf{X}|\textbf{Y},\theta)$ for the probability function $q(x)$:
 
 \begin{align}
-L(\theta,q|\textbf{Y}) &= \sum_{i=1}^{N} q(X = i) \ln \frac{p(X = i,\textbf{Y}|\theta)}{q(X = i)} \\
-& = \sum_{i=1}^{N} q(X = i) \ln \frac{p(X = i|\textbf{Y},\theta) p(\textbf{Y}| \theta)}{q(X = i)} \\
-& = \sum_{i=1}^{N} q(X = i) \ln p(\textbf{Y}|\theta) + \sum_{i=1}^{N} q(X = i) \ln \frac{p(X = i|\textbf{Y},\theta)}{q(X = i)} \\
-& =  \ell(\theta|\textbf{Y}) - D_{KL}(q(X)||p(X|\textbf{Y},\theta))
+    L(\theta,q|\textbf{Y}) &= \sum_{i=1}^{N} q(X = i) \ln \frac{p(X = i,\textbf{Y}|\theta)}{q(X = i)} \\
+    & = \sum_{i=1}^{N} q(X = i) \ln \frac{p(X = i|\textbf{Y},\theta) p(\textbf{Y}| \theta)}{q(X = i)} \\
+    & = \sum_{i=1}^{N} q(X = i) \ln p(\textbf{Y}|\theta) + \sum_{i=1}^{N} q(X = i) \ln \frac{p(X = i|\textbf{Y},\theta)}{q(X = i)} \\
+    & =  \ell(\theta|\textbf{Y}) - D_{KL}(q(\textbf{X})||p(\textbf{X}|\textbf{Y},\theta))
 \end{align}
 
 Now we see that the statistical distance between the two likelihood functions is determined solely by the KL divergence. Similarly, it can be shown that Equation \ref{eq:qnew} is a 
 minimization problem of KL divergence between the two distributions $q$ and $p$:
 
 \begin{equation}
-    q^{(k+1)} = \underset{q \in Q}{\arg\min}(\ell(\theta|\textbf{Y}) - L(\theta,q|\textbf{Y})) = \underset{q \in Q}{\arg\min}  D_{KL} (q(\textbf{X}) || p(\textbf{X}| \textbf{Y},\theta^{(k)}))
+    q^{(k+1)} = \underset{q \in Q}{\arg\min}(\ell(\theta|\textbf{Y}) - L(\theta, q|\textbf{Y})) = \underset{q \in Q}{\arg\min}  D_{KL} (q(\textbf{X}) || p(\textbf{X}| \textbf{Y},\theta^{(k)}))
 \end{equation}
 
 To visualize the EM algorithm, refer to Figure \ref{fig:Loglike} where red curve is the log-likelihood function $\ell(\theta|\textbf{Y})$
@@ -183,7 +183,7 @@ s.t. the next iteration of E-step can be performed, and the lower bound is maxim
 
 Until now, we have considered the optimal manner in which we compute the conditional expectation $E_{\textbf{X}|\textbf{Y},\theta^{(k)}} [\ell(\theta|\textbf{Y})]$ by 
 finding the appropriate function $q$. Next step is, as typical for coordinate descent, selection of parameter $\theta^{(k+1)}$, 
-with already estimated $q^{(k+1)}$, that maximizes the lower bound $L(\theta,q|\textbf{Y})$. The goal of M-step is according to \cite{Dempster1977} and \cite{Gu2008}:
+with already estimated $q^{(k+1)}$, that maximizes the lower bound $L(\theta,q|\textbf{Y})$. The goal of M-step is according to \citep{Dempster1977} and \citep{Gu2008}:
 
 \begin{equation}
     \theta^{(k+1)} = \underset{\theta \in \Theta}{\arg\max} L(\theta, q^{(k+1)}|\textbf{Y})
@@ -195,7 +195,7 @@ with already estimated $q^{(k+1)}$, that maximizes the lower bound $L(\theta,q|\
 	\includegraphics[width=0.9\textwidth]{Figs/Loglike.png}
 \end{center}
 
-\caption{\textit{E-step as a problem of minimization of KL divergence represented as a gap between two likelihood functions}}
+\caption{\textit{E-step as a problem of minimization of KL divergence represented as a gap between two likelihood functions, reprinted from \citep{Bishop2006}}}
 \label{fig:Loglike}
 \end{figure}
 
@@ -206,13 +206,13 @@ with already estimated $q^{(k+1)}$, that maximizes the lower bound $L(\theta,q|\
                                                computing the posterior distribution $p(\textbf{X}|\textbf{Y},\theta^{(k)})$ based on $\theta^{(k)}$:
 
 \begin{equation}
-    Q(\theta,\theta^{(k)}) = E_{\textbf{X}|\textbf{Y},\theta^{(k)}} [\ell(\theta|\textbf{Y})]
+    Q(\theta|\theta^{(k)}) = E_{\textbf{X}|\textbf{Y},\theta^{(k)}} [\ell(\theta|\textbf{Y})]
 \end{equation}
 
 \item[2)] \textbf{Maximization step (M-step)} - estimate the parameter $\theta$ that maximizes the conditional expectation $E_{\textbf{X}|\textbf{Y},\theta^{(k)}} [\ell(\theta|\textbf{Y})]$.
 
 \begin{equation}
-    \hat{\theta}^{(k+1)} = \underset{\theta \in \Theta}{\arg\max} Q(\theta,\theta^{(k)}) 
+    \hat{\theta}^{(k+1)} = \underset{\theta \in \Theta}{\arg\max} Q(\theta|\theta^{(k)}) 
 \end{equation}
 
 \end{itemize}
@@ -236,7 +236,7 @@ that helps us to compute the expectation of the complete data log-likelihood fun
 The summation in Equation \ref{eq:loglike} refers to all possible permutations of the sequence of hidden states \textbf{X} 
 which implies that we would have $N^T$ possible sequences as seen in Figure \ref{fig:trellis}. Furthermore, in order to calculate $\mathcal{L}( \theta| \textbf{Y})$ we have $2TN^T$ 
 operations which is also exponential in T and not feasible for real application. As opposed to brute-force infeasible
-computation described above, we take a use of \textbf{Forward} and \textbf{Backward} pass to address \textbf{E-step} of the EM algorithm, as shown by \cite{Bishop2006} and \cite{Rabiner1989}.
+computation described above, we take a use of \textbf{Forward} and \textbf{Backward} pass to address \textbf{E-step} of the EM algorithm, as shown by \citep{Bishop2006} and \citep{Rabiner1989}.
 
 \begin{figure}[htbp]
     \begin{center}
@@ -341,7 +341,7 @@ computation described above, we take a use of \textbf{Forward} and \textbf{Backw
     \node at (8,-0.5) {$y_4$};
     \end{tikzpicture}
     \end{center}
-    \caption{Trellis of the emission sequence $\{y_0$, \ldots,$y_4\}$ for T=4. Each node represents a state $S_i$ and each arc represents a transition from one state to another. The number of possible paths is $N^T$. }
+    \caption{Trellis of the emission sequence $\{y_0,\ldots, y_4\}$ for T=4. Each node represents a state $S_i$ and each arc represents a transition from one state to another. The number of possible paths is $N^T$. }
     \label{fig:trellis}
     \end{figure}
 
@@ -351,7 +351,7 @@ Each sequence can be decomposed into multiple subsequences which are shared amon
 These subsequences can be represented by a trellis as shown in Figure \ref{fig:trellis}. With a help of such diagram we may imagine recording the probability of 
 distinct subsequences at each time step $t$. In other words, we wish to compute a joint probability while taking advantage 
 of the conditional independence of $Y_t$ given $X_t$ with respect to the remaining elements of the emission sequence that happen after time $t$. 
-Moreover, due to Markov memoryless property, $X_t$ depends only on $X_{t-1}$. Let us now define the forward probability variable $\alpha_t(i)$ as in \cite{Bishop2006} and \cite{Rabiner1989}:
+Moreover, due to Markov memoryless property, $X_t$ depends only on $X_{t-1}$. Let us now define the forward probability variable $\alpha_t(i)$ as in \citep{Bishop2006} and \citep{Rabiner1989}:
 
 \begin{equation}
     \alpha_t(i) = \mathbb{P}(Y_t = y_t, Y_{t-1} = y_{t-1},\ldots, Y_0 = y_0 , X_t = i| \theta)
@@ -379,8 +379,8 @@ which is a marginal likelihood of the observed sequence $\textbf{Y}$ under the m
 
 Resulting algorithm requires time complexity of $O(TN^2)$\footnote{The O(n) symbol represents Big O notation, 
 a convention in computer science to describe how an algorithm's running time or space needs grow as the input size increases. 
-O(n) indicates that the growth is linear in relation to the input size n.} 
-which is a significant improvement from the brute force approach with complexity of $O(2TN^T)$. \cite{Rabiner1989}
+O(n) indicates that the growth is linear in relation to the input size n. \citep{Mohr2014}} 
+which is a significant improvement from the brute force approach with complexity of $O(2TN^T)$. \citep{Rabiner1989}
 
 \subsubsection{Backward algorithm}
 
@@ -396,7 +396,7 @@ Let us define the backward probability $\beta$ variable as:
 \end{align}
 
 As for forward algorithm, the recursive computation is very similar, the only differences are in the fact that we are going backwards in time using our emission sequence 
-while also accounting for the emission probabilities at previous step. Effectively, there are 3 main steps, as pointed by \cite{Oliver2013}:
+while also accounting for the emission probabilities at previous step. Effectively, there are 3 main steps, as pointed out by \citep{Oliver2013}:
 
 \begin{itemize}
 \item[1.] \textbf{Initialization step}: with default value of $\beta_T(i) = 1$ for all $i \in I$. 
@@ -475,7 +475,7 @@ At the beginning of the section we defined \textit{Expectation-Maximization algo
 i.e. supposing that part of the data is hidden. Two main steps are called E-step and M-step which were discussed generally, 
 but we need to establish direct connection to the estimation of the Hidden Markov model parameters for which we can use  \textit{Baum-Welsch algorithm} as a special case EM algorithm.
 We will show that former step is easily computed given variables $\alpha$ and $\beta$ established in Forward-Backward algorithm. 
-Those will result in estimating the posterior distribution of hidden states given our emission sequence \textbf{Y}, i.e. $\mathbb{P}(X_t=i|\textbf{Y},\theta)$. \cite{Rabiner1989}
+Those will result in estimating the posterior distribution of hidden states given our emission sequence \textbf{Y}, i.e. $\mathbb{P}(X_t=i|\textbf{Y},\theta)$. \citep{Rabiner1989}
 
 In order to estimate marginal posterior distribution we might use Bayes Theorem given each subsequent time index $t$ and denote such quantity as $\gamma$, s.t.: 
 
@@ -500,6 +500,8 @@ Such quantity expresses the probability of being in state $i$ at time $t$ and st
 \begin{equation}
     \gamma_t(i) = \sum_{j=1}^N \mathbb{P}(X_t=i, X_{t+1}=j|\textbf{Y},\theta) = \sum_{j=1}^N \xi_t(i,j)
 \end{equation}
+
+
 
 \vspace*{0.5cm}
 \begin{figure}[htbp]
@@ -597,7 +599,7 @@ Q(\theta, \theta^{(k)}) &= \mathbb{E}_{\textbf{X}|\textbf{Y},\theta^{(k)}} [\ell
                         &= \sum_{i=1}^{N} \gamma_1(i) \ln p_i + \sum_{i,j=1}^{N} \sum_{t=2}^{T} \xi_t (i,j) \ln a_{i,j}+ \sum_{i=1}^{N} \sum_{t=1}^{T} \gamma_t (i) \ln b_{i}(y_t)
 \end{align}
 
-To summarize, the E-step of the EM algorithm in case of HMM lies in the estimation of posterior distributions $\gamma_t(i)$ and $\xi_t(i)$ 
+To summarize, the E-step of the EM algorithm in case of HMM lies in the estimation of marginal and joint posterior distribution $\gamma_t(i)$ and $\xi_t(i)$ 
 and deriving Equation \ref{eq:Q} above. Note that since we are dealing with iterative procedure, the superscript $k$ denotes the iteration number.
 However, when $k=0$ we need to initialize the parameters of the model. Since the hidden states are assumed discrete we express transition matrix using a stochastic (Markov) 
 matrix introduced in Chapter 1 and the initial distribution as a probability vector of length N. Moreover, in the introduction to Hidden Markov Models 
@@ -605,7 +607,7 @@ we stated that the marginal distribution of hidden states $\textbf{p}$ is a stat
 categorical distribution with $N$ categories, s.t. it is convenient to use Dirichlet distribution as it is a conjugate prior to categorical or multinomial distribution.
 Same approach is reasonable for each row of the transition matrix $\textbf{A}$ and emission matrix $\textbf{B}$, since we are assuming that emission symbols are finite and countable. 
 In a case of continuous emission symbols, e.g. in the context of Gaussian HMM, we usually use Gaussian distribution as a conjugate prior. Generally, we may decide to use other distributions as priors for our model parameters, 
-e.g. uniform distribution as an uninformative prior. 
+e.g. uniform distribution as an uninformative prior, depending on whether we have a prior knowledge about the distribution of parameters.\citep{Rabiner1993}
 
 \subsection*{M-step}
 
@@ -613,7 +615,9 @@ Once we have an initial estimate of $\theta$, the EM algorithm performs E-step u
 subsequently finds the maximum of the conditional expectation of the log-likelihood function using M-step. 
 
 No initial estimate of the parameters will guarantee that a global maximum of the log-likelihood function is attained, therefore one of the possible
-solutions to this problem would be to initialize parameters randomly multiple times and compare the maxima of the log-likelihood function. 
+solutions to this problem would be to initialize parameters randomly multiple times and compare the maxima of the log-likelihood function. Furthermore, 
+given a more complex models, one or both of the steps of the EM algorithm may become intractable, and we may need to use other methods such as
+generalized EM algorithm or Markov Chain Monte Carlo (MCMC) methods. \citep{Bishop2006}
 
 The optimization problem is constrained by the fact that the parameters must satisfy the following conditions 
 since they are stochastic matrices or probability vectors:
@@ -641,39 +645,61 @@ expected log likelihood function using Lagrange multipliers where the objective 
 \hat{b}_{i}^{(k)}(y_t) = & \frac{\sum_{t=1}^{T} \gamma_t (i) \mathbbm{1}_{[Y_t = y_t ]}}{\nu_i} = \frac{ \sum_{t=1}^{T} \gamma_t (i) \mathbbm{1}_{[Y_t = y_t ]}}{\sum_{t=1}^{T} \gamma_t (i)} 
 \end{align}
 
-We repeat these steps until the desired convergence criterion of relative log-likelihood difference between subsequent iterations of the Baum-Welch algorithm is achieved:
-
-\begin{equation}
-\frac{l(\theta^{(k)}|\textbf{Y}) - l(\theta^{(k-1)}|\textbf{Y})}{l(\theta^{(k-1)}|\textbf{Y})} < \epsilon
-\end{equation}
-
-Afterwards, parameter estimates of k-th iteration are such that we have locally maximized the log-likelihood function given the emission sequence 
+We repeat these steps until the desired convergence criterion of log-likelihood difference (Equation \ref{eq:conv}) between subsequent iterations of the Baum-Welch algorithm 
+is achieved. Afterwards, parameter estimates of k-th iteration are such that we have locally maximized the log-likelihood function given the emission sequence 
 and initial setting of $\theta$ for $k=0$.
 
 \subsection{EM algorithm for GMM}
-\cite{Bishop2006}
-Given the data $\textbf{Y} = \{\textbf{Y}_1,\ldots,\textbf{Y}_N\}$, where each element is an independently and identically distributed 
-p-dimensional random vector, s.t. $Y_n \in \mathbb{R}^p$ and:
+
+In previous section, we assumed that the emission symbols are discrete and countable, however, in case of Gaussian Mixture Models (GMM) continuity of the emission symbols 
+is assumed. Therefore, having a normal distribution as a prior for the emission symbols requires slightly different approach in order to derive parameters of the emission matrix $\textbf{B}$.
+
+Given the data $\textbf{Y} = \{\textbf{Y}_1,\ldots,\textbf{Y}_T\}$, where each element is an independent  
+p-dimensional random vector, s.t. $Y_t \in \mathbb{R}^p$ and:
 
 \begin{equation}
-    Y_k \sim \mathcal{N}_p(\mu_k, \Sigma_k) \quad \forall k \in \{1,\ldots,N\} 
+    Y|k \sim \mathcal{N}_p(\mu_k, \Sigma_k) \quad \forall k \in \{1,\ldots,N\} 
 \end{equation}
 
 The goal is to estimate $\theta$ of the mixture model, 
 i.e.\ for each mixture component $k$ we need to estimate its mean $\mu_k$, covariance matrix $\Sigma_k$ and mixing proportion $\pi_k$. 
 
-Note that now we will assume that each element of random vector $\textbf{Y}_n$ is generated by one of the mixture components, and we know which one. 
-This is called the complete data since we have information about the hidden variable $Z$ which indicates the component from which the data point was generated.
+Note that now we will assume that each random vector $\textbf{Y}_t$ is generated by one of the $N$ mixture components and knowledge about the component $k$ from which the data point was generated is 
+hidden as in the previous section. To relate the parameters of the mixture model to the HMM, we introduce a latent variable $\textbf{X}$ that follows categorical distribution with $N$ categories, s.t. 
+its parameters are directly related to the mixing proportions $\pi_k$ of the mixture model:
+
+\begin{equation}
+    X \sim Cat(\pi_1,\ldots,\pi_N) , \quad \textrm{ where } \sum_{k=1}^{N} \pi_k = 1, \quad \pi_k \geq 0
+\end{equation}
+
+However, if we knew the component $k$ from which the data point was generated, we could estimate the parameters of the mixture model using the 
+maximum likelihood estimation (MLE) easily since  as follows:
+
+\begin{equation}
+    \hat{\mu}_k = \frac{1}{N_k} \sum_{i=1}^{N} \mathbbm{1}_{[X_i = k]} \textbf{Y}_i
+\end{equation}
+
+\begin{equation}
+    \hat{\Sigma}_k = \frac{1}{N_k} \sum_{i=1}^{N} \mathbbm{1}_{[X_i = k]} (\textbf{Y}_i - \hat{\mu}_k)(\textbf{Y}_i - \hat{\mu}_k)^T
+\end{equation}
+
+\begin{equation}
+    \hat{\pi}_k = \frac{N_k}{T}
+\end{equation}
+    
+\noindent where $N_k$ is the number of data points generated by the component $k$ and $T$ is the total number of data points.
+
+his is called the complete data since we have information about the hidden variable $Z$ which indicates the component from which the data point was generated.
 Therefore, the complete data likelihood function is defined as follows: 
 
 \begin{equation} \label{eq:likelihood-gaussian}
-    L_c(\theta|\textbf{Y},\textbf{Z}) = \prod_{i=1}^{N} \sum_{k=1}^{K} \pi_k \mathcal{N}(\textbf{Y}_i|\mu_k,\Sigma_k)
+    L_c=(\theta|\textbf{Y}) = \prod_{t=1}^{T}\: \sum_{k=1}^{N} \pi_k \mathcal{N}(\textbf{Y}_t|\mu_k,\Sigma_k)
 \end{equation}
 
 and the log-likelihood function is:
 
 \begin{equation}
-    \ell_c(\theta|\textbf{Y},\textbf{Z}) = \sum_{n=1}^{N} \log \sum_{k=1}^{K} \pi_k \mathcal{N}(\textbf{Y}_n|\mu_k,\Sigma_k)
+    \ell_c(\theta|\textbf{Y}) = \sum_{t=1}^{T}\: \ln \sum_{k=1}^{N} \pi_k \mathcal{N}(\textbf{Y}_t|\mu_k,\Sigma_k)
 \end{equation}
 
 Equation (3.10), shows that the log-likelihood function has a form of a sum of logarithms which results in no strict analytical solution for the maximum likelihood estimation of model parameters.
@@ -682,7 +708,7 @@ Given the assumption that we know the hidden variable $\textbf{Z}$ directly from
 with multinomial distribution and parameters $\boldsymbol{\pi} = \{\pi_1,\ldots,\pi_K\}$, the log-likelihood function can be rewritten as follows:
 
 \begin{equation}
-    \ell_c(\theta|\textbf{Y},\textbf{Z}) = \sum_{i=1}^{N} \sum_{k=1}^{K} z_{ik} \left(\log \pi_k + \log \mathcal{N}(\textbf{Y}_n|\mu_k,\Sigma_k)\right)
+    \ell_c(\theta|\textbf{Y},\textbf{Z}) = \sum_{i=1}^{N} \sum_{k=1}^{K} z_{ik} \left(\ln \pi_k + \log \mathcal{N}(\textbf{Y}_n|\mu_k,\Sigma_k)\right)
 \end{equation}
 
 with variable $z_{ik}$ defined as follows:
@@ -704,7 +730,7 @@ data log-likelihood function given log-likelihood function by Equation (3.11) as
     Q(\theta|\theta^{(t)}) = \mathbb{E}[\ell_c(\theta|\textbf{Y},\textbf{Z})|\textbf{Y},\theta^{(t)}]
 \end{equation}
 
-hence inserting Equation (3.11) into (3.13) we obtain:
+hence, inserting Equation (3.11) into (3.13) we obtain:
 
 \begin{equation}
     Q(\theta|\theta^{(t)}) = \sum_{i=1}^{N} \sum_{k=1}^{K} \mathbb{E}[z_{ik}|\textbf{Y}_i,\theta^{(t)}] \left(\log \pi_k + \log \mathcal{N}(\textbf{Y}_i|\mu_k,\Sigma_k)\right)
@@ -822,7 +848,7 @@ find the sequence of hidden states $\textbf{Z}^*$ that most likely produced the 
 the maximum a posterior probability (MAP) estimate and is defined as:
 
 \begin{equation} \label{eq:MAP}
-    \textbf{Z}^* = \underset{Z}{\arg\max} \: P(\textbf{Z}|\textbf{Y},\theta)
+    \textbf{Z}^* = \underset{Z}{\arg\max} \: p(\textbf{Z}|\textbf{Y},\theta)
 \end{equation}
 
 As in the encoding problem, the complexity of the optimisation problem explodes if we decide to account for all possible sequences of hidden states into $N^T$ calculations. 
@@ -895,24 +921,27 @@ z_t^* = \psi_{t+1}(z_{t+1}^*)
 
 \end{itemize}
 
-text?
+To understand why the Viterbi algorithm is so efficient we need to look at the complexity of the problem in more detail. When naively going through exponentially many possible state sequences 
+we would need to compute the probability of each sequence and then select the most likely one. However, Viterbi algorithm does not compute the probability of each sequence but rather 
+stores the most likely state sequence up to time $t$ and then uses it to compute the most likely state sequence up to time $t+1$, s.t. at each time step we only need to compute the
+probability of $N$ possible state sequences. Hence, the complexity of the algorithm is $\mathcal{O}(NT^2)$ which is significantly lower than $\mathcal{O}(N^T)$. \citep{Bishop2006}
 
 \begin{figure}[htbp]
 \begin{center}
 \begin{tikzpicture}[]
 % 1st column
-\node[state] (s1_1) at (0,5) {$z_1$};
-\node[mainstate,fill=yellow!80!black] (s2_1) at (0,4) {$z_2$};
+\node[state] (s1_1) at (0,5) {$S_1$};
+\node[mainstate,fill=yellow!80!black] (s2_1) at (0,4) {$S_2$};
 \node[state] (s3_1) at (0,3) {$\ldots$};
-\node[state] (s4_1) at (0,2) {$z_N$};
+\node[state] (s4_1) at (0,2) {$S_N$};
 \node at (0,1) {$t=1$};
 % 2nd column
-\node[mainstate] (s1_2) at (2,5) {$z_1$}
+\node[mainstate] (s1_2) at (2,5) {$S_1$}
     edge[lightedge] (s1_1)
     edge[lightedge] (s2_1)
     edge[lightedge] (s3_1)
     edge[lightedge] (s4_1);
-\node[state] (s2_2) at (2,4) {$z_2$}
+\node[state] (s2_2) at (2,4) {$S_2$}
     edge[lightedge] (s1_1)
     edge[lightedge] (s2_1)
     edge[lightedge] (s3_1)
@@ -922,19 +951,19 @@ text?
     edge[mainedge] (s2_1)
     edge[lightedge] (s3_1)
     edge[lightedge] (s4_1);
-\node[state] (s4_2) at (2,2) {$z_N$}
+\node[state] (s4_2) at (2,2) {$S_N$}
     edge[lightedge] (s1_1)
     edge[lightedge] (s2_1)
     edge[lightedge] (s3_1)
     edge[lightedge] (s4_1);
 \node at (2,1) {$t=2$};
 % 3rd column
-\node[mainstate,fill=yellow!80!black] (s1_3) at (4,5) {$z_1$}
+\node[mainstate,fill=yellow!80!black] (s1_3) at (4,5) {$S_1$}
     edge[lightedge]  (s1_2)
     edge[lightedge] (s2_2)
     edge[mainedge] (s3_2)
     edge[lightedge] (s4_2);
-\node[state] (s2_3) at (4,4) {$z_2$}
+\node[state] (s2_3) at (4,4) {$S_2$}
     edge[lightedge] (s1_2)
     edge[lightedge] (s2_2)
     edge[lightedge] (s3_2)
@@ -944,19 +973,19 @@ text?
     edge[lightedge] (s2_2)
     edge[lightedge] (s3_2)
     edge[lightedge] (s4_2);
-\node[state] (s4_3) at (4,2) {$z_N$}
+\node[state] (s4_3) at (4,2) {$S_N$}
     edge[lightedge] (s1_2)
     edge[lightedge] (s2_2)
     edge[lightedge] (s3_2)
     edge[lightedge] (s4_2);
 \node at (4,1) {$t=3$};
 % 4th column
-\node[mainstate,fill=yellow!80!black] (s1_4) at (6,5) {$z_1$}
+\node[mainstate,fill=yellow!80!black] (s1_4) at (6,5) {$S_1$}
     edge[mainedge]  (s1_3)
     edge[lightedge] (s2_3)
     edge[lightedge] (s3_3)
     edge[lightedge] (s4_3);
-\node[state] (s2_4) at (6,4) {$z_2$}
+\node[state] (s2_4) at (6,4) {$S_2$}
     edge[lightedge] (s1_3)
     edge[lightedge] (s2_3)
     edge[lightedge] (s3_3)
@@ -966,19 +995,19 @@ text?
     edge[lightedge] (s2_3)
     edge[lightedge] (s3_3)
     edge[lightedge] (s4_3);
-\node[state] (s4_4) at (6,2) {$z_N$}
+\node[state] (s4_4) at (6,2) {$S_N$}
     edge[lightedge] (s1_3)
     edge[lightedge] (s2_3)
     edge[lightedge] (s3_3)
     edge[lightedge] (s4_3);
 \node at (6,1) {$t=4$};
 % 5th column
-\node[mainstate] (s1_5) at (8,5) {$z_1$}
+\node[mainstate] (s1_5) at (8,5) {$S_1$}
     edge[lightedge]  (s1_4)
     edge[lightedge] (s2_4)
     edge[lightedge] (s3_4)
     edge[lightedge] (s4_4);
-\node[state,fill=yellow!80!black] (s2_5) at (8,4) {$z_2$}
+\node[state,fill=yellow!80!black] (s2_5) at (8,4) {$S_2$}
     edge[mainedge] (s1_4)
     edge[lightedge] (s2_4)
     edge[lightedge] (s3_4)
@@ -988,7 +1017,7 @@ text?
     edge[lightedge] (s2_4)
     edge[lightedge] (s3_4)
     edge[lightedge] (s4_4);
-\node[state] (s4_5) at (8,2) {$z_N$}
+\node[state] (s4_5) at (8,2) {$S_N$}
     edge[lightedge] (s1_4)
     edge[lightedge] (s2_4)
     edge[lightedge] (s3_4)
@@ -996,6 +1025,7 @@ text?
 \node at (8,1) {$t=5$};
 \end{tikzpicture}
 \end{center}
-\caption{Trellis of the observation sequence $x_1, \ldots,x_5$ for the HMM.\@ Bold lines illustrate the most likely sequence found by the Viterbi algorithm.}
+\label{fig:viterbi}
+\caption{Trellis of the observation sequence $\{y_1, \ldots,y_5\}$. Bold lines illustrate the most likely state sequence $Z^*$ found by the Viterbi algorithm.}
 \end{figure}
 

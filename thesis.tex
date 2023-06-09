@@ -7,40 +7,40 @@
 \usepackage{amsmath}
 \usepackage{tikz}
 \usepackage{bookmark}
-\usetikzlibrary{automata,arrows,positioning,calc}
+\usetikzlibrary{automata,arrows,positioning,calc} 
 
 % ********************************** Preamble **********************************
 % Preamble: Contains packages and user-defined commands and settings
 \input{Preamble/preamble}
 
 % ************************ Thesis Information & Meta-data **********************
-% Thesis title and author information, refernce file for biblatex
+% Thesis title and author information, refernce file for biblatex 
 \input{thesis-info}
+  
+% ******************************** Front Matter  ********************************
+\begin{document} 
 
-% ******************************** Front Matter ********************************
-\begin{document}
+\frontmatter 
 
-\frontmatter
+\maketitle 
 
-\maketitle
-
-\include{Declaration/declaration}
-\include{Acknowledgement/acknowledgement}
+\include{Declaration/declaration} 
+%\include{Acknowledgement/acknowledgement}
 \include{Abstract/abstract}
 
 % *********************** Adding TOC and List of Figures ***********************
-\tableofcontents
+\tableofcontents 
 
-\listoffigures
+\listoffigures 
 
-\listoftables
+\listoftables   
 
 % ******************************** Main Matter *********************************
 \mainmatter%
 
 \include{Chapter1/chapter1}
 \include{Chapter2/chapter2}
-\include{Chapter3/chapter3}
+\include{Chapter3/chapter3} 
 \include{Chapter4/chapter4}
 
 % ********************************** Bibliography ******************************
@@ -55,6 +55,7 @@
 \include{Appendix2/appendix2}
 
 \end{appendices}
+
 % *************************************** Index ********************************
 \printthesisindex%
 \end{document}

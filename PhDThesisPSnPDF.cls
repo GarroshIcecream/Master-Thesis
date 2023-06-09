@@ -463,8 +463,7 @@ supported!}
 % ******************************* Bibliography *********************************
 \ifPHD@authoryear
   \ifPHD@biblatex
-    \RequirePackage[backend=biber, style=authoryear, citestyle=alphabetic, 
-      sorting=nty, natbib=true]{biblatex}
+    \RequirePackage[backend=biber, style=authoryear, sorting=nty, natbib=true]{biblatex}
     \setBiBLaTeXtrue
   \else
     \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
@@ -826,9 +825,21 @@ wish to left align your text}
 \newcommand{\@degreetitle}{}
 \newcommand{\degreetitle}[1]{\renewcommand{\@degreetitle}{#1}}
 
+% The full city name of the University
+\newcommand{\@city}{}
+\newcommand{\city}[1]{\renewcommand{\@city}{#1}}
+
 % The name of your department(eg. Engineering, Maths, Physics)
 \newcommand{\@dept}{}
 \newcommand{\dept}[1]{\renewcommand{\@dept}{#1}}
+
+% The year and term the degree will be officially conferred
+\newcommand{\@faculty}{}
+\newcommand{\faculty}[1]{\renewcommand{\@faculty}{#1}}
+
+% The year and term the degree will be officially conferred
+\newcommand{\@field}{}
+\newcommand{\field}[1]{\renewcommand{\@field}{#1}}
 
 % The name of your college (eg. King's)
 \newcommand{\@college}{}
@@ -927,82 +938,101 @@ wish to left align your text}
 % ******************************** Title Page **********************************
 \renewcommand{\maketitle}{
 
-\thispagestyle{empty}
-
-\begin{singlespace}
-\begin{center}
 \definecolor{color_29791}{rgb}{0,0,0}
-\definecolor{color_156895}{rgb}{0.501961,0.501961,0.501961}
-\definecolor{color_275101}{rgb}{1,0,1}
-\definecolor{color_204026}{rgb}{0.709804,0.031373,0.180392}
-\definecolor{color_97849}{rgb}{0.266667,0.329412,0.415686}
 
-\begin{tikzpicture}[overlay]\path(0pt,0pt);\end{tikzpicture}
-\begin{picture}(-5,0)(2.5,0)
-\put(-240.45,10.5569){\fontsize{24}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791}VYSOKÁ ŠKOLA EKONOMICKÁ V PRAZE}
-\put(-110.8,-20.42){\fontsize{20}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}Fakulta financí a účetnictví}
-\put(-120.4,-42.683){\fontsize{16}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}katedra bankovnictví a pojišťovnictví}
-\put(-115.9,-300.809){\fontsize{26}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791}DIPLOMOVÁ PRÁCE}
-\end{picture}
+\begin{titlepage}
 
-\begin{picture}(-5,0)(2.5,0)
-\put(-190.45,-600.89){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}2023}
-\put(105.45,-600.89){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}Bc. Adam Pešek}
-\end{picture}
+  \begin{singlespace}
+  \begin{center}
 
-\newpage
+  \fontsize{24}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791} \@university
 
-\thispagestyle{empty}
+  \vspace*{0.5cm}
+  \fontsize{20}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} \@faculty
 
-\begin{picture}(-5,0)(2.5,0)
-\put(-225.45,10.5569){\fontsize{24}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791}VYSOKÁ ŠKOLA EKONOMICKÁ V PRAZE}
-\put(-100.8,-20.422){\fontsize{20}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}Fakulta financí a účetnictví}
-\put(-110.4,-42.683){\fontsize{16}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}katedra bankovnictví a pojišťovnictví}
-\put(-95.4,-62.683){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}studijní program: Finanční inženýrství}
-\end{picture}
+  \vspace*{0.5cm}
+  \fontsize{16}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} \@dept
 
-\begin{picture}(-5,0)(2.5,0)
-\put(-84.449,-235.209){\fontsize{20}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791}Hidden Markov Models}
-\put(-99.449,-263.209){\fontsize{20}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791}for Cryptocurrency Trading}
-\end{picture}
+  \vfill
+  \fontsize{26}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791} MASTER THESIS
+  \vfill
+  
+  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} 2023
+  \hspace*{\fill}
+  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}\@author
+  \end{center}
+  \end{singlespace}
 
-\begin{picture}(-5,0)(2.5,0)
-\put(-160,-540){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}Autor práce:}
-\put(65,-540){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} Bc. Adam Pešek}
-\put(-160,-570){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}Vedoucí práce:}
-\put(65,-570){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}Ing. Milan Fičura PhD.}
-\put(-160,-600){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}Rok obhajoby:}
-\put(65,-600){\fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}2023}
-\end{picture}
-    
-\end{center}
+\end{titlepage}
+
+\begin{titlepage}
+
+  \begin{singlespace}
+  \begin{center}
+      \fontsize{24}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791} \@university
+
+      \vspace*{0.5cm}
+      \fontsize{20}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} \@faculty
+
+      \vspace*{0.5cm}
+      \fontsize{16}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} \@dept
+
+      \vspace*{0.5cm}
+      \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} \@field
+
+      \vfill
+      \fontsize{20}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791}Hidden Markov Models
+
+      \vspace*{0.5cm}
+      \fontsize{20}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791}for Cryptocurrency Trading
+      \vfill
+  \end{center}
+
+  \noindent
+  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} Author: \hspace*{\fill}
+  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} \@author \\
+
+  \vspace*{0.5cm}
+  \noindent
+  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} Supervisor: \hspace*{\fill}
+  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} \@supervisor \\
+
+  \vspace*{0.5cm}
+  \noindent
+  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} Defense Date: \hspace*{\fill}
+  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}\@degreedate
 
 \end{singlespace}
+
+\end{titlepage}
 }
 
 % ******************************* Declaration **********************************
 % The declaration environment puts a large, bold, centered
 % "Declaration" label at the top of the page.
-
 \newenvironment{declaration}{
-\cleardoublepage
-\setsinglecolumn
-\thispagestyle{empty}
+  \thispagestyle{empty}
+    \vfill
+    \chapter*{\Large \@declarationtitle}
+}{
+    \vspace{2cm}
+    \noindent In \@city on \@degreedate
+
+    \vspace{1cm}
+    \noindent
+    \makebox[7cm]{\dotfill} \\
+    \textit{(author signature)}
+    \thispagestyle{empty}
 }
-
-
 
 % ****************************** Acknowledgements ********************************
 % The acknowledgements environment puts a large, bold, centered
 % "Acknowledgements" label at the top of the page.
-
 \newenvironment{acknowledgements}{
 \cleardoublepage
 \setsinglecolumn
-\chapter*{\centering \Large \@acknowledgementstitle}
 \thispagestyle{empty}
 }
-
 
 
 % ******************************* Nomenclature *********************************

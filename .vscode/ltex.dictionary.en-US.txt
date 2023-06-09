@@ -22,3 +22,14 @@ k-th
 iid
 MLE
 Kullback-Leibler
+Pešek
+Fičura
+Ing
+lightedge
+mainstate
+mainedge
+stationarity
+time-heterogenuous
+n-th
+càdlàg
+Doob

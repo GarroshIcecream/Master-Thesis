@@ -10,15 +10,15 @@
     \graphicspath{{Chapter1/Figs/Vector/}{Chapter1/Figs/}}
 \fi
 
-\tikzstyle{state}=[shape=circle,draw=blue!50,fill=blue!20]
-\tikzstyle{observation}=[shape=rectangle,draw=orange!50,fill=orange!20]
-\tikzstyle{lightedge}=[<-,dotted]
-\tikzstyle{mainstate}=[state,thick]
-\tikzstyle{mainedge}=[<-,thick]
+\tikzstyle{state}=[shape=circle, draw=blue!50,fill=blue!20]
+\tikzstyle{observation}=[shape=rectangle, draw=orange!50,fill=orange!20]
+\tikzstyle{lightedge}=[<-, dotted]
+\tikzstyle{mainstate}=[state, thick]
+\tikzstyle{mainedge}=[<-, thick]
 
-As described in \cite{Ross2014}, a Markov chain is a stochastic process describing a sequence of possible events where the probability of each event depends solely on the state attained in the previous event. This is termed as the 'Markov Property', which encapsulates the memorylessness of the process — the future is independent of the past given the present.
+As described in \citep{Ross2014}, a Markov chain is a stochastic process describing a sequence of possible events where the probability of each event depends solely on the state attained in the previous event. This is termed as the 'Markov Property', which encapsulates the memorylessness of the process — the future is independent of the past given the present.
 
-Markov chains provide a robust framework for modeling the probabilistic nature of cryptocurrency markets. The rapid fluctuation of cryptocurrency prices, driven by a myriad of factors such as market sentiment, technological advancements, regulatory news, and macroeconomic trends, may be represented effectively using Markov chains. \cite{Zhang2023}
+Markov chains provide a robust framework for modeling the probabilistic nature of cryptocurrency markets. The rapid fluctuation of cryptocurrency prices, driven by a myriad of factors such as market sentiment, technological advancements, regulatory news, and macroeconomic trends, may be represented effectively using Markov chains. \citep{Zhang2023}
 
 In this chapter, we start by laying down the fundamental theoretical foundations of Markov chains. This includes an explanation of key concepts such as state spaces, transition probabilities, and the difference between discrete and continuous time Markov chains. Understanding these basic building blocks is pivotal in leveraging Markov chains for cryptocurrency market analysis and trading.
 
@@ -29,7 +29,7 @@ Next, we focus on specific properties of Markov chains like irreducibility, peri
 
 Since we know that Markov Chain is a stochastic process, we ought to define what a stochastic process is, in itself, first. 
 
-Let $\Omega \neq \emptyset$ and $\mathcal{F} \subseteq 2^{\Omega}$ be a $\sigma$-algebra on $\Omega$, and $\mathbb{P}$ a measure with $\mathbb{P}(\Omega) = 1$, i.e. $\mathbb{P}$ is a \textit{probability measure}. According to \cite{Dostal}, the triplet $(\Omega, \mathcal{F}, \mathbb{P})$ is, in this case, called a \textit{discrete probability space}. Where $\Omega$ denotes a sure event, and it holds that $\forall \omega \in \Omega$ is called an \textit{elementary event}. Furthermore, $\forall A \in \mathcal{F}$ is a random event  so that $\mathbb{P}(A)$ denotes a probability of that event. 
+Let $\Omega \neq \emptyset$ and $\mathcal{F} \subseteq 2^{\Omega}$ be a $\sigma$-algebra on $\Omega$, and $\mathbb{P}$ a measure with $\mathbb{P}(\Omega) = 1$, i.e. $\mathbb{P}$ is a \textit{probability measure}. According to \citep{Dostal}, the triplet $(\Omega, \mathcal{F}, \mathbb{P})$ is, in this case, called a \textit{discrete probability space}. Where $\Omega$ denotes a sure event, and it holds that $\forall \omega \in \Omega$ is called an \textit{elementary event}. Furthermore, $\forall A \in \mathcal{F}$ is a random event  so that $\mathbb{P}(A)$ denotes a probability of that event. 
 
 Let $I$ be a countable set and $\mathbb{S}$ a $\sigma$-algebra on $I$. Each $i \in I$ is called a \textit{state} and $(I,\mathbb{S})$ a \textit{state-space}.
 Therefore, we have two measurable topological spaces $(\Omega,\mathcal{F})$ and $(I,\mathbb{S})$ and a random variable $X: \Omega \rightarrow I$ assuming that X is measurable function. Thus, we call $(I,\mathbb{S})$ a state space and $(\Omega, \mathcal{F})$ an underlying space. Therefore, we may set:
@@ -38,7 +38,7 @@ Therefore, we have two measurable topological spaces $(\Omega,\mathcal{F})$ and 
 \mu_X(i) = \mathbb{P}(X=i)=\mathbb{P}(\{\omega: X(\omega)=i\})
 \end{equation}
 
-Since we are allowing only for the discrete realizations of the random variable X, given previous assumptions and that $\sum\limits_{i \in I} \mu_X(i)=1$, $\mu_X$ is a \textit{probability mass function}. \cite{Norris2012}
+Since we are allowing only for the discrete realizations of the random variable X, given previous assumptions and that $\sum\limits_{i \in I} \mu_X(i)=1$, $\mu_X$ is a \textit{probability mass function}. \citep{Norris2012}
 
 Let us now assume that we have a sequence of random variables $\{X_t : t \in T\}$ where $T$ is a countable set of time steps.
  We say that $\{X_t : t \in T\}$ is a \textit{stochastic process} and if it also holds that $T = \mathbb{N}_0$ then {\it discrete-time stochastic process}.
@@ -49,8 +49,8 @@ Let us now assume that we have a sequence of random variables $\{X_t : t \in T\}
 \mathbb{P}(X_{t+1}=i_{t+1}|X_t=i_t,\ldots,X_0=i_0) = \mathbb{P}(X_{t+1}=i_{t+1}|X_t=i_t)
 \end{equation}
 
-which holds for all $t \in T$ and $i_0,i_1,\ldots,i_{t+1} \in I$. \cite{Praskova2012} In other words, the probability of observing a state $i_{t+1}$ at time $t+1$ given the sequence of states $i_0,i_1,\ldots,i_{t+1}$ is equal to the probability of observing a state $i_{t+1}$ at time $t+1$ given only the last observed state $i_t$.
-This fundamental relationship is called {\it Markov property}, and it is a consequence of the \textit{memoryless property} of Markov Chains. \cite{Haggstrom2002}
+which holds for all $t \in T$ and $i_0,i_1,\ldots,i_{t+1} \in I$. \citep{Praskova2012} In other words, the probability of observing a state $i_{t+1}$ at time $t+1$ given the sequence of states $i_0,i_1,\ldots,i_{t+1}$ is equal to the probability of observing a state $i_{t+1}$ at time $t+1$ given only the last observed state $i_t$.
+This fundamental relationship is called {\it Markov property}, and it is a consequence of the \textit{memoryless property} of Markov Chains. \citep{Haggstrom2002}
 Conditional property of Markov Chains may be equivalently expressed using current state as $i \in I$ and a previous state $j \in I$ as:
 
 \begin{equation}
@@ -58,13 +58,13 @@ Conditional property of Markov Chains may be equivalently expressed using curren
 \end{equation}
 
 where $p_{j,i}(t,t+1)$ is a {\it transition probability} from state $j$ to state $i$ at time $t$ and $t+1$ respectively. Sometimes we refer to these transitions as {\it one-step transitions} since they are only dependent on the previous state.
-As an extension of the Markov property we may also define a \textit{k-step transition} as a probability of observing a state $i$ at time $t+k$ given the state $j$ at time $t$ as \cite{Tolver2016}:
+As an extension of the Markov property we may also define a \textit{k-step transition} as a probability of observing a state $i$ at time $t+k$ given the state $j$ at time $t$ as \citep{Tolver2016}:
 
 \begin{equation}
     \mathbb{P}(X_{t+k}=i|X_t=j) = p_{j,i}(t,t+k)
 \end{equation}
 
-One important distinction by \cite{Weinan2019} is that if the transition probabilities $p_{j,i}(t,t+k)$ do not depend on time $t$ then the Markov Chain is called \textit{homogeneous} otherwise these probabilities vary over time, therefore \textit{heterogeneous} Markov Chain\footnote{In some sources the homogeneity with respect to time is emphasized s.t. the term is time-homogeneous or time-heterogenuous Markov Chains}.
+One important distinction by \citep{Weinan2019} is that if the transition probabilities $p_{j,i}(t,t+k)$ do not depend on time $t$ then the Markov Chain is called \textit{homogeneous} otherwise these probabilities vary over time, therefore \textit{heterogeneous} Markov Chain\footnote{In some sources the homogeneity with respect to time is emphasized s.t. the term is time-homogeneous or time-heterogenuous Markov Chains}.
 Considering only first order homogeneous Markov Chain we may define a \textit{transition matrix} 
 $A = (p_{i,j} : i,j \in I)$ as a matrix of transition probabilities between each state $i,j \in I$ such that:
 
@@ -72,7 +72,7 @@ $A = (p_{i,j} : i,j \in I)$ as a matrix of transition probabilities between each
 p_{j,i} \geq 0 \quad i,j \in I; \quad \sum\limits_{j \in I} ^{}p_{i,j} = 1, \quad \forall i \in I
 \end{equation}
 
-Rectangular matrix $\textbf{A}$ that satisfies property given by Equation \ref{eq:1.5} is called \textit{stochastic matrix}. \cite{Gagniuc2017}
+Rectangular matrix $\textbf{A}$ that satisfies property given by Equation \ref{eq:1.5} is called \textit{stochastic matrix}. \citep{Gagniuc2017}
 Furthermore, we ought to define a probability distribution $\textbf{p} =\{p_i, i \in I\} $ as a vector of probabilities of observing each state at time $t=0$ such that:
 
 \begin{equation}
@@ -87,7 +87,7 @@ p_i \geq 0 \quad i \in I; \quad \sum\limits_{i \in I} ^{}p_i = 1
 
 which is also called \textit{initial distribution} of Markov Chain.
 
-According to~\cite{Praskova2012}, once we have transition matrix $A$ and initial distribution $\textbf{p}$ that satisfy constraints given by Equation (1.5) and (1.7) respectively,
+According to~\citep{Praskova2012}, once we have transition matrix $A$ and initial distribution $\textbf{p}$ that satisfy constraints given by Equation (1.5) and (1.7) respectively,
 then $\{X_t,t \in \mathbb{N}_0\}$ is a discrete-time homogeneous Markov Chain with transition matrix $A$ and initial distribution $\textbf{p}$ 
 if and only if all finite dimensional distributions of $\{X_t,t \in \mathbb{N}_0\}$ are consistent with the following equation:
 
@@ -95,20 +95,20 @@ if and only if all finite dimensional distributions of $\{X_t,t \in \mathbb{N}_0
     \mathbb{P}(X_{0}=i_0,X_{1}=i_1,\ldots,X_{k}=i_k) = p_{i_0} p_{i_0,i_1} \ldots p_{i_{k-1},i_k}
 \end{equation}
 
-where $i_0,i_1,\ldots,i_k \in I$ and $k \in \mathbb{N}_0$. If we abstract from the initial distribution $p$, such equation is called \textit{Chapman-Kolmogorov equation} as in~\cite{Yin2004}.
+where $i_0,i_1,\ldots,i_k \in I$ and $k \in \mathbb{N}_0$. If we abstract from the initial distribution $p$, such equation is called \textit{Chapman-Kolmogorov equation} as in~\citep{Yin2004}.
 Above stated equation also holds for non-homogeneous Markov Chains with the only difference that the transition probabilities $p_{i,j}$ are time dependent:
 
 \begin{equation}
     \mathbb{P}(X_{0}=i_0,X_{1}=i_1,\ldots,X_{k}=i_k) = p_{i_0}(0) p_{i_0,i_1}(0,1) \ldots p_{i_{k-1},i_k}(k-1,k)
 \end{equation}
 
-another substantial property of homogeneous Markov Chains is that their n-th order transition probabilities can be expressed as a product of their first order transition probabilities:
+Another substantial property of homogeneous Markov Chains is that their n-th order transition probabilities can be expressed as a product of their first order transition probabilities:
 
 \begin{equation}
     \mathbb{P}(X_{m+n} = j|X_{m} = i) = p_{i,j}^{(n)}, \quad i,j \in I
 \end{equation}
 
-where generally $p_{i,j}^{(m+n)} = \sum\limits_{k \in I} p_{i,k}^{(m)} p_{k,j}^{(n)}$ is referred to as \textit{Chapman-Kolmogorov equality} and holds for $m,n \in \mathbb{N}_0$ and $P(X_m=i) \geq 0$. \cite{Praskova2012}
+where generally $p_{i,j}^{(m+n)} = \sum\limits_{k \in I} p_{i,k}^{(m)} p_{k,j}^{(n)}$ is referred to as \textit{Chapman-Kolmogorov equality} and holds for $m,n \in \mathbb{N}_0$ and $P(X_m=i) \geq 0$. \citep{Praskova2012}
 
 To simply illustrate the idea behind discrete-time homogeneous Markov Chains let us assume a situation where the future market movements transition between a countable number of states $I =$ \{upward, side, downward\} 
 and there is a transition matrix A and initial distribution $p$:
@@ -126,7 +126,7 @@ and there is a transition matrix A and initial distribution $p$:
 \end{pmatrix}
 \end{equation}
 
-using a maximum likelihood estimator of transition matrix according to \cite{Gagniuc2017}:
+using a maximum likelihood estimator of transition matrix according to \citep{Gagniuc2017}:
 
 \begin{equation}
 \hat{p}_{i,j} = \frac{\sum\limits_{k=1}^{n-1} \mathbbm{1}_{\{X_k=i,X_{k+1}=j\}}}{\sum\limits_{k=1}^{n-1} \mathbbm{1}_{\{X_k=i\}}}
@@ -187,7 +187,7 @@ so we can abstract from the given sequence of past states and focus only on $X_{
 \subsection{Classification of states}
 
 Markov Chains may be classified into several categories based on their properties. 
-Firstly, \cite{Praskova2012} and others, distinguish between \textit{transient} and \textit{recurrent} states and as a convenient notation we will introduce so-called \textit{return time} $\tau_j$ 
+Firstly, \citep{Praskova2012} and others, distinguish between \textit{transient} and \textit{recurrent} states and as a convenient notation we will introduce so-called \textit{return time} $\tau_j$ 
 as a random variable that denotes the time of k-th return to state $j \in I$:
 
 \begin{equation}
@@ -200,7 +200,7 @@ This random variable also satisfies properties of {\it recurrence time}.
 Any random variable $\tau:\Omega \to \mathbb{N}_0 \cup \{ \infty \}$ for which outcomes $[\tau = n]$ belong to 
 $\sigma$-algebra $\mathcal{F}_n = \sigma(X_0,\ldots,X_n)$ generated by random variables $X_0,X_1, \ldots , X_n$ is called a {\it recurrence time}.
 
-Thus, \cite{Bremaud1999} and \cite{Tolver2016}, state that $j \in I$ is \textit{transient} if there is a non-zero probability that the process will never return to state $j$ once it has left it, i.e.:
+Thus, \citep{Bremaud1999} and \citep{Tolver2016}, state that $j \in I$ is \textit{transient} if there is a non-zero probability that the process will never return to state $j$ once it has left it, i.e.:
 
 \begin{equation}
     \mathbb{P}(\tau_j(1) = \infty|X_0=j) > 0, \quad \sum\limits_{n=0}^{\infty} p_{j,j}^{(n)} \leq \infty
@@ -214,7 +214,7 @@ for some $k \in \mathbb{N}_0$. On the other hand, a state $j \in I$ is called {\
 
 We can further distinguish between {\it positive recurrent} if the expected return time is finite $E[\tau_j(1)|X_0=j] < \infty$ and {\it null recurrent} if the expected return time is infinite $E[\tau_j(1)|X_0=j] = \infty$.
 
-Let us make one more distinction regarding a Markov chain states as \cite{Gebali2008}. The greatest common divisor of the number of times a state can return to itself is the period. If the period is larger than 1, the state is called \textit{periodic} and 
+Let us make one more distinction regarding a Markov chain states as \citep{Gebali2008}. The greatest common divisor of the number of times a state can return to itself is the period. If the period is larger than 1, the state is called \textit{periodic} and 
 on the contrary, if there is no such integer and the state can be revisited at any time, then the state is called \textit{aperiodic}.
 If all states in a Markov chain are aperiodic, the Markov chain itself is said to be aperiodic as well. Aperiodicity is a desirable property for a Markov chain because it ensures that the chain does not get trapped in oscillating sequences of states. 
 To clarify, a periodicity does not mean that each state must be reachable from every other state in just one step. It's a more subtle concept, meaning that the greatest common divisor of the lengths of all cycles in the chain must be 1, so that any state can be reached from any other state in a variable number of steps.
@@ -226,7 +226,7 @@ Same logic applies that if all states of a Markov chain are ergodic, then the ch
 
 A pivotal concept linked to Markov Chains is that of the stationary distribution, a distinct probability 
 distribution that remains invariant under the transition dynamics of the chain. 
-If we denote $\pi = \{\pi_j,j \in I\}$ as a probability distribution, and it satisfies following equality by \cite{Bremaud1999}:
+If we denote $\pi = \{\pi_j,j \in I\}$ as a probability distribution, and it satisfies following equality by \citep{Bremaud1999}:
 
 \begin{equation} \label{eq:stationary}
     \pi_j = \sum_{i \in I} \pi_i p_{i,j}, \quad j \in I
@@ -248,11 +248,11 @@ and also for $\pi_j$ called initial stationary probabilities:
 
 It's important to stress that the existence and uniqueness of a stationary distribution 
 is not guaranteed for all Markov Chains, but under specific conditions a unique stationary 
-distribution does exist and any initial distribution converges to this stationary distribution \cite{Praskova2012} as time progresses.
+distribution does exist and any initial distribution converges to this stationary distribution \citep{Praskova2012} as time progresses.
 If all states of the chain are transient or null recurrent, then no stationary distribution exists. On the other hand if the chain is
 positive recurrent, then a stationary distribution exists and is unique.
 
-Important property of stationary distribution is that if we have an irreducible and aperiodic Markov Chain, its transition matrix $A$ converges to limiting matrix $\pi_{ij}$ according to \cite{Haggstrom2002} as follows:
+Important property of stationary distribution is that if we have an irreducible and aperiodic Markov Chain, its transition matrix $A$ converges to limiting matrix $\pi_{ij}$ according to \citep{Haggstrom2002} as follows:
 
 \begin{equation}
     \lim_{n \to \infty} p_{ij}^{(n)} = \pi_{ij}, \quad i,j \in I
@@ -263,7 +263,7 @@ Markov Chain for sufficiently long time, the distribution at time n approaches t
  
 The fundamental significance of the stationary distribution arises from its ability to dictate the long-term, 
 steady-state behavior of the chain. Furthermore, the stationary distribution plays an essential role in the 
-calculation of expected return times, the analysis of limiting probabilities, and \cite{Navarro2011} states that it forms the backbone of
+calculation of expected return times, the analysis of limiting probabilities, and \citep{Navarro2011} states that it forms the backbone of
 algorithms such as the Metropolis-Hastings algorithm widely used in Monte Carlo simulations.
 
 \subsection{Cryptocurrency market movements I.}
@@ -288,7 +288,7 @@ Given these assumptions we first examine BTC-USDT close price time series data i
 \begin{figure}[htbp]
     \begin{center}
         \includegraphics[width=1.0\textwidth]{Figs/BTC-USD.png}
-        \caption{BTC-USD daily close prices from 23rd August 2020 to 15th May 2023 obtained from Binance. \cite{tradingview}}
+        \caption{BTC-USD daily close prices from 23rd August 2020 to 15th May 2023 obtained from Binance. \citep{tradingview}}
         \label{fig:BTC-USD}
     \end{center}
 \end{figure}
@@ -296,7 +296,7 @@ Given these assumptions we first examine BTC-USDT close price time series data i
 \begin{figure}[htbp]
     \begin{center}
         \includegraphics[width=1.0\textwidth]{Figs/BTC-USD_hist.png}
-        \caption{Distribution of the log returns with respect to predefined market states. \cite{tradingview}}
+        \caption{Distribution of the log returns with respect to predefined market states. \citep{tradingview}}
         \label{fig:BTC-USD-distribution}
     \end{center}
 \end{figure}
@@ -304,7 +304,7 @@ Given these assumptions we first examine BTC-USDT close price time series data i
 Observing the distribution of the log-returns of the daily BTC-USDT close price in \ref{fig:BTC-USD-distribution} we may conclude that such a random variable is normally distributed,
 given the symmetric property of the distribution with respect to the mean value. Furthermore, it is visible that the kurtosis might be greater than 3,
 which implies that the distribution has heavier tails than the normal distribution, i.e. the extreme events are more likely to occur than in the normal distribution.
-Such a property is also called \textit{leptokurtic} distribution which is a result of the high volatility of the cryptocurrency market. \cite{Peters1994}
+Such a property is also called \textit{leptokurtic} distribution which is a result of the high volatility of the cryptocurrency market. \citep{Peters1994}
 
 Let us now take the ordered sample of states from the BTC-USDT close price time series data and calculate 
 the transition and initial probabilities for each state as follows:
@@ -354,7 +354,7 @@ Let us consider a stochastic process $\{X(t),t \geq 0\}$ on a probability space 
 \end{equation}
 
 where $0 \leq t_1 < \ldots < t_n < s < t $ and so it is trivially seen that such expression is equivalent to the discrete-time Markov Chain property 
-given by Equation~\ref{eq:DTMC} with the only difference of continuous transition period. \cite{Tolver2016}
+given by Equation~\ref{eq:DTMC} with the only difference of continuous transition period. \citep{Tolver2016}
 
 Since the state space remains the same as in discrete-time Markov Chains, we refer to the same transition matrix $\textbf{A}$ and initial distribution $\textbf{p}$.
 In upcoming subsection, continuous-time Markov Chain is assumed to be homogeneous, i.e.\ the transition probabilities are independent of time:
@@ -370,7 +370,7 @@ Chapmam-Kolmogorov equality for $s,t \geq 0$ also holds for continous-time Marko
 p_{i,j}(s+t) = \sum\limits_{k \in I} p_{i,k}(s) p_{k,j}(t), \quad i,j \in I
 \end{equation}
 
-Here we also assume \cite{Gallager2013} stating following:
+Here we also assume \citep{Gallager2013} stating following:
 
 \begin{equation}
     \lim_{t \to 0_{+}} p_{i,j}(t) = \delta_{i,j} = 
@@ -380,11 +380,11 @@ Here we also assume \cite{Gallager2013} stating following:
         \end{cases}
 \end{equation}
 
-where $\delta_{i,j}$ is a \textit{Kronecker delta function}, i.e. the transition probabilities $p_{ij}(t)$ are right continuous at $t=0$. \cite{Norris2012} says that if such additional conditions are satisfied for any homogeneous continous-time Markov Chain, 
+where $\delta_{i,j}$ is a \textit{Kronecker delta function}, i.e. the transition probabilities $p_{ij}(t)$ are right continuous at $t=0$. \citep{Norris2012} says that if such additional conditions are satisfied for any homogeneous continous-time Markov Chain, 
 then the underlying stochastic process is said to be continuous and there exists its version that is separable, measurable and its trajectories are càdlàg almost surely. Such version allows us to infer 
 certain properties of the stochastic process.
 
-For example \cite{}, important property for such Markov Chain given \textit{Doob's martingale convergence theorem} for $s \geq 0$ and $h>0$ is:
+For example \citep{Gidi2018}, one important property of such Markov Chain following from \textit{Doob's martingale convergence theorem} for $s \geq 0$ and $h>0$ is:
 
 \begin{equation}
     \mathbb{P}(X(t) = i|X(s)=i, s \leq t \leq s+h) = \exp(-{q_i}h)
@@ -394,11 +394,11 @@ which means that the probability of staying in state $i$ for time $h$ is equal t
 Non-negative real elements of $q_{i,j}$ are called \textit{transition rates} from state $i$ to state $j$ and absolute transition 
 rate $q_i = \sum_{j \neq i} q_{i,j}$ respectively. Trivially, in cases where the transition rate $q_i=0$, the $p_{i,i} = 1$, i.e. the state $i$ is absorbing, 
 once the chain enters such state it remains in such state for infinite amount of time. On the contrary, if $0 < q_i < \infty$ then the state $i$ is non-absorbing and stable, therefore
-the chain will eventually leave such a state. For infinite transition rate $q_i = \infty$ the state $i$ is called {\it unstable} where the time of staying in such state is almost surely zero. \cite{Praskova2012}
+the chain will eventually leave such a state. For infinite transition rate $q_i = \infty$ the state $i$ is called {\it unstable} where the time of staying in such state is almost surely zero. \citep{Praskova2012}
 
 If we consider a stable state $i$ then its expected time of staying in such state is exponentially 
 distributed with expected value of $1/q_i$. In other words, the expected time of staying in state $i$ is equal 
-to the inverse of the transition rate $q_i$. \cite{Norris2012}
+to the inverse of the transition rate $q_i$. \citep{Norris2012}
 
 Since, we have already defined that the process has exponentially distributed transition period, we may define a \textit{holding time} $T_i$ as a random variable that denotes the time of staying in state $i$:
 
@@ -416,7 +416,7 @@ from which it follows that $\mathbb{P}(T_i>s) = P(X_t=i,0 \leq t \leq s|X_0=i) =
     \end{cases}
 \end{equation}
 
-According to \cite{Praskova2012} and the properties of the transition rates, such time-homogeneous continuous Markov Chain should satisfy following equations:
+According to \citep{Praskova2012} and the properties of the transition rates, such time-homogeneous continuous Markov Chain should satisfy following equations:
 
 \begin{equation}
     \begin{aligned}
@@ -427,7 +427,7 @@ According to \cite{Praskova2012} and the properties of the transition rates, suc
 
 where $o(h)$ is a function of $h$ such that $\lim_{h \to 0} \frac{o(h)}{h} = 0$. Let us denote $\textbf{Q}$ as transition rates matrix with entries $\{q_{i,j}: i,j \in I\}$.
 
-Such intensities resemble the probability functions of Poisson process, and indeed according to \cite{Norris2012} it is a special case of homogeneous continous-time Markov Chain with intensity $\lambda \geq 0$ if following conditions are satisfied:
+Such intensities resemble the probability functions of Poisson process, and indeed according to \citep{Norris2012} it is a special case of homogeneous continous-time Markov Chain with intensity $\lambda \geq 0$ if following conditions are satisfied:
 
 \begin{itemize}
 \item [1)] Stochastic process is viewed as a jump process, i.e.\ current state $i$ either stays in state $i$ or jumps to another state $j=i+1$. Therefore, given an interval $[t,t+h]$ the probability of jumping to another state is $\lambda h + o(h)$ and the probability of staying in state $i$ is $1-\lambda h + o(h)$.

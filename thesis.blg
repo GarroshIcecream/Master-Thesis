@@ -1,20 +1,20 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'thesis.blg'
-[60] biber-darwin:340> INFO - === Fri Jun  9, 2023, 11:15:35
-[74] Biber.pm:419> INFO - Reading 'thesis.bcf'
-[155] Biber.pm:976> INFO - Using all citekeys in bib section 0
-[168] Biber.pm:4419> INFO - Processing section 0
-[176] Biber.pm:4610> INFO - Looking for bibtex file 'References/references.bib' for section 0
-[178] bibtex.pm:1713> INFO - LaTeX decoding ...
-[207] bibtex.pm:1519> INFO - Found BibTeX data source 'References/references.bib'
-[383] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[383] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[383] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[383] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
-[416] bbl.pm:660> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
-[429] bbl.pm:763> INFO - Output to thesis.bbl
-[429] Biber.pm:131> WARN - ISBN '9780470191606,9780471201700,0471201707' in entry 'McLachlan2008' is invalid - run biber with '--validate_datamodel' for details.
-[429] Biber.pm:131> WARN - ISBN '9780387310732,0387310738' in entry 'Bishop2006' is invalid - run biber with '--validate_datamodel' for details.
-[429] Biber.pm:131> WARN - ISBN '9780898716658,0898716659' in entry 'book:515081' is invalid - run biber with '--validate_datamodel' for details.
-[429] Biber.pm:131> WARN - ISBN '9780470114742,9780471226185,0471226181' in entry 'Agresti2007' is invalid - run biber with '--validate_datamodel' for details.
-[429] Biber.pm:133> INFO - WARNINGS: 4
+[132] biber-MSWIN64:340> INFO - === 
+[175] Biber.pm:419> INFO - Reading 'thesis.bcf'
+[318] Biber.pm:976> INFO - Using all citekeys in bib section 0
+[335] Biber.pm:4419> INFO - Processing section 0
+[349] Biber.pm:4610> INFO - Looking for bibtex file 'References/references.bib' for section 0
+[404] bibtex.pm:1713> INFO - LaTeX decoding ...
+[455] bibtex.pm:1519> INFO - Found BibTeX data source 'References/references.bib'
+[672] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[672] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[672] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[672] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[713] bbl.pm:660> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
+[731] bbl.pm:763> INFO - Output to thesis.bbl
+[732] Biber.pm:131> WARN - ISBN '9780387310732,0387310738' in entry 'Bishop2006' is invalid - run biber with '--validate_datamodel' for details.
+[732] Biber.pm:131> WARN - ISBN '9780470191606,9780471201700,0471201707' in entry 'McLachlan2008' is invalid - run biber with '--validate_datamodel' for details.
+[732] Biber.pm:131> WARN - ISBN '9780898716658,0898716659' in entry 'book:515081' is invalid - run biber with '--validate_datamodel' for details.
+[732] Biber.pm:131> WARN - ISBN '9780470114742,9780471226185,0471226181' in entry 'Agresti2007' is invalid - run biber with '--validate_datamodel' for details.
+[732] Biber.pm:133> INFO - WARNINGS: 4
