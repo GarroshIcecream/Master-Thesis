@@ -945,21 +945,21 @@ wish to left align your text}
   \begin{singlespace}
   \begin{center}
 
-  \fontsize{24}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791} \@university
+  \fontsize{24}{1}\usefont{T1}{cmr}{b}{n}\selectfont \@university
 
   \vspace*{0.5cm}
-  \fontsize{20}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} \@faculty
+  \fontsize{20}{1}\usefont{T1}{ptm}{m}{n}\selectfont \@faculty
 
   \vspace*{0.5cm}
-  \fontsize{16}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} \@dept
+  \fontsize{16}{1}\usefont{T1}{ptm}{m}{n}\selectfont \@dept
 
   \vfill
-  \fontsize{26}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791} MASTER THESIS
+  \fontsize{26}{1}\usefont{T1}{cmr}{b}{n}\selectfont MASTER THESIS
   \vfill
   
-  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} 2023
+  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont 2023
   \hspace*{\fill}
-  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}\@author
+  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont \@author
   \end{center}
   \end{singlespace}
 
@@ -969,38 +969,35 @@ wish to left align your text}
 
   \begin{singlespace}
   \begin{center}
-      \fontsize{24}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791} \@university
+      \fontsize{24}{1}\usefont{T1}{cmr}{b}{n}\selectfont \@university
 
       \vspace*{0.5cm}
-      \fontsize{20}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} \@faculty
+      \fontsize{20}{1}\usefont{T1}{ptm}{m}{n}\selectfont \@faculty
 
       \vspace*{0.5cm}
-      \fontsize{16}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} \@dept
+      \fontsize{16}{1}\usefont{T1}{ptm}{m}{n}\selectfont \@dept
 
       \vspace*{0.5cm}
-      \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} \@field
+      \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont \@field
 
       \vfill
-      \fontsize{20}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791}Hidden Markov Models
-
-      \vspace*{0.5cm}
-      \fontsize{20}{1}\usefont{T1}{cmr}{b}{n}\selectfont\color{color_29791}for Cryptocurrency Trading
+      \fontsize{20}{1}\usefont{T1}{cmr}{b}{n}\selectfont \@title
       \vfill
   \end{center}
 
   \noindent
-  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} Author: \hspace*{\fill}
-  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} \@author \\
+  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont  Author: \hspace*{\fill}
+  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont  \@author \\
 
   \vspace*{0.5cm}
   \noindent
-  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} Supervisor: \hspace*{\fill}
-  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} \@supervisor \\
+  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont Supervisor: \hspace*{\fill}
+  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont \@supervisor \\
 
   \vspace*{0.5cm}
   \noindent
-  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791} Defense Date: \hspace*{\fill}
-  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont\color{color_29791}\@degreedate
+  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont Defense Date: \hspace*{\fill}
+  \fontsize{14}{1}\usefont{T1}{ptm}{m}{n}\selectfont \@degreedate
 
 \end{singlespace}
 
@@ -1011,18 +1008,19 @@ wish to left align your text}
 % The declaration environment puts a large, bold, centered
 % "Declaration" label at the top of the page.
 \newenvironment{declaration}{
-  \thispagestyle{empty}
-    \vfill
+    \thispagestyle{empty}
     \chapter*{\Large \@declarationtitle}
+    \vfill
 }{
     \vspace{2cm}
-    \noindent In \@city on \@degreedate
+    \noindent In \@city{} on \@degreedate
 
     \vspace{1cm}
     \noindent
     \makebox[7cm]{\dotfill} \\
     \textit{(author signature)}
     \thispagestyle{empty}
+    \newpage
 }
 
 % ****************************** Acknowledgements ********************************

@@ -44,7 +44,7 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{2}
-      \field{isbn}{9780470114742,9780471226185,0471226181}
+      \field{isbn}{9780470114742}
       \field{series}{Wiley Series in Probability and Statistics}
       \field{title}{An Introduction to Categorical Data Analysis (Wiley Series in Probability and Statistics)}
       \field{year}{2007}
@@ -182,7 +182,7 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1st ed. 2006. Corr. 2nd printing}
-      \field{isbn}{9780387310732,0387310738}
+      \field{isbn}{9780387310732}
       \field{series}{Information science and statistics}
       \field{title}{Pattern Recognition and Machine Learning}
       \field{year}{2006}
@@ -254,6 +254,35 @@
       \field{title}{Markov chains}
       \field{year}{2006}
       \true{nocite}
+    \endentry
+    \entry{Sammut2011}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a74d1806d2c7633c23b3dd1d5a89026f}{%
+           family={Claude\bibnamedelima Sammut},
+           familyi={C\bibinitperiod\bibinitdelim S\bibinitperiod},
+           given={Geoffrey\bibnamedelimb I.\bibnamedelimi Webb},
+           giveni={G\bibinitperiod\bibinitdelim I\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{a74d1806d2c7633c23b3dd1d5a89026f}
+      \strng{fullhash}{a74d1806d2c7633c23b3dd1d5a89026f}
+      \strng{bibnamehash}{a74d1806d2c7633c23b3dd1d5a89026f}
+      \strng{authorbibnamehash}{a74d1806d2c7633c23b3dd1d5a89026f}
+      \strng{authornamehash}{a74d1806d2c7633c23b3dd1d5a89026f}
+      \strng{authorfullhash}{a74d1806d2c7633c23b3dd1d5a89026f}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1st Edition.}
+      \field{isbn}{9780387307688}
+      \field{title}{Encyclopedia of Machine Learning}
+      \field{year}{2011}
     \endentry
     \entry{Csiszar1975}{article}{}
       \name{author}{1}{}{%
@@ -334,6 +363,53 @@
       \verb https://web.stanford.edu/~jurafsky/slp3/A.pdf
       \endverb
     \endentry
+    \entry{Davenport1988}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=2408fd1e5b7a2923569f60c56eb2a8dd}{%
+           family={Davenport},
+           familyi={D\bibinitperiod},
+           given={J.W.},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b65e121d46c538be2c2511c75f6499c1}{%
+           family={Bezdek},
+           familyi={B\bibinitperiod},
+           given={J.C.},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=53c9020eb099b7f5dad8dfa208824547}{%
+           family={Hathaway},
+           familyi={H\bibinitperiod},
+           given={R.J.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9611ce48a81b1d1adf7610e98b2357be}
+      \strng{fullhash}{9611ce48a81b1d1adf7610e98b2357be}
+      \strng{bibnamehash}{9611ce48a81b1d1adf7610e98b2357be}
+      \strng{authorbibnamehash}{9611ce48a81b1d1adf7610e98b2357be}
+      \strng{authornamehash}{9611ce48a81b1d1adf7610e98b2357be}
+      \strng{authorfullhash}{9611ce48a81b1d1adf7610e98b2357be}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Computers \& Mathematics with Applications}
+      \field{number}{10}
+      \field{title}{Parameter estimation for finite mixture distributions}
+      \field{volume}{15}
+      \field{year}{1988}
+      \field{pages}{819\bibrangedash 828}
+      \range{pages}{10}
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/0898122188901198
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/0898122188901198
+      \endverb
+    \endentry
     \entry{Dempster1977}{article}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=09d592a5388131e31704c9c4464439c9}{%
@@ -411,7 +487,7 @@
       \field{title}{Lecture notes in Theory of Probability I.}
       \field{year}{2009}
     \endentry
-    \entry{book:515081}{book}{}
+    \entry{Fraser2009}{book}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=db6124b2ec26882c7974d23cbb3e5b1f}{%
            family={Fraser},
@@ -437,7 +513,7 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1}
-      \field{isbn}{9780898716658,0898716659}
+      \field{isbn}{9780898716658}
       \field{title}{Hidden Markov Models and Dynamical Systems}
       \field{year}{2009}
       \true{nocite}
@@ -452,7 +528,7 @@
            givenun=0}}%
       }
       \list{publisher}{1}{%
-        {[American Statistical Association, Taylor & Francis, Ltd.]}%
+        {[American Statistical Association, Taylor \& Francis, Ltd.]}%
       }
       \strng{namehash}{3391f20ec45e2bd4ab6404f55934bbc8}
       \strng{fullhash}{3391f20ec45e2bd4ab6404f55934bbc8}
@@ -565,10 +641,40 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{2}
-      \field{isbn}{9780470191606,9780471201700,0471201707}
+      \field{isbn}{9780470191606}
       \field{series}{Wiley Series in Probability and Statistics}
       \field{title}{The EM Algorithm and Extensions}
       \field{year}{2008}
+    \endentry
+    \entry{McLachlan2000}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=e382b0670bc73005791f98fd4d7ffd20}{%
+           family={Geoffrey\bibnamedelima McLachlan},
+           familyi={G\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={David\bibnamedelima Peel},
+           giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley-Interscience}%
+      }
+      \strng{namehash}{e382b0670bc73005791f98fd4d7ffd20}
+      \strng{fullhash}{e382b0670bc73005791f98fd4d7ffd20}
+      \strng{bibnamehash}{e382b0670bc73005791f98fd4d7ffd20}
+      \strng{authorbibnamehash}{e382b0670bc73005791f98fd4d7ffd20}
+      \strng{authornamehash}{e382b0670bc73005791f98fd4d7ffd20}
+      \strng{authorfullhash}{e382b0670bc73005791f98fd4d7ffd20}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1}
+      \field{isbn}{9780471006268}
+      \field{series}{Wiley Series in Probability and Statistics}
+      \field{title}{Finite Mixture Models}
+      \field{year}{2000}
     \endentry
     \entry{Gu2008}{misc}{}
       \name{author}{1}{}{%
@@ -633,6 +739,37 @@
       \field{title}{Finite Markov chains and algorithmic applications}
       \field{year}{2002}
     \endentry
+    \entry{MacDonald1997}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=faf5c1b0a84007902a3e5d2a5e585846}{%
+           family={Iain\bibnamedelimb L.\bibnamedelimi MacDonald},
+           familyi={I\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={Walter\bibnamedelima Zucchini},
+           giveni={W\bibinitperiod\bibinitdelim Z\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Chapman \& Hall}%
+      }
+      \strng{namehash}{faf5c1b0a84007902a3e5d2a5e585846}
+      \strng{fullhash}{faf5c1b0a84007902a3e5d2a5e585846}
+      \strng{bibnamehash}{faf5c1b0a84007902a3e5d2a5e585846}
+      \strng{authorbibnamehash}{faf5c1b0a84007902a3e5d2a5e585846}
+      \strng{authornamehash}{faf5c1b0a84007902a3e5d2a5e585846}
+      \strng{authorfullhash}{faf5c1b0a84007902a3e5d2a5e585846}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1st ed}
+      \field{isbn}{9780412558504}
+      \field{series}{Monographs on statistics and applied probability 70}
+      \field{title}{Hidden Markov and other models for discrete-valued time series}
+      \field{year}{1997}
+      \true{nocite}
+    \endentry
     \entry{Oliver2013}{book}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=590d8d4ae906f0722e9e2ba36289ae6d}{%
@@ -674,7 +811,7 @@
            givenun=0}}%
       }
       \list{publisher}{1}{%
-        {[Taylor & Francis, Ltd., American Statistical Association, American Society for Quality]}%
+        {[Taylor \& Francis, Ltd., American Statistical Association, American Society for Quality]}%
       }
       \strng{namehash}{47686436afa5a7e1c4e2a9d12c53fe22}
       \strng{fullhash}{47686436afa5a7e1c4e2a9d12c53fe22}
@@ -904,6 +1041,47 @@
       \field{pages}{3905\bibrangedash 3917}
       \range{pages}{13}
     \endentry
+    \entry{Pandolfi2021}{misc}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=b8818124f74108b141d015bfeccf78c6}{%
+           family={Pandolfi},
+           familyi={P\bibinitperiod},
+           given={Silvia},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=19322144761842de02fec630c75ce498}{%
+           family={Bartolucci},
+           familyi={B\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=22142b1fd60e5493de71037ba448296d}{%
+           family={Pennoni},
+           familyi={P\bibinitperiod},
+           given={Fulvia},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{94eac14c9e636b5911374b9be17e0228}
+      \strng{fullhash}{94eac14c9e636b5911374b9be17e0228}
+      \strng{bibnamehash}{94eac14c9e636b5911374b9be17e0228}
+      \strng{authorbibnamehash}{94eac14c9e636b5911374b9be17e0228}
+      \strng{authornamehash}{94eac14c9e636b5911374b9be17e0228}
+      \strng{authorfullhash}{94eac14c9e636b5911374b9be17e0228}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{stat.ME}
+      \field{eprinttype}{arXiv}
+      \field{title}{Maximum likelihood estimation of hidden Markov models for continuous longitudinal data with missing responses and dropout}
+      \field{year}{2021}
+      \verb{eprint}
+      \verb 2106.15948
+      \endverb
+    \endentry
     \entry{Peters1994}{book}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=5097868c01c0cddcd3a482158f90bdb3}{%
@@ -1031,6 +1209,91 @@
       \field{title}{Fundamentals of Speech Recognition}
       \field{year}{1993}
     \endentry
+    \entry{Ramaprasad2004}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=547d6e80da3d1482d1089f19b81bec26}{%
+           family={Ramaprasad\bibnamedelima Bhar},
+           familyi={R\bibinitperiod\bibinitdelim B\bibinitperiod},
+           given={Shigeyuki\bibnamedelimb Hamori\bibnamedelima (auth.)},
+           giveni={S\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim (\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer US}%
+      }
+      \strng{namehash}{547d6e80da3d1482d1089f19b81bec26}
+      \strng{fullhash}{547d6e80da3d1482d1089f19b81bec26}
+      \strng{bibnamehash}{547d6e80da3d1482d1089f19b81bec26}
+      \strng{authorbibnamehash}{547d6e80da3d1482d1089f19b81bec26}
+      \strng{authornamehash}{547d6e80da3d1482d1089f19b81bec26}
+      \strng{authorfullhash}{547d6e80da3d1482d1089f19b81bec26}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1}
+      \field{isbn}{9781402079405}
+      \field{series}{Advanced Studies in Theoretical and Applied Econometrics 40}
+      \field{title}{Hidden Markov Models: Applications to Financial Economics}
+      \field{year}{2004}
+    \endentry
+    \entry{Rasmussen1999}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=c3e4580ad47bbaa5c297dcf7133fe05e}{%
+           family={Rasmussen},
+           familyi={R\bibinitperiod},
+           given={Carl},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=b355381619d6a313804fe1e82c3c5d5e}{%
+           family={Solla},
+           familyi={S\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=d0fa2183d141c3c709a512cab4fee1b2}{%
+           family={Leen},
+           familyi={L\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod}}}%
+        {{hash=371613b03ed3e1d02620e948e7c359f5}{%
+           family={Muller},
+           familyi={M\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{c3e4580ad47bbaa5c297dcf7133fe05e}
+      \strng{fullhash}{c3e4580ad47bbaa5c297dcf7133fe05e}
+      \strng{bibnamehash}{c3e4580ad47bbaa5c297dcf7133fe05e}
+      \strng{authorbibnamehash}{c3e4580ad47bbaa5c297dcf7133fe05e}
+      \strng{authornamehash}{c3e4580ad47bbaa5c297dcf7133fe05e}
+      \strng{authorfullhash}{c3e4580ad47bbaa5c297dcf7133fe05e}
+      \strng{editorbibnamehash}{49d94c710b9fb7ed98975bf1c0a6d12f}
+      \strng{editornamehash}{49d94c710b9fb7ed98975bf1c0a6d12f}
+      \strng{editorfullhash}{49d94c710b9fb7ed98975bf1c0a6d12f}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in Neural Information Processing Systems}
+      \field{title}{The Infinite Gaussian Mixture Model}
+      \field{volume}{12}
+      \field{year}{1999}
+      \verb{urlraw}
+      \verb https://proceedings.neurips.cc/paper_files/paper/1999/file/97d98119037c5b8a9663cb21fb8ebf47-Paper.pdf
+      \endverb
+      \verb{url}
+      \verb https://proceedings.neurips.cc/paper_files/paper/1999/file/97d98119037c5b8a9663cb21fb8ebf47-Paper.pdf
+      \endverb
+    \endentry
     \entry{Rea85}{article}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=419419917c798f89963f25bb64872a3a}{%
@@ -1122,6 +1385,41 @@
       \field{title}{Introduction to probability models}
       \field{year}{2014}
     \endentry
+    \entry{Sahu2020}{misc}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=3692edcec0bf85128b726da59f1a5264}{%
+           family={Sahu},
+           familyi={S\bibinitperiod},
+           given={Nitesh},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0aa3c173713f80245d47e7f0dec0bf08}{%
+           family={Babu},
+           familyi={B\bibinitperiod},
+           given={Prabhu},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e05547cf40f969b4c6d9ded1e6be8d89}
+      \strng{fullhash}{e05547cf40f969b4c6d9ded1e6be8d89}
+      \strng{bibnamehash}{e05547cf40f969b4c6d9ded1e6be8d89}
+      \strng{authorbibnamehash}{e05547cf40f969b4c6d9ded1e6be8d89}
+      \strng{authornamehash}{e05547cf40f969b4c6d9ded1e6be8d89}
+      \strng{authorfullhash}{e05547cf40f969b4c6d9ded1e6be8d89}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{eess.SP}
+      \field{eprinttype}{arXiv}
+      \field{title}{New Derivation for Gaussian Mixture Model Parameter Estimation: MM Based Approach}
+      \field{year}{2020}
+      \verb{eprint}
+      \verb 2001.02923
+      \endverb
+    \endentry
     \entry{Devavrat2014}{misc}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=1cb9ea02a92735af31cb3fae48147a38}{%
@@ -1153,6 +1451,65 @@
       \endverb
       \verb{url}
       \verb https://ocw.mit.edu/courses/6-438-algorithms-for-inference-fall-2014/7b1e302a77ea08f830f9adb9920ade43_MIT6_438F14_Lec22.pdf
+      \endverb
+    \endentry
+    \entry{Spade2020}{inbook}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=3c714194adf4282cb0640cf90fe0eb35}{%
+           family={Spade},
+           familyi={S\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3c714194adf4282cb0640cf90fe0eb35}
+      \strng{fullhash}{3c714194adf4282cb0640cf90fe0eb35}
+      \strng{bibnamehash}{3c714194adf4282cb0640cf90fe0eb35}
+      \strng{authorbibnamehash}{3c714194adf4282cb0640cf90fe0eb35}
+      \strng{authornamehash}{3c714194adf4282cb0640cf90fe0eb35}
+      \strng{authorfullhash}{3c714194adf4282cb0640cf90fe0eb35}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780444642110}
+      \field{journaltitle}{Handbook of Statistics}
+      \field{month}{04}
+      \field{title}{Markov chain Monte Carlo methods: Theory and practice}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.1016/bs.host.2019.06.001
+      \endverb
+    \endentry
+    \entry{Speagle2020}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=663acfd81f7e9f294f30c7a4bb39ec96}{%
+           family={Speagle},
+           familyi={S\bibinitperiod},
+           given={Joshua\bibnamedelima S.},
+           giveni={J\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{663acfd81f7e9f294f30c7a4bb39ec96}
+      \strng{fullhash}{663acfd81f7e9f294f30c7a4bb39ec96}
+      \strng{bibnamehash}{663acfd81f7e9f294f30c7a4bb39ec96}
+      \strng{authorbibnamehash}{663acfd81f7e9f294f30c7a4bb39ec96}
+      \strng{authornamehash}{663acfd81f7e9f294f30c7a4bb39ec96}
+      \strng{authorfullhash}{663acfd81f7e9f294f30c7a4bb39ec96}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{stat.OT}
+      \field{eprinttype}{arXiv}
+      \field{title}{A Conceptual Introduction to Markov Chain Monte Carlo Methods}
+      \field{year}{2020}
+      \verb{eprint}
+      \verb 1909.12313
       \endverb
     \endentry
     \entry{Tolver2016}{misc}{}
