@@ -33,3 +33,15 @@ time-heterogenuous
 n-th
 càdlàg
 Doob
+leptokurtosis
+csHMM
+cdHMM
+Markovian
+Altough
+cHMM
+Aperiodicity
+countinuous-time
+Narimatsu
+Hiroyuki
+Hiromi
+Nonstationary

@@ -1,2 +1,4 @@
 {"rule":"INTERJECTIONS_PUNCTUATION","sentence":"^\\QHMM with finite state and emission space as described above is also called discrete Hidden Markov Model.\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qwhere \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is a vector of length \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q with only one element equal to 1 and the rest equal to 0.\\E$"}
+{"rule":"CD_NN","sentence":"^\\Qd = 1 d = 2 Source: \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q [Probability distribution of Gaussian Mixture Model]G\\E$"}
+{"rule":"MISSING_GENITIVE","sentence":"^\\QPoisson process as a counting process serves as model to represent the number of events occurring in a given time interval \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}

@@ -2,27 +2,21 @@
 % Please have a look at the README.md file for info on how to use the template
 \RequirePackage[utf8]{inputenc}
 \documentclass[a4paper,12pt,times,print,index,biblatex,authoryear]{PhDThesisPSnPDF}
-\usepackage{bbm}
-\usepackage{commath}
-\usepackage{amsmath}
-\usepackage{tikz}
-\usepackage{bookmark}
-\usetikzlibrary{automata,arrows,positioning,calc} 
-
-% ********************************** Preamble **********************************
-% Preamble: Contains packages and user-defined commands and settings
-\input{Preamble/preamble}
 
 % ************************ Thesis Information & Meta-data **********************
 % Thesis title and author information, refernce file for biblatex 
 \input{thesis-info}
   
+% ********************************** Preamble **********************************
+% Preamble: Contains packages and user-defined commands and settings
+\input{Preamble/preamble}
+
 % ******************************** Front Matter  ********************************
 \begin{document}  
    
 \frontmatter 
 
-\maketitle 
+\maketitle
 
 \include{Declaration/declaration} 
 %\include{Acknowledgement/acknowledgement} 

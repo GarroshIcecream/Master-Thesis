@@ -153,7 +153,7 @@ Such a relationship can be represented as a diagram indexing each state by U, S 
     edge[loop right]            node{$0.33$}  (D)
     edge[bend left, below]      node{$0.33$}  (S);
 \end{tikzpicture}
-\caption{Transition diagram of the Markov Chain given probabilities in matrix A.}
+\caption[Visual representation of homogeneous Markov Chain]{Transition diagram of the Markov Chain given probabilities in matrix A.}
 \end{center}
 \end{figure}
 
@@ -350,7 +350,7 @@ For continous-time Markov Chains we will assume that the transition period is co
 Let us consider a stochastic process $\{X(t),t \geq 0\}$ on a probability space $(\Omega,\mathcal{F},\mathbb{P})$ s.t. for all $t \in \mathbb{R}_0^+$ and $i_0,i_1,\ldots,i_{t+1} \in I$ it holds that:
 
 \begin{equation}
-\mathbb{P}(X(t)=j|X(s)=i, X_(t_n)=i_n,\ldots,X(t_1)=i_1) = \mathbb{P}(X(t)=j|X(s)=i)
+\mathbb{P}(X(t)=j|X(s)=i, X(t_n)=i_n,\ldots,X(t_1)=i_1) = \mathbb{P}(X(t)=j|X(s)=i)
 \end{equation}
 
 where $0 \leq t_1 < \ldots < t_n < s < t $ and so it is trivially seen that such expression is equivalent to the discrete-time Markov Chain property 
@@ -392,7 +392,9 @@ For example \citep{Gidi2018}, one important property of such Markov Chain follow
 
 which means that the probability of staying in state $i$ for time $h$ is equal to $e^{-{q_i}h}$. 
 Non-negative real elements of $q_{i,j}$ are called \textit{transition rates} from state $i$ to state $j$ and absolute transition 
-rate $q_i = \sum_{j \neq i} q_{i,j}$ respectively. Trivially, in cases where the transition rate $q_i=0$, the $p_{i,i} = 1$, i.e. the state $i$ is absorbing, 
+rate $q_i = \sum_{j \neq i} q_{i,j}$ respectively. Let us denote $\textbf{Q}$ as transition rates matrix with entries $\{q_{i,j}: i,j \in I\}$ where each row sums to zero, i.e. $\sum_{j \in I} q_{i,j} = 0$. 
+This also means that the diagonal entries of $\textbf{Q}$ are equal to $q_i = -q_{i,i}$ and $\sum_{j \neq i} q_{i,j} = -q_{i,i}$. 
+Trivially, in cases where the transition rate $q_i=0$, the $p_{i,i} = 1$, i.e. the state $i$ is absorbing, 
 once the chain enters such state it remains in such state for infinite amount of time. On the contrary, if $0 < q_i < \infty$ then the state $i$ is non-absorbing and stable, therefore
 the chain will eventually leave such a state. For infinite transition rate $q_i = \infty$ the state $i$ is called {\it unstable} where the time of staying in such state is almost surely zero. \citep{Praskova2012}
 
@@ -425,7 +427,7 @@ According to \citep{Praskova2012} and the properties of the transition rates, su
     \end{aligned}
 \end{equation}
 
-where $o(h)$ is a function of $h$ such that $\lim_{h \to 0} \frac{o(h)}{h} = 0$. Let us denote $\textbf{Q}$ as transition rates matrix with entries $\{q_{i,j}: i,j \in I\}$.
+where $o(h)$ is a function of $h$ such that $\lim_{h \to 0} \frac{o(h)}{h} = 0$.
 
 Such intensities resemble the probability functions of Poisson process, and indeed according to \citep{Norris2012} it is a special case of homogeneous continous-time Markov Chain with intensity $\lambda \geq 0$ if following conditions are satisfied:
 
@@ -450,3 +452,102 @@ In a case of constant return rates, the matrix $\textbf{Q}$ with entries $q_{i} 
 \end{equation}
 
 \subsection{Cryptocurrency market movements II.}
+
+
+\section{Markov Renewal process}
+
+Poisson process as a counting process serves as model to represent the number of events occurring in a given time interval $[0,t]$. The inter-arrival times 
+between events are exponentially distributed iid random variables with parameter $\lambda>0$ and the number of events in all disjoint intervals is independent.
+In other words, the probability of observing $n$ events in interval $[0,t]$ is given by Poisson distribution with parameter $\lambda t$. But we would like to also
+study instances where the inter-arrival times are not exponentially distributed, but rather follow some other distribution.
+
+Therefore, we introduce a concept of \textit{renewal process}, as stated by  \citep{Praskova2012} and \citep{Mitov2014}, which can be defined using a sequence of non-negative random variables $\{X_n,n \in \mathbb{N}_0\}$ that are identically distributed and independent with 
+distribution function $F(0)<1$ that satisfies following equation:
+
+\begin{equation}
+    S_n = \sum_{k=0}^{n} X_k, \quad n \in \mathbb{N}_0
+\end{equation}
+
+where $S_n$ is a random variable that denotes the inter-arrival time between the $n$-th $n-1$-th renewal such that the renewal process is then:
+
+\begin{equation}
+    N(t) = \sup\{n: S_n \leq t\} = \sum_{n=1}^{\infty} \mathbbm{1}_{\{S_n \leq t\}}
+\end{equation}
+
+where $N(t)$ is a random variable that denotes the number of events in interval $[0,t]$. Furthermore, we could also note that the renewal function is 
+derived as the expectation $m(t)=\mathbb{E}[N_t]$.
+
+Our interest lies in the special case of the renewal process called \textit{Markov renewal process} which is defined as a renewal process with the additional property 
+that the sequence of random variables $\{X_n,n \in \mathbb{N}_0\}$ denoting states still constitutes a Markov Chain, in this case discrete-time Markov Chain, and the transition intervals $\tau_n = T_n - T_{n-1}$ follow
+any distribution with finite mean and its parameter may depend on the previous state $X_{n-1}$ and also current state $X_n$ of the Markov Chain. This process is also known as
+\textit{semi-Markov} since the transitions between states are still occurring according the Markov Chain, but the time between transitions is a random variable with some distribution that again
+may depend on the previous and current state of such Markov Chain. Thus, semi-Markov process serves as a way of describing the underlying Markov renewal process. \citep{Medhi2012}
+
+Take a process $\{X_n,n \in \mathbb{N}_0\}$ defined on state space $I$ and let the transitions occur at certain epochs $t_0=0,\dots,t_n,t_{n+1}$. If for such process Markov memoryless property holds:
+
+\begin{equation}
+    \mathbb{P}(X_{n+1}=j, \tau_{n+1} \leq t|X_n=i,\ldots,X_0=i_0,t_n,\ldots,t_0) = \mathbb{P}(X_{n+1}=j, \tau_{n+1} \leq t|X_n=i)
+\end{equation}
+
+then the $\{X_n,\tau_n\}$ for $n \in \mathbb{N}_0$ constitute a \textit{Markov renewal process}, as stated by \citep{Cinlar1969} and \citep{Barbu2008}, and the process is clearly time-homogeneous since the transition probabilities are independent of time:
+
+\begin{equation}
+    \mathbb{P}(X_{n+1}=j, \tau_{n+1} \leq t|X_n=i) = \textbf{Q}_{i,j}(t)
+\end{equation}
+
+where $\textbf{Q}_{i,j}(t)$ is, according to \citep{Medhi2012}, called a \textit{semi-Markov kernel} of the Markov renewal process. Limiting behavior of the kernel $\textbf{Q}_{i,j}(t)$ as $t \to \infty$ 
+is approaching the transition matrix $\textbf{A}$ of the Markov Chain since the distribution function of waiting times is equal to 1 for $t \to \infty$:
+
+\begin{equation}
+    \lim_{t \to \infty} \textbf{Q}_{i,j}(t) = \textbf{A}_{i,j}
+\end{equation}
+
+Moreover, for continuous process $\{Y(t)\}$ defined on a state space $I$, we say that it is called \textit{semi-Markov process} if:
+
+\begin{equation}
+    Y(t) = X_n, \quad t \in [t_n,t_{n+1})
+\end{equation}
+
+where $X_n$ is an embedded Markov Chain of such continuous process. Clearly, we see that at each epoch $t_n$ the process $\{Y(t)\}$ jumps to a new state and stays in such state until the next epoch $t_{n+1}$ as is visible on Figure \ref{fig:semi_markov}. 
+Therefore, the process $\{Y(t)\}$ is a semi-Markov process with semi-Markov kernel $\textbf{Q}_{i,j}(t)$. From the definition of the continuous-time Markov Chain, it follows that the 
+semi-Markov process with exponential holding times is a continuous-time Markov Chain \citep{Sahner1996}:
+
+\begin{align}
+    \mathbb{P}(X_{n+1}=j, \tau_{n+1} \leq t|X_n=i) &= \mathbb{P}(X_{n+1}=j|X_n=i) \mathbb{P}(\tau_{n+1} \leq t|X_{n+1}=j, X_n=i) \\ 
+                                                   &= \mathbb{P}(X_{n+1}=j|X_n=i) \textbf{W}_{i,j}(t) \\
+                            \textbf{Q}_{i,j}(t)    &= a_{i,j} (1-e^{- \lambda_i t})
+\end{align}
+
+where $\textbf{W}_{i,j}(t)$ is a probability that the process $\{Y(t)\}$ stays in state $j$ for time $t$ given that it is in state $i$, i.e. waiting time. In other words, it is a conditional distribution function 
+of the random variable $\tau$ conditioned on the events $X_{n+1}=j, X_n=i$. Such cumulative distribution function is again a random variable we call \textit{conditional sojourn time} and denote with $T_{i,j}$:
+
+\begin{equation}
+    \textbf{W}_{i,j}(t) = \mathbb{P}(T_{i,j} \leq t) = \mathbb{P}(\tau_{n+1} \leq t|X_{n+1}=j, X_n=i) 
+\end{equation}
+
+we can also find the relation between waiting times and transition probabilities as follows from Equation \ref{eq:semi_markov} which holds for all $a_{i,j} > 0$ s.t. if transition probability to state $j$ is zero, 
+i.e. $a_{i,j} = 0$, then the waiting time is assumed to be 1:
+
+\begin{equation} \label{eq:semi_markov}
+    \textbf{W}_{i,j}(t) = \frac{\textbf{Q}_{i,j}(t)}{a_{i,j}}
+\end{equation}
+
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=1.0\textwidth]{Figs/semi_markov.png}
+        \caption*{\textbf{Source:} \href{https://en.wikipedia.org/wiki/Markov_renewal_process}{\textit{Wikipedia page on Markov renewal process}}}
+        \caption[Diagram representation semi-Markov process]{Graphical representation of a semi-Markov process Y(t).}
+        \label{fig:semi_markov}
+    \end{center}
+\end{figure}
+
+Thus, we can observe that the there is a valuable benefit of using more generalized Markov Chain such as semi-Markov process since it allows us to model the waiting times between transitions
+as a random variable with some distribution. In other words, we can model the time between transitions as a random variable with some distribution, which is not possible with the standard (discrete-time) Markov Chain that
+assumes that transitions occur at each time step and the time spent in each state (or inter-arrival time) is geometrically, or in continuous case exponentially, distributed. 
+
+This property is especially useful in modeling the cryptocurrency market since the time between transitions is not constant, but rather follows some distribution. We can expect that 
+if the market is in bull or bear state it will stay in such state for some time, but the time spent in such state could be very different from stagnant market state. 
+
+
+
+

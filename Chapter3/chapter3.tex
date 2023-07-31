@@ -195,7 +195,7 @@ with already estimated $q^{(k+1)}$, that maximizes the lower bound $L(\theta,q|\
 	\includegraphics[width=0.9\textwidth]{Figs/Loglike.png}
 \end{center}
 
-\caption{\textit{E-step as a problem of minimization of KL divergence represented as a gap between two likelihood functions, reprinted from \citep{Bishop2006}}}
+\caption[Construction of log-likelihood lower bound]{\textit{E-step as a problem of minimization of KL divergence represented as a gap between two likelihood functions, reprinted from \citep{Bishop2006}}}
 \label{fig:Loglike}
 \end{figure}
 
@@ -219,10 +219,18 @@ with already estimated $q^{(k+1)}$, that maximizes the lower bound $L(\theta,q|\
 
 Both of these steps are repeated until convergence criterion given by Equation \ref{eq:conv} is attained assuming fixed tolerance $\epsilon$.
 
+There is also generalized version of EM algorithm called \textbf{Generalized EM} (GEM) algorithm that allows for a more flexible approach
+in the sense that it does not require the lower bound to be maximized in each iteration of E-step. Instead, at each iteration
+the expected log-likelihood is increased by a certain amount but not locally maximized, i.e. is a form of gradient ascent. Such approach 
+is particularly useful in cases where the lower bound is not analytically tractable, or the maximization problem is computationally infeasible, e.g. in case of cHMM with 
+parametrized covariance matrix. However, it is important to note that the GEM algorithm does not guarantee convergence to a local maximum 
+of the log-likelihood function and might converge after fewer iterations yielding a worse estimate of the parameters. \citep{Bishop2006} 
+
 \subsection{Forward and Backward algorithm}
 
 While given a sequence of emissions denoted by $\textbf{Y}, = \{y_0,y_1,\ldots,y_T\}$ and a model parameter vector $\theta = (\textbf{A},\textbf{B},\textbf{p})$, 
 we need to express the likelihood function under the model constraints as follows:
+
 \begin{align} \label{eq:loglikeFB}
     \mathcal{L}( \theta| \textbf{Y}) & = \prod\limits_{t=0}^T \sum\limits_{i=1}^N  \mathbb{P}(Y_t = y_t, X_t = i| \theta) \\
                                      & = \prod\limits_{t=0}^T \sum\limits_{i=1}^N  \mathbb{P}(Y_t = y_t | X_t = i, \theta) \mathbb{P}(X_t=i|\theta)
@@ -237,6 +245,10 @@ The summation in Equation \ref{eq:loglike} refers to all possible permutations o
 which implies that we would have $N^T$ possible sequences as seen in Figure \ref{fig:trellis}. Furthermore, in order to calculate $\mathcal{L}( \theta| \textbf{Y})$ we have $2TN^T$ 
 operations which is also exponential in T and not feasible for real application. As opposed to brute-force infeasible
 computation described above, we take a use of \textbf{Forward} and \textbf{Backward} pass to address \textbf{E-step} of the EM algorithm, as shown by \citep{Bishop2006} and \citep{Rabiner1989}.
+Resulting algorithm requires time complexity of $O(TN^2)$\footnote{The O(n) symbol represents Big O notation, 
+a convention in computer science to describe how an algorithm's running time or space needs grow as the input size increases. 
+O(n) indicates that the growth is linear in relation to the input size n. \citep{Mohr2014}} 
+for classical HMM and $O(TN(D+N))$ for HSMM which is a significant improvement. 
 
 \begin{figure}[htbp]
     \begin{center}
@@ -341,11 +353,11 @@ computation described above, we take a use of \textbf{Forward} and \textbf{Backw
     \node at (8,-0.5) {$y_4$};
     \end{tikzpicture}
     \end{center}
-    \caption{Trellis of the emission sequence $\{y_0,\ldots, y_4\}$ for T=4. Each node represents a state $S_i$ and each arc represents a transition from one state to another. The number of possible paths is $N^T$. }
+    \caption[Trellis as a result of Forward-Backward algorithm]{Trellis of the emission sequence $\{y_0,\ldots, y_4\}$ for T=4. Each node represents a state $S_i$ and each arc represents a transition from one state to another. The number of possible paths is $N^T$. }
     \label{fig:trellis}
     \end{figure}
 
-\subsubsection{Forward algorithm}
+\subsubsection*{Forward algorithm}
 
 Each sequence can be decomposed into multiple subsequences which are shared among different sequences and do not need to be recomputed again. 
 These subsequences can be represented by a trellis as shown in Figure \ref{fig:trellis}. With a help of such diagram we may imagine recording the probability of 
@@ -360,34 +372,68 @@ Moreover, due to Markov memoryless property, $X_t$ depends only on $X_{t-1}$. Le
 Which we may also define as the probability of being in state i at time t after having observed the sequence $\{y_0,x_1,\ldots,y_t\}$. 
 The calculation therefore results in recursively summing the incoming arcs at trellis nodes:
 
-\begin{align}
+\begin{align} \label{eq: forward}
     \alpha_t(i) &= \mathbb{P}(Y_t = y_t, Y_{t-1} = y_{t-1},\ldots, Y_0 = y_0 , X_t = i| \theta) \\ \nonumber
                 &= \mathbb{P}(Y_t = y_t | X_t = i, \theta) \mathbb{P}(Y_{t-1} = y_{t-1},\ldots, Y_0 = y_0 , X_t = i| \theta)  \\ \nonumber
                 &= \mathbb{P}(Y_t = y_t | X_t = i, \theta) \sum\limits_{j = 1}^N \mathbb{P}(X_t = i| X_{t-1}=j,\theta) \alpha_{t-1}(j)\\ \nonumber
                 &= b_i(y_t) \sum\limits_{j=1}^N a_{ji} \alpha_{t-1}(j)
 \end{align}
 
-\noindent where we ought to initialize forward variable at time $t=0$ as $\alpha_0(i)= p_i b_i(y_0)$. 
+In case the underlying hidden stochastic process is not strictly Markov but semi-Markov, the forward algorithm given by Equation \ref{eq: forward} is no longer valid since it assumes 
+that the transitions are geometrically distributed. Let us use derivation from \citep{Yu2013} and \citep{Narimatsu2017}, and estimate parameters of a process that stays in state $i$ until time $t+d-1$ and then transits to another state $j$ at $t+d$. 
+In order to account for the fact that the transitions are not geometrically distributed, we need to modify the forward variable $\alpha_t(i)$
+s.t. the duration of the state follows some sojourn time distribution:
 
-The recursive relationship is repeated until termination at time T where it holds that:
+\begin{equation}
+    \alpha_t(i,u) = \mathbb{P}(Y_t = y_t, Y_{t-1} = y_{t-1},\ldots, Y_0 = y_0 , X_t = i, \tau_t = u| \theta)
+\end{equation}
 
-\begin{equation} \label{eq:loglikeF}
-    \sum_{i=1}^N \alpha_T(i) = \mathcal{L}( \theta| \textbf{Y})
-\end{equation} 
+Forward step in the algorithm can be defined in three steps:
 
-which is a marginal likelihood of the observed sequence $\textbf{Y}$ under the model $\theta$ after marginalizing out all possible hidden states $i$.
+\begin{itemize}
+    \item[1.] \textbf{Initialization step}: For each $i \in I$ set value at time $t=0$ to:
+    
+    \begin{equation}
+        \alpha_0(i)= p_i b_i(y_0)
+    \end{equation}
 
-Resulting algorithm requires time complexity of $O(TN^2)$\footnote{The O(n) symbol represents Big O notation, 
-a convention in computer science to describe how an algorithm's running time or space needs grow as the input size increases. 
-O(n) indicates that the growth is linear in relation to the input size n. \citep{Mohr2014}} 
-which is a significant improvement from the brute force approach with complexity of $O(2TN^T)$. \citep{Rabiner1989}
+    In case of semi-Markov process, we need to account for the sojourn time distribution $d_i(u)$ of the state $i$ at time $u$:
 
-\subsubsection{Backward algorithm}
+    \begin{equation}
+        \alpha_0(i,u) = p_i b_i(y_0) d_i(u)
+    \end{equation}
+
+    \item[2.] \textbf{Induction step}: 
+    
+    \begin{equation}
+        \alpha_t(i) = b_i(y_t) \sum\limits_{j=1}^N a_{ji} \alpha_{t-1}(j)
+    \end{equation}
+
+    Again, in case of semi-Markov process, we have the following recursive relationship, as proposed by \citep{Oliver2013}, that holds for all $d \geq 1$:
+
+    \begin{equation}
+        \alpha_t(i,u) = \alpha_{t-1}(i,u+1) b_i(y_t) + \left( \sum\limits_{i \neq j} \alpha_{t-1}(j,1) a_{ji} \right) b_i(y_t) d_i(u)
+    \end{equation}
+
+    where $d_i(u)$ is the duration of the state $i$ at time $u$ which is referred to as the sojourn time. 
+    
+    Afterwards, we recursively update current time index t to t+1 as long as $t \leq T$ starting at $t=1$.
+    
+    \item[3.] \textbf{Termination step}: once the iterative procedure is exhausted, i.e.\ when t=T we have the estimate of marginal likelihood of the observed sequence $\textbf{Y}$ under the model $\theta$ denoted as
+    $\mathcal{L}(\theta| \textbf{Y})$:
+    
+    \begin{equation} \label{eq:loglikeF}
+        \mathcal{L}(\theta| \textbf{Y}) = \sum_{i=1}^N \alpha_T(i)
+    \end{equation}
+    
+    \end{itemize}
+
+\subsubsection*{Backward algorithm}
 
 While computing the backward probability variable denoted as $\beta_t(i)$ we assume the reversed iterative procedure. 
 Let us define the backward probability $\beta$ variable as:
 
-\begin{align}
+\begin{align} \label{eq: backward}
 \beta_t(i)  &= \mathbb{P}(Y_{t+1} = y_{t+1}, Y_{t+2} = y_{t+2},\ldots, Y_T = y_T| X_t = i, \theta) \\ \nonumber
             &= \sum_{i,j}^N \mathbb{P}(Y_{t+1} = y_{t+1}, Y_{t+2} = y_{t+2},\ldots, Y_T = y_T,X_{t+1} = j | X_t = i, \theta)  \\ \nonumber
             &= \sum_{i,j}^N \mathbb{P}(Y_{t+1} = y_{t+1}| X_{t+1} = j) \mathbb{P}(X_{t+1} = j | X_t = i, \theta) \\ \nonumber
@@ -396,14 +442,32 @@ Let us define the backward probability $\beta$ variable as:
 \end{align}
 
 As for forward algorithm, the recursive computation is very similar, the only differences are in the fact that we are going backwards in time using our emission sequence 
-while also accounting for the emission probabilities at previous step. Effectively, there are 3 main steps, as pointed out by \citep{Oliver2013}:
+while also accounting for the emission probabilities at previous step. 
+
+However, there is a slight difference in case of semi-Markov process since we also need to condition by the sojourn time in respective state $i$ at time $u$:
+
+\begin{equation}
+    \beta_t(i) = \mathbb{P}(Y_{t+1} = y_{t+1}, Y_{t+2} = y_{t+2},\ldots, Y_T = y_T| X_t = i, \tau_t = u, \theta)
+\end{equation}
+
+Effectively, there are 3 main steps, as pointed out by \citep{Oliver2013}:
 
 \begin{itemize}
-\item[1.] \textbf{Initialization step}: with default value of $\beta_T(i) = 1$ for all $i \in I$. 
+\item[1.] \textbf{Initialization step}: with default value of $\beta_T(i) = 1$ or $\beta_T(i,u) = 1$ for all $i \in I$.
 \item[2.] \textbf{Induction step}: 
 
 \begin{equation}
-\beta_t(i) = b_j(y_{t+1})a_{ij} \beta_{t+1}(j)
+    \beta_t(i) = b_j(y_{t+1})a_{ij} \beta_{t+1}(j)
+\end{equation}
+
+For semi-Markov process, we have the following version of the induction step, as follows from \citep{Yu2013}:
+
+\begin{equation}
+    \beta_t(i,u) =
+    \begin{cases} 
+        b_i(y_{t+1}) \beta_{t+1}(i,u-1) & \quad u > 1 \\
+        \sum\limits_{j \neq i} a_{i,j} b_j(y_{t+1}) \left( \sum\limits_{u' \geq 1} d_j(u') \beta_{t+1}(j,u')\right) & \quad u = 1
+     \end{cases}
 \end{equation}
 
 Afterwards, we recursively update current time index t to t-1 as long as $t \geq 0$.
@@ -462,7 +526,7 @@ These directions are also known as filtering and smoothing respectively and repr
             \end{tikzpicture}           
             \caption{Smoothing using Backward algorithm}
         \end{subfigure}
-\caption{Figure (a) interprets recursive computation of alpha variable and (b) beta variable.}
+\caption[Filtering and Smoothing process]{Figure (a) interprets recursive computation of alpha variable and (b) beta variable.}
 \label{fig:filtering_smoothing}
 \end{figure}
 
@@ -501,7 +565,20 @@ Such quantity expresses the probability of being in state $i$ at time $t$ and st
     \gamma_t(i) = \sum_{j=1}^N \mathbb{P}(X_t=i, X_{t+1}=j|\textbf{Y},\theta) = \sum_{j=1}^N \xi_t(i,j)
 \end{equation}
 
+Again we ought to mention the difference in definition of the posterior distribution of hidden states in case of semi-Markov process. Let us start with the definition of $\xi$ since
+there is clear analytical expression derived from forward and backward variables:
 
+\begin{equation}
+    \xi_t(i,j) = \alpha_{t-1}(i,1) a_{i,j} b_j(y_{t+1}) \left( \sum\limits_{u \geq 1} d_j(u) \beta_{t+1}(j,u) \right)
+\end{equation}
+
+\noindent However, the definition of $\gamma$ is not as straightforward as in the case of Markov process, and we ought to use the backward recursion with respect to the $\xi$ variable:
+
+\begin{equation}
+    \gamma_t(i) = \gamma_{t+1}(i) + \sum\limits_{j \neq i} \left( \xi_{t+1}(i,j) - \xi_{t+1}(j,i)\right)
+\end{equation}
+
+where the initial condition for $t=T$ is given by $\gamma_T(i) = \sum\limits_{u \geq 1} \alpha_T(i,u)$.
 
 \vspace*{0.5cm}
 \begin{figure}[htbp]
@@ -568,7 +645,7 @@ Such quantity expresses the probability of being in state $i$ at time $t$ and st
             \end{tikzpicture}
     \caption{Xi variable as in Equation \ref{eq:xi}}
     \end{subfigure}
-\caption{Trellis describing (a) $\gamma_t(i)$ variable as a product of $\alpha_t(i)$ and $\beta_t(i)$ variables and 
+\caption[Visualization of posteriori variables resulting from E-step]{Trellis describing (a) $\gamma_t(i)$ variable as a product of $\alpha_t(i)$ and $\beta_t(i)$ variables and 
                             (b) $\xi_t(i,j)$ variable as a product of $\alpha_t(i)$, $a_{ij}$, $b_j(y_{t+1})$ and $\beta_{t+1}(j)$ variables.}
 \end{figure}
 
@@ -649,11 +726,11 @@ We repeat these steps until the desired convergence criterion of log-likelihood 
 is achieved. Afterwards, parameter estimates of k-th iteration are such that we have locally maximized the log-likelihood function given the emission sequence 
 and initial setting of $\theta$ for $k=0$.
 
-\subsection{EM algorithm for GMM}
+\subsection{Application to GMM}
 
-In previous section, we assumed that the emission symbols are discrete and countable, however, in case of Gaussian Mixture Models (GMM) continuity of the emission symbols 
-is assumed. Therefore, having a normal distribution as a prior for the emission symbols requires slightly different approach in order to derive parameters of its conditional 
-distribution.
+In previous section, we assumed that the emission symbols are discrete and countable, however, in case of Gaussian Mixture Models (GMM) continuity of the emissions 
+is assumed. Therefore, considering univariate or multivariate normal distribution for emission probabilities requires slightly different approach in order to derive parameters
+ of each component distribution.
 
 Given the data $\textbf{Y} = \{\textbf{Y}_1,\ldots,\textbf{Y}_T\}$, where each element is an independent  
 p-dimensional random vector, s.t. $Y_t \in \mathbb{R}^p$ and:
@@ -760,9 +837,83 @@ Taking partial derivatives of $Q(\theta|\theta^{(t)})$ with respect to the param
     \hat{\mu}_k^{(t+1)} = \frac{\sum_{t=1}^{T} \mathbb{E}[z_{tk}|\textbf{Y}_t,\theta^{(t)}] \textbf{Y}_t}{\sum_{t=1}^{T} \mathbb{E}[z_{tk}|\textbf{Y}_t,\theta^{(t)}]}
 \end{equation}
 
-\begin{equation}
+\begin{equation} \label{eq:covariance_matrix}
     \hat{\Sigma}_k^{(t+1)} = \frac{\sum_{t=1}^{T} \mathbb{E}[z_{tk}|\textbf{Y}_t,\theta^{(t)}](\textbf{Y}_t - \mu_k^{(t+1)}){(\textbf{Y}_t - \mu_k^{(t+1)})}^T}{\sum_{t=1}^{T} \mathbb{E}[z_{tk}|\textbf{Y}_t,\theta^{(t)}]}
 \end{equation}
+
+\noindent Thus, if we take into account Gaussian Mixture Model for the emission probabilities of the Hidden Markov Model, the EM algorithm assumptions and definition of the Q-function remain 
+the same as in the previous chapter. The only difference is that we need to estimate the parameters of the mixture model in the M-step of the algorithm rather than the emission matrix $\textbf{B}$. 
+That also implies that the Forward-Backward algorithm and Baum-Welsch algorithm sample probabilities from the $d$-dimensional Gaussian distribution rather than the Categorical distribution.
+
+\subsection{Application to cHMM}
+
+Application of the EM algorithm to the cHMM is similarly done in EM style as proposed first by \citep{Bobick1999} and further extended by e.g. \citep{Radenen2014}. 
+The only difference is that we need to also include the external variables in the 
+M-step of the EM algorithm and also estimate additional parameters as opposed to classical HMM. This is due to the fact that the emission probabilities
+are now defined as a function of the external variables. In the simplest case assuming only the mean parametrization of the mean of the Gaussian distribution,
+we ought to estimate matrix $\textbf{Y}^{i,k} = [V^i,\bar{\mu}_i]$ for each hidden state $i$ and mixture component $k$. We will also define the re-estimation formula 
+with the time-varying external variables, but the same approach could be used for the time-invariant external variables. \citep{Radenen2014}
+
+Parameter matrix $\textbf{Y}^{i,k}$ is defined as follows:
+
+\begin{equation}
+    \textbf{Y}^{i,k} = \left[\sum_{t} \gamma_{i,t} x_t \theta_t^T\right] \left[ \sum_{t} \gamma_{i,t} \theta_t \theta_t^T \right]^{-1}
+\end{equation}
+
+where $\gamma_{i,t}$ is the marginal posterior probability of the hidden state $i$ at time $t$ and $\theta_t$ is the vector of external variables at time $t$.
+The re-estimation formula for the mean of the Gaussian distribution is then defined as follows:
+
+\begin{equation}
+    \hat{\mu}_i = \textbf{Y}^{i} \theta_t
+\end{equation}
+
+where $\textbf{Y}^{i}$ is the matrix of parameters for the mean of the Gaussian distribution for the hidden state $i$ s.t. 
+new estimate of $\hat{\mu}_i$ is either $d \times 1$ vector of means given hidden state $i$ in case of d-dimensional Gaussian distribution or
+$d \times M$ matrix of means given hidden state $i$ and mixture component $k$ in case of d-dimensional Gaussian Mixture Model.
+
+Decision to parametrize only the means of the Gaussian distribution as proposed by \citep{Bobick1999} simplifies the re-estimation formula for the covariance matrix 
+since it is identical to Equation \ref{eq:covariance_matrix}. When we parametrize both the mean and the covariance matrix of the Gaussian distribution,
+we need to estimate the covariance matrix for each hidden state $i$ and mixture component $k$ which is not trivial since 
+we lack closed form solution therefore we have to resort to gradient ascent in the M-step resulting in use of Generalized EM algorithm. 
+The important decision will also come in terms of the gradient size determined by the learning rate parameter $\theta$. \citep{Radenen2014}
+
+In covariance matrix re-estimation process we aim to compute the gradient of the expected log-likelihood denoted by function $Q$ with respect to $\textbf{Z}_i$.
+First step, according to \citep{Radenen2014}, is to re-estimate the means and covariance matrices of the Gaussian distribution using the same approach as for 
+the cHMM with only the mean parametrization. Then, we set $\textbf{Z}_i = 0$ and $\bar{\Sigma}_i = \Sigma_i$ and compute the gradient with respect to $\textbf{Z}_i$ as follows:
+
+\begin{equation}
+    \frac{\partial Q}{\partial \textbf{Z}_i} = \sum_{k,t,i} M_{i,i}^{k,t,j} \frac{\partial D_{j,j}^i(\theta_t)^{-1}}{\partial \textbf{Z}_i}
+\end{equation}
+
+where $M_{i,i}^{k,t,j}$ and partial derivative of $D_{j,j}^i(\theta_t)$ are defined as:
+
+\begin{equation}
+    M_{i,i}^{t,j} = \gamma_{i,t} \left[ D^i(\theta_t) - \frac{(x_t - \hat{\mu}_i(\theta_t))(x_t - \hat{\mu}_i(\theta_t))^T}{\bar{\Sigma}_i D^i(\theta_t)} \right]
+\end{equation}
+
+and 
+
+\begin{equation}
+    \frac{\partial D_{j,j}^i(\theta_t)^{-1}}{\partial \textbf{Z}_{i,m,n}} =
+    \begin{cases} 
+        \frac{-\theta_n}{D_{j,j}^i(\theta_t)} & \text{if } j = m \\
+        0 & \text{otherwise}
+    \end{cases}
+\end{equation}
+
+So far we have tried to parametrize the parameters for each marginal distribution of emissions, however, we may also parametrize the transition probabilities
+given by matrix $\textbf{A}$. Again, we are not equipped with the closed form solution for the re-estimation formula, therefore we use gradient ascent and start by setting $\bar{a}_{i,j} = a_{i,j}$
+and initializing the weights $\textbf{w}_{i,j}=0$ which implies that we are starting with transition matrix that would be equal to the transition matrix of the HMM since 
+external variables have no effect on the transition probabilities. Then, \citep{Radenen2014} shows that gradient of the expected log-likelihood function with respect to
+$\textbf{w}_{i,j}$ is defined as follows:
+
+\begin{equation}
+    \frac{\partial Q}{\partial \textbf{w}_{i,j}} = \sum_{k,t} \left[\gamma_{i,j,k,t} - \sum_{k,t} \bar{a}_{i,j}(\theta_t) \right] \theta_t
+\end{equation}
+
+\section{Application to AR(p) HMM model}
+
+
 
 \section{Markov Chain Monte Carlo}
 
@@ -834,7 +985,7 @@ There are several variants of the Metropolis-Hastings algorithm, e.g. Metropolis
 
 \subsection{Gibbs Sampling}
 
-\section{Decoding using Viterbi algorithm}
+\section{Sequence decoding using Viterbi algorithm}
 
 Once we solve \textbf{Evaluation problem} using Baum-Welch algorithm, thus estimating the posterior marginal and joint distribution of hidden states as well as parameters of the model,
 we may proceed to the \textbf{Decoding problem}. The decoding problem aims to find the most likely sequence of hidden states given the emission sequence and model parameters, i.e. 
@@ -1018,6 +1169,6 @@ To understand why the Viterbi algorithm is so efficient we need to look at the c
 \end{tikzpicture}
 \end{center}
 \label{fig:viterbi}
-\caption{Trellis of the observation sequence $\{y_1, \ldots,y_5\}$. Bold lines illustrate the most likely state sequence $Z^*$ found by the Viterbi algorithm.}
+\caption[Viterbi path through trellis]{Trellis of the observation sequence $\{y_1, \ldots,y_5\}$. Bold lines illustrate the most likely state sequence $Z^*$ found by the Viterbi algorithm.}
 \end{figure}
 

@@ -39,5 +39,5 @@
 \contentsline {section}{\numberline {4.2}Market regimes and trading strategies}{69}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Market states}{69}{subsection.4.2.1}%
 \contentsline {subsection}{\numberline {4.2.2}Trading strategies}{69}{subsection.4.2.2}%
-\contentsline {chapter}{Appendix \numberline {A}Maximum likelihood results}{71}{appendix.a.A}%
-\contentsline {chapter}{Appendix \numberline {B}Python code}{73}{appendix.a.B}%
+\contentsline {chapter}{Appendix \numberline {A}Maximum likelihood results}{77}{appendix.a.A}%
+\contentsline {chapter}{Appendix \numberline {B}Python code}{79}{appendix.a.B}%
