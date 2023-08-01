@@ -45,3 +45,5 @@ Narimatsu
 Hiroyuki
 Hiromi
 Nonstationary
+Memoryless
+autocorrelation

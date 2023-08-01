@@ -1,14 +1,17 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'thesis.blg'
-[60] biber-darwin:340> INFO - === Mon Jul 31, 2023, 17:03:42
-[74] Biber.pm:419> INFO - Reading 'thesis.bcf'
-[170] Biber.pm:976> INFO - Using all citekeys in bib section 0
+[66] biber-darwin:340> INFO - === Tue Aug  1, 2023, 07:09:27
+[81] Biber.pm:419> INFO - Reading 'thesis.bcf'
+[172] Biber.pm:976> INFO - Using all citekeys in bib section 0
 [184] Biber.pm:4419> INFO - Processing section 0
-[192] Biber.pm:4610> INFO - Looking for bibtex file 'References/references.bib' for section 0
-[195] bibtex.pm:1713> INFO - LaTeX decoding ...
-[261] bibtex.pm:1519> INFO - Found BibTeX data source 'References/references.bib'
-[522] Utils.pm:410> ERROR - BibTeX subsystem: /var/folders/g6/12x07dqs3g53t5clgg2rj4k00000gn/T/biber_tmp_MbHF/33e59b5ca9ec342068223d604c3f8d55_52859.utf8, line 715, syntax error: found "author", expected end of entry ("}" or ")") (skipping to next "@")
-[522] Biber.pm:131> WARN - ISBN '0387731717,9780387731711,9780387731735' in entry 'Barbu2008' is invalid - run biber with '--validate_datamodel' for details.
-[522] Biber.pm:131> WARN - ISBN '978-3-319-05854-2,978-3-319-05855-9' in entry 'Mitov2014' is invalid - run biber with '--validate_datamodel' for details.
-[522] Biber.pm:133> INFO - WARNINGS: 2
-[522] Biber.pm:136> INFO - ERRORS: 1
+[193] Biber.pm:4610> INFO - Looking for bibtex file 'References/references.bib' for section 0
+[196] bibtex.pm:1713> INFO - LaTeX decoding ...
+[248] bibtex.pm:1519> INFO - Found BibTeX data source 'References/references.bib'
+[553] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[553] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[553] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[553] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[612] bbl.pm:660> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
+[639] bbl.pm:763> INFO - Output to thesis.bbl
+[639] Biber.pm:131> WARN - ISBN '1573-7470' in entry 'Narimatsu2017' is invalid - run biber with '--validate_datamodel' for details.
+[639] Biber.pm:133> INFO - WARNINGS: 1
