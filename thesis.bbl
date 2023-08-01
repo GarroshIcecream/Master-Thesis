@@ -323,7 +323,6 @@
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{month}{07}
       \field{title}{Computational Advances and Applications of Hidden (Semi-)Markov Models}
       \field{type}{phdthesis}
       \field{year}{2013}
@@ -424,12 +423,8 @@
       \field{journaltitle}{Advances in Applied Probability}
       \field{number}{2}
       \field{title}{Markov Renewal Theory}
-      \field{urlday}{31}
-      \field{urlmonth}{7}
-      \field{urlyear}{2023}
       \field{volume}{1}
       \field{year}{1969}
-      \field{urldateera}{ce}
       \field{pages}{123\bibrangedash 187}
       \range{pages}{65}
     \endentry
@@ -883,6 +878,41 @@
       \field{title}{Finite Mixture Models}
       \field{year}{2000}
     \endentry
+    \entry{Quandt1973}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=d19c221d8484cfafc8a79b59aa8ca059}{%
+           family={Goldfeld},
+           familyi={G\bibinitperiod},
+           given={Stephen\bibnamedelima M.},
+           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d721089dea8e49e5a7223b7015dd3f26}{%
+           family={Quandt},
+           familyi={Q\bibinitperiod},
+           given={Richard\bibnamedelima E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{0a98f976c5cbc12a72bf30cd4f382ef8}
+      \strng{fullhash}{0a98f976c5cbc12a72bf30cd4f382ef8}
+      \strng{bibnamehash}{0a98f976c5cbc12a72bf30cd4f382ef8}
+      \strng{authorbibnamehash}{0a98f976c5cbc12a72bf30cd4f382ef8}
+      \strng{authornamehash}{0a98f976c5cbc12a72bf30cd4f382ef8}
+      \strng{authorfullhash}{0a98f976c5cbc12a72bf30cd4f382ef8}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Econometrics}
+      \field{number}{1}
+      \field{title}{A Markov model for switching regressions}
+      \field{volume}{1}
+      \field{year}{1973}
+      \field{pages}{3\bibrangedash 15}
+      \range{pages}{13}
+    \endentry
     \entry{Gu2008}{misc}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=c7443fa41689d1f02b52e1c884234c88}{%
@@ -940,14 +970,43 @@
       \field{title}{Finite Markov chains and algorithmic applications}
       \field{year}{2002}
     \endentry
+    \entry{Hamilton2005}{article}{}
+      \name{author}{1}{}{%
+        {{un=1,uniquepart=given,hash=6dd73c1cf1f0ba7d1f5858761f833338}{%
+           family={Hamilton},
+           familyi={H\bibinitperiod},
+           given={James},
+           giveni={J\bibinitperiod},
+           givenun=1}}%
+      }
+      \strng{namehash}{6dd73c1cf1f0ba7d1f5858761f833338}
+      \strng{fullhash}{6dd73c1cf1f0ba7d1f5858761f833338}
+      \strng{bibnamehash}{6dd73c1cf1f0ba7d1f5858761f833338}
+      \strng{authorbibnamehash}{6dd73c1cf1f0ba7d1f5858761f833338}
+      \strng{authornamehash}{6dd73c1cf1f0ba7d1f5858761f833338}
+      \strng{authorfullhash}{6dd73c1cf1f0ba7d1f5858761f833338}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Review}
+      \field{month}{02}
+      \field{title}{What's Real About the Business Cycle?}
+      \field{volume}{87}
+      \field{year}{2005}
+      \field{pages}{435\bibrangedash 452}
+      \range{pages}{18}
+    \endentry
     \entry{Hamilton1989}{article}{}
       \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=f1528bc518ebb8f6103311513805ac7d}{%
+        {{un=1,uniquepart=given,hash=f1528bc518ebb8f6103311513805ac7d}{%
            family={Hamilton},
            familyi={H\bibinitperiod},
            given={James\bibnamedelima D.},
            giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
-           givenun=0}}%
+           givenun=1}}%
       }
       \list{publisher}{1}{%
         {Wiley, Econometric Society}%
@@ -1990,6 +2049,34 @@
       \verb 1909.12313
       \endverb
     \endentry
+    \entry{Xuan2004}{thesis}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=787633b3a1ddc024113ea7b85ace7751}{%
+           family={Tang},
+           familyi={T\bibinitperiod},
+           given={Xuan},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {University of Saskatchewan}%
+      }
+      \strng{namehash}{787633b3a1ddc024113ea7b85ace7751}
+      \strng{fullhash}{787633b3a1ddc024113ea7b85ace7751}
+      \strng{bibnamehash}{787633b3a1ddc024113ea7b85ace7751}
+      \strng{authorbibnamehash}{787633b3a1ddc024113ea7b85ace7751}
+      \strng{authornamehash}{787633b3a1ddc024113ea7b85ace7751}
+      \strng{authorfullhash}{787633b3a1ddc024113ea7b85ace7751}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Autoregressive hidden Markov model with application in an El Niño study}
+      \field{type}{mathesis}
+      \field{year}{2004}
+    \endentry
     \entry{Tolver2016}{misc}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=dfa1c1fb822e18277c31c2edf24e40ed}{%
@@ -2229,9 +2316,6 @@
            giveni={L\bibinitperiod},
            givenun=0}}%
       }
-      \list{location}{1}{%
-        {London}%
-      }
       \list{publisher}{1}{%
         {Springer London}%
       }
@@ -2253,9 +2337,6 @@
       \field{year}{2015}
       \field{pages}{23\bibrangedash 54}
       \range{pages}{32}
-      \verb{doi}
-      \verb 10.1007/978-1-4471-5779-3_3
-      \endverb
     \endentry
     \entry{Yu2010}{article}{}
       \name{author}{1}{}{%

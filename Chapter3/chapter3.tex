@@ -149,8 +149,9 @@ that maximizes the lower bound $L(\theta,q|\textbf{Y})$. s.t. the "distance" fro
 In other words, we want to minimize distance between the complete data log-likelihood function $L(\theta,q|\textbf{Y})$ and incomplete data $\ell(\theta|\textbf{Y})$ 
 with respect to function $q(x)$. Kullback-Leibler divergence (hereafter KL divergence) measure is commonly used in image or signal processing 
 in calculation of the expected excess surprise from using $q$ as a probability distribution for our model given that the true or actual 
-probability distribution is $p$.\citep{Balesdent2016} Substantially, the measure is a difference of cross-entropy denoted by $H(p,q)$ and entropy by $H(p)$ which 
-is also always non-negative as a result of Gibb's inequality.
+probability distribution is $p$. \citep{Balesdent2016} 
+
+Substantially, the measure is a difference of cross-entropy denoted by $H(p,q)$ and entropy by $H(p)$ which is also always non-negative as a result of Gibb's inequality.
 
 \begin{align}
     D_{KL} (p || q) & = \sum_{X} p(x) \ln \frac{p(x)}{q(x)} \\
@@ -645,7 +646,7 @@ where the initial condition for $t=T$ is given by $\gamma_T(i) = \sum\limits_{u 
             \end{tikzpicture}
     \caption{Xi variable as in Equation \ref{eq:xi}}
     \end{subfigure}
-\caption[Visualization of posteriori variables resulting from E-step]{Trellis describing (a) $\gamma_t(i)$ variable as a product of $\alpha_t(i)$ and $\beta_t(i)$ variables and 
+\caption[Visualization of posterior variables resulting from E-step]{Trellis describing (a) $\gamma_t(i)$ variable as a product of $\alpha_t(i)$ and $\beta_t(i)$ variables and 
                             (b) $\xi_t(i,j)$ variable as a product of $\alpha_t(i)$, $a_{ij}$, $b_j(y_{t+1})$ and $\beta_{t+1}(j)$ variables.}
 \end{figure}
 
@@ -911,9 +912,44 @@ $\textbf{w}_{i,j}$ is defined as follows:
     \frac{\partial Q}{\partial \textbf{w}_{i,j}} = \sum_{k,t} \left[\gamma_{i,j,k,t} - \sum_{k,t} \bar{a}_{i,j}(\theta_t) \right] \theta_t
 \end{equation}
 
-\section{Application to AR(p) HMM model}
+\section{Autoregressive elements in EM algorithm}
 
+As we have seen in the previous chapter, the autoregressive structure of emissions implies that the emission probabilities are dependent also on the previous emissions and not only 
+on the current state. Therefore, we need to modify the Forward-Backward algorithm to account for this dependency. \citep{Xuan2004}
 
+Forward and Backward very briefly
+
+Apart from modifying the Forward-Backward algorithm in order to get the valid posterior variables $\gamma_t(i)$ and $\xi_t(i,j)$ in E-step, there are 
+regression parameters $\Phi$ as in Equation \ref{eq: ar_hmm2} that need to be re-estimated in each iteration of the M-step. Let us start by defining the 
+expectation of partial derivative of the log-likelihood function with respect to the regression parameters $\Phi_{i}$ and maximizing by setting it to zero:
+
+\begin{equation} \label{eq:pd_beta}
+    \sum_{t=p+1}^{T} \gamma_t(i) \frac{(y_t - S_t \Phi_{i})S_t}{\Sigma_i} = 0 \quad \forall i \in I
+\end{equation}
+
+where the sum starts from $p+1$ since we need to take into account the autoregressive structure of the emissions. Clearly the $\Sigma_i$ term is not dependent on $\Phi_i$ therefore we can
+ignore it. The estimate $\hat{\Phi}_i$ of the regression parameters that solves the above Equation \ref{eq:pd_beta} is easily found by ordinary least squares (OLS) method, as proposed by \citep{Xuan2004}:
+
+\begin{equation}
+    \hat{\Phi}_i = \left( \sum_{t=p+1}^{T} \tilde{S}_t \tilde{S}_t^T \right)^{-1} \left( \sum_{t=p+1}^{T} \tilde{S}_t(i) \tilde{Y}_t(i) \right)
+\end{equation}
+
+where $\tilde{S}_t(i) = S_t \sqrt{\gamma_t(i)}$ and $\tilde{Y}_t(i) = Y_t \sqrt{\gamma_t(i)}$. Estimating the regression parameters $\Phi_i$ is essentially 
+equal to estimating the mean of the Gaussian distribution in the case of GMM. Therefore, we are only lacking the estimation of the covariance matrix $\Sigma_i$
+which has a partial derivative with respect to $\Sigma_i$ equal to zero as follows:
+
+\begin{equation} \label{eq:pd_sigma}
+    \sum_{t=p+1}^{T} \gamma_t(i) \left[\frac{1}{2} \left(\Sigma_i - (y_t - S_t \Phi_{i})(y_t - S_t \Phi_{i})^T\right) \right] = 0 \quad \forall i \in I
+\end{equation}
+
+The re-estimation formula for the covariance matrix $\Sigma_i$ is then defined as follows:
+
+\begin{equation}
+    \hat{\Sigma}_i = \sum_{t=p+1}^{T} \frac{\left(\tilde{Y}_t(i) - \tilde{S}_t(i) \hat{\Phi}_i \right) \left(\tilde{Y}_t(i) - \tilde{S}_t(i) \hat{\Phi}_i \right)^T}{T - p}
+\end{equation}
+
+There is also slight difference in the re-estimation formula for the transition matrix $\textbf{A}$ where the sum starts from $p+1$ as opposed to $t=2$ in the case of HMM and 
+as for the initial distribution $\textbf{p}$ the first element is at $t=p$. \citep{Xuan2004}
 
 \section{Markov Chain Monte Carlo}
 
