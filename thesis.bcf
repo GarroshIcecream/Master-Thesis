@@ -2511,10 +2511,17 @@
     <bcf:citekey order="146" intorder="1">Xuan2004</bcf:citekey>
     <bcf:citekey order="147" intorder="1">Speagle2020</bcf:citekey>
     <bcf:citekey order="148" intorder="1">Spade2020</bcf:citekey>
-    <bcf:citekey order="149" intorder="1">Rabiner1989</bcf:citekey>
-    <bcf:citekey order="150" intorder="1">Oliver2013</bcf:citekey>
-    <bcf:citekey order="151" intorder="1">Bishop2006</bcf:citekey>
-    <bcf:citekey order="152" intorder="1" nocite="1">*</bcf:citekey>
+    <bcf:citekey order="149" intorder="1">Chib1996</bcf:citekey>
+    <bcf:citekey order="150" intorder="1">Rydén2008</bcf:citekey>
+    <bcf:citekey order="151" intorder="1">Chib1996</bcf:citekey>
+    <bcf:citekey order="152" intorder="1">Rydén2008</bcf:citekey>
+    <bcf:citekey order="153" intorder="1">Chib1996</bcf:citekey>
+    <bcf:citekey order="154" intorder="1">Rabiner1989</bcf:citekey>
+    <bcf:citekey order="155" intorder="1">Oliver2013</bcf:citekey>
+    <bcf:citekey order="156" intorder="1">Bishop2006</bcf:citekey>
+    <bcf:citekey order="157" intorder="1">Pertsinidou2015</bcf:citekey>
+    <bcf:citekey order="158" intorder="1">Pertsinidou2015</bcf:citekey>
+    <bcf:citekey order="159" intorder="1" nocite="1">*</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

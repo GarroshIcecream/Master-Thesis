@@ -327,6 +327,35 @@
       \field{type}{phdthesis}
       \field{year}{2013}
     \endentry
+    \entry{Chib1996}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=25628966014266922faf57d7f25b3abd}{%
+           family={Chib},
+           familyi={C\bibinitperiod},
+           given={Siddhartha},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{25628966014266922faf57d7f25b3abd}
+      \strng{fullhash}{25628966014266922faf57d7f25b3abd}
+      \strng{bibnamehash}{25628966014266922faf57d7f25b3abd}
+      \strng{authorbibnamehash}{25628966014266922faf57d7f25b3abd}
+      \strng{authornamehash}{25628966014266922faf57d7f25b3abd}
+      \strng{authorfullhash}{25628966014266922faf57d7f25b3abd}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Econometrics}
+      \field{number}{1}
+      \field{title}{Calculating posterior distributions and modal estimates in Markov mixture models}
+      \field{volume}{75}
+      \field{year}{1996}
+      \field{pages}{79\bibrangedash 97}
+      \range{pages}{19}
+    \endentry
     \entry{Ching2006}{book}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=896a700bf26eb8f876a3346ae0674ec4}{%
@@ -1521,6 +1550,39 @@
       \field{pages}{1214\bibrangedash 1252}
       \range{pages}{39}
     \endentry
+    \entry{Pertsinidou2015}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=8622f9cbd5d64d6119f996779d54e16c}{%
+           family={Pertsinidou},
+           familyi={P\bibinitperiod},
+           given={Christina},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=65701f21bfe6d066613cdeab4c6d513c}{%
+           family={Limnios},
+           familyi={L\bibinitperiod},
+           given={Nikolaos},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4b0374db974aea325d09bc17735eae87}
+      \strng{fullhash}{4b0374db974aea325d09bc17735eae87}
+      \strng{bibnamehash}{4b0374db974aea325d09bc17735eae87}
+      \strng{authorbibnamehash}{4b0374db974aea325d09bc17735eae87}
+      \strng{authornamehash}{4b0374db974aea325d09bc17735eae87}
+      \strng{authorfullhash}{4b0374db974aea325d09bc17735eae87}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{RAIRO - Operations Research}
+      \field{month}{07}
+      \field{title}{Viterbi algorithms for Hidden semi-Markov Models with application to DNA Analysis}
+      \field{volume}{49}
+      \field{year}{2015}
+    \endentry
     \entry{Peters1994}{book}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=5097868c01c0cddcd3a482158f90bdb3}{%
@@ -1887,6 +1949,38 @@
       \verb{eprint}
       \verb 2105.11490
       \endverb
+    \endentry
+    \entry{Rydén2008}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=2c9d51bafc99b7c532bdaef54dc375ce}{%
+           family={Rydén},
+           familyi={R\bibinitperiod},
+           given={Tobias},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {International Society for Bayesian Analysis}%
+      }
+      \strng{namehash}{2c9d51bafc99b7c532bdaef54dc375ce}
+      \strng{fullhash}{2c9d51bafc99b7c532bdaef54dc375ce}
+      \strng{bibnamehash}{2c9d51bafc99b7c532bdaef54dc375ce}
+      \strng{authorbibnamehash}{2c9d51bafc99b7c532bdaef54dc375ce}
+      \strng{authornamehash}{2c9d51bafc99b7c532bdaef54dc375ce}
+      \strng{authorfullhash}{2c9d51bafc99b7c532bdaef54dc375ce}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Bayesian Analysis}
+      \field{number}{4}
+      \field{title}{{EM versus Markov chain Monte Carlo for estimation of hidden Markov models: a computational perspective}}
+      \field{volume}{3}
+      \field{year}{2008}
+      \field{pages}{659\bibrangedash 688}
+      \range{pages}{30}
     \endentry
     \entry{Sahner1996}{inbook}{}
       \name{author}{3}{}{%

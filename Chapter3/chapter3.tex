@@ -75,9 +75,6 @@ parameters as follows:
 \hat{\sigma}_{MLE}^2 = \frac{\sum_{t=1}^{T} {(y_t - \mu)}^2}{T} \label{eq:MLEsigma} 
 \end{gather}
 
-Inserting observed data $\textbf{Y}$ into Equation \ref{eq:MLEmu} and \ref{eq:MLEsigma}, ML estimate of $\mu$ is 0.003 and $\sigma^2$ 
-0.042 respectively. Histogram with fitted curve TODO.
-
 \subsection*{Incomplete data}
 
 Although the assumption of complete data simplifies the analytical procedure of calculating the ML estimate in closed form, 
@@ -1019,17 +1016,78 @@ Lastly, notice that the samples from proposal conditional distribution are corre
 In summary, the Metropolis-Hastings algorithm is very flexible and simple to implement, and it is often used as a baseline for more sophisticated MCMC methods. 
 There are several variants of the Metropolis-Hastings algorithm, e.g. Metropolis-within-Gibbs sampling, which is a special case of the Metropolis-Hastings algorithm where the proposal distribution is chosen to be the conditional distribution of the parameters given the current state of the Markov chain.
 
-\subsection{Gibbs Sampling}
+\subsection{Gibbs Sampler}
+
+One of the special cases of the Metropolis-Hastings algorithm is the Gibbs sampler where the acceptance probability 
+$\alpha$ is always equal to 1. The idea behind the algorithm is that it is more efficient to sample from conditional distribution rather than 
+to marginalize by integrating over the joint distribution. In other words, we want to sample from the conditional distribution of each parameter vector given 
+the remaining set of parameters and the data. This process generates a Markov Chain that converges in L1 norm to the posterior distribution of the parameters. \citep{Chib1996}
+
+Usually as presented in the Chapter 2, when we are choosing the prior distribution for the parameters of the Hidden Markov Model or generally, we pragmatically
+decide to use conjugate to the complete data likelihood. The conjugate prior is a prior distribution that belongs to the same family of distributions 
+as the posterior distribution and in our present case it holds for Dirichlet distribution for the initial distribution $\textbf{p}$ and transition matrix $\textbf{A}$.
+Surely, this applies to the probability vectors therefore we ought to consider different prior for each row of the transition matrix $\textbf{A}$. \citep{Rydén2008}
+
+In general Gibbs sampler proceeds as depicted below in three steps by iteratively sampling each parameter from the conditional distribution given the remaining parameters 
+and the data. Here, as in \citep{Chib1996}, we assume that each row of the transition matrix $\textbf{A}$ or initial distribution $\textbf{p}$ is a vector $\psi_i^k=(\psi_{i1},\ldots,\psi_{iN})$ for each $i \in I$ and iteration $k$.
+
+\begin{itemize}
+    \item[1.] \textbf{Initialization}: Specify starting values of vector $\psi_i^0$ and set $k=0$.
+    \item[2.] \textbf{Simulation}: Sample each parameter from the conditional distribution given the remaining parameters and the data as follows:
+    \begin{align*}
+        \psi_{i,1}^{k+1} & \sim \mathbb{P}(\psi_{i,1}|\textbf{Y},\psi_{i,2}^k,\psi_{i,3}^k,\ldots,\psi_{i,N}^k) \\
+        \psi_{i,2}^{k+1} & \sim \mathbb{P}(\psi_{i,2}|\textbf{Y},\psi_{i,1}^{k+1},\psi_{i,3}^k,\ldots,\psi_{i,N}^k) \\
+        &\vdots\\
+        \psi_{i,N}^{k+1} & \sim \mathbb{P}(\psi_{i,N}|\textbf{Y},\psi_{i,1}^{k+1},\psi_{i,2}^{k+1},\ldots,\psi_{i,N-1}^{k+1})
+    \end{align*}
+    
+    \item[3.] \textbf{Recursion}: Set $k = k+1$ and repeat step 2 until convergence is reached.
+\end{itemize}
+
+In our setting the prior distribution of each row of the respective probability matrix is Dirichlet distribution with parameters $\alpha_{i1},\ldots,\alpha_{iN}$:
+
+\begin{equation}
+    a_i \sim Dir(\alpha_{i1},\ldots,\alpha_{iN})
+\end{equation}
+
+where the often choice for the $\alpha$ parameter is 1. Then after multiplying the prior distribution with the likelihood function 
+we obtain the following posterior distribution:
+
+\begin{equation} \label{eq:gibbs_trans}
+    a_i|\textbf{X} \sim Dir(\alpha_{i1} + \eta_{i1},\ldots,\alpha_{iN} + \eta_{iN})
+\end{equation}
+
+where $\eta_{ij}$ is the number of transitions from state $i$ to state $j$ in the vector $\textbf{X}$ or in case of the emission matrix $\textbf{B}$ we would substitute such variable $\eta_{i,m}$ with 
+the number of times the state $i$ was observed and respective emission symbol $m$ emitted. \citep{Rydén2008}
+
+In terms of the initial distribution $\textbf{p}$ we would have to sample from the following conditional distribution similar to the one 
+in Equation \ref{eq:gibbs_trans}:
+
+\begin{equation}
+    \textbf{p}|X_1 \sim Dir(\alpha_{i1} + \mathbbm{1}_{[X_1=1]},\ldots,\alpha_{iN} + \mathbbm{1}_{[X_1=N]})
+\end{equation}
+
+However, the update of above happens after evaluating the posterior distribution of the hidden states $\textbf{X}$ given the data $\textbf{Y}$ and the current parameters $\theta$.
+We can achieve this by again using the backward variables which leads to the common method called \textit{backward recursion forward sampling} for simulating the 
+latent Markov chain conditional on the data, as stated in \citep{Chib1996}:
+\begin{align}
+    \mathbb{P}(X_1=i|\textbf{Y},\theta) & \propto p_i b_i(y_1) p_{\theta}(y_2,\ldots,y_T|X_1=i) \\
+    \mathbb{P}(X_k=j|X_{k-1}=i,\textbf{Y},\theta) & \propto a_{ij} b_i(y_k) p_{\theta}(y_{k+1},\ldots,y_T|X_k=i)
+\end{align}
+
+Therefore, we could imagine this as a last step of the one Gibbs sampler iteration where for iteration $k=0$ each probability vector is sampled from the Dirichlet distribution
+with parameter $\alpha=1$.
+
 
 \section{Sequence decoding using Viterbi algorithm}
 
 Once we solve \textbf{Evaluation problem} using Baum-Welch algorithm, thus estimating the posterior marginal and joint distribution of hidden states as well as parameters of the model,
 we may proceed to the \textbf{Decoding problem}. The decoding problem aims to find the most likely sequence of hidden states given the emission sequence and model parameters, i.e. 
-find the sequence of hidden states $\textbf{Z}^*$ that most likely produced the emission sequence $\textbf{Y}$. Finding the most likely sequence $\textbf{Z}^*$ is also known as 
+find the sequence of hidden states $\textbf{X}^*$ that most likely produced the emission sequence $\textbf{Y}$. Finding the most likely sequence $\textbf{X}^*$ is also known as 
 the maximum a posterior probability (MAP) estimate and is defined as:
 
 \begin{equation} \label{eq:MAP}
-    \textbf{Z}^* = \underset{Z}{\arg\max} \: p(\textbf{Z}|\textbf{Y},\theta)
+    \textbf{X}^* = \underset{X}{\arg\max} \: p(\textbf{X}|\textbf{Y},\theta)
 \end{equation}
 
 As in the encoding problem, the complexity of the optimisation problem explodes if we decide to account for all possible sequences of hidden states into $N^T$ calculations. 
@@ -1043,7 +1101,7 @@ but rather to find the most likely sequence of states up to time $t$. In such ca
 The most individually likely hidden state at time $t$ would be:
 
 \begin{equation}
-    z_t^* = \underset{i \in I}{\arg\max} \{\gamma_t(i)\} = \underset{i \in I}{\arg\max} \mathbb{P}(X_t=i|\textbf{Y},\theta)
+    x_t^* = \underset{i \in I}{\arg\max} \{\gamma_t(i)\} = \underset{i \in I}{\arg\max} \mathbb{P}(X_t=i|\textbf{Y},\theta)
 \end{equation}
 
 MAP estimate directly equals to the mode of the posterior distribution, i.e. value for which the likelihood or log-likelihood function attains its local maximum/maxima. 
@@ -1051,16 +1109,16 @@ However, the solution as such might not produce the most likely sequence of stat
 the transition probability between individually most likely states at time t-1 and t. Hence, it might be possible that some states are highly unlikely to transition 
 into other that were evaluated as individually most likely by Equation \ref{eq:MAP}. Fortunately, the mentioned shortcomings of this approach are solved by Viterbi algorithm.
 
-In order to find the most likely sequence of hidden states $\textbf{Z}^*=\{z_1^*,z_2^*,\ldots,z_T^*\}$ given the observation sequence $\textbf{Y}$ it is necessary 
+In order to find the most likely sequence of hidden states $\textbf{X}^*=\{x_1^*,\ldots,x_T^*\}$ given the observation sequence $\textbf{Y}$ it is necessary 
 to maximise with respect to the whole sequence rather than individually to avoid less likely transitions among states.
 Therefore, we need variable $\delta_t(i)$:
 
 \begin{equation}
-    \delta_t(i) = \underset{z_1,\ldots,z_{t-1} \in I}{\max}\: \mathbb{P}(X_1=z_1,\ldots,X_{t-1}=z_{t-1},X_t=i,Y_1 = y_1,\ldots,Y_{t}=y_t|\theta)
+    \delta_t(i) = \underset{x_1,\ldots,x_{t-1} \in I}{\max}\: \mathbb{P}(X_1=x_1,\ldots,X_{t-1}=x_{t-1},X_t=i,Y_1 = y_1,\ldots,Y_{t}=y_t|\theta)
 \end{equation}
 
 That results in finding most likely state sequence of states up to time $t-1$ and then arriving at state $i$ at time $t$. Moreover, for the purpose of the algorithm we also need variable $\psi_t(i)$ 
-that stores the node of the incoming arc that leads to the most probable state path since $delta_t(i)$ only records a probability.\footnote{Some literature distinguishes between $\delta$ and $\psi$, s.t. former is Viterbi probability and latter Viterbi path.} 
+that stores the node of the incoming arc that leads to the most probable state path since $delta_t(i)$ only records a probability.\footnote{Some literature distinguishes between $\delta$ and $\psi$, s.t. former is \textbf{Viterbi probability} and latter \textbf{Viterbi path}.} 
 In other words, $\psi_t(i)$ is the most likely state at time $t-1$ that leads to state $i$ at time $t$.
 
 \begin{equation}
@@ -1070,19 +1128,17 @@ In other words, $\psi_t(i)$ is the most likely state at time $t-1$ that leads to
 \noindent Viterbi algorithm proceeds in 4 main steps:
 
 \begin{itemize}
-\item[1.] \textbf{Initialization step}: Given the initial distribution of hidden states $\textbf{p}$ and emission probabilities $\textbf{b}$ computes the initial values 
+\item[1.] \textbf{Initialization step}: Given the initial distribution of hidden states $\textbf{p}$ and emission probabilities given by matrix $\textbf{B}$ computes the initial values 
 of $\delta$ and $\psi$ for all $i \in I$ as:
-
 \begin{align}
 \delta_1(i) &= p_i b_i(y_1)  \\
 \psi_1(i)& = 0
 \end{align}
 
 \item[2.] \textbf{Recursive step}:
-
 \begin{align}
-\delta_1(i) &= \underset{i \in I}{\arg\max} \: [\delta_{t-1}(i)p_{ij}] b_j(y_t)  \\
-\psi_t(j)& = \underset{i \in I}{\arg\max} \: \delta_{t-1}(i)p_{ij}
+\delta_1(i) &= \underset{i \in I}{\max} \: \left[\delta_{t-1}(i)a_{ij}\right] b_j(y_t)  \\
+\psi_t(j)& = \underset{i \in I}{\arg\max} \: \left[\delta_{t-1}(i)a_{ij}\right]
 \end{align}
 
 At each iterative step we update the time so that $t=t+1$ as long as the $t<T$. Although, recursive step in Viterbi algorithm seems very similar to the 
@@ -1098,7 +1154,7 @@ z_T^* = \underset{i \in I}{\arg\max} \: \delta_{T}(i)
 \item[4.] \textbf{Back tracing step}: the optimal state sequence for $t = T-1,T-2,\ldots,1$ is then derived based on $\psi$ variable as:
 
 \begin{equation}
-z_t^* = \psi_{t+1}(z_{t+1}^*)
+x_t^* = \psi_{t+1}(x_{t+1}^*)
 \end{equation}
 
 \end{itemize}
@@ -1208,3 +1264,48 @@ To understand why the Viterbi algorithm is so efficient we need to look at the c
 \caption[Viterbi path through trellis]{Trellis of the observation sequence $\{y_1, \ldots,y_5\}$. Bold lines illustrate the most likely state sequence $Z^*$ found by the Viterbi algorithm.}
 \end{figure}
 
+Viterbi algorithm remains unchanged with the above described procedure even if we use Gaussian Mixture Model for the emission probabilities or generally 
+consider the case of Continuous HMM. The only difference is that we need to replace the emission probabilities with the probability density function of the Gaussian distribution.
+However, the applicability of the approach changes when we no longer assume that the sojourn times are geometrically distributed as would be the case for the classical HMM. 
+
+If we assume that the sojourn times follow arbitrary distribution, then the adjustment to the Viterbi algorithm is necessary and 
+takes place predominantly in the way we compute the $\delta$ variable since we have to account for the different 
+approach to the sojourn times. For this purpose we will introduce special case of the Viterbi algorithm that 
+is very close to the original Viterbi algorithm as was proposed by \citep{Pertsinidou2015}.
+
+The main difference between the original Viterbi algorithm and the one proposed by \citep{Pertsinidou2015} is that the 
+recursive step is slightly modified to adhere for the duration of respective hidden state. This is achieved by 
+introducing new variable $\alpha_{ij}$ which is defined as follows:
+
+\begin{equation}
+    \alpha_{t}(i) = \sum\limits_{l_1=0}^{t-1} \sum\limits_{l_2 \in \{0,l_1+1\}} \tilde{p}_{(i_{t-1},l_1),(i_{t},l_2)} \times \mathbbm{1}_{[i_{t-1}=\ldots=i_{t-l_1-1} \neq i_{t-l_1-2}]} \textit{,} \quad t \geq 1
+\end{equation}
+
+where $\tilde{p}_{(i_{t-1},t_1),(i_{t},t_2)}$ is derived based on the sojourn time distribution using semi-Markov kernel \textbf{Q}:
+
+\begin{equation}
+    \tilde{p}_{(i_{t-1},t_1),(i_{t},t_2)} = 
+    \begin{cases}
+        q_{ij}(t_1+1) / \bar{H}_i(t_1) & \text{if } i \neq j, t_2 = 0 \\
+        \bar{H}_i(t_1+1) / \bar{H}_i(t_1) & \text{if } i = j, t_2 - t_1 = 1 \\
+        0 & \text{elsewhere} 
+    \end{cases}
+\end{equation}
+
+and the $\bar{H}_i(d)$ represents the survival function of the sojourn time distribution of the $i$-th hidden state:
+
+\begin{equation}
+    \bar{H}_i(d) = 1 - \sum\limits_{j \in I}\sum\limits_{k=1}^{d} q_{ij}(k)
+\end{equation}
+
+Once we have defined the $\alpha_{ij}$ variable we can proceed to the recursive step of the modified Viterbi algorithm:
+
+\begin{equation}
+    \delta_1(i) = \underset{i \in I}{\max} \: \left[\delta_{t-1}(i) \alpha_{t}(i) \right] b_j(y_t)
+\end{equation}
+
+\begin{equation}
+    \psi_t(j) = \underset{i \in I}{\arg\max} \: \left[ \delta_{t-1}(i) \alpha_{t}(i) \right] 
+\end{equation}
+
+All other steps that include the Initialization of the algorithm, Termination and Back tracing remain unchanged.
