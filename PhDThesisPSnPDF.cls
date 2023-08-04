@@ -1008,19 +1008,18 @@ wish to left align your text}
 % The declaration environment puts a large, bold, centered
 % "Declaration" label at the top of the page.
 \newenvironment{declaration}{
-    \thispagestyle{empty}
-    \chapter*{\Large \@declarationtitle}
-    \vfill
+  \thispagestyle{empty}
+  \chapter*{}
+  \vfill
 }{
-    \vspace{2cm}
-    \noindent In \@city{} on \@degreedate
+  \vspace{2cm}
+  \noindent In \@city{} on \@degreedate
 
-    \vspace{1cm}
-    \noindent
-    \makebox[7cm]{\dotfill} \\
-    \textit{(author signature)}
-    \thispagestyle{empty}
-    \newpage
+  \vspace{1cm}
+  \noindent
+  \makebox[7cm]{\dotfill} \\
+  \textit{(author signature)}
+  \newpage
 }
 
 % ****************************** Acknowledgements ********************************

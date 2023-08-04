@@ -3,7 +3,7 @@
 %****************************** Second Chapter *********************************
 %*******************************************************************************
 
-\chapter{Parameter Estimation for Hidden Markov Models}
+\chapter{Parameter Estimation for Hidden Markov Models}~\label{chapter:parameter_estimation}
 
 \ifpdf
     \graphicspath{{Chapter2/Figs/Raster/}{Chapter2/Figs/PDF/}{Chapter2/Figs/}}
@@ -11,7 +11,7 @@
     \graphicspath{{Chapter2/Figs/Vector/}{Chapter2/Figs/}}
 \fi
 
-\section{ Expectation–Maximization algorithm}
+\section{Expectation–Maximization algorithm}~\label{sec:EM}
  
 Also abbreviated as \textbf{EM algorithm} is an iterative approach for maximum likelihood estimates of model parameters. 
 It is used in situations where incomplete data are present therefore a part of a complete data set is hidden, 
@@ -21,11 +21,11 @@ case of complete data. EM algorithm introduce further below is mainly based on t
 In other words, we want to find the best estimate of the parameters for which the observed sequence of emissions is the most likely. 
 This is of great importance and efficiency in Hidden Markov models where we have a space of emissions and states, where  emissions 
 are observed and states are hidden. We also know that the state space is, in our case, finite, and therefore we can enumerate all possible states 
-since the emissions are independent but not identically distributed, s.t. the distribution of emissions depends on the hidden state.
+since the emissions are independent but not identically distributed, s.t.\ the distribution of emissions depends on the hidden state.
 
 Let us also denote $\theta \in \Theta$ which is a vector of parameters belonging to parameter space $\Theta$. 
 The aim of EM algorithm is essentially to find the "best" estimate of $\theta$ that maximizes the likelihood function $L(\theta|\textbf{Y})$, 
-this is well known as Maximum likelihood estimate (MLE) that leads to $\hat{\theta}_{MLE}$. 
+this is well known as Maximum likelihood estimate (MLE) that leads to the estimate $\hat{\theta}_{MLE}$. 
 
 \subsection*{Complete data}
 
@@ -189,12 +189,12 @@ with already estimated $q^{(k+1)}$, that maximizes the lower bound $L(\theta,q|\
 
 \begin{figure}[ht]
 
-\begin{center}
-	\includegraphics[width=0.9\textwidth]{Figs/Loglike.png}
-\end{center}
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{Figs/Loglike.png}
+    \end{center}
 
-\caption[Construction of log-likelihood lower bound]{\textit{E-step as a problem of minimization of KL divergence represented as a gap between two likelihood functions, reprinted from \citep{Bishop2006}}}
-\label{fig:Loglike}
+    \caption[Construction of log-likelihood lower bound in EM algorithm]{\textit{E-step as a problem of minimization of KL divergence represented as a gap between two likelihood functions followed by new estimate of $\theta$ within M-step, reprinted from \citep{Bishop2006}}}
+    \label{fig:Loglike}
 \end{figure}
 
 \noindent Thus, as a summarization, the EM algorithm involves two steps:
@@ -921,7 +921,7 @@ regression parameters $\Phi$ as in Equation \ref{eq: ar_hmm2} that need to be re
 expectation of partial derivative of the log-likelihood function with respect to the regression parameters $\Phi_{i}$ and maximizing by setting it to zero:
 
 \begin{equation} \label{eq:pd_beta}
-    \sum_{t=p+1}^{T} \gamma_t(i) \frac{(y_t - S_t \Phi_{i})S_t}{\Sigma_i} = 0 \quad \forall i \in I
+    \sum_{t=p+1}^{T} \gamma_t(i) \frac{(y_t - S_t \Phi_{i})S_t}{\Sigma_i} = 0, \quad \forall i \in I
 \end{equation}
 
 where the sum starts from $p+1$ since we need to take into account the autoregressive structure of the emissions. Clearly the $\Sigma_i$ term is not dependent on $\Phi_i$ therefore we can
@@ -936,7 +936,7 @@ equal to estimating the mean of the Gaussian distribution in the case of GMM. Th
 which has a partial derivative with respect to $\Sigma_i$ equal to zero as follows:
 
 \begin{equation} \label{eq:pd_sigma}
-    \sum_{t=p+1}^{T} \gamma_t(i) \left[\frac{1}{2} \left(\Sigma_i - (y_t - S_t \Phi_{i})(y_t - S_t \Phi_{i})^T\right) \right] = 0 \quad \forall i \in I
+    \sum_{t=p+1}^{T} \gamma_t(i) \left[\frac{1}{2} \left(\Sigma_i - (y_t - S_t \Phi_{i})(y_t - S_t \Phi_{i})^T\right) \right] = 0, \quad \forall i \in I
 \end{equation}
 
 The re-estimation formula for the covariance matrix $\Sigma_i$ is then defined as follows:
@@ -946,21 +946,21 @@ The re-estimation formula for the covariance matrix $\Sigma_i$ is then defined a
 \end{equation}
 
 There is also slight difference in the re-estimation formula for the transition matrix $\textbf{A}$ where the sum starts from $p+1$ as opposed to $t=2$ in the case of HMM and 
-as for the initial distribution $\textbf{p}$ the first element is at $t=p$. \citep{Xuan2004}
+as for the initial distribution $\textbf{p}$ the first element is at $t=p$.~\citep{Xuan2004}
 
-\section{Markov Chain Monte Carlo}
+\section{Markov Chain Monte Carlo}~\label{sec:mcmc}
 
 Although, EM algorithm is a very powerful tool for estimating parameters of the mixture model,
 it is not guaranteed to converge to the global optimum of the log-likelihood function. Therefore, 
 we will introduce a Markov Chain Monte Carlo (MCMC) method for estimating the parameters of the mixture model by 
-sampling from the posterior distribution of the parameters. \citep{Speagle2020} As opposed to the previous subsection, the MCMC method 
-also provides a measure of uncertainty of the estimated parameters. \citep{Spade2020}     
+sampling from the posterior distribution of the parameters.~\citep{Speagle2020} 
+As opposed to the previous subsection, the MCMC method also provides a measure of uncertainty of the estimated parameters.~\citep{Spade2020}     
 
 \subsection{Metropolis-Hastings Algorithm}
 
 The Metropolis-Hastings algorithm is a Markov Chain Monte Carlo method for sampling from a probability distribution. 
-The algorithm is based on the idea of constructing a Markov chain that has a stationary distribution equal to the target distribution.
-The algorithm is defined as follows:
+The algorithm is based on the idea of constructing a Markov Chain that has a stationary distribution equal to the target distribution.
+The algorithm is defined as follows from~\citep{Robert2004}:
 
 \begin{enumerate}
     \item Initialize the Markov chain with an arbitrary state $\theta^{(0)}$.
@@ -989,29 +989,14 @@ so that the computation of Hastings ratio is simplified (to Metropolis ratio) an
     \alpha(\theta^{(t-1)},\theta^*) = \min \left(1,\frac{p(\theta^*)}{p(\theta^{(t-1)})}\right)
 \end{equation}
 
-Given the Gaussian mixture model, we can use the Metropolis-Hastings algorithm to sample from the posterior distribution of the parameters $\pi_k$, $\mu_k$ and $\Sigma_k$. 
-The target distribution is the posterior distribution of the parameters, i.e. $p(\pi_k,\mu_k,\Sigma_k|\textbf{Y})$.
-This distribution is proportional to the product of the prior distribution and the likelihood function, i.e. $p(\pi_k,\mu_k,\Sigma_k|\textbf{Y}) \propto p(\pi_k,\mu_k,\Sigma_k)p(\textbf{Y}|\pi_k,\mu_k,\Sigma_k)$ as follows from the Bayes' theorem.
-The prior distribution is the conjugate prior of the multivariate Gaussian distribution, i.e.\ the Normal-Wishart distribution when we want to infer both the mean and the covariance matrix of the Gaussian distribution.
-The Normal-Wishart distribution is defined as follows:
-
-\begin{equation}
-    \mathcal{NW}(\mu,\Sigma|\mu_0,\kappa_0,\nu_0,\Lambda_0) = \mathcal{N}(\mu|\mu_0,{(\kappa_0\Sigma)}^{-1})\mathcal{W}(\Sigma|\nu_0,\Lambda_0)
-\end{equation}
-
-where $\mu_0$ is the prior mean, $\kappa_0$ is the prior precision, $\nu_0$ is the prior degrees of freedom and $\Lambda_0$ is the prior scale matrix.
-The likelihood function is the product of the component Gaussian distributions given by Equation~\ref{eq:likelihood-gaussian}. Together with the prior distribution, the posterior distribution is given by the following:
-
-\begin{equation}
-    p(\pi_k,\mu_k,\Sigma_k|\textbf{Y}) \propto \prod_{i=1}^{N} \prod_{k=1}^{K} {\left[ \pi_k \mathcal{N}(\textbf{Y}_i|\mu_k,\Sigma_k) \right]}^{\mathbb{E}[z_{ik}|\textbf{Y}_i,\theta^{(t)}]} \mathcal{NW}(\mu_k,\Sigma_k|\mu_0,\kappa_0,\nu_0,\Lambda_0)
-\end{equation}
-
-where $\mathbb{E}[z_{ik}|\textbf{Y}_i,\theta^{(t)}]$ is the posterior probability of the $i$-th observation belonging to the $k$-th component Gaussian distribution given the current estimate of the parameters $\theta^{(t)}$ as per Equation~\ref{eq:posterior_prob}.
-The proposal distribution is often defined as a multivariate Gaussian distribution with mean $\theta^{(t-1)}$ and covariance matrix $\Sigma$ which effects the convergence of the algorithm since it determines the size of the step taken in the parameter space. 
+The proposal distribution is often defined as a multivariate Gaussian distribution with mean $\mu$ and covariance matrix $\Sigma$ which effects the convergence of the algorithm since it determines the size of the step taken in the parameter space. 
 If $\Sigma$ is too small the algorithm might not explore the parameter space sufficiently and the Markov chain might get stuck in a local optimum. On the other hand, if $\Sigma$ is too large then the Markov chain might not converge at all. 
-The choice of the proposal distribution is not unique, and it is usually determined empirically given some knowledge about the target distribution. 
+The choice of the proposal distribution is not unique, and it is usually determined empirically given knowledge about the target distribution. 
 Initialization of the Markov chain in the first step of the algorithm is also crucial since if the initial state is far from the region of high probability of the target distribution then the Markov chain might not converge at all.
-Lastly, notice that the samples from proposal conditional distribution are correlated since the next state of the Markov chain depends on the previous state which is a consequence of the Markov property and differs from the independent sampling of the parameters.
+Lastly, notice that the samples from proposal conditional distribution are correlated since the next state of the Markov chain depends on the previous state which is a consequence of the Markov property and differs from the independent sampling of the parameters.~\citep{Mikusheva2007}
+
+There is also an important parameter connected to the MCMC methods called \textit{burn-in} which is the number of initial samples that are discarded from the Markov chain. This is usually 
+done to ensure that the Markov chain has converged to the stationary distribution. The burn-in period is usually determined empirically by plotting the trace of the Markov Chain.~\citep{Navarro2011}
 
 In summary, the Metropolis-Hastings algorithm is very flexible and simple to implement, and it is often used as a baseline for more sophisticated MCMC methods. 
 There are several variants of the Metropolis-Hastings algorithm, e.g. Metropolis-within-Gibbs sampling, which is a special case of the Metropolis-Hastings algorithm where the proposal distribution is chosen to be the conditional distribution of the parameters given the current state of the Markov chain.

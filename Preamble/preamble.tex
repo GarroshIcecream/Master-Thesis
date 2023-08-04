@@ -1,77 +1,20 @@
 % ******************************************************************************
 % ****************************** Custom Margin *********************************
-
-% Add `custommargin' in the document class options to use this section
-% Set {innerside margin / outerside margin / topmargin / bottom margin}  and
-% other page dimensions
 \ifsetCustomMargin%
   \RequirePackage[left=37mm,right=30mm,top=35mm,bottom=30mm]{geometry}
-  \setFancyHdr% To apply fancy header after geometry package is loaded
+  \setFancyHdr%
 \fi
 
-% Add spaces between paragraphs
-%\setlength{\parskip}{0.5em}
-% Ragged bottom avoids extra whitespaces between paragraphs
 \raggedbottom%
-% To remove the excess top spacing for enumeration, list and description
-%\usepackage{enumitem}
-%\setlist[enumerate,itemize,description]{topsep=0em}
-
-% *****************************************************************************
-% ******************* Fonts (like different typewriter fonts etc.)*************
-
-% Add `customfont' in the document class option to use this section
-
-\ifsetCustomFont%
-% Set your custom font here and use `customfont' in options. Leave empty to
-  % load computer modern font (default LaTeX font).
-  %\RequirePackage{helvet}
-
-  % For use with XeLaTeX
-  %  \setmainfont[
-  %    Path              = ./libertine/opentype/,
-  %    Extension         = .otf,
-  %    UprightFont = LinLibertine_R,
-  %    BoldFont = LinLibertine_RZ, % Linux Libertine O Regular Semibold
-  %    ItalicFont = LinLibertine_RI,
-  %    BoldItalicFont = LinLibertine_RZI, % Linux Libertine O Regular Semibold Italic
-  %  ]
-  %  {libertine}
-  %  % load font from system font
-  %  \newfontfamily\libertinesystemfont{Linux Libertine O}
-\fi
 
 % *****************************************************************************
 % **************************** Custom Packages ********************************
 
-% ************************* Algorithms and Pseudocode **************************
-
-%\usepackage{algpseudocode}
-
-
 % ********************Captions and Hyperreferencing / URL **********************
-
-% Captions: This makes captions of figures use a boldfaced small font.
-%\RequirePackage[small,bf]{caption}
-
 \RequirePackage[labelsep=space, tableposition=top]{caption}
-\renewcommand{\figurename}{Fig.} %to support older versions of captions.sty
-
+\renewcommand{\figurename}{Fig.}
 
 % *************************** Graphics and figures *****************************
-
-%\usepackage{rotating}
-%\usepackage{wrapfig}
-
-% Uncomment the following two lines to force Latex to place the figure.
-% Use [H] when including graphics. Note 'H' instead of 'h'
-%\usepackage{float}
-%\restylefloat{figure}
-
-% Subcaption package is also available in the sty folder you can use that by
-% uncommenting the following line
-% This is for people stuck with older versions of texlive
-%\usepackage{sty/caption/subcaption}
 \usepackage{subcaption}
 
 % ********************************** Tables ************************************
@@ -82,19 +25,18 @@
 \usepackage{bbm}
 \usepackage{commath}
 \usepackage{amsmath}
+\usepackage{mathrsfs}
 \usepackage{tikz}
 \usepackage{bookmark}
 \usetikzlibrary{automata,arrows,positioning,calc,shapes.geometric}
- 
 
 % *********************************** SI Units *********************************
-\usepackage{siunitx} % use this package module for SI units
+\usepackage{siunitx}
 
 % *****************************************************************************
 % *************************** Bibliography  and References ********************
-%\RequirePackage[style=iso-authoryear]{biblatex-iso690}
-\addbibresource{References/references.bib} %Location of references.bib only for biblatex, Do not omit the .bib extension from the filename.
-\bibliography{References/references} % Path to your References.bib file
+\addbibresource{References/references.bib}
+\bibliography{References/references}
 
 
 % ********************** TOC depth and numbering depth *************************

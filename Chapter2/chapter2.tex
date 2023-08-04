@@ -33,10 +33,10 @@ In order to describe the emissions, we will define an $N \times M$ \textit{emiss
 
 \begin{equation}
     \textbf{B} = \begin{pmatrix}
-    b_1(y_1) & b_1(y_2) & \ldots & b_1(y_M) \\
-    b_2(y_1) & b_2(y_2) & \ldots & b_2(y_M) \\
+    b_1(y_1) & b_1(y_2) & \cdots & b_1(y_M) \\
+    b_2(y_1) & b_2(y_2) & \cdots & b_2(y_M) \\
     \vdots & \vdots & \ddots & \vdots \\
-    b_N(y_1) & b_N(y_2) & \ldots & b_N(y_M) \\
+    b_N(y_1) & b_N(y_2) & \cdots & b_N(y_M) \\
     \end{pmatrix}
 \end{equation}
 
@@ -244,8 +244,7 @@ where $f_i$ is a component density of the mixture and $\pi_i$ a mixing proportio
     0 \leq \pi_i \leq 1 \quad \forall i \in \{1,2,\ldots,M\}
 \end{equation}
 
-and
-
+and5
 \begin{equation}
     \sum_{i=1}^{M} \pi_i = 1
 \end{equation}
@@ -325,30 +324,31 @@ where $d=2$ and $M=3$.
     \label{fig:gaussian_mix}
 \end{figure}
 
-The motivation for using the Gaussian mixture model is that it is a universal approximation of densities, i.e. it can approximate any density arbitrarily well as stated by \citep{Bishop2006}.
+The motivation for using the Gaussian mixture model is that it is a universal approximation of densities, i.e.\ it can approximate any density arbitrarily well as stated by \citep{Bishop2006}.
 In a setting of possible stock price prediction we may consider looking at asset returns as a mixture of Gaussian distributions, where each component represents a different regime of the market.
 This was first considered by \citep{Fama1965} in estimating densities of asset returns and later further developed by other authors. Indeed, the financial markets were shown to be
-characterized by different regimes that manifest themselves in the implication on the mean and variance of the returns. \citep{Hamilton1989}
+characterized by different regimes that manifest themselves in the implication on the mean and variance of the returns.~\citep{Hamilton1989}
 
 We aim to briefly explain only one regime that deviates from the "usual" view of the asset returns distribution, which was first 
 introduced by \citep{Black1976} and later by \citep{Christie1982}. This regime or effect is called \textit{leverage effect}, 
 and it is defined as a negative correlation between the returns and the volatility of the asset. Such effect is often observed in
 the financial markets and is usually attributed to the fact that the expected asset returns tend to increase during 
-pronounced market downturns, as well as during periods of higher volatility. \citep{Aydemir2007}
+pronounced market downturns, as well as during periods of higher volatility.~\citep{Aydemir2007}
 
 Such behavior might be captured by a 2-component mixture of Gaussian distributions, where the first component represents the "usual" regime 
 of the market and the second component represents the "leverage" regime. The former component often exhibits near zero mean, while the latter 
 is accompanied by negative mean and much higher variance and correlations to address the existence of the asymmetry and leptokurtosis in the distribution of 
-asset returns. \citep{Paolella2015}
+asset returns.~\citep{Paolella2015}
 
 This is providing us with a motivation to consider a Gaussian mixture model as a generative model for the asset returns and volatility which 
 we will further use in the context of Hidden Markov Models in prediction of the market states.
 
 As for the estimation of the parameters of the Gaussian mixture model, we will use the Expectation-maximization (EM) algorithm which is a general
-approach to maximum likelihood estimation in the presence of missing or hidden data. The details of the algorithm are described in the following chapter
-focused on the parameter estimation. \citep{Dempster1977}
+approach to maximum likelihood estimation in the presence of missing or hidden data.~\citep{Dempster1977}
 
-\subsection{Gaussian HMM}
+The details about the EM algorithm are described in Section~\ref{sec:EM} focused on the parameter estimation.
+
+\subsection{Gaussian HMM}~\label{sec:ghmm}
 
 As we have shown in the previous section, Hidden Markov Models are a generalization of Mixture Models with dependencies between the hidden states.
 In section dedicated to \textit{Discrete HMM} we have shown that the marginal distribution of the emissions given state is categorical distribution. 
@@ -393,7 +393,7 @@ Below you can see a graphical representation of such models:
     \end{center}
 \end{figure}
 
-\section{Hidden Semi-Markov Model}
+\section{Hidden Semi-Markov Model}~\label{sec:hsmm}
 
 One of the limitations mentioned in the chapter dedicated to Markov Renewal Processes is the fact that the time spent in a state is geometrically distributed which is not
 always the case in real-world applications. In order to address this issue, we may consider a generalization of the Hidden Markov Model called \textit{Hidden Semi-Markov Model} (HSMM) where

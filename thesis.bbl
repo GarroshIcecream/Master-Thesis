@@ -83,7 +83,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{2}
-      \field{isbn}{9780470114742}
       \field{series}{Wiley Series in Probability and Statistics}
       \field{title}{An Introduction to Categorical Data Analysis (Wiley Series in Probability and Statistics)}
       \field{year}{2007}
@@ -211,7 +210,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Estimation of Rare Event Probabilities in Complex Aerospace and Other Systems}
-      \field{isbn}{978-0-08-100091-5}
       \field{title}{5 - Simulation techniques}
       \field{year}{2016}
       \field{pages}{45\bibrangedash 75}
@@ -242,7 +240,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1st ed. 2006. Corr. 2nd printing}
-      \field{isbn}{9780387310732}
       \field{series}{Information science and statistics}
       \field{title}{Pattern Recognition and Machine Learning}
       \field{year}{2006}
@@ -298,7 +295,6 @@
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{isbn}{9780387985091}
       \field{title}{Markov Chains: Gibbs Fields, Monte Carlo Simulation, and Queues}
       \field{year}{1999}
     \endentry
@@ -482,7 +478,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1st Edition.}
-      \field{isbn}{9780387307688}
       \field{title}{Encyclopedia of Machine Learning}
       \field{year}{2011}
     \endentry
@@ -748,7 +743,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1}
-      \field{isbn}{9780898716658}
       \field{title}{Hidden Markov Models and Dynamical Systems}
       \field{year}{2009}
       \true{nocite}
@@ -843,7 +837,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1}
-      \field{isbn}{9780387744360}
       \field{title}{Analysis of Computer and Communication Networks}
       \field{year}{2008}
     \endentry
@@ -872,7 +865,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{2}
-      \field{isbn}{9780470191606}
       \field{series}{Wiley Series in Probability and Statistics}
       \field{title}{The EM Algorithm and Extensions}
       \field{year}{2008}
@@ -902,7 +894,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1}
-      \field{isbn}{9780471006268}
       \field{series}{Wiley Series in Probability and Statistics}
       \field{title}{Finite Mixture Models}
       \field{year}{2000}
@@ -994,7 +985,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1}
-      \field{isbn}{9780511019418}
       \field{series}{London Mathematical Society student texts 52}
       \field{title}{Finite Markov chains and algorithmic applications}
       \field{year}{2002}
@@ -1086,7 +1076,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1st ed}
-      \field{isbn}{9780412558504}
       \field{series}{Monographs on statistics and applied probability 70}
       \field{title}{Hidden Markov and other models for discrete-valued time series}
       \field{year}{1997}
@@ -1113,7 +1102,6 @@
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{isbn}{978-0-12-407795-9}
       \field{title}{Markov Processes for Stochastic Modeling}
       \field{year}{2013}
     \endentry
@@ -1181,7 +1169,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1}
-      \field{isbn}{978-3-319-05855-9}
       \field{series}{Springer Briefs in Statistics}
       \field{title}{Renewal Processes}
       \field{year}{2014}
@@ -1211,9 +1198,37 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{Third}
-      \field{isbn}{978-1906574307}
       \field{title}{Stochastic Processes}
       \field{year}{2012}
+    \endentry
+    \entry{Mikusheva2007}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=4f40e04107ec35e92de59ac29cefad50}{%
+           family={Mikusheva},
+           familyi={M\bibinitperiod},
+           given={Anna},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Massachusetts Institute of Technology}%
+      }
+      \strng{namehash}{4f40e04107ec35e92de59ac29cefad50}
+      \strng{fullhash}{4f40e04107ec35e92de59ac29cefad50}
+      \strng{bibnamehash}{4f40e04107ec35e92de59ac29cefad50}
+      \strng{authorbibnamehash}{4f40e04107ec35e92de59ac29cefad50}
+      \strng{authornamehash}{4f40e04107ec35e92de59ac29cefad50}
+      \strng{authorfullhash}{4f40e04107ec35e92de59ac29cefad50}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{MIT OpenCourseWare (\url{http://ocw.mit.edu})}
+      \field{month}{11}
+      \field{title}{Course materials for 14.384 Time Series Analysis}
+      \field{year}{2007}
     \endentry
     \entry{Mohr2014}{misc}{}
       \name{author}{1}{}{%
@@ -1269,7 +1284,6 @@
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{isbn}{1573-7470}
       \field{journaltitle}{Annals of Mathematics and Artificial Intelligence}
       \field{number}{3}
       \field{title}{State duration and interval modeling in hidden semi-Markov model for sequential data analysis}
@@ -1374,7 +1388,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1}
-      \field{isbn}{9780387731735}
       \field{series}{Lecture Notes in Statistics 191}
       \field{title}{Semi-Markov Chains and Hidden Semi-Markov Models toward Applications: Their use in Reliability and DNA Analysis}
       \field{year}{2008}
@@ -1438,7 +1451,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1st edition}
-      \field{isbn}{9780387289823}
       \field{series}{Springer series in statistics}
       \field{title}{Inference in Hidden Markov Models}
       \field{year}{2005}
@@ -1608,7 +1620,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1}
-      \field{isbn}{9780471585244}
       \field{title}{Fractal Market Analysis: Applying Chaos Theory to Investment and Economics}
       \field{year}{1994}
     \endentry
@@ -1645,7 +1656,6 @@
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{isbn}{978-80-7378-210-8}
       \field{title}{Základy náhodných procesů I.}
       \field{year}{2012}
     \endentry
@@ -1673,7 +1683,6 @@
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{isbn}{978-1-107-03975-9}
       \field{title}{Stochastic Processes: Theory for Applications}
       \field{year}{2013}
     \endentry
@@ -1764,7 +1773,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1}
-      \field{isbn}{9781402079405}
       \field{series}{Advanced Studies in Theoretical and Applied Econometrics 40}
       \field{title}{Hidden Markov Models: Applications to Financial Economics}
       \field{year}{2004}
@@ -1847,6 +1855,45 @@
       \field{pages}{305\bibrangedash 317}
       \range{pages}{13}
     \endentry
+    \entry{Robert2004}{inbook}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=0a257fbe5a59f3a17cc4e1089b887257}{%
+           family={Robert},
+           familyi={R\bibinitperiod},
+           given={Christian\bibnamedelima P.},
+           giveni={C\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c7abc90e14f2761d9325ee092fda0de7}{%
+           family={Casella},
+           familyi={C\bibinitperiod},
+           given={George},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {New York, NY}%
+      }
+      \list{publisher}{1}{%
+        {Springer New York}%
+      }
+      \strng{namehash}{6325bdb18443214ba419d392ce44599a}
+      \strng{fullhash}{6325bdb18443214ba419d392ce44599a}
+      \strng{bibnamehash}{6325bdb18443214ba419d392ce44599a}
+      \strng{authorbibnamehash}{6325bdb18443214ba419d392ce44599a}
+      \strng{authornamehash}{6325bdb18443214ba419d392ce44599a}
+      \strng{authorfullhash}{6325bdb18443214ba419d392ce44599a}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Monte Carlo Statistical Methods}
+      \field{title}{The Metropolis---Hastings Algorithm}
+      \field{year}{2004}
+      \field{pages}{267\bibrangedash 320}
+      \range{pages}{54}
+    \endentry
     \entry{Elliott1995}{book}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=b0a00d51e1c26e57a87ab6dcd1abbcef}{%
@@ -1875,7 +1922,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1}
-      \field{isbn}{978-0-387-94364-0}
       \field{series}{Stochastic Modelling and Applied Probability 29}
       \field{title}{Hidden Markov Models: Estimation and Control}
       \field{year}{1995}
@@ -2019,7 +2065,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Performance and Reliability Analysis of Computer Systems: An Example-Based Approach Using the SHARPE Software Package}
-      \field{isbn}{978-1-4615-2367-3}
       \field{title}{Semi-Markov Chains}
       \field{year}{1996}
       \field{pages}{143\bibrangedash 149}
@@ -2108,7 +2153,6 @@
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{isbn}{9780444642110}
       \field{journaltitle}{Handbook of Statistics}
       \field{month}{04}
       \field{title}{Markov chain Monte Carlo methods: Theory and practice}
@@ -2195,7 +2239,6 @@
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{isbn}{978-87-7078-952-3}
       \field{month}{11}
       \field{title}{An Introduction to Markov Chains}
       \field{year}{2016}
@@ -2241,7 +2284,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1}
-      \field{isbn}{0-387-29337-X}
       \field{title}{Markov Chains Models Algorithms and Applications}
       \field{year}{2005}
     \endentry
@@ -2355,7 +2397,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{1}
-      \field{isbn}{0-387-21948-X}
       \field{series}{Stochastic Modelling and Applied Probability}
       \field{title}{Discrete-Time Markov Chains: Two-Time-Scale Methods and Applications}
       \field{year}{2004}
@@ -2426,7 +2467,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Automatic Speech Recognition: A Deep Learning Approach}
-      \field{isbn}{978-1-4471-5779-3}
       \field{title}{Hidden Markov Models and the Variants}
       \field{year}{2015}
       \field{pages}{23\bibrangedash 54}
