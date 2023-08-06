@@ -87,6 +87,31 @@
       \field{title}{An Introduction to Categorical Data Analysis (Wiley Series in Probability and Statistics)}
       \field{year}{2007}
     \endentry
+    \entry{Aigner2022}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=338c8c87561b920327849cf126f9cf18}{%
+           family={Aigner},
+           familyi={A\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{338c8c87561b920327849cf126f9cf18}
+      \strng{fullhash}{338c8c87561b920327849cf126f9cf18}
+      \strng{bibnamehash}{338c8c87561b920327849cf126f9cf18}
+      \strng{authorbibnamehash}{338c8c87561b920327849cf126f9cf18}
+      \strng{authornamehash}{338c8c87561b920327849cf126f9cf18}
+      \strng{authorfullhash}{338c8c87561b920327849cf126f9cf18}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{12}
+      \field{title}{A Gaussian Mixture Hidden Markov Model for the VIX}
+      \field{year}{2022}
+    \endentry
     \entry{Gidi2018}{misc}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=26dbe7962958d1c4ae3e69a07279572a}{%

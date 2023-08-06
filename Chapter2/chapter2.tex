@@ -15,7 +15,7 @@ These "visible" observations are labeled as emissions emitted by the respective 
 comprise unobserved random variables, e.g. Hidden Markov Models, are called \textbf{latent variable models}, \textbf{missing data models}, or also \textbf{models with incomplete data}}
 In general, we could assume that the state and emission space is not necessarily finite, but we will follow the classical definition by \citep{Rabiner1989} and \citep{Elliott1995} of Hidden Markov Model (hereinafter "HMM") and assume that at least state space is finite.
 
-\section{Discrete Hidden Markov Model}
+\section{Discrete-emission Hidden Markov Model}~\label{sec:discrete_hmm}
 
 A Discrete Hidden Markov Model is one where the observations are assumed to be a sequence of discrete symbols or categorical variables. It defines a family of models that are
 commonly used in statistical signal processing, speech recognition, computational biology, and other fields. \citep{Rabiner1989}
@@ -218,7 +218,7 @@ The evaluation problem is usually solved by \textbf{Forward-Backward algorithm}\
 and the last learning problem by \textbf{Baum-Welsch algorithm} which is a special case of Expectation-maximization (EM) algorithm.
  All three algorithms are described in the following chapter.
  
-\section{Continuous HMM}
+\section{Continuous-emission HMM}
  
 If we were to consider a continuous emission space, we could plot the joint probability distribution of the hidden states and the emissions to see that 
 the marginal distribution of the emissions is not that easily tractable and may not necessarily be unimodal. For example, in \textit{Gaussian Hidden Markov Model} (GHMM) setting, 
@@ -231,77 +231,77 @@ distribution as a component of the mixture, but since Gaussian distributions are
 
 \subsection{Mixture Distributions}
 
-Let $\textbf{Y}$ denote a p-dimensional random vector with probability density function $f_{\textbf{Y}}(y_1,\ldots,y_p)$ on $\mathbb{R}^p$. 
+Let $\textbf{Y}$ denote a d-dimensional random vector with probability density function $f_{\textbf{Y}}(y_1,\ldots,y_d)$ on $\mathbb{R}^d$. 
 This probability density function is defined as a convex combination of $M$ component probability densities as follows from \citep{McLachlan2000}: 
 
 \begin{equation} \label{eq:mixture}
-    f_{\textbf{Y}}(y_1,\ldots,y_p) = \sum_{i=1}^{M} \pi_i f_i(y_1,\ldots,y_p)
+    f_{\textbf{Y}}(y_1,\ldots,y_d) = \sum_{m=1}^{M} \pi_m f_m(y_1,\ldots,y_d)
 \end{equation}
 
-where $f_i$ is a component density of the mixture and $\pi_i$ a mixing proportion or mixture weight with following properties:
+where $f_m$ is a component density of the mixture and $\pi_m$ a mixing proportion or mixture weight with following properties:
 
 \begin{equation}
-    0 \leq \pi_i \leq 1 \quad \forall i \in \{1,2,\ldots,M\}
+    0 \leq \pi_m \leq 1 \quad \forall m \in \{1,2,\ldots,M\}
 \end{equation}
 
 and5
 \begin{equation}
-    \sum_{i=1}^{M} \pi_i = 1
+    \sum_{m=1}^{M} \pi_m = 1
 \end{equation}
 
-Therefore, the probability density $f_{\textbf{Y}}$ given by Equation \ref{eq:mixture} is referred to as a g-component finite mixture density, conversely $F_{\textbf{Y}}$ 
-as a g-component finite mixture distribution. 
+Therefore, the probability density $f_{\textbf{Y}}$ given by Equation \ref{eq:mixture} is referred to as a M-component finite mixture density, conversely $F_{\textbf{Y}}$ 
+as a M-component finite mixture distribution. 
 
 Equation \ref{eq:mixture} also assumes that the number of components $M$ is fixed but in many applications this is not the case, and we have to infer 
 the number of components which are required to adequately describe the data. One way we can avoid this problem is by assuming that the number of components is 
 sufficiently large or infinite, and then use a model selection criterion to select the number of components that best fits the data as suggested by \citep{Sammut2011} and \citep{Rasmussen1999}.
-Furthermore, mixing proportions $\pi_i$ are also unknown and have to be estimated along with the respective parameters of the component densities.
+Furthermore, mixing proportions $\pi_m$ are also unknown and have to be estimated along with the respective parameters of the component densities.
 
 Analogously to previous definition we can define a finite mixture of random vector $\textbf{Y}$ as \citep{Bishop2006}:
 
 \begin{equation}
-    f(y,x) = g(x) f(y|x)
+    f(y,z) = g(z) f(y|z)
 \end{equation}
 
-where $X$ is defined as a random variable following a multinomial distribution with a vector of parameters $\pi = \{\pi_1,\ldots,\pi_M\}$ and $g(x)$ as its 
-probability density function. Summing over all possible values of $X$ we obtain the marginal density of random vector $\textbf{Y}$:
+where $\textbf{Z}$ is defined as a random variable following a multinomial distribution with a vector of parameters $\boldsymbol{\pi} = \{\pi_1,\ldots,\pi_M\}$ and $g(z)$ as its 
+probability density function. Summing over all possible values of $\textbf{Z}$ we obtain the marginal density of random vector $\textbf{Y}$:
 
 \begin{equation}
-    f_{\textbf{Y}}(y_1,\ldots,y_p)= \sum_{i=1}^{M} \mathbb{P}(X=i) f_{\textbf{Y}}(y_1,\ldots,y_p|X=i)
+    f_{\textbf{Y}}(y_1,\ldots,y_d)= \sum_{m=1}^{M} \mathbb{P}(\textbf{Z}=m) f_{\textbf{Y}}(y_1,\ldots,y_d|\textbf{Z}=m)
 \end{equation}
     
-where $\mathbb{P}(X=i) = \pi_i$ and $f_{\textbf{Y}}(y_1,\ldots,y_p|X=i) = f_i(y_1,\ldots,y_p)$ are the mixing proportions and component densities respectively thus arriving at the same definition 
+where $\mathbb{P}(\textbf{Z}=m) = \pi_m$ and $f_{\textbf{Y}}(y_1,\ldots,y_d|\textbf{Z}=m) = f_m(y_1,\ldots,y_d)$ are the mixing proportions and component densities respectively thus arriving at the same definition 
 as in Equation \ref{eq:mixture}.
 
 \subsection{Gaussian Mixture Models}
 
 The Gaussian mixture model (GMM) is a probabilistic model that assumes all the data points are generated 
 from a mixture of a finite number of Gaussian distributions. The component distributions are often chosen to be members of the same parametric family,
-such as Gaussian distributions with respective mean and covariance parameter. Assuming that the number of components is $K$
+such as Gaussian distributions with respective mean and covariance parameter. Assuming that the number of components is $M$
 the probability density function of the Gaussian mixture model can be expressed as follows \citep{Bishop2006}:
 
 \begin{equation}
-    f(y|\mu,\Sigma) = \sum_{k=1}^{K} \pi_k \mathcal{N}(y|\mu_k, \Sigma_k)
+    f_{\textbf{Y}}(y_1,\ldots,y_d|\boldsymbol{\mu},\boldsymbol{\Sigma}) = \sum_{m=1}^{M} \pi_m \mathcal{N}(y|\mu_m, \Sigma_m)
 \end{equation}
 
-where $\mu_k$ and $\Sigma_k$ are the mean and covariance matrix (symmetric and positive semi-definite) of the $k$-th Gaussian component. 
+where $\mu_m$ and $\Sigma_m$ are the mean and covariance matrix (symmetric and positive semi-definite) of the $m$-th Gaussian component. 
 
-Thus, the vector of parameters is $\theta = \{k \in \mathbb{N}: (\pi_k,\mu_k,\Sigma_k)\}$. Probability density function of each component of GMM depends on the dimensionality of the data.
-Let the dimensionality of the data be $d>1$ then the random vector $\textbf{Y}=(y_1,\ldots,y_d)$ has the probability density function of the $k$-th component 
+Thus, the vector of parameters is $\theta = \{\boldsymbol{\pi},\boldsymbol{\mu},\boldsymbol{\Sigma}\}$. Probability density function of each component of GMM depends on the dimensionality of the data.
+Let the dimensionality of the data be $d>1$ then the random vector $\textbf{Y}=(y_1,\ldots,y_d)$ has the probability density function of the $m$-th component 
 defined as following multivariate Gaussian distribution:
 
 \begin{equation}
-    f_k(\textbf{Y}) = \frac{1}{{(2\pi)}^{d/2}|\Sigma_k|^{1/2}} \exp\left(-\frac{1}{2}{(\textbf{Y}-\mu_k)}^T\Sigma_k^{-1}(\textbf{Y}-\mu_k)\right)
+    f_m(y_1,\ldots,y_d) = \frac{1}{{(2\pi)}^{d/2}|\Sigma_m|^{1/2}} \exp\left(-\frac{1}{2}{(\textbf{Y}-\mu_m)}^T\Sigma_m^{-1}(\textbf{Y}-\mu_m)\right)
 \end{equation}
 
-where $|\Sigma_k|$ denotes the determinant of d x d covariance matrix $\Sigma_k$ and $\mu_k$ is a d-dimensional mean vector. Therefore, the conditional distribution of $Y$ given component $k$ is:
+where $|\Sigma_m|$ denotes the determinant of d x d covariance matrix $\Sigma_m$ and $\mu_m$ is a d-dimensional mean vector. Therefore, the conditional distribution of $\textbf{Y}$ given component $m$ is:
 
 \begin{equation}
-    \textbf{Y}|k \sim \mathcal{N}_d(\mu_k,\Sigma_k)
+    \textbf{Y}|m \sim \mathcal{N}_d(\mu_m,\Sigma_m)
 \end{equation}
 
-If we consider $d=1$ we say that the random variable $Y$ has a univariate Gaussian distribution with mean $\mu_k$ and variance $\sigma_k^2$ and there the 
-mixture model is called a \textit{univariate normal (Gaussian) mixture model} as in Fig \ref{fig:1_d_guaussian_mix} with number of components $M=3$. In case of $d>1$ we refer to the model as \textit{multivariate normal (Gaussian) mixture model}, e.q. in Fig \ref{fig:2_d_guaussian_mix} 
+If we consider $d=1$ we say that the random variable $\textbf{Y}$ has a univariate Gaussian distribution with mean $\mu_m$ and variance $\sigma_m^2$ and the 
+mixture model is called a \textit{univariate normal (Gaussian) mixture model} as in Figure~\ref{fig:1_d_guaussian_mix} with number of components $M=3$. In case of $d>1$ we refer to the model as \textit{multivariate normal (Gaussian) mixture model}, e.q. in Fig \ref{fig:2_d_guaussian_mix} 
 where $d=2$ and $M=3$.
 
 \begin{figure}[htbp]
@@ -351,11 +351,11 @@ The details about the EM algorithm are described in Section~\ref{sec:EM} focused
 \subsection{Gaussian HMM}~\label{sec:ghmm}
 
 As we have shown in the previous section, Hidden Markov Models are a generalization of Mixture Models with dependencies between the hidden states.
-In section dedicated to \textit{Discrete HMM} we have shown that the marginal distribution of the emissions given state is categorical distribution. 
+In Section~\ref{sec:discrete_hmm} dedicated to \textit{Categorical HMM} we have shown that the marginal distribution of the emissions given state is categorical distribution. 
 Since a suitable choice for the emission distribution is a Gaussian distribution, we may distinguish between two types of Gaussian Hidden Markov Models,
-namely \textit{Gaussian-Mixture HMM} and \textit{Gaussian HMM}. The former is a generalization of the latter, where the marginal distribution of the emissions is a mixture of Gaussian distributions. \citep{Bishop2006}
+namely \textit{Gaussian-Mixture HMM} and \textit{Gaussian HMM}. The former is a generalization of the latter, where the marginal distribution of the emissions is a mixture of Gaussian distributions.~\citep{Bishop2006}
 
-In case of Gaussian HMM, the marginal distribution of the emissions is a $d$-dimensional Gaussian distribution with $N \times d$ mean vector $\mu$ and vector $\Sigma$ of length $N$ of $d \times d$ covariance matrices, thus the number of components $M=1$. 
+In case of Gaussian HMM, the marginal distribution of the emissions is a $d$-dimensional Gaussian distribution with $N \times d$ mean vector $\boldsymbol{\mu}$ and vector $\boldsymbol{\Sigma}$ of length $N$ of $d \times d$ covariance matrices, thus the number of components $M=1$. 
 Depending on the dimensionality of the data, we may consider univariate or multivariate Gaussian distribution. The probability density function of the $d$-dimensional Gaussian distribution 
 for each hidden state $i$ is defined as follows:
 
@@ -363,17 +363,17 @@ for each hidden state $i$ is defined as follows:
     b_i(y_t) = \frac{1}{{(2\pi)}^{d/2}|\Sigma_i|^{1/2}} \exp\left(-\frac{1}{2}{(y_t-\mu_i)}^T\Sigma^{-1}_i(y_t-\mu_i)\right)
 \end{equation}
 
-where $y_t$ is a $d$-dimensional vector of emissions at time $t$. Parameters of such HMM model are therefore $\theta = \{\textbf{A},\textbf{p},\mu,\Sigma\}$.
+where $y_t$ is a $d$-dimensional vector of emissions at time $t$. Parameters of such HMM model are therefore $\theta = \{\textbf{A},\textbf{p},\boldsymbol{\mu},\boldsymbol{\Sigma}\}$.
 
 Taking into account $M>1$ components, we arrive at the Gaussian-mixture HMM, where the marginal distribution of the emissions is a mixture of Gaussian distributions. 
 The probability density function of the $d$-dimensional Gaussian mixture distribution for each hidden state $i$ is defined as follows:
 
 \begin{equation}
-    b_i(y_t) = \sum_{k=1}^{M} \frac{\pi_{i,m}}{{(2\pi)}^{d/2}|\Sigma_{i,k}|^{1/2}} \exp\left(-\frac{1}{2}{(y_t-\mu_{i,k})}^T\Sigma^{-1}_{i,k}(y_t-\mu_{i,k})\right)
+    b_i(y_t) = \sum_{m=1}^{M} \frac{\pi_{i,m}}{{(2\pi)}^{d/2}|\Sigma_{i,m}|^{1/2}} \exp\left(-\frac{1}{2}{(y_t-\mu_{i,m})}^T\Sigma^{-1}_{i,m}(y_t-\mu_{i,m})\right)
 \end{equation}
 
-where $\pi_{i,k}$ is the mixing proportion of the $k$-th component of the mixture and $\mu_{i,k} \in \mathbb{R}^d$ and $\Sigma_{i,k} \in \mathbb{R}^{d \times d}$ are the mean and covariance matrix of the $k$-th component respectively. Suddenly the number of parameters
-increases linearly with the number of components $M$ and thus the model becomes more complex. Parameters of such HMM model are therefore $\theta = \{\textbf{A},\textbf{p},\pi,\mu_{i,k},\Sigma_{i,k}\}$ for $i=1,\ldots, N$ and $k=1,\ldots, M$.
+where $\pi_{i,m}$ is the mixing proportion of the $m$-th component of the mixture and $\mu_{i,m} \in \mathbb{R}^d$ and $\Sigma_{i,m} \in \mathbb{R}^{d \times d}$ are the mean and covariance matrix of the $m$-th component respectively. Suddenly the number of parameters
+increases linearly with the number of components $M$ and thus the model becomes more complex.
 
 One convenient way to represent this model, according to \citep{Yu2015}, is to view it as a generative model producing a sequence of emissions $\textbf{Y} = \{y_1,\ldots,y_T\}$ as follows:
 

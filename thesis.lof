@@ -2,19 +2,19 @@
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Visual representation of discrere-time Markov Chain}}{5}{figure.caption.7}%
 \contentsline {figure}{\numberline {1.2}{\ignorespaces BTC-USD daily close prices from 23rd August 2020 to 15th May 2023 obtained from Binance.\nobreakspace {}\citep {tradingview}\relax }}{9}{figure.caption.8}%
 \contentsline {figure}{\numberline {1.3}{\ignorespaces Distribution of the log returns with respect to predefined market states.\nobreakspace {}\citep {tradingview}\relax }}{10}{figure.caption.9}%
-\contentsline {figure}{\numberline {1.4}{\ignorespaces Diagram representation semi-Markov process}}{16}{figure.caption.10}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Diagram representation semi-Markov process}}{17}{figure.caption.10}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Left-to-right state and emission dependence in Hidden Markov Model}}{22}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Left-to-right state and emission dependence in Hidden Markov Model}}{23}{figure.caption.11}%
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Graph interpretation of Discrete Hidden Markov Model}}{23}{figure.caption.12}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Probability distribution of Gaussian Mixture Model}}{27}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Probability distribution of Gaussian Mixture Model}}{28}{figure.caption.13}%
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Diagram of Gaussian Hidden Markov Model representation}}{30}{figure.caption.14}%
 \contentsline {figure}{\numberline {2.5}{\ignorespaces Left-to-right state and emission dependence in Hidden Markov Model}}{31}{figure.caption.15}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Dependence structure of external variables in Contextual Hidden Markov Model}}{34}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Dependence structure of external variables in Contextual Hidden Markov Model}}{35}{figure.caption.16}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Construction of log-likelihood lower bound in EM algorithm}}{43}{figure.caption.19}%
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Trellis as a result of Forward-Backward algorithm}}{45}{figure.caption.20}%
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Filtering and Smoothing process}}{48}{figure.caption.23}%
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Visualization of posterior variables resulting from E-step}}{50}{figure.caption.24}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Viterbi path through trellis}}{65}{figure.caption.27}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Viterbi path through trellis}}{66}{figure.caption.27}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

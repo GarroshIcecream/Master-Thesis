@@ -46,7 +46,7 @@ Let us now assume that we have a sequence of random variables $\{X_t : t \in T\}
  Given the initial setup, we may define a \textit{discrete-time Markov Chain (DTMC)} as a stochastic process $\{X_t : t \in T\}$ with a state space $I$ and a distribution $\mu_X$ such that for all $t \in T$ and $i_0,i_1,\ldots,i_{t+1} \in I$ it holds that:
 
 \begin{equation} \label{eq:DTMC}
-\mathbb{P}(X_{t+1}=i_{t+1}|X_t=i_t,\ldots,X_0=i_0) = \mathbb{P}(X_{t+1}=i_{t+1}|X_t=i_t)
+    \mathbb{P}(X_{t+1}=i_{t+1}|X_t=i_t,\ldots,X_0=i_0) = \mathbb{P}(X_{t+1}=i_{t+1}|X_t=i_t)
 \end{equation}
 
 according to \citep{Praskova2012}. In other words, the probability of observing a state $i_{t+1}$ at time $t+1$ given the sequence of states $i_0,i_1,\ldots,i_{t}$ is equal to the probability of observing a state $i_{t+1}$ at time $t+1$ given only the last observed state $i_t$.
@@ -55,23 +55,23 @@ This fundamental relationship is called \textit{Markov property}, and it is a co
 Conditional property of Markov Chains may be equivalently expressed using a future state $j \in I$ and a current state $i \in I$ as:
 
 \begin{equation}
-    \mathbb{P}(X_{t+1}=j|X_t=i) = p_{i,j}(t,t+1)
+    \mathbb{P}(X_{t+1}=j|X_t=i) = a_{i,j}(t,t+1)
 \end{equation}
 
-where $p_{i,j}(t,t+1)$ is a \textit{transition probability} from state $i$ to state $j$ at time $t$ and $t+1$ respectively. Sometimes we refer to these transitions as \textit{one-step transitions} since they are only dependent on the previous state.
+where $a_{i,j}(t,t+1)$ is a \textit{transition probability} from state $i$ to state $j$ at time $t$ and $t+1$ respectively. Sometimes we refer to these transitions as \textit{one-step transitions} since they are only dependent on the previous state.
 As an extension of the Markov property we may also define a \textit{k-step transition} as a probability of observing a state $j$ at time $t+k$ given the state $i$ at time $t$ as \citep{Tolver2016}:
 
 \begin{equation}
-    \mathbb{P}(X_{t+k}=j|X_t=i) = p_{i,j}(t,t+k)
+    \mathbb{P}(X_{t+k}=j|X_t=i) = a_{i,j}(t,t+k)
 \end{equation}
 
-One important distinction by \citep{Weinan2019} is that if the transition probabilities $p_{j,i}(t,t+k)$ do not depend on time $t$ then the Markov Chain is called \textit{homogeneous} otherwise these probabilities vary over time, therefore \textit{heterogeneous} Markov Chain\footnote{In some sources the homogeneity with respect to time is emphasized s.t.\ the term is time-homogeneous or time-heterogenuous Markov Chain.}.
+One important distinction by \citep{Weinan2019} is that if the transition probabilities $a_{i,j}(t,t+k)$ do not depend on time $t$ then the Markov Chain is called \textit{homogeneous} otherwise these probabilities vary over time, therefore \textit{heterogeneous} Markov Chain\footnote{In some sources the homogeneity with respect to time is emphasized s.t.\ the term is time-homogeneous or time-heterogenuous Markov Chain.}.
 
 Considering only first order homogeneous Markov Chain we may define a \textit{transition matrix} 
-$A = (p_{i,j} : i,j \in I)$ as a matrix of transition probabilities between each state $i,j \in I$ such that:
+$\textbf{A} = (a_{i,j} : i,j \in I)$ as a matrix of transition probabilities between each state $i,j \in I$ such that:
 
 \begin{equation} \label{eq:1.5}
-    p_{i,j} \geq 0 \quad i,j \in I; \quad \sum\limits_{j \in I} ^{}p_{i,j} = 1, \quad \forall i \in I
+    a_{i,j} \geq 0 \quad i,j \in I; \quad \sum\limits_{j \in I} ^{}a_{i,j} = 1, \quad \forall i \in I
 \end{equation}
 
 Rectangular matrix $\textbf{A}$ that satisfies property given by Equation~\ref{eq:1.5} is called \textit{stochastic matrix}.~\citep{Gagniuc2017}
@@ -98,10 +98,10 @@ if and only if all finite dimensional distributions of $\{X_t\}$ are consistent 
 \end{equation}
 
 where $i_0,i_1,\ldots,i_t \in I$. If we abstract from the initial distribution $\textbf{p}$, such equation is called \textit{Chapman-Kolmogorov equation} as in~\citep{Yin2004}.
-Equation~\ref{eq:kolmogorov} also holds for heterogenuous Markov Chains where the transition probabilities $p_{i,j}$ are time dependent:
+Equation~\ref{eq:kolmogorov} also holds for heterogenuous Markov Chains where the transition probabilities $a_{i,j}$ are time dependent:
 
 \begin{equation}
-    \mathbb{P}(X_{0}=i_0,X_{1}=i_1,\ldots,X_{t}=i_t) = p_{i_0}(0) p_{i_0,i_1}(0,1) \ldots p_{i_{t-1},i_t}(t-1,t)
+    \mathbb{P}(X_{0}=i_0,X_{1}=i_1,\ldots,X_{t}=i_t) = a_{i_0}(0) a_{i_0,i_1}(0,1) \ldots a_{i_{t-1},i_t}(t-1,t)
 \end{equation}
 
 Another substantial property of homogeneous Markov Chains is that their n-th order transition probabilities can be expressed as a product of their first order transition probabilities:
