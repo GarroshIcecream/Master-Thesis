@@ -849,8 +849,14 @@ a Gaussian Mixture Model with $M$ components, we are interested in posterior sta
 \end{equation}
 
 Therefore, given the number of mixture components $M$, we can replace $\eta_t(m)$ in Equations~\ref{eq:mixing_proportion}, \ref{eq:mean_vector} and \ref{eq:covariance_matrix} 
-with $\gamma_t(i,m)$ in order to estimate parameters of the Gaussian-mixture Hidden Markov Model. Of course we have to take into account that we need to estimate $N$ Gaussian Mixture Models
-for each hidden state $i \in I$ thus $\hat{\pi}_{i,m}^{(k+1)}$, $\hat{\mu}_{i,m}^{(k+1)}$ and $\hat{\Sigma}_{i,m}^{(k+1)}$.
+with $\gamma_t(i,m)$ in order to estimate parameters of the Gaussian-mixture Hidden Markov Model. Certainly, we have to take into account that we need to estimate $N$ Gaussian Mixture Models
+for each hidden state $i \in I$ thus $\hat{\pi}_{i,m}^{(k+1)}$, $\hat{\mu}_{i,m}^{(k+1)}$ and $\hat{\Sigma}_{i,m}^{(k+1)}$. One particular note for the computation of $\hat{\pi}_{i,m}^{(k+1)}$ is 
+that the derived re-estimation formula is normalized per each hidden state $i$ as follows:
+
+\begin{equation}
+    \hat{\pi}_{i,m}^{(k+1)} = \frac{\sum_{t=1}^{T} \gamma_t(i,m)}{\sum_{t=1}^{T} \sum_{n=1}^{M} \gamma_t(i,n)}
+\end{equation}
+
 Trivially, in case of $M = 1$, we showed that $\eta_t(i,1) = 1$ and hence $\gamma_t(i,m) = \gamma_t(i)$. 
 
 \section{EM algorithm with context-dependent emissions}~\label{sec:EM-cHMM}
