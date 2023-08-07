@@ -407,10 +407,10 @@ Forward step in the algorithm can be defined in three steps:
         \alpha_t(i) = b_i(y_t) \sum\limits_{j=1}^N a_{ji} \alpha_{t-1}(j)
     \end{equation}
 
-    Again, in case of semi-Markov process, we have the following recursive relationship, as proposed by \citep{Oliver2013}, that holds for all $d \geq 1$:
+    Again, in case of semi-Markov process, we have the following recursive relationship, as proposed by \citep{Yu2013}, that holds for all $u \geq 1$:
 
     \begin{equation}
-        \alpha_t(i,u) = \alpha_{t-1}(i,u+1) b_i(y_t) + \left( \sum\limits_{i \neq j} \alpha_{t-1}(j,1) a_{ji} \right) b_i(y_t) d_i(u)
+        \alpha_t(i,u) = \alpha_{t-1}(i,u+1) b_i(y_t) + \left( \sum\limits_{j \neq i} \alpha_{t-1}(j,1) a_{j,i} \right) b_i(y_t) d_i(u)
     \end{equation}
 
     where $d_i(u)$ is the duration of the state $i$ at time $u$ which is referred to as the sojourn time. 
