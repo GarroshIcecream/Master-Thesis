@@ -845,7 +845,7 @@ a posterior distribution either of each component $m$ or hidden state $i$ respec
 a Gaussian Mixture Model with $M$ components, we are interested in posterior state and also component occupation probability $\gamma_t(i,m)$, as mentioned in~\citep{Aigner2022}:
 
 \begin{equation}
-    \gamma_t(i,m) = \mathbb{P}(z_{t,m} = 1, X_t = i|\textbf{Y},\theta) = \gamma_t(i) \eta_t(i,m) = \gamma_t(i) \frac{\pi_m \mathcal{N}(y_t|\mu_m,\Sigma_m)}{\sum_{j=1}^{M} \pi_j \mathcal{N}(y_t|\mu_j,\Sigma_j)}
+    \gamma_t(i,m) = \mathbb{P}(z_{t,m} = 1, X_t = i|\textbf{Y},\theta) = \gamma_t(i) \eta_t(i,m) = \gamma_t(i) \frac{\pi_{i,m} \mathcal{N}(y_t|\mu_{i,m},\Sigma_{i,m})}{\sum_{j=1}^{M} \pi_{i,j} \mathcal{N}(y_t|\mu_{i,j},\Sigma_{i,j})}
 \end{equation}
 
 Therefore, given the number of mixture components $M$, we can replace $\eta_t(m)$ in Equations~\ref{eq:mixing_proportion}, \ref{eq:mean_vector} and \ref{eq:covariance_matrix} 
