@@ -567,7 +567,7 @@ Again we ought to mention the difference in definition of the posterior distribu
 there is clear analytical expression derived from forward and backward variables:
 
 \begin{equation}
-    \xi_t(i,j) = \alpha_{t-1}(i,1) a_{i,j} b_j(y_{t+1}) \left( \sum\limits_{u \geq 1} d_j(u) \beta_{t+1}(j,u) \right)
+    \xi_t(i,j) = \alpha_{t-1}(i,1) a_{i,j} b_j(y_{t}) \left( \sum\limits_{u \geq 1} d_j(u) \beta_{t}(j,u) \right)
 \end{equation}
 
 \noindent However, the definition of $\gamma$ is not as straightforward as in the case of Markov process, and we ought to use the backward recursion with respect to the $\xi$ variable:
@@ -1102,7 +1102,7 @@ but rather to find the most likely sequence of states up to time $t$. In such ca
 The most individually likely hidden state at time $t$ would be:
 
 \begin{equation}
-    x_t^* = \underset{i \in I}{\arg\max} \{\gamma_t(i)\} = \underset{i \in I}{\arg\max} \mathbb{P}(X_t=i|\textbf{Y},\theta)
+    x_t^* = \underset{i \in I}{\arg\max}\: \{\gamma_t(i)\} = \underset{i \in I}{\arg\max}\: \mathbb{P}(X_t=i|\textbf{Y},\theta)
 \end{equation}
 
 MAP estimate directly equals to the mode of the posterior distribution, i.e. value for which the likelihood or log-likelihood function attains its local maximum/maxima. 
@@ -1166,18 +1166,18 @@ To understand why the Viterbi algorithm is so efficient we need to look at the c
 \begin{center}
 \begin{tikzpicture}[]
 % 1st column
-\node[state] (s1_1) at (0,5) {$S_1$};
-\node[mainstate,fill=yellow!80!black] (s2_1) at (0,4) {$S_2$};
+\node[state] (s1_1) at (0,5) {$X_1$};
+\node[mainstate,fill=yellow!80!black] (s2_1) at (0,4) {$X_2$};
 \node[state] (s3_1) at (0,3) {$\ldots$};
-\node[state] (s4_1) at (0,2) {$S_N$};
+\node[state] (s4_1) at (0,2) {$X_N$};
 \node at (0,1) {$t=1$};
 % 2nd column
-\node[mainstate] (s1_2) at (2,5) {$S_1$}
+\node[mainstate] (s1_2) at (2,5) {$X_1$}
     edge[lightedge] (s1_1)
     edge[lightedge] (s2_1)
     edge[lightedge] (s3_1)
     edge[lightedge] (s4_1);
-\node[state] (s2_2) at (2,4) {$S_2$}
+\node[state] (s2_2) at (2,4) {$X_2$}
     edge[lightedge] (s1_1)
     edge[lightedge] (s2_1)
     edge[lightedge] (s3_1)
@@ -1187,19 +1187,19 @@ To understand why the Viterbi algorithm is so efficient we need to look at the c
     edge[mainedge] (s2_1)
     edge[lightedge] (s3_1)
     edge[lightedge] (s4_1);
-\node[state] (s4_2) at (2,2) {$S_N$}
+\node[state] (s4_2) at (2,2) {$X_N$}
     edge[lightedge] (s1_1)
     edge[lightedge] (s2_1)
     edge[lightedge] (s3_1)
     edge[lightedge] (s4_1);
 \node at (2,1) {$t=2$};
 % 3rd column
-\node[mainstate,fill=yellow!80!black] (s1_3) at (4,5) {$S_1$}
+\node[mainstate,fill=yellow!80!black] (s1_3) at (4,5) {$X_1$}
     edge[lightedge]  (s1_2)
     edge[lightedge] (s2_2)
     edge[mainedge] (s3_2)
     edge[lightedge] (s4_2);
-\node[state] (s2_3) at (4,4) {$S_2$}
+\node[state] (s2_3) at (4,4) {$X_2$}
     edge[lightedge] (s1_2)
     edge[lightedge] (s2_2)
     edge[lightedge] (s3_2)
@@ -1209,19 +1209,19 @@ To understand why the Viterbi algorithm is so efficient we need to look at the c
     edge[lightedge] (s2_2)
     edge[lightedge] (s3_2)
     edge[lightedge] (s4_2);
-\node[state] (s4_3) at (4,2) {$S_N$}
+\node[state] (s4_3) at (4,2) {$X_N$}
     edge[lightedge] (s1_2)
     edge[lightedge] (s2_2)
     edge[lightedge] (s3_2)
     edge[lightedge] (s4_2);
 \node at (4,1) {$t=3$};
 % 4th column
-\node[mainstate,fill=yellow!80!black] (s1_4) at (6,5) {$S_1$}
+\node[mainstate,fill=yellow!80!black] (s1_4) at (6,5) {$X_1$}
     edge[mainedge]  (s1_3)
     edge[lightedge] (s2_3)
     edge[lightedge] (s3_3)
     edge[lightedge] (s4_3);
-\node[state] (s2_4) at (6,4) {$S_2$}
+\node[state] (s2_4) at (6,4) {$X_2$}
     edge[lightedge] (s1_3)
     edge[lightedge] (s2_3)
     edge[lightedge] (s3_3)
@@ -1231,19 +1231,19 @@ To understand why the Viterbi algorithm is so efficient we need to look at the c
     edge[lightedge] (s2_3)
     edge[lightedge] (s3_3)
     edge[lightedge] (s4_3);
-\node[state] (s4_4) at (6,2) {$S_N$}
+\node[state] (s4_4) at (6,2) {$X_N$}
     edge[lightedge] (s1_3)
     edge[lightedge] (s2_3)
     edge[lightedge] (s3_3)
     edge[lightedge] (s4_3);
 \node at (6,1) {$t=4$};
 % 5th column
-\node[mainstate] (s1_5) at (8,5) {$S_1$}
+\node[mainstate] (s1_5) at (8,5) {$X_1$}
     edge[lightedge]  (s1_4)
     edge[lightedge] (s2_4)
     edge[lightedge] (s3_4)
     edge[lightedge] (s4_4);
-\node[state,fill=yellow!80!black] (s2_5) at (8,4) {$S_2$}
+\node[state,fill=yellow!80!black] (s2_5) at (8,4) {$X_2$}
     edge[mainedge] (s1_4)
     edge[lightedge] (s2_4)
     edge[lightedge] (s3_4)
@@ -1253,7 +1253,7 @@ To understand why the Viterbi algorithm is so efficient we need to look at the c
     edge[lightedge] (s2_4)
     edge[lightedge] (s3_4)
     edge[lightedge] (s4_4);
-\node[state] (s4_5) at (8,2) {$S_N$}
+\node[state] (s4_5) at (8,2) {$X_N$}
     edge[lightedge] (s1_4)
     edge[lightedge] (s2_4)
     edge[lightedge] (s3_4)
@@ -1262,7 +1262,7 @@ To understand why the Viterbi algorithm is so efficient we need to look at the c
 \end{tikzpicture}
 \end{center}
 \label{fig:viterbi}
-\caption[Viterbi path through trellis]{Trellis of the observation sequence $\{y_1, \ldots,y_5\}$. Bold lines illustrate the most likely state sequence $Z^*$ found by the Viterbi algorithm.}
+\caption[Viterbi path through trellis]{Trellis of the observation sequence $\{y_1, \ldots,y_5\}$. Bold lines illustrate the most likely state sequence $\textbf{X}^*$ found by the Viterbi algorithm.}
 \end{figure}
 
 Viterbi algorithm remains unchanged with the above described procedure even if we use Gaussian Mixture Model for the emission probabilities or generally 
