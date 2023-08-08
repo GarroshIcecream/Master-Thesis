@@ -567,10 +567,10 @@ Again we ought to mention the difference in definition of the posterior distribu
 there is clear analytical expression derived from forward and backward variables:
 
 \begin{equation}
-    \xi_t(i,j) = \alpha_{t-1}(i,1) a_{i,j} b_j(y_{t}) \left( \sum\limits_{u \geq 1} d_j(u) \beta_{t}(j,u) \right)
+    \xi_t(i,j) = \alpha_{t}(i,1) a_{i,j} b_j(y_{t+1}) \left( \sum\limits_{u \geq 1} d_j(u) \beta_{t+1}(j,u) \right)
 \end{equation}
 
-\noindent However, the definition of $\gamma$ is not as straightforward as in the case of Markov process, and we ought to use the backward recursion with respect to the $\xi$ variable:
+\noindent However, the definition of $\gamma$ is not as straightforward as in the case of semi-Markov process, and we ought to use the backward recursion with respect to the $\xi$ variable:
 
 \begin{equation}
     \gamma_t(i) = \gamma_{t+1}(i) + \sum\limits_{j \neq i} \left( \xi_{t+1}(i,j) - \xi_{t+1}(j,i)\right)
@@ -844,9 +844,10 @@ the same as in the previous Section~\ref{sec:EM} since we can replace $\eta_t(m)
 a posterior distribution either of each component $m$ or hidden state $i$ respectively. Hence, when constructing the Hidden Markov Model with emissions modeled by 
 a Gaussian Mixture Model with $M$ components, we are interested in posterior state and also component occupation probability $\gamma_t(i,m)$, as mentioned in~\citep{Aigner2022}:
 
-\begin{equation}
-    \gamma_t(i,m) = \mathbb{P}(z_{t,m} = 1, X_t = i|\textbf{Y},\theta) = \gamma_t(i) \eta_t(i,m) = \gamma_t(i) \frac{\pi_{i,m} \mathcal{N}(y_t|\mu_{i,m},\Sigma_{i,m})}{\sum_{j=1}^{M} \pi_{i,j} \mathcal{N}(y_t|\mu_{i,j},\Sigma_{i,j})}
-\end{equation}
+\begin{align}
+    \gamma_t(i,m) &= \mathbb{P}(z_{t,m} = 1, X_t = i|\textbf{Y},\theta) \\
+    &= \gamma_t(i) \eta_t(i,m) = \gamma_t(i) \frac{\pi_{i,m} \mathcal{N}(y_t|\mu_{i,m},\Sigma_{i,m})}{\sum_{j=1}^{M} \pi_{i,j} \mathcal{N}(y_t|\mu_{i,j},\Sigma_{i,j})}
+\end{align}
 
 Therefore, given the number of mixture components $M$, we can replace $\eta_t(m)$ in Equations~\ref{eq:mixing_proportion}, \ref{eq:mean_vector} and \ref{eq:covariance_matrix} 
 with $\gamma_t(i,m)$ in order to estimate parameters of the Gaussian-mixture Hidden Markov Model. Certainly, we have to take into account that we need to estimate $N$ Gaussian Mixture Models
@@ -857,7 +858,7 @@ that the derived re-estimation formula is normalized per each hidden state $i$ a
     \hat{\pi}_{i,m}^{(k+1)} = \frac{\sum_{t=1}^{T} \gamma_t(i,m)}{\sum_{t=1}^{T} \sum_{n=1}^{M} \gamma_t(i,n)}
 \end{equation}
 
-Trivially, in case of $M = 1$, we showed that $\eta_t(i,1) = 1$ and hence $\gamma_t(i,m) = \gamma_t(i)$. 
+\noindent Trivially, in case of $M = 1$, we showed that $\eta_t(i,1) = 1$ and hence $\gamma_t(i,m) = \gamma_t(i)$. 
 
 \section{EM algorithm with context-dependent emissions}~\label{sec:EM-cHMM}
 
