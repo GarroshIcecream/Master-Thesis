@@ -455,7 +455,7 @@ Effectively, there are 3 main steps, as pointed out by \citep{Oliver2013}:
 \item[2.] \textbf{Induction step}: 
 
 \begin{equation}
-    \beta_t(i) = b_j(y_{t+1})a_{ij} \beta_{t+1}(j)
+    \beta_t(i) = \sum\limits_{j=1}^{N} b_j(y_{t+1})a_{ij} \beta_{t+1}(j)
 \end{equation}
 
 For semi-Markov process, we have the following version of the induction step, as follows from \citep{Yu2013}:
@@ -716,7 +716,7 @@ expected log likelihood function using Lagrange multipliers where the objective 
 
 \begin{align}
 \hat{p_i}^{(k)} = & \frac{\gamma_1(i)}{\lambda} = \gamma_1(i) \\[0.3cm]
-\hat{a}_{i,j}^{(k)} = & \frac{\sum_{t=2}^{T} \xi_t (i,j)}{\mu_i} = \frac{\sum_{t=2}^{T} \xi_t (i,j)}{\sum_{t=2}^{T} \gamma_t (i)} \\[0.3cm]
+\hat{a}_{i,j}^{(k)} = & \frac{\sum_{t=1}^{T-1} \xi_t (i,j)}{\mu_i} = \frac{\sum_{t=1}^{T-1} \xi_t (i,j)}{\sum_{j=1}^{N} \sum_{t=1}^{T-1} \xi_t (i,j)} \\[0.3cm]
 \hat{b}_{i}^{(k)}(y_t) = & \frac{\sum_{t=1}^{T} \gamma_t (i) \mathbbm{1}_{[Y_t = y_t ]}}{\nu_i} = \frac{ \sum_{t=1}^{T} \gamma_t (i) \mathbbm{1}_{[Y_t = y_t ]}}{\sum_{t=1}^{T} \gamma_t (i)} 
 \end{align}
 
@@ -756,7 +756,7 @@ maximum likelihood estimation (MLE) easily since from \citep{Davenport1988} foll
 \end{equation}
 
 \begin{equation}
-    \hat{\Sigma}_m = \frac{1}{N_m} \sum_{t=1}^{T} \mathbbm{1}_{[X_t = m]} {\left(y_t - \hat{\mu}_m)(y_t - \hat{\mu}_m \right)}^T
+    \hat{\Sigma}_m = \frac{1}{N_m} \sum_{t=1}^{T} \mathbbm{1}_{[X_t = m]} {\left(y_t - \hat{\mu}_m\right) \left(y_t - \hat{\mu}_m \right)}^T
 \end{equation}
 
 \begin{equation}
