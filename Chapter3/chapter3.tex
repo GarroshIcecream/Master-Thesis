@@ -866,25 +866,25 @@ Application of the EM algorithm to the cHMM is similarly done in EM style as pro
 The only difference is that we need to also include the external variables in the 
 M-step of the EM algorithm and also estimate additional parameters as opposed to classical HMM. This is due to the fact that the emission probabilities
 are now defined as a function of the external variables. In the simplest case assuming only the mean parametrization of the mean of the Gaussian distribution,
-we ought to estimate matrix $\textbf{Y}^{i,k} = [V^i,\bar{\mu}_i]$ for each hidden state $i$ and mixture component $k$. We will also define the re-estimation formula 
+we ought to estimate matrix $\tilde{\textbf{V}}$ with elements $\tilde{V}_{i,m} = [V_{i,m},\bar{\mu}_{i,m}]$ for each hidden state $i$ and mixture component $m$. We will also define the re-estimation formula 
 with the time-varying external variables, but the same approach could be used for the time-invariant external variables. \citep{Radenen2014}
 
-Parameter matrix $\textbf{Y}^{i,k}$ is defined as follows:
+Parameter matrix $\tilde{V}_{i,m}$ is defined as follows:
 
 \begin{equation}
-    \textbf{Y}^{i,k} = \left[\sum_{t} \gamma_{i,t} x_t \theta_t^T\right] \left[ \sum_{t} \gamma_{i,t} \theta_t \theta_t^T \right]^{-1}
+    \tilde{V}_{i,m} = \left[\sum\limits_{t=1}^{T} \gamma_{t}(i,m) y_t \theta_t^T\right] \left[ \sum\limits_{t=1}^{T} \gamma_{t}(i,m) \theta_t \theta_t^T \right]^{-1}
 \end{equation}
 
-where $\gamma_{i,t}$ is the marginal posterior probability of the hidden state $i$ at time $t$ and $\theta_t$ is the vector of external variables at time $t$.
+where $\gamma_{t}(i,m)$ is the posterior marginal probability at time $t$ and $\theta_t$ is the vector of external variables at time $t$.
 The re-estimation formula for the mean of the Gaussian distribution is then defined as follows:
 
 \begin{equation}
-    \hat{\mu}_i = \textbf{Y}^{i} \theta_t
+    \hat{\mu}_{i,m} = \tilde{V}_{i,m} \theta_t
 \end{equation}
 
-where $\textbf{Y}^{i}$ is the matrix of parameters for the mean of the Gaussian distribution for the hidden state $i$ s.t. 
-new estimate of $\hat{\mu}_i$ is either $d \times 1$ vector of means given hidden state $i$ in case of d-dimensional Gaussian distribution or
-$d \times M$ matrix of means given hidden state $i$ and mixture component $k$ in case of d-dimensional Gaussian Mixture Model.
+where $\tilde{V}_{i,m}$ is the matrix of parameters for the mean of the Gaussian distribution for the hidden state $i$ and component $m$ s.t. 
+new estimate of $\boldsymbol{\hat{\mu}}$ is either $I \times d$ matrix of means in case of d-dimensional Gaussian distribution or
+$I \times M \times d$ tensor of means for d-dimensional Gaussian Mixture Model.
 
 Decision to parametrize only the means of the Gaussian distribution as proposed by \citep{Bobick1999} simplifies the re-estimation formula for the covariance matrix 
 since it is identical to Equation \ref{eq:covariance_matrix}. When we parametrize both the mean and the covariance matrix of the Gaussian distribution,
