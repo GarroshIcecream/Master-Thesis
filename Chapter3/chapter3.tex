@@ -24,7 +24,7 @@ are observed and states are hidden. We also know that the state space is, in our
 since the emissions are independent but not identically distributed, s.t.\ the distribution of emissions depends on the hidden state.
 
 Let us also denote $\theta \in \Theta$ which is a vector of parameters belonging to parameter space $\Theta$. 
-The aim of EM algorithm is essentially to find the "best" estimate of $\theta$ that maximizes the likelihood function $L(\theta|\textbf{Y})$, 
+The aim of EM algorithm is essentially to find the "best" estimate of $\theta$ that maximizes the likelihood function $\mathcal{L}(\theta|\textbf{Y})$, 
 this is well known as Maximum likelihood estimate (MLE) that leads to the estimate $\hat{\theta}_{MLE}$. 
 
 \subsection*{Complete data}
@@ -33,7 +33,7 @@ If we assume that the data are complete, i.e. we have a complete set of observat
 then MLE results in the following optimization problem: 
 
 \begin{equation}
-    \hat{\theta}_{MLE} = \underset{\theta \in \Theta}{\arg\max} L(\theta|\textbf{Y}) = \underset{\theta \in \Theta}{\arg\max} \prod_{t=1}^{T} f(y_t|\theta)
+    \hat{\theta}_{MLE} = \underset{\theta \in \Theta}{\arg\max} \: \mathcal{L}(\theta|\textbf{Y}) = \underset{\theta \in \Theta}{\arg\max} \: \prod_{t=1}^{T} f(y_t|\theta)
 \end{equation}
 
 where $f(y_t|\theta)$ is a probability density function of a random variable $Y_t$ given a parameter $\theta$.
@@ -47,11 +47,11 @@ First, we formulate the likelihood function of two-parametric normal distributio
 of log-returns $\textbf{Y} = \{y_1,\ldots,y_T\}$ where $T \in \mathbb{N}$:
  
 \begin{equation}
-    L(\mu,\sigma^2|\textbf{Y}) = \prod_{t=1}^{T} \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\frac{1}{2} \frac{{(y_t-\mu)}^2}{\sigma^2}}
+    \mathcal{L}(\mu,\sigma^2|\textbf{Y}) = \prod_{t=1}^{T} \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\frac{1}{2} \frac{{(y_t-\mu)}^2}{\sigma^2}}
 \end{equation}
 
 \begin{equation}
-    \ell(\mu,\sigma^2|\textbf{Y}) = \sum_{t=1}^{T} \ln L(\mu,\sigma^2|y_t) 
+    \ell(\mu,\sigma^2|\textbf{Y}) = \sum_{t=1}^{T} \ln \mathcal{L}(\mu,\sigma^2|y_t) 
 \end{equation}
 
 where $x_1,\ldots,x_N$ is a vector of log-returns of length N and $\mu$ and $\sigma^2$ are parameters to be estimated. 
@@ -92,7 +92,7 @@ likelihood function. Simply, the EM algorithm iterates over possible values of $
 i.e.\ until convergence criterion, in \citep{McLachlan2008}, is satisfied:
 
 \begin{equation} \label{eq:conv}
-|\ell(\theta^{(k)}|\textbf{Y}) - \ell(\theta^{(k-1)}|\textbf{Y})| \leq \epsilon 
+    \ell(\theta^{(k)}|\textbf{Y}) - \ell(\theta^{(k-1)}|\textbf{Y})| \leq \epsilon 
 \end{equation}
 
 where the current estimate of $\theta$ for k-th iteration is denoted with superscript $(k)$ 
@@ -110,16 +110,16 @@ artificial weights and with the use of Jensen's inequality, as suggested by \cit
 
 \begin{align}
     \sum_{t=1}^{T} \ln \sum_{i=1}^{N} q(X_t = i) \frac{p(Y_t=y_t, X_t = i|\theta)}{q(X_t = i)} \geq& \sum_{t=1}^{T} \sum_{i=1}^{N} q(X_t = i) \ln \frac{p(Y_T =y_t, X_t = i|\theta)}{q(X_t = i)} \\
-    \ell(\theta|\textbf{Y}) \geq& L(\theta,q|\textbf{Y}), \quad \forall q \in Q
+    \ell(\theta|\textbf{Y}) \geq& \mathcal{L}(\theta,q|\textbf{Y}), \quad \forall q \in Q
 \end{align}
 
 where $Q$ is a set of all possible probability distributions.
 
-The constructed lower bound $L(\theta,q|\textbf{Y})$ can be factorized into the expectation 
+The constructed lower bound $\mathcal{L}(\theta,q|\textbf{Y})$ can be factorized into the expectation 
 of the joint log-likelihood w.r.t to distribution $q(x)$ and entropy $H(q)$:
 
 \begin{equation}
-    L(\theta,q|\textbf{Y}) = E_{q(x)} [\ln p(\textbf{X},\textbf{Y}|\theta)] + H(q)
+    \mathcal{L}(\theta,q|\textbf{Y}) = E_{q(x)} [\ln p(\textbf{X},\textbf{Y}|\theta)] + H(q)
 \end{equation}
 
 where $E_{q(x)} [\ln p(X,Y|\theta)]$ is called the \textbf{expectation of complete data log-likelihood function} (or Q-function).
@@ -137,13 +137,13 @@ These properties are of great importance in the EM algorithm because in order to
 \citep{Bishop2006} states to set the distribution $q(x)$ equal to the posterior distribution $p(\textbf{X}|\textbf{Y},\theta)$.
 
 This, first step of the algorithm abbreviated as \textbf{E-step} results in estimating the function $q$ for a $\theta^{k}$, given the k-th iteration of EM algorithm, 
-that maximizes the lower bound $L(\theta,q|\textbf{Y})$. s.t. the "distance" from the lower bound to log-likelihood function $\ell(\theta|\textbf{Y})$ is minimized:
+that maximizes the lower bound $\mathcal{L}(\theta,q|\textbf{Y})$. s.t. the "distance" from the lower bound to log-likelihood function $\ell(\theta|\textbf{Y})$ is minimized:
 
 \begin{equation} \label{eq:qnew}
-    q^{(k+1)} = \underset{q \in Q}{\arg\max} L(\theta^{(k)},q|\textbf{Y}) = p(\textbf{X}|\textbf{Y},\theta^{(k)})
+    q^{(k+1)} = \underset{q \in Q}{\arg\max} \: \mathcal{L}(\theta^{(k)},q|\textbf{Y}) = p(\textbf{X}|\textbf{Y},\theta^{(k)})
 \end{equation}
 
-In other words, we want to minimize distance between the complete data log-likelihood function $L(\theta,q|\textbf{Y})$ and incomplete data $\ell(\theta|\textbf{Y})$ 
+In other words, we want to minimize distance between the complete data log-likelihood function $\mathcal{L}(\theta,q|\textbf{Y})$ and incomplete data $\ell(\theta|\textbf{Y})$ 
 with respect to function $q(x)$. Kullback-Leibler divergence (hereafter KL divergence) measure is commonly used in image or signal processing 
 in calculation of the expected excess surprise from using $q$ as a probability distribution for our model given that the true or actual 
 probability distribution is $p$. \citep{Balesdent2016} 
@@ -161,7 +161,7 @@ but the deeper examination of the lower bound with the use of KL divergence dire
 distribution $p(\textbf{X}|\textbf{Y},\theta)$ for the probability function $q(x)$:
 
 \begin{align}
-    L(\theta,q|\textbf{Y}) &= \sum_{i=1}^{N} q(X = i) \ln \frac{p(X = i,\textbf{Y}|\theta)}{q(X = i)} \\
+    \mathcal{L}(\theta,q|\textbf{Y}) &= \sum_{i=1}^{N} q(X = i) \ln \frac{p(X = i,\textbf{Y}|\theta)}{q(X = i)} \\
     & = \sum_{i=1}^{N} q(X = i) \ln \frac{p(X = i|\textbf{Y},\theta) p(\textbf{Y}| \theta)}{q(X = i)} \\
     & = \sum_{i=1}^{N} q(X = i) \ln p(\textbf{Y}|\theta) + \sum_{i=1}^{N} q(X = i) \ln \frac{p(X = i|\textbf{Y},\theta)}{q(X = i)} \\
     & =  \ell(\theta|\textbf{Y}) - D_{KL}(q(\textbf{X})||p(\textbf{X}|\textbf{Y},\theta))
@@ -171,7 +171,7 @@ Now we see that the statistical distance between the two likelihood functions is
 minimization problem of KL divergence between the two distributions $q$ and $p$:
 
 \begin{equation}
-    q^{(k+1)} = \underset{q \in Q}{\arg\min}(\ell(\theta|\textbf{Y}) - L(\theta, q|\textbf{Y})) = \underset{q \in Q}{\arg\min}  D_{KL} (q(\textbf{X}) || p(\textbf{X}| \textbf{Y},\theta^{(k)}))
+    q^{(k+1)} = \underset{q \in Q}{\arg\min} \: (\ell(\theta|\textbf{Y}) - \mathcal{L}(\theta, q|\textbf{Y})) = \underset{q \in Q}{\arg\min} \: D_{KL} (q(\textbf{X}) || p(\textbf{X}| \textbf{Y},\theta^{(k)}))
 \end{equation}
 
 To visualize the EM algorithm, refer to Figure \ref{fig:Loglike} where red curve is the log-likelihood function $\ell(\theta|\textbf{Y})$
@@ -181,10 +181,10 @@ s.t. the next iteration of E-step can be performed, and the lower bound is maxim
 
 Until now, we have considered the optimal manner in which we compute the conditional expectation $E_{\textbf{X}|\textbf{Y},\theta^{(k)}} [\ell(\theta|\textbf{Y})]$ by 
 finding the appropriate function $q$. Next step is, as typical for coordinate descent, selection of parameter $\theta^{(k+1)}$, 
-with already estimated $q^{(k+1)}$, that maximizes the lower bound $L(\theta,q|\textbf{Y})$. The goal of M-step is according to \citep{Dempster1977} and \citep{Gu2008}:
+with already estimated $q^{(k+1)}$, that maximizes the lower bound $\mathcal{L}(\theta,q|\textbf{Y})$. The goal of M-step is according to \citep{Dempster1977} and \citep{Gu2008}:
 
 \begin{equation}
-    \theta^{(k+1)} = \underset{\theta \in \Theta}{\arg\max} L(\theta, q^{(k+1)}|\textbf{Y})
+    \theta^{(k+1)} = \underset{\theta \in \Theta}{\arg\max} \: \mathcal{L}(\theta, q^{(k+1)}|\textbf{Y})
 \end{equation}
 
 \begin{figure}[ht]
@@ -200,7 +200,7 @@ with already estimated $q^{(k+1)}$, that maximizes the lower bound $L(\theta,q|\
 \noindent Thus, as a summarization, the EM algorithm involves two steps:
 
 \begin{itemize}
-\item[1)] \textbf{Expectation step (E-step)} - choose a function q, i.e.\ probability distribution, that maximizes $L(\theta, q|\textbf{Y})$, which may be also viewed as 
+\item[1)] \textbf{Expectation step (E-step)} - choose a function q, i.e.\ probability distribution, that maximizes $\mathcal{L}(\theta, q|\textbf{Y})$, which may be also viewed as 
                                                computing the posterior distribution $p(\textbf{X}|\textbf{Y},\theta^{(k)})$ based on $\theta^{(k)}$:
 
 \begin{equation}
@@ -644,7 +644,7 @@ where the initial condition for $t=T$ is given by $\gamma_T(i) = \sum\limits_{u 
     \caption{Xi variable as in Equation \ref{eq:xi}}
     \end{subfigure}
 \caption[Visualization of posterior variables resulting from E-step]{Trellis describing (a) $\gamma_t(i)$ variable as a product of $\alpha_t(i)$ and $\beta_t(i)$ variables and 
-                            (b) $\xi_t(i,j)$ variable as a product of $\alpha_t(i)$, $a_{ij}$, $b_j(y_{t+1})$ and $\beta_{t+1}(j)$ variables.}
+                            (b) $\xi_t(i,j)$ variable as a product of $\alpha_t(i)$, $a_{i,j}$, $b_j(y_{t+1})$ and $\beta_{t+1}(j)$ variables.}
 \end{figure}
 
 \subsection*{E-step}
@@ -654,7 +654,7 @@ hidden data given our model parameters, i.e. $\ln p(\textbf{X},\textbf{Y}|\theta
 distribution of states, transition and emission matrices, s.t. $\theta = \{\textbf{p}, \textbf{A}, \textbf{B}\}$, and is time invariant therefore:
 
 \begin{equation}
-    L(\theta|\textbf{Y}) = p_{x_1} \left[ \prod_{t=2}^{T} a_{x_t,x_{t-1}} \right] \prod_{t=1}^{T} b_{x_t}(y_t)
+    \mathcal{L}(\theta|\textbf{Y}) = p_{x_1} \left[ \prod_{t=2}^{T} a_{x_t,x_{t-1}} \right] \prod_{t=1}^{T} b_{x_t}(y_t)
 \end{equation}
 
 where $x_t$ is a hidden state at time $t$ and $y_t$ is an observed emission at time $t$. What is missing in the above equation is the information about the
